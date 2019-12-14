@@ -170,9 +170,11 @@ class Map
     { let idxRight = idxRight + 1; }
 
     /* For Gap */
+    /* If gap in gap[gapLeft] is no longer in the screen, discard gap[gapLeft] */
     while ( (gapLeft < gapRight) & (gap[gapLeft] < screenPos) )
     { let gapLeft = gapLeft + 1; }
 
+    /* If the next gap is in the screen, added it to the drawing List */
     while ( (gapRight < numGap) & (gap[gapRight] < (screenPos + 512) ) )
     { let gapRight = gapRight + 1; }
 
