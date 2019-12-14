@@ -1,0 +1,9 @@
+function Main.main 1
+push constant 100
+call SuperMarioGame.new 1
+pop local 0
+push local 0
+call SuperMarioGame.run 1
+pop temp 0
+push constant 0
+return

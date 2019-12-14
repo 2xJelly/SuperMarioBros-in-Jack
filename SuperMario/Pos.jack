@@ -1,0 +1,34 @@
+class Pos
+{
+  field int posX, posY;
+
+  /* Create new position */
+  constructor Pos new(int x, int y)
+  {
+    let posX = x;
+    let posY = y;
+    return this;
+  }
+
+  /* Get posX from the outside */
+  method int getX()
+  { return posX; }
+
+  /* Get posY from the outside */
+  method int getY()
+  { return posY; }
+
+  /* Update posX */
+  method void updateX(int x)
+  {
+    let posX = x;
+    return;
+  }
+
+  /* Update posY */
+  method void updateY(int y)
+  {
+    let posY = y;
+    return;
+  }
+}

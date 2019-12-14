@@ -1,0 +1,441 @@
+class Map
+{
+  field Array posX, posY;
+  field Array gap;
+  field Block block;
+  field int numGap;
+  field int numBlock;
+  field int screenPos;
+  field int idxLeft, idxRight;
+  /* Left and right idx of items in the array */
+  /* that need to be shown in current Screen position */
+  field int gapLeft, gapRight;
+
+  constructor Map new()
+  {
+    let numGap = 6;
+    let numBlock = 134;
+    let screenPos = 0;
+    let idxLeft = 0;
+    let idxRight = 0;
+    let gapLeft = 0;
+    let gapRight = 0;
+
+    let block = Block.new();
+
+    /* Initialise the map */
+
+    // let gap = Array.new(numGap);
+    /* Setup where should the gaps be */
+    /*
+    let gap[0] = 640;
+    let gap[1] = 672;
+    let gap[2] = 704;
+    let gap[3] = 960;
+    */
+
+    // let pos = Array.new(1);
+    // let posX = Array.new(numBlock);
+    // let posY = Array.new(numBlock);
+    /* Assign positions to where the blocks should be */
+    /*
+    let posX[0] = 704;
+    let posY[0] = 154;
+    let posX[1] = 800;
+    let posY[1] = 180;
+    let posX[2] = 980;
+    let posY[2] = 200;
+
+    let posX[3] = 1160;
+    let posY[3] = 180;
+    let posX[4] = 1340;
+    let posY[4] = 160;
+    let posX[5] = 1520;
+    let posY[5] = 140;
+    */
+
+    let gap = block.getGap();
+    let posX = block.getPosX();
+    let posY = block.getPosY();
+
+    /* Refresh item in the screen */
+    do refresh();
+    /* Draw the current map */
+    do draw();
+    /* Draw the platform */
+    do drawGround();
+
+    return this;
+  }
+
+  /* Draw the ground/platform */
+	method void drawGround()
+	{
+    var int drawIdx;
+    var int gapIdx;
+
+		do Screen.setColor(true);
+    let drawIdx = 0;
+    let gapIdx = gapLeft;
+    while(drawIdx < 512)
+    {
+      /* If there is no gap here, draw a rectangle platform */
+      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) ) { do drawBlock(drawIdx + screenPos, 224, 32, 32); }
+      else { let gapIdx = gapIdx + 1; }
+
+      let drawIdx = drawIdx + 32;
+    }
+
+		return;
+	}
+
+  /* Erase the ground/platform */
+	method void eraseGround()
+	{
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 224, 511, 255);
+		return;
+	}
+
+  /* Draw the map */
+  method void draw()
+  {
+    var int i;
+    let i = idxLeft;
+
+    do Screen.setColor(true);
+
+    /* Loop throught all items, and draw them */
+    while(i < idxRight)
+    {
+      /* Draw all the blocks */
+      if (~(block.getType(i) = 1)) { do drawBlock(posX[i], posY[i], 16, 16); }
+      let i = i + 1;
+    }
+
+    return;
+  }
+
+  /* Erase the map */
+  method void erase()
+  {
+    var int i;
+    let i = idxLeft;
+
+    do Screen.setColor(false);
+
+    /* Loop throught all items, and erase them */
+    while(i < idxRight)
+    {
+      /* Erase all the blocks */
+      do drawBlock(posX[i], posY[i], 16, 16);
+      let i = i + 1;
+    }
+    return;
+  }
+
+  /* Draw a block */
+  /* Assume that we have already setColor as color needed */
+  method void drawBlock(int curX, int curY, int sizeX, int sizeY)
+  {
+    // do Screen.setColor(true);
+		do Screen.drawRectangle(curX - screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
+		return;
+  }
+
+  /* Move the map to the right by 32 pixels */
+	method void transition()
+	{
+    do erase();
+    do eraseGround();
+
+    let screenPos = screenPos + 32;
+    do refresh();
+
+    do draw();
+    do drawGround();
+    return;
+	}
+
+  /* Add / Delete items according to the screen position */
+  method void refresh()
+  {
+    /* For Block */
+    /* If item in pos[idxLeft] is no longer in the screen, discard pos[idxLeft] */
+    while ( (idxLeft < idxRight) & (posX[idxLeft] < screenPos) )
+    { let idxLeft = idxLeft + 1; }
+
+    /* If the next item is in the screen, added it to the drawing List */
+    while ( (idxRight < numBlock) & (posX[idxRight] < (screenPos + 512) ) )
+    { let idxRight = idxRight + 1; }
+
+    /* For Gap */
+    while ( (gapLeft < gapRight) & (gap[gapLeft] < screenPos) )
+    { let gapLeft = gapLeft + 1; }
+
+    while ( (gapRight < numGap) & (gap[gapRight] < (screenPos + 512) ) )
+    { let gapRight = gapRight + 1; }
+
+    return;
+  }
+
+  /* Check if Mario is stepping on the platform */
+  method boolean touchGround(int X, int Y)
+  {
+    var boolean onG;
+    var int l, r, gapIdx;
+    let onG = true;
+    let gapIdx = gapLeft;
+
+    /* If Mario is not at 208, it is not on the platform */
+    if (~(Y = 208)) { let onG = false; }
+
+    /* Check gap no.1 first */
+    let l = gap[gapIdx];
+    let r = gap[gapIdx] + 32;
+    if ((gapIdx < gapRight) & (l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
+    let gapIdx = gapIdx + 1;
+
+    while(gapIdx < gapRight)
+    {
+      if (gap[gapIdx] = r) /* If this gap is connected with the previous gap, connect them */
+      { let r = r + 32; }
+      else /* Else this is a new gap */
+      {
+        let l = gap[gapIdx];
+        let r = gap[gapIdx] + 32;
+      }
+      if ((l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
+      let gapIdx = gapIdx + 1;
+    }
+
+    return onG;
+  }
+
+  /* Check if Mario is touching the left side of the gaps */
+  method boolean touchLeftSides(int X, int Y)
+  {
+    var boolean contact;
+    var int l, r, gapIdx;
+    let contact = false;
+    let gapIdx = gapLeft;
+
+    /* Check gap no.1 first */
+    let l = gap[gapIdx];
+    let r = gap[gapIdx] + 32;
+    /* Check if the first gap's left side touches Mario */
+    if ((gapIdx < gapRight) & (l = X) & (208 < Y)) { let contact = true; }
+    let gapIdx = gapIdx + 1;
+
+    while(gapIdx < gapRight)
+    {
+      if (gap[gapIdx] = r) /* If this gap is connected with the previous gap, connect them */
+      { let r = r + 32; }
+      else /* Else this is a new gap */
+      {
+        let l = gap[gapIdx];
+        let r = gap[gapIdx] + 32;
+        /* Check if the new gap's left side touches Mario */
+        if ((l = X) & (208 < Y)) { let contact = true; }
+      }
+      let gapIdx = gapIdx + 1;
+    }
+
+    return contact;
+  }
+
+  /* Check if Mario is touching the right side of the gaps */
+  method boolean touchRightSides(int X, int Y)
+  {
+    var boolean contact;
+    var int l, r, gapIdx;
+    let contact = false;
+    let gapIdx = gapLeft;
+
+    /* Check gap no.1 first */
+    let l = gap[gapIdx];
+    let r = gap[gapIdx] + 32;
+    let gapIdx = gapIdx + 1;
+
+    while(gapIdx < gapRight)
+    {
+      if (gap[gapIdx] = r) /* If this gap is connected with the previous gap, connect them */
+      { let r = r + 32; }
+      else /* Else this is a new gap */
+      {
+        /* Check if the old gap's right side touches Mario */
+        if ((r = (X+16)) & (208 < Y)) { let contact = true; }
+        let l = gap[gapIdx];
+        let r = gap[gapIdx] + 32;
+      }
+      let gapIdx = gapIdx + 1;
+    }
+
+    /* If there is at least 1 gap */
+    if (gapLeft < gapRight)
+    {
+      /* Check if the last gap's right side touches Mario */
+      if ((r = (X+16)) & (208 < Y)) { let contact = true; }
+    }
+
+    return contact;
+  }
+
+  /* Check if Mario is touching any Block from left */
+  method boolean touchLeft(int X, int Y)
+  {
+    var boolean contact, corner;
+    var int i;
+    var int diffX, diffY;
+
+    let i = idxLeft;
+    let contact = false;
+    let corner = false;
+
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = X - posX[i];
+      let diffY = posY[i] - Y;
+      if (diffY < 0) { let diffY = -diffY; }
+
+      /* If there are just connected at the corner, it does not count as touching */
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+
+      /* If they are close enough, they are touching */
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      { let contact = true; }
+
+      let i = i + 1;
+      let corner = false;
+    }
+
+    return contact;
+  }
+
+  /* Check if Mario is touching any Block from right */
+  method boolean touchRight(int X, int Y)
+  {
+    var boolean contact, corner;
+    var int i;
+    var int diffX, diffY;
+
+    let i = idxLeft;
+    let contact = false;
+    let corner = false;
+
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = posX[i] - X;
+      let diffY = posY[i] - Y;
+      if (diffY < 0) { let diffY = -diffY; }
+
+      /* If there are just connected at the corner, it does not count as touching */
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+
+      /* If they are close enough, they are touching */
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      { let contact = true; }
+
+      let i = i + 1;
+      let corner = false;
+    }
+
+    return contact;
+  }
+
+  /* Check if Mario is touching any Block from above */
+  method boolean touchAbove(int X, int Y)
+  {
+    var boolean corner, touch;
+    var int i, touchBlock, area;
+    var int diffX, diffY;
+
+    let corner = false;
+    let touch = false;
+    let i = idxLeft;
+    let touchBlock = -1;
+    let area = 0;
+
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = posX[i] - X;
+      if (diffX < 0) { let diffX = -diffX; }
+      let diffY = Y - posY[i];
+
+      /* If there are just connected at the corner, it does not count as touching */
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+
+      /* If this block is not empty, both block and Mario are close enough,
+      this block has more contact area with Mario then the previous one, then they are touching */
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) & ((16-diffX) > area) )
+      {
+        let touch = true;
+        let touchBlock = i;
+        let area = 16-diffX;
+      }
+
+      let i = i + 1;
+      let corner = false;
+    }
+
+    // Debug Code
+    /*
+    if (touch)
+    {
+      do Output.moveCursor(1, 0);
+      do Output.printString("Block Type:");
+			do Output.printInt(block.getType(touchBlock));
+      do Output.moveCursor(2, 0);
+      do Output.printString("Area:");
+			do Output.printInt(area/10);
+      do Output.printInt(area - ((area/10)*10) );
+    }
+    */
+
+    /* If this is a normal block, Mario will crush it into nothing */
+    if ( touch & (block.getType(touchBlock) = 0) )
+    {
+      do block.changeType(touchBlock, 1);
+      do erase();
+      do draw();
+    }
+
+    return touch;
+  }
+
+  /* Check if Mario is touching any Block from below */
+  method boolean touchBelow(int X, int Y)
+  {
+    var boolean contact, corner;
+    var int i;
+    var int diffX, diffY;
+
+    let i = idxLeft;
+    let contact = false;
+    let corner = false;
+
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = posX[i] - X;
+      if (diffX < 0) { let diffX = -diffX; }
+      let diffY = posY[i] - Y;
+
+      /* If there are just connected at the corner, it does not count as touching */
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+
+      /* If they are close enough, they are touching */
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) )
+      { let contact = true; }
+
+      let i = i + 1;
+      let corner = false;
+    }
+
+    return contact;
+  }
+
+}
