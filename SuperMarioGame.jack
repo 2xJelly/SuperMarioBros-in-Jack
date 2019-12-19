@@ -19,6 +19,13 @@ class SuperMarioGame
 
 	constructor SuperMarioGame new(int gameSpeed)
 	{
+		// Set fps first, cuz menu() needs it
+		let fps = gameSpeed;
+		// fps -> frame per second
+
+		// Do the starting menu
+		do menu();
+
 		do Screen.clearScreen();
 		do MATH.init();
 		do Sprite.init();
@@ -27,10 +34,49 @@ class SuperMarioGame
 		let map = Map.new();
 		let monster = Monster.new();
 		let screenPos = 0;
-		let fps = gameSpeed;
-		// fps -> frame per second
 
 		return this;
+	}
+
+	method void menu()
+	{
+		let exit = false;
+
+		// Show the text
+		do Output.moveCursor(15, 20);
+		do Output.printString("Press any key to Start");
+
+		// Starting Menu
+		while (~exit)
+		{
+			// Read an input from the user
+			let key = Keyboard.keyPressed();
+
+			// Now we have an input from the user
+			if( ~(key=0) ) // Any key
+			{
+				let exit = true;
+				let effect = 6;
+				while(effect > -1)
+				{
+					// Erase the text
+					do Sys.wait(10000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do Screen.setColor(false);
+					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+
+					// Show the text
+					do Sys.wait(10000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do Output.moveCursor(15, 20);
+					do Output.printString("Press any key to Start");
+
+					let effect = effect -1;
+				}
+			}
+		}
+
+		return;
 	}
 
 	method void run()
@@ -41,7 +87,7 @@ class SuperMarioGame
 		let score = 0;
 		let time = 999;
 		let framePassed = fps;
-		let frameMon =fps/50;
+		let frameMon = fps/50;
 
 		do Output.moveCursor(0, 0);
 		do Output.printString("Coin: ");

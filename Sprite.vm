@@ -264,10 +264,6 @@ pop that 0
 push constant 0
 return
 function Sprite.drawMario 5
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
 push argument 0
 push constant 16
 call Math.divide 2
@@ -375,10 +371,6 @@ label WHILE_END1
 push constant 0
 return
 function Sprite.eraseMario 5
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
 push argument 0
 push constant 16
 call Math.divide 2
@@ -486,10 +478,6 @@ label WHILE_END1
 push constant 0
 return
 function Sprite.drawMon 5
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
 push argument 0
 push constant 16
 call Math.divide 2
@@ -597,10 +585,6 @@ label WHILE_END1
 push constant 0
 return
 function Sprite.eraseMon 5
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
 push argument 0
 push constant 16
 call Math.divide 2
