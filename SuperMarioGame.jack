@@ -8,7 +8,7 @@ class SuperMarioGame
 	field int fps;
 
 	field char key;
-	field boolean exit;
+	field boolean win, exit;
 	field int coin, score, time;
 	field int framePassed;
 	field int frameMon;
@@ -30,6 +30,7 @@ class SuperMarioGame
 		do MATH.init();
 		do Sprite.init();
 
+		let win = false;
 		let mario = Mario.new(0, 208);
 		let map = Map.new();
 		let monster = Monster.new();
@@ -220,7 +221,30 @@ class SuperMarioGame
 				do mario.erase();
 				let exit = true;
 			}
+
+			// If Mario haven't die,
+			// and Mario reach this position, you WIN ~~
+			if ( (~(exit)) & (3200 < (screenPos + mario.getPosX()) ) )
+			{
+				let win = true;
+				let exit = true;
+			}
 		}
+
+		// The game ends, clear the screen
+		do Screen.clearScreen();
+
+		do Output.moveCursor(15, 25);
+		// WIN
+		if (win) { do Output.printString("You Rock~~~"); }
+		// LOSE
+		else { do Output.printString("You Suck!!!"); }
+
+		// Just For Debug, Remove the text
+		/*
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+		*/
 
 		return;
 	}
