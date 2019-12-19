@@ -1,0 +1,254 @@
+class SuperMarioGame
+{
+	field Mario mario;
+	field Map map;
+	field Monster monster;
+	field int direction; // 0 = At rest, 1 = Left, 2 = Right
+	field int screenPos;
+	field int fps;
+
+	field char key;
+	field boolean exit;
+	field int coin, score, time;
+	field int framePassed;
+	field int frameMon;
+	field int effect;
+
+	// Just for Debug, variables for debug
+	field int debug1, debug2, debug3;
+
+	constructor SuperMarioGame new(int gameSpeed)
+	{
+		do Screen.clearScreen();
+		do MATH.init();
+		do Sprite.init();
+
+		let mario = Mario.new(0, 208);
+		let map = Map.new();
+		let monster = Monster.new();
+		let screenPos = 0;
+		let fps = gameSpeed;
+		// fps -> frame per second
+
+		return this;
+	}
+
+	method void run()
+	{
+		let key = 0;
+		let exit = false;
+		let coin = 0;
+		let score = 0;
+		let time = 999;
+		let framePassed = fps;
+		let frameMon =fps/50;
+
+		do Output.moveCursor(0, 0);
+		do Output.printString("Coin: ");
+		do Output.printInt(coin);
+
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
+
+		do Output.moveCursor(0, 53);
+		do Output.printString("TIME: ");
+		do Output.printInt(time);
+
+		// Just For Debug, try printBin and printBinRev
+		/*
+		let debug1 = -32767;
+		let debug1 = debug1-1;
+		do MATH.printBin(debug1, 1);
+		do MATH.printBinRev(debug1, 2);
+		*/
+
+		// Just For Debug, try l_Shift and r_Shift
+		/*
+		let debug1 = 0;
+		while(debug1 < 16)
+		{
+			// let debug2 = MATH.l_Shift(-1, debug1);
+			let debug2 = MATH.r_Shift(-1, debug1);
+			do MATH.printBin(debug2, debug1+1);
+			let debug1 = debug1+1;
+		}
+		*/
+
+		/* While Reading in the users command, react to it according to our rules */
+		while(~exit)
+		{
+			// Just For Debug, output the current coordinate of Mario
+			/*
+			do Output.moveCursor(1, 0);
+			do Output.printString("Pos: (");
+			do Output.printInt(mario.getPosX());
+			do Output.printString(", ");
+			do Output.printInt(mario.getPosY());
+			do Output.printString(")");
+			*/
+
+			// Read an input from the user
+			let key = Keyboard.keyPressed();
+
+			// Now we have an input from the user
+			if(key = 81) { let exit = true; } // q key
+			if(key = 130) { let direction = 1; } // Left arrow
+			if(key = 132) { let direction = 2; } // right arrow
+			if((key = 32) & marioOnGround() ) // Spacebar, and Mario is on the ground
+			{ do mario.jump(); }
+
+			// Now move Mario if Mario is not touching any block
+			do move();
+			// If Mario reach the bottom, game over!!!
+			if (239 < mario.getPosY() )
+			{
+				let effect = 3;
+				do mario.jump();
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do mario.erase();
+					do Sys.wait(10000/fps);
+					do mario.draw();
+					let effect = effect -1;
+				}
+				do mario.erase();
+				let exit = true;
+			}
+
+			// Do Transition of map if needed
+			if (mario.getPosX() > 383) { do transition(); }
+
+			// Wait for 1 frame to pass
+			do Sys.wait(1000/fps);
+
+			let framePassed = framePassed - 1;
+			let frameMon = frameMon - 1;
+			// If framePassed <= 0, 1 second has passes
+			if(~(framePassed > 0) )
+			{
+				let time = time - 1;
+				let framePassed = fps;
+				// Also, print the time since it has changed
+				do Output.moveCursor(0, 53);
+				do Output.printString("TIME: ");
+				do Output.printInt(time);
+			}
+			// Monster move 2 pixel per 0.02 second
+			if(~(frameMon > 0))
+			{
+				do Monmove();
+				let frameMon = fps/50;
+			}
+
+			// If mario touch monster upward
+			if(((mario.getPosX() - monster.getMonX()) < 17) & ((mario.getPosX() - monster.getMonX()) > -17) & ((monster.getMonY() - mario.getPosY()) = 16))
+			{
+				let effect = 3;
+				do mario.jump();
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do monster.eraseMonster();
+					do Sys.wait(10000/fps);
+					do monster.drawMonster();
+					let effect = effect -1;
+				}
+				do monster.kill();
+			}
+
+			// If mario touch monster left or right or downward
+			if(((mario.getPosX() - monster.getMonX()) < 17) & ((mario.getPosX() - monster.getMonX()) > -17) & ((mario.getPosY() - monster.getMonY()) < 16) & ((mario.getPosY() - monster.getMonY()) > -1 ))
+	  		{
+				let effect = 3;
+				do mario.jump();
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do mario.erase();
+					do Sys.wait(10000/fps);
+					do mario.draw();
+					let effect = effect -1;
+				}
+				do mario.erase();
+				let exit = true;
+			}
+		}
+
+		return;
+	}
+
+	method boolean marioOnGround()
+	{
+		var boolean onG;
+		let onG = false;
+		if(map.touchGround(mario.getPosX()+screenPos, mario.getPosY()) ) { let onG = true; }
+		if(map.touchBelow(mario.getPosX()+screenPos, mario.getPosY()) ) { let onG = true; }
+
+		return onG;
+	}
+
+	// Move the appropriate direction according to the key(direction)
+  method void move()
+  {
+		// If Mario is not touching left/right, let Mario move left/right
+    if (key = 130 & (~map.touchLeftSides(mario.getPosX()+screenPos, mario.getPosY())) & (map.touchLeft(mario.getPosX()+screenPos, mario.getPosY()) = false) ) { do mario.moveLeft(); }
+    if (key = 132 & (~map.touchRightSides(mario.getPosX()+screenPos, mario.getPosY())) & (map.touchRight(mario.getPosX()+screenPos, mario.getPosY()) = false) ) { do mario.moveRight(); }
+
+		// If Mario is jumping, and there is a block above him, Mario will stop jumping
+		if ( mario.isJump() )
+		{ if (map.touchAbove(mario.getPosX()+screenPos, mario.getPosY())) {do mario.stopJump(); } }
+		// Why don't put the inside if into the upper if bracket?
+		// Cuz if we enter touchAbove, we must make sure mario is jumping
+		// So that the function inside touchAbove can automatically remove the touching block above
+
+    // If Mario is not jumping, let Mario fall
+    if ( (~mario.isJump()) & (marioOnGround() = false))
+    { do mario.moveDown(); }
+
+    // If Mario is still jumping, let Mario moves up
+    if (mario.isJump())
+    {
+      do mario.moveUp();
+      do mario.jumpLess();
+    }
+
+    return;
+  }
+
+  method void Monmove()
+  {
+	  if(map.touchLeft(monster.getMonX(), monster.getMonY()) = true)
+	  { do monster.changeRight(); }
+	  if(map.touchRight(monster.getMonX(), monster.getMonY()) = true)
+	  { do monster.changeLeft(); }
+	  if(monster.getMonX()-screenPos > 495){do monster.changeLeft();}
+	  if((map.touchBelow(monster.getMonX() ,monster.getMonY()) = false) & (map.touchGround(monster.getMonX() ,monster.getMonY()) = false)){do monster.movedown();}
+	  else
+	  { do monster.run(); }
+	  return;
+  }
+
+	// Move the map to the right by 32 pixels
+	method void transition()
+	{
+		do mario.erase();
+		do monster.eraseMonster();
+		do map.erase();
+    do map.eraseGround();
+
+		let screenPos = screenPos + 32;
+		do mario.transition();
+		do monster.transition();
+		do map.transition();
+
+		do mario.draw();
+		do monster.drawMonster();
+		do map.draw();
+    do map.drawGround();
+		
+		return;
+	}
+
+}

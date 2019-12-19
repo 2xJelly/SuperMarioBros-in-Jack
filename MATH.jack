@@ -1,0 +1,188 @@
+class MATH
+{
+    static Array pow2, pt;
+    /* Initialise of pow2 */
+    function void init()
+    {
+      var int i;
+      let i = 2;
+      let pow2 = Array.new(16);
+      let pt = Array.new(16);
+
+      let pow2[0] = 1;
+      let pow2[1] = 2;
+      let pow2[2] = 4;
+
+      let pow2[3] = 8;
+      let pow2[4] = 16;
+      let pow2[5] = 32;
+      let pow2[6] = 64;
+
+      let pow2[7] = 128;
+      let pow2[8] = 256;
+      let pow2[9] = 512;
+      let pow2[10] = 1024;
+
+      let pow2[11] = 2048;
+      let pow2[12] = 4096;
+      let pow2[13] = 8192;
+      let pow2[14] = 16384;
+      // pow2[15] = -32768, but -32768 is not a valid constant, so do simple addition instead XD
+      let pow2[15] = -pow2[14]-pow2[14];
+
+      // Print all the pow2's
+      /*
+      let i = 0;
+			while(i<16)
+      {
+        do MATH.printBin(pow2[i], i+1);
+        let i = i + 1;
+      }
+      */
+
+      return;
+    }
+
+    // Print x in binary and decimal at (pos, 0)
+    function void printBin(int x, int pos)
+    {
+      var boolean neg;
+      var int i, ans;
+
+      let ans = x;
+      // If this is a negative number, mark it
+      if (ans < 0)
+      {
+        let neg = true;
+        // Let it add 16384 two times, cuz we don't have constant 32768
+        // Why do this? becuz of 2's complement
+        // e.g. -1 and 32767 has same binary representation, except the signed bit(first bit)
+        let ans = ans + 16384;
+        let ans = ans + 16384;
+      }
+
+      do Output.moveCursor(pos, 0);
+
+      // Run 15 times(run for every bit, except the signed bit)
+      let i = 0;
+      while( i<15 )
+      {
+        if( MATH.mod(ans, 2) = 1 ) { let pt[i] = 1; }
+        else { let pt[i] = 0; }
+        let i = i+1;
+        let ans = ans/2;
+      }
+
+      // Print the signed bits
+      if (neg) { do Output.printInt(1); }
+      else { do Output.printInt(0); }
+
+
+      // Print the 15 bits
+      let i = 14;
+      while( ~(i<0) )
+      {
+        do Output.printInt(pt[i]);
+        let i = i-1;
+      }
+
+      // Print the original x
+      do Output.printString(" = ");
+      do Output.printInt(x);
+      return;
+    }
+
+    // Print x in binary(reverse order) and decimal at (pos, 0)
+    // Useful for bitmap, drawing
+    function void printBinRev(int x, int pos)
+    {
+      var boolean neg;
+      var int i, ans;
+
+      let ans = x;
+      // If this is a negative number, mark it
+      if (ans < 0)
+      {
+        let neg = true;
+        // Let it add 16384 two times, cuz we don't have constant 32768
+        // Why do this? becuz of 2's complement
+        // e.g. -1 and 32767 has same binary representation, except the signed bit(first bit)
+        let ans = ans + 16384;
+        let ans = ans + 16384;
+      }
+
+      do Output.moveCursor(pos, 0);
+
+      // Run 15 times(run for every bit, except the signed bit)
+      let i = 0;
+      while( i<15 )
+      {
+        if( MATH.mod(ans, 2) = 1 ) { let pt[i] = 1; }
+        else { let pt[i] = 0; }
+        let i = i+1;
+        let ans = ans/2;
+      }
+
+      // Print the 15 bits
+      let i = 0;
+      while( i<15 )
+      {
+        do Output.printInt(pt[i]);
+        let i = i+1;
+      }
+
+      // Print the signed bits
+      if (neg) { do Output.printInt(1); }
+      else { do Output.printInt(0); }
+
+      // Print the original x
+      do Output.printString(" = ");
+      do Output.printInt(x);
+      return;
+    }
+
+    // Left shift x by (shift = 0-15) bits
+    function int l_Shift(int x, int shift)
+    {
+      var int ans;
+
+      // x=0, when shift >= 16
+      if (shift > 15) { let ans = 0; }
+      // Do normal left shift
+      else { let ans = x * pow2[shift]; }
+
+      return ans;
+    }
+
+    // Right shift x by (shift = 0-15) bits
+    function int r_Shift(int x, int shift)
+    {
+      var int ans;
+
+      // x=0, when shift >= 16
+      if (shift > 15) { return 0; }
+      else
+      {
+        let ans = x;
+        if (shift > 0)
+        {
+          // If is a negative integer, turn off it's signed bit(first bit)
+          if (x < 0) { let ans = ans & (~pow2[15]); }
+          // Do a right shift
+          let ans = ans/2;
+          // If is a negative integer, turn on it's second bit(Cuz the signed bit shift to here)
+          if (x < 0) { let ans = ans | pow2[14]; }
+          let shift = shift - 1;
+        }
+        // Do normal right shift
+        if (shift > 0) { let ans = (ans / pow2[shift]); }
+      }
+      return ans;
+    }
+
+    // Return x%y
+    function int mod(int x, int y)
+    {
+      return x - ((x/y)*y);
+    }
+}
