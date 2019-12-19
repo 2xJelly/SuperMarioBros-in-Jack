@@ -1,0 +1,709 @@
+function Sprite.init 0
+push constant 16
+call Array.new 1
+pop static 0
+push constant 16
+call Array.new 1
+pop static 1
+push constant 0
+push static 0
+add
+push constant 224
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push static 0
+add
+push constant 792
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 0
+add
+push constant 1028
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 0
+add
+push constant 1284
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push static 0
+add
+push constant 2050
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push static 0
+add
+push constant 2050
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push static 0
+add
+push constant 1988
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push static 0
+add
+push constant 1028
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push static 0
+add
+push constant 792
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push static 0
+add
+push constant 3302
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push static 0
+add
+push constant 5125
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push static 0
+add
+push constant 5125
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push static 0
+add
+push constant 6141
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push static 0
+add
+push constant 5125
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push static 0
+add
+push constant 1028
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push static 0
+add
+push constant 3084
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+push static 1
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push static 1
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 1
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 1
+add
+push constant 6240
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push static 1
+add
+push constant 6240
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push static 1
+add
+push constant 8184
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push static 1
+add
+push constant 7368
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push static 1
+add
+push constant 7368
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push static 1
+add
+push constant 32760
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push static 1
+add
+push constant 24576
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push static 1
+add
+push constant 16380
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push static 1
+add
+push constant 16376
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push static 1
+add
+push constant 8176
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push static 1
+add
+push constant 8160
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push static 1
+add
+push constant 4128
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push static 1
+add
+push constant 6192
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function Sprite.drawMario 5
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+label WHILE_EXP0
+push local 2
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 0
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.l_Shift 2
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+label WHILE_EXP1
+push local 4
+push constant 16
+lt
+push local 2
+push constant 16
+lt
+and
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 0
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.r_Shift 2
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Sprite.eraseMario 5
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+label WHILE_EXP0
+push local 2
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 0
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.l_Shift 2
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+label WHILE_EXP1
+push local 4
+push constant 16
+lt
+push local 2
+push constant 16
+lt
+and
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 0
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.r_Shift 2
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Sprite.drawMon 5
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+label WHILE_EXP0
+push local 2
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 1
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.l_Shift 2
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+label WHILE_EXP1
+push local 4
+push constant 16
+lt
+push local 2
+push constant 16
+lt
+and
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 1
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.r_Shift 2
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Sprite.eraseMon 5
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+label WHILE_EXP0
+push local 2
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 1
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.l_Shift 2
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+label WHILE_EXP1
+push local 4
+push constant 16
+lt
+push local 2
+push constant 16
+lt
+and
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 1
+add
+pop pointer 1
+push that 0
+push local 4
+call MATH.r_Shift 2
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return

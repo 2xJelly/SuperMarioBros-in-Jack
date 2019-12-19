@@ -1,0 +1,154 @@
+class Monster
+{
+  field Array MonX,MonY;
+  field Block block;
+  field Monster monster;
+  field int numMonster;
+  field int screenPos;
+  field int monLeft,monRight;
+  field int k;
+
+  constructor Monster new()
+  {
+    let numMonster = 1;
+    let k = 2;
+    let screenPos = 0;
+    let monLeft = 0;
+    let monRight = 0;
+
+    let block = Block.new();
+    let MonX = block.getMonX();
+    let MonY = block.getMonY();
+
+    do refresh();
+
+    do drawMonster();
+
+    return this;
+  }
+
+  method void drawMonster()
+  {
+      var int i;
+      let i = monLeft;
+
+      do Screen.setColor(true);
+
+      while(i < monRight)
+      {
+        do drawBlock(MonX[i],MonY[i],16,16);
+        let i = i + 1;
+      }
+      return;
+  }
+
+  method void eraseMonster()
+  {
+      var int i;
+      let i = monLeft;
+
+      do Screen.setColor(false);
+
+      while(i < monRight)
+      {
+        do eraseBlock(MonX[i],MonY[i],16,16);
+        let i = i + 1;
+      }
+      return;
+  }
+
+  method void drawBlock(int curX, int curY, int sizeX, int sizeY)
+  {
+    do Sprite.drawMon(curX-screenPos, curY);
+		// do Screen.drawRectangle(curX-screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
+		return;
+  }
+
+  method void eraseBlock(int curX, int curY, int sizeX, int sizeY)
+  {
+    do Sprite.eraseMon(curX-screenPos, curY);
+		// do Screen.drawRectangle(curX-screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
+		return;
+  }
+
+	method void transition()
+	{
+        // do eraseMonster();
+
+        let screenPos = screenPos + 32;
+
+        // let MonX[monLeft] = MonX[monLeft] - 32;
+
+        do refresh();
+
+        // do drawMonster();
+
+        return;
+	}
+
+
+  /* Add / Delete items according to the screen position */
+  method void refresh()
+  {
+    while((monLeft < monRight) & (MonX[monLeft] < screenPos))
+    {let monLeft = monLeft + 1;}
+
+    while((monRight < numMonster) & (MonX[monRight] < (screenPos + 512) ) )
+    {let monRight = monRight + 1;}
+
+    return;
+  }
+
+  method void run()
+  {
+      var int i;
+      let i = monLeft;
+      do eraseMonster();
+      while(i < monRight)
+      {
+        let MonX[i] = MonX[i] - k;
+        let i = i + 1;
+      }
+      do refresh();
+      do drawMonster();
+      return;
+  }
+
+  method void changeRight()
+  {
+      let k = -2;
+      return;
+  }
+
+  method void changeLeft()
+  {
+      let k = 2;
+      return;
+  }
+
+  method void movedown()
+  {
+    do eraseMonster();
+    let MonY[monLeft] = MonY[monLeft] + 2;
+    do drawMonster();
+
+    return;
+  }
+
+  method void kill()
+  {
+    do eraseMonster();
+    let monLeft = monLeft + 1;
+    return;
+  }
+
+  method int getMonX()
+  {
+      return MonX[monLeft];
+  }
+
+  method int getMonY()
+  {
+      return MonY[monLeft];
+  }
+}

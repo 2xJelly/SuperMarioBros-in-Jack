@@ -1,0 +1,204 @@
+class Sprite
+{
+  static Array marioVal, monVal;
+
+  function void init()
+  {
+    let marioVal = Array.new(16);
+    let monVal = Array.new(16);
+
+    let marioVal[0] = 224;
+    let marioVal[1] = 792;
+    let marioVal[2] = 1028;
+    let marioVal[3] = 1284;
+    let marioVal[4] = 2050;
+    let marioVal[5] = 2050;
+    let marioVal[6] = 1988;
+    let marioVal[7] = 1028;
+
+    let marioVal[8] = 792;
+    let marioVal[9] = 3302;
+    let marioVal[10] = 5125;
+    let marioVal[11] = 5125;
+    let marioVal[12] = 6141;
+    let marioVal[13] = 5125;
+    let marioVal[14] = 1028;
+    let marioVal[15] = 3084;
+
+    let monVal[0] = 0;
+    let monVal[1] = 0;
+    let monVal[2] = 0;
+    let monVal[3] = 6240;
+    let monVal[4] = 6240;
+    let monVal[5] = 8184;
+    let monVal[6] = 7368;
+    let monVal[7] = 7368;
+
+    let monVal[8] = 32760;
+    let monVal[9] = 24576;
+    let monVal[10] = 16380;
+    let monVal[11] = 16376;
+    let monVal[12] = 8176;
+    let monVal[13] = 8160;
+    let monVal[14] = 4128;
+    let monVal[15] = 6192;
+
+    return;
+  }
+
+  function void drawMario(int x, int y)
+  {
+    var int val, memAddress, idx, location, shift;
+
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    let location = ((x/16) + (y*32));
+    let memAddress = 16384+location;
+    let idx = 0;
+    let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
+
+    while(idx < 16)
+    {
+      let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(marioVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    let memAddress = 16384+location+1;
+    let idx = 0;
+    let shift = 16-shift;
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+    while ( (shift < 16) & (idx < 16))
+    {
+      let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(marioVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    return;
+  }
+
+  function void eraseMario(int x, int y)
+  {
+    var int val, memAddress, idx, location, shift;
+
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    let location = ((x/16) + (y*32));
+    let memAddress = 16384+location;
+    let idx = 0;
+    let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
+
+    while(idx < 16)
+    {
+      let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(marioVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    let memAddress = 16384+location+1;
+    let idx = 0;
+    let shift = 16-shift;
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+    while ( (shift < 16) & (idx < 16))
+    {
+      let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(marioVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    return;
+  }
+
+  function void drawMon(int x, int y)
+  {
+    var int val, memAddress, idx, location, shift;
+
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    let location = ((x/16) + (y*32));
+    let memAddress = 16384+location;
+    let idx = 0;
+    let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
+
+    while(idx < 16)
+    {
+      let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(monVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    let memAddress = 16384+location+1;
+    let idx = 0;
+    let shift = 16-shift;
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+    while ( (shift < 16) & (idx < 16))
+    {
+      let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(monVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    return;
+  }
+
+  function void eraseMon(int x, int y)
+  {
+    var int val, memAddress, idx, location, shift;
+
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    let location = ((x/16) + (y*32));
+    let memAddress = 16384+location;
+    let idx = 0;
+    let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
+
+    while(idx < 16)
+    {
+      let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(monVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    let memAddress = 16384+location+1;
+    let idx = 0;
+    let shift = 16-shift;
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+    while ( (shift < 16) & (idx < 16))
+    {
+      let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(monVal[idx], shift);
+      do Memory.poke(memAddress+(idx*32), val);
+      let idx = idx+1;
+    }
+
+    return;
+  }
+}
