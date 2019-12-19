@@ -1,5 +1,6 @@
 class Sprite
 {
+  // Array that stores Bitmap of Mario and Monster
   static Array marioVal, monVal;
 
   function void init()
@@ -7,6 +8,7 @@ class Sprite
     let marioVal = Array.new(16);
     let monVal = Array.new(16);
 
+    // Initialise Bitmap of Mario and Monster
     let marioVal[0] = 224;
     let marioVal[1] = 792;
     let marioVal[2] = 1028;
@@ -50,13 +52,13 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    // Points to the left square
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
 
+    // Just For Debug, shows shift's value
     /*
     do Output.moveCursor(1, 0);
     do Output.printString("Shift = ");
@@ -64,19 +66,26 @@ class Sprite
     do Output.printInt(shift - ((shift/10)*10) );
     */
 
+    // Add the Bitmap of Mario onto the left square
     while(idx < 16)
     {
+      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Right shift in the Bitmap == Left Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(marioVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
+    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+
+    // Add the Bitmap of Mario onto the right square
     while ( (shift < 16) & (idx < 16))
     {
+      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Left shift in the Bitmap == Right Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(marioVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
@@ -89,33 +98,32 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    // Points to the left square
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
 
-    /*
-    do Output.moveCursor(1, 0);
-    do Output.printString("Shift = ");
-    do Output.printInt(shift/10);
-    do Output.printInt(shift - ((shift/10)*10) );
-    */
-
+    // Remove the Bitmap of Mario from the left square
     while(idx < 16)
     {
+      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Right shift in the Bitmap == Left Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(marioVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
+    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+
+    // Remove the Bitmap of Mario from the right square
     while ( (shift < 16) & (idx < 16))
     {
+      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Left shift in the Bitmap == Right Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(marioVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
@@ -128,33 +136,32 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    // Points to the left square
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
 
-    /*
-    do Output.moveCursor(1, 0);
-    do Output.printString("Shift = ");
-    do Output.printInt(shift/10);
-    do Output.printInt(shift - ((shift/10)*10) );
-    */
-
+    // Add the Bitmap of Monster onto the left square
     while(idx < 16)
     {
+      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Right shift in the Bitmap == Left Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(monVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
+    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+
+    // Add the Bitmap of Monster onto the right square
     while ( (shift < 16) & (idx < 16))
     {
+      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Left shift in the Bitmap == Right Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(monVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
@@ -167,33 +174,32 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
+    // Points to the left square
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
 
-    /*
-    do Output.moveCursor(1, 0);
-    do Output.printString("Shift = ");
-    do Output.printInt(shift/10);
-    do Output.printInt(shift - ((shift/10)*10) );
-    */
-
+    // Remove the Bitmap of Monster from the left square
     while(idx < 16)
     {
+      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Right shift in the Bitmap == Left Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(monVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
+    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
+
+    // Remove the Bitmap of Monster from the right square
     while ( (shift < 16) & (idx < 16))
     {
+      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+      // Left shift in the Bitmap == Right Shift in the val
       let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(monVal[idx], shift);
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;

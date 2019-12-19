@@ -75,7 +75,7 @@ class SuperMarioGame
 		}
 		*/
 
-		/* While Reading in the users command, react to it according to our rules */
+		// While Reading in the users command, react to it according to our rules
 		while(~exit)
 		{
 			// Just For Debug, output the current coordinate of Mario
@@ -247,7 +247,7 @@ class SuperMarioGame
 		do monster.drawMonster();
 		do map.draw();
     do map.drawGround();
-		
+
 		return;
 	}
 

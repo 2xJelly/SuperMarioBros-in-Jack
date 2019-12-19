@@ -30,7 +30,7 @@ class MATH
       // pow2[15] = -32768, but -32768 is not a valid constant, so do simple addition instead XD
       let pow2[15] = -pow2[14]-pow2[14];
 
-      // Print all the pow2's
+      // Just For Debug, Print all the pow2's
       /*
       let i = 0;
 			while(i<16)
