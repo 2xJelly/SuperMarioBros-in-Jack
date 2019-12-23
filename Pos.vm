@@ -23,6 +23,10 @@ push argument 0
 pop pointer 0
 push argument 1
 pop this 0
+push argument 1
+push constant 512
+call MATH.mod 2
+pop this 0
 push constant 0
 return
 function Pos.updateY 0

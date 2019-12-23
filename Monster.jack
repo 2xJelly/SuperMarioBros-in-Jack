@@ -71,11 +71,11 @@ class Monster
 		return;
   }
 
-	method void transition()
+	method void transition(int move)
 	{
         // do eraseMonster();
 
-        let screenPos = screenPos + 32;
+        let screenPos = screenPos + move;
 
         // let MonX[monLeft] = MonX[monLeft] - 32;
 
@@ -90,11 +90,11 @@ class Monster
   /* Add / Delete items according to the screen position */
   method void refresh()
   {
-    while((monLeft < monRight) & (MonX[monLeft] < screenPos))
-    {let monLeft = monLeft + 1;}
-
     while((monRight < numMonster) & (MonX[monRight] < (screenPos + 512) ) )
     {let monRight = monRight + 1;}
+
+    while((monLeft < monRight) & (MonX[monLeft] < screenPos))
+    {let monLeft = monLeft + 1;}
 
     return;
   }

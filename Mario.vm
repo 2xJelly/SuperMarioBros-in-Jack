@@ -53,8 +53,8 @@ pop pointer 0
 push this 0
 push this 0
 call Pos.getX 1
-push constant 32
-sub
+push argument 1
+add
 call Pos.updateX 2
 pop temp 0
 push constant 0

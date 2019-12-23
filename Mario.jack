@@ -40,11 +40,11 @@ class Mario
     return;
   }
 
-  /* Move the Mario to the right by 32 pixels */
-  method void transition()
+  /* Move the Mario to the right by move pixels */
+  method void transition(int move)
   {
     // do erase();
-    do pos.updateX(pos.getX() - 32);
+    do pos.updateX(pos.getX() + move);
     // do draw();
     return;
   }

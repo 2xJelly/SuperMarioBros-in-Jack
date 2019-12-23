@@ -139,10 +139,10 @@ class SuperMarioGame
 			let key = Keyboard.keyPressed();
 
 			// Now we have an input from the user
-			if(key = 81) { let exit = true; } // q key
-			if(key = 130) { let direction = 1; } // Left arrow
-			if(key = 132) { let direction = 2; } // right arrow
-			if((key = 32) & marioOnGround() ) // Spacebar, and Mario is on the ground
+			if (key = 81) { let exit = true; } // q key
+			if (key = 130) { let direction = 1; } // Left arrow
+			if (key = 132) { let direction = 2; } // right arrow
+			if ((key = 32) & marioOnGround() ) // Spacebar, and Mario is on the ground
 			{ do mario.jump(); }
 
 			// Now move Mario if Mario is not touching any block
@@ -165,7 +165,11 @@ class SuperMarioGame
 			}
 
 			// Do Transition of map if needed
-			if (mario.getPosX() > 383) { do transition(); }
+			if (mario.getPosX() > 383) { do transition(32); }
+
+			// Do teleport if Mario is at the pipe, and push 'down' key
+			if ((key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144))
+			{ do transition(6400 - (mario.getPosX()+screenPos) ); }
 
 			// Wait for 1 frame to pass
 			do Sys.wait(1000/fps);
@@ -224,7 +228,7 @@ class SuperMarioGame
 
 			// If Mario haven't die,
 			// and Mario reach this position, you WIN ~~
-			if ( (~(exit)) & (3200 < (screenPos + mario.getPosX()) ) )
+			if ( (~(exit)) & (10000 < (screenPos + mario.getPosX()) ) )
 			{
 				let win = true;
 				let exit = true;
@@ -300,18 +304,21 @@ class SuperMarioGame
 	  return;
   }
 
-	// Move the map to the right by 32 pixels
-	method void transition()
+	// Move the map to the right by move pixels
+	method void transition(int move)
 	{
 		do mario.erase();
 		do monster.eraseMonster();
 		do map.erase();
     do map.eraseGround();
 
-		let screenPos = screenPos + 32;
-		do mario.transition();
-		do monster.transition();
-		do map.transition();
+		let screenPos = screenPos + move;
+		// If this is a normal moveScreen
+		if (move = 32) { do mario.transition(-move); }
+		// If this is a teleport moveScreen
+		else { do mario.transition(move); }
+		do monster.transition(move);
+		do map.transition(move);
 
 		do mario.draw();
 		do monster.drawMonster();
