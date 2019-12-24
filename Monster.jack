@@ -4,6 +4,7 @@ class Monster
   field Array direction;
   field Array Montype;
   field Block block;
+  field Draw draw;
   field Monster monster;
   field int numMonster;
   field int screenPos;
@@ -33,13 +34,30 @@ class Monster
   method void drawMonster()
   {
       var int i;
+      var int switch;
+      var int location;
       let i = monLeft;
 
       do Screen.setColor(true);
 
       while(i < monRight)
       {
-        do drawBlock(MonX[i],MonY[i],16,16);
+        let switch = Montype[i];
+        if(switch = 1)
+          {
+            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            do draw.flowerleft(location);
+            let location = 0;
+          }
+        
+        if(switch = 2)
+          {
+            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            do draw.flowerright(location);
+            let location = 0;
+          }
+
+        else{do drawBlock(MonX[i],MonY[i],16,16);}
         let i = i + 1;
       }
       return;

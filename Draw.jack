@@ -1,25 +1,69 @@
 class Draw
 {
 
-	method void character(int location) {
+// 	method void character(int location) {
+// 	var int memAddress;
+// 	let memAddress = 16384+location;
+// 	do Memory.poke(memAddress+0, 224);
+// 	do Memory.poke(memAddress+32, 792);
+// 	do Memory.poke(memAddress+64, 1028);
+// 	do Memory.poke(memAddress+96, 1284);
+// 	do Memory.poke(memAddress+128, 2050);
+// 	do Memory.poke(memAddress+160, 2050);
+// 	do Memory.poke(memAddress+192, 1988);
+// 	do Memory.poke(memAddress+224, 1028);
+// 	do Memory.poke(memAddress+256, 792);
+// 	do Memory.poke(memAddress+288, 3302);
+// 	do Memory.poke(memAddress+320, 5125);
+// 	do Memory.poke(memAddress+352, 5125);
+// 	do Memory.poke(memAddress+384, 6141);
+// 	do Memory.poke(memAddress+416, 5125);
+// 	do Memory.poke(memAddress+448, 1028);
+// 	do Memory.poke(memAddress+480, 3084);
+// 	return;
+// }
+
+	method void flowerleft(int location) {
 	var int memAddress;
 	let memAddress = 16384+location;
-	do Memory.poke(memAddress+0, 224);
-	do Memory.poke(memAddress+32, 792);
-	do Memory.poke(memAddress+64, 1028);
-	do Memory.poke(memAddress+96, 1284);
-	do Memory.poke(memAddress+128, 2050);
-	do Memory.poke(memAddress+160, 2050);
-	do Memory.poke(memAddress+192, 1988);
-	do Memory.poke(memAddress+224, 1028);
-	do Memory.poke(memAddress+256, 792);
-	do Memory.poke(memAddress+288, 3302);
-	do Memory.poke(memAddress+320, 5125);
-	do Memory.poke(memAddress+352, 5125);
-	do Memory.poke(memAddress+384, 6141);
-	do Memory.poke(memAddress+416, 5125);
-	do Memory.poke(memAddress+448, 1028);
-	do Memory.poke(memAddress+480, 3084);
+	do Memory.poke(memAddress+0, 0);
+	do Memory.poke(memAddress+32, 0);
+	do Memory.poke(memAddress+64, 0);
+	do Memory.poke(memAddress+96, 0);
+	do Memory.poke(memAddress+128, 0);
+	do Memory.poke(memAddress+160, 0);
+	do Memory.poke(memAddress+192, 0);
+	do Memory.poke(memAddress+224, 0);
+	do Memory.poke(memAddress+256, 0);
+	do Memory.poke(memAddress+288, 0);
+	do Memory.poke(memAddress+320, 0);
+	do Memory.poke(memAddress+352, 0);
+	do Memory.poke(memAddress+384, 28686);
+	do Memory.poke(memAddress+416, -30703);
+	do Memory.poke(memAddress+448, -30703);
+	do Memory.poke(memAddress+480, -31711);
+	return;
+}
+
+	method void flowerright(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 17442);
+	do Memory.poke(memAddress+32, 8772);
+	do Memory.poke(memAddress+64, 29070);
+	do Memory.poke(memAddress+96, 22558);
+	do Memory.poke(memAddress+128, -965);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -193);
+	do Memory.poke(memAddress+224, 26430);
+	do Memory.poke(memAddress+256, 26610);
+	do Memory.poke(memAddress+288, 16380);
+	do Memory.poke(memAddress+320, 4080);
+	do Memory.poke(memAddress+352, 32766);
+	do Memory.poke(memAddress+384, -32191);
+	do Memory.poke(memAddress+416, -31133);
+	do Memory.poke(memAddress+448, 32766);
+	do Memory.poke(memAddress+480, 960);
 	return;
 }
 
