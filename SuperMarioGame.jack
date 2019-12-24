@@ -109,7 +109,7 @@ class SuperMarioGame
 		do MATH.printBin(debug1, 1);
 		do MATH.printBinRev(debug1, 2);
 		*/
-
+		// do Sprite.printR(14);
 		// Just For Debug, try l_Shift and r_Shift
 		/*
 		let debug1 = 0;

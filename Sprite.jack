@@ -1,50 +1,913 @@
 class Sprite
 {
-  // Array that stores Bitmap of Mario and Monster
-  static Array marioVal, monVal;
+  static Array marioVal_L0, monVal_L0;
+  static Array marioVal_L2, monVal_L2;
+  static Array marioVal_L4, monVal_L4;
+  static Array marioVal_L6, monVal_L6;
+  static Array marioVal_L8, monVal_L8;
+  static Array marioVal_L10, monVal_L10;
+  static Array marioVal_L12, monVal_L12;
+  static Array marioVal_L14, monVal_L14;
+
+  static Array marioVal_R0, monVal_R0;
+  static Array marioVal_R2, monVal_R2;
+  static Array marioVal_R4, monVal_R4;
+  static Array marioVal_R6, monVal_R6;
+  static Array marioVal_R8, monVal_R8;
+  static Array marioVal_R10, monVal_R10;
+  static Array marioVal_R12, monVal_R12;
+  static Array marioVal_R14, monVal_R14;
 
   function void init()
   {
-    let marioVal = Array.new(16);
-    let monVal = Array.new(16);
+    let marioVal_L0 = Array.new(16);
+    let marioVal_L2 = Array.new(16);
+    let marioVal_L4 = Array.new(16);
+    let marioVal_L6 = Array.new(16);
+    let marioVal_L8 = Array.new(16);
+    let marioVal_L10 = Array.new(16);
+    let marioVal_L12 = Array.new(16);
+    let marioVal_L14 = Array.new(16);
 
-    // Initialise Bitmap of Mario and Monster
-    let marioVal[0] = 224;
-    let marioVal[1] = 792;
-    let marioVal[2] = 1028;
-    let marioVal[3] = 1284;
-    let marioVal[4] = 2050;
-    let marioVal[5] = 2050;
-    let marioVal[6] = 1988;
-    let marioVal[7] = 1028;
+    let marioVal_R0 = Array.new(16);
+    let marioVal_R2 = Array.new(16);
+    let marioVal_R4 = Array.new(16);
+    let marioVal_R6 = Array.new(16);
+    let marioVal_R8 = Array.new(16);
+    let marioVal_R10 = Array.new(16);
+    let marioVal_R12 = Array.new(16);
+    let marioVal_R14 = Array.new(16);
 
-    let marioVal[8] = 792;
-    let marioVal[9] = 3302;
-    let marioVal[10] = 5125;
-    let marioVal[11] = 5125;
-    let marioVal[12] = 6141;
-    let marioVal[13] = 5125;
-    let marioVal[14] = 1028;
-    let marioVal[15] = 3084;
+    let monVal_L0 = Array.new(16);
+    let monVal_L2 = Array.new(16);
+    let monVal_L4 = Array.new(16);
+    let monVal_L6 = Array.new(16);
+    let monVal_L8 = Array.new(16);
+    let monVal_L10 = Array.new(16);
+    let monVal_L12 = Array.new(16);
+    let monVal_L14 = Array.new(16);
 
-    let monVal[0] = 0;
-    let monVal[1] = 0;
-    let monVal[2] = 0;
-    let monVal[3] = 6240;
-    let monVal[4] = 6240;
-    let monVal[5] = 8184;
-    let monVal[6] = 7368;
-    let monVal[7] = 7368;
+    let monVal_R0 = Array.new(16);
+    let monVal_R2 = Array.new(16);
+    let monVal_R4 = Array.new(16);
+    let monVal_R6 = Array.new(16);
+    let monVal_R8 = Array.new(16);
+    let monVal_R10 = Array.new(16);
+    let monVal_R12 = Array.new(16);
+    let monVal_R14 = Array.new(16);
 
-    let monVal[8] = 32760;
-    let monVal[9] = 24576;
-    let monVal[10] = 16380;
-    let monVal[11] = 16376;
-    let monVal[12] = 8176;
-    let monVal[13] = 8160;
-    let monVal[14] = 4128;
-    let monVal[15] = 6192;
+    // Bitmap of Mario with Left Shift
 
+    // Shift = 0
+    let marioVal_L0[0] = 224;
+    let marioVal_L0[1] = 792;
+    let marioVal_L0[2] = 1028;
+    let marioVal_L0[3] = 1284;
+    let marioVal_L0[4] = 2050;
+    let marioVal_L0[5] = 2050;
+    let marioVal_L0[6] = 1988;
+    let marioVal_L0[7] = 1028;
+
+    let marioVal_L0[8] = 792;
+    let marioVal_L0[9] = 3302;
+    let marioVal_L0[10] = 5125;
+    let marioVal_L0[11] = 5125;
+    let marioVal_L0[12] = 6141;
+    let marioVal_L0[13] = 5125;
+    let marioVal_L0[14] = 1028;
+    let marioVal_L0[15] = 3084;
+
+    // Shift = 2
+    let marioVal_L2[0] = 896;
+    let marioVal_L2[1] = 3168;
+    let marioVal_L2[2] = 4112;
+    let marioVal_L2[3] = 5136;
+    let marioVal_L2[4] = 8200;
+    let marioVal_L2[5] = 8200;
+    let marioVal_L2[6] = 7952;
+    let marioVal_L2[7] = 4112;
+
+    let marioVal_L2[8] = 3168;
+    let marioVal_L2[9] = 13208;
+    let marioVal_L2[10] = 20500;
+    let marioVal_L2[11] = 20500;
+    let marioVal_L2[12] = 24564;
+    let marioVal_L2[13] = 20500;
+    let marioVal_L2[14] = 4112;
+    let marioVal_L2[15] = 12336;
+
+    // Shift = 4
+    let marioVal_L4[0] = 3584;
+    let marioVal_L4[1] = 12672;
+    let marioVal_L4[2] = 16448;
+    let marioVal_L4[3] = 20544;
+    let marioVal_L4[4] = -32736;
+    let marioVal_L4[5] = -32736;
+    let marioVal_L4[6] = 31808;
+    let marioVal_L4[7] = 16448;
+
+    let marioVal_L4[8] = 12672;
+    let marioVal_L4[9] = -12704;
+    let marioVal_L4[10] = 16464;
+    let marioVal_L4[11] = 16464;
+    let marioVal_L4[12] = 32720;
+    let marioVal_L4[13] = 16464;
+    let marioVal_L4[14] = 16448;
+    let marioVal_L4[15] = -16192;
+
+    // Shift = 6
+    let marioVal_L6[0] = 14336;
+    let marioVal_L6[1] = -14848;
+    let marioVal_L6[2] = 256;
+    let marioVal_L6[3] = 16640;
+    let marioVal_L6[4] = 128;
+    let marioVal_L6[5] = 128;
+    let marioVal_L6[6] = -3840;
+    let marioVal_L6[7] = 256;
+
+    let marioVal_L6[8] = -14848;
+    let marioVal_L6[9] = 14720;
+    let marioVal_L6[10] = 320;
+    let marioVal_L6[11] = 320;
+    let marioVal_L6[12] = -192;
+    let marioVal_L6[13] = 320;
+    let marioVal_L6[14] = 256;
+    let marioVal_L6[15] = 768;
+
+    // Shift = 8
+    let marioVal_L8[0] = -8192;
+    let marioVal_L8[1] = 6144;
+    let marioVal_L8[2] = 1024;
+    let marioVal_L8[3] = 1024;
+    let marioVal_L8[4] = 512;
+    let marioVal_L8[5] = 512;
+    let marioVal_L8[6] = -15360;
+    let marioVal_L8[7] = 1024;
+
+    let marioVal_L8[8] = 6144;
+    let marioVal_L8[9] = -6656;
+    let marioVal_L8[10] = 1280;
+    let marioVal_L8[11] = 1280;
+    let marioVal_L8[12] = -768;
+    let marioVal_L8[13] = 1280;
+    let marioVal_L8[14] = 1024;
+    let marioVal_L8[15] = 3072;
+
+    // Shift = 10
+    let marioVal_L10[0] = -32767;
+    let marioVal_L10[0] = marioVal_L10[0]-1;
+    let marioVal_L10[1] = 24576;
+    let marioVal_L10[2] = 4096;
+    let marioVal_L10[3] = 4096;
+    let marioVal_L10[4] = 2048;
+    let marioVal_L10[5] = 2048;
+    let marioVal_L10[6] = 4096;
+    let marioVal_L10[7] = 4096;
+
+    let marioVal_L10[8] = 24576;
+    let marioVal_L10[9] = -26624;
+    let marioVal_L10[10] = 5120;
+    let marioVal_L10[11] = 5120;
+    let marioVal_L10[12] = -3072;
+    let marioVal_L10[13] = 5120;
+    let marioVal_L10[14] = 4096;
+    let marioVal_L10[15] = 12288;
+
+    // Shift = 12
+    let marioVal_L12[0] = 0;
+    let marioVal_L12[1] = -32767;
+    let marioVal_L12[1] = marioVal_L12[1]-1;
+    let marioVal_L12[2] = 16384;
+    let marioVal_L12[3] = 16384;
+    let marioVal_L12[4] = 8192;
+    let marioVal_L12[5] = 8192;
+    let marioVal_L12[6] = 16384;
+    let marioVal_L12[7] = 16384;
+
+    let marioVal_L12[8] = -32767;
+    let marioVal_L12[8] = marioVal_L12[8]-1;
+    let marioVal_L12[9] = 24576;
+    let marioVal_L12[10] = 20480;
+    let marioVal_L12[11] = 20480;
+    let marioVal_L12[12] = -12288;
+    let marioVal_L12[13] = 20480;
+    let marioVal_L12[14] = 16384;
+    let marioVal_L12[15] = -16384;
+
+    // Shift = 14
+    let marioVal_L14[0] = 0;
+    let marioVal_L14[1] = 0;
+    let marioVal_L14[2] = 0;
+    let marioVal_L14[3] = 0;
+    let marioVal_L14[4] = -32767;
+    let marioVal_L14[4] = marioVal_L14[4]-1;
+    let marioVal_L14[5] = -32767;
+    let marioVal_L14[5] = marioVal_L14[5]-1;
+    let marioVal_L14[6] = 0;
+    let marioVal_L14[7] = 0;
+
+    let marioVal_L14[8] = 0;
+    let marioVal_L14[9] = -32767;
+    let marioVal_L14[9] = marioVal_L14[9]-1;
+    let marioVal_L14[10] = 16384;
+    let marioVal_L14[11] = 16384;
+    let marioVal_L14[12] = 16384;
+    let marioVal_L14[13] = 16384;
+    let marioVal_L14[14] = 0;
+    let marioVal_L14[15] = 0;
+
+    // Bitmap of Mario with Right Shift
+
+    // Shift = 0
+    let marioVal_R0[0] = 224;
+    let marioVal_R0[1] = 792;
+    let marioVal_R0[2] = 1028;
+    let marioVal_R0[3] = 1284;
+    let marioVal_R0[4] = 2050;
+    let marioVal_R0[5] = 2050;
+    let marioVal_R0[6] = 1988;
+    let marioVal_R0[7] = 1028;
+
+    let marioVal_R0[8] = 792;
+    let marioVal_R0[9] = 3302;
+    let marioVal_R0[10] = 5125;
+    let marioVal_R0[11] = 5125;
+    let marioVal_R0[12] = 6141;
+    let marioVal_R0[13] = 5125;
+    let marioVal_R0[14] = 1028;
+    let marioVal_R0[15] = 3084;
+
+    // Shift = 2
+    let marioVal_R2[0] = 56;
+    let marioVal_R2[1] = 198;
+    let marioVal_R2[2] = 257;
+    let marioVal_R2[3] = 321;
+    let marioVal_R2[4] = 512;
+    let marioVal_R2[5] = 512;
+    let marioVal_R2[6] = 497;
+    let marioVal_R2[7] = 257;
+
+    let marioVal_R2[8] = 198;
+    let marioVal_R2[9] = 825;
+    let marioVal_R2[10] = 1281;
+    let marioVal_R2[11] = 1281;
+    let marioVal_R2[12] = 1535;
+    let marioVal_R2[13] = 1281;
+    let marioVal_R2[14] = 257;
+    let marioVal_R2[15] = 771;
+
+    // Shift = 4
+    let marioVal_R4[0] = 14;
+    let marioVal_R4[1] = 49;
+    let marioVal_R4[2] = 64;
+    let marioVal_R4[3] = 80;
+    let marioVal_R4[4] = 128;
+    let marioVal_R4[5] = 128;
+    let marioVal_R4[6] = 124;
+    let marioVal_R4[7] = 64;
+
+    let marioVal_R4[8] = 49;
+    let marioVal_R4[9] = 206;
+    let marioVal_R4[10] = 320;
+    let marioVal_R4[11] = 320;
+    let marioVal_R4[12] = 383;
+    let marioVal_R4[13] = 320;
+    let marioVal_R4[14] = 64;
+    let marioVal_R4[15] = 192;
+
+    // Shift = 6
+    let marioVal_R6[0] = 3;
+    let marioVal_R6[1] = 12;
+    let marioVal_R6[2] = 16;
+    let marioVal_R6[3] = 20;
+    let marioVal_R6[4] = 32;
+    let marioVal_R6[5] = 32;
+    let marioVal_R6[6] = 31;
+    let marioVal_R6[7] = 16;
+
+    let marioVal_R6[8] = 12;
+    let marioVal_R6[9] = 51;
+    let marioVal_R6[10] = 80;
+    let marioVal_R6[11] = 80;
+    let marioVal_R6[12] = 95;
+    let marioVal_R6[13] = 80;
+    let marioVal_R6[14] = 16;
+    let marioVal_R6[15] = 48;
+
+    // Shift = 8
+    let marioVal_R8[0] = 0;
+    let marioVal_R8[1] = 3;
+    let marioVal_R8[2] = 4;
+    let marioVal_R8[3] = 5;
+    let marioVal_R8[4] = 8;
+    let marioVal_R8[5] = 8;
+    let marioVal_R8[6] = 7;
+    let marioVal_R8[7] = 4;
+
+    let marioVal_R8[8] = 3;
+    let marioVal_R8[9] = 12;
+    let marioVal_R8[10] = 20;
+    let marioVal_R8[11] = 20;
+    let marioVal_R8[12] = 23;
+    let marioVal_R8[13] = 20;
+    let marioVal_R8[14] = 4;
+    let marioVal_R8[15] = 12;
+
+    // Shift = 10
+    let marioVal_R10[0] = 0;
+    let marioVal_R10[1] = 0;
+    let marioVal_R10[2] = 1;
+    let marioVal_R10[3] = 1;
+    let marioVal_R10[4] = 2;
+    let marioVal_R10[5] = 2;
+    let marioVal_R10[6] = 1;
+    let marioVal_R10[7] = 1;
+
+    let marioVal_R10[8] = 0;
+    let marioVal_R10[9] = 3;
+    let marioVal_R10[10] = 5;
+    let marioVal_R10[11] = 5;
+    let marioVal_R10[12] = 5;
+    let marioVal_R10[13] = 5;
+    let marioVal_R10[14] = 1;
+    let marioVal_R10[15] = 3;
+
+    // Shift = 12
+    let marioVal_R12[0] = 0;
+    let marioVal_R12[1] = 0;
+    let marioVal_R12[2] = 0;
+    let marioVal_R12[3] = 0;
+    let marioVal_R12[4] = 0;
+    let marioVal_R12[5] = 0;
+    let marioVal_R12[6] = 0;
+    let marioVal_R12[7] = 0;
+
+    let marioVal_R12[8] = 0;
+    let marioVal_R12[9] = 0;
+    let marioVal_R12[10] = 1;
+    let marioVal_R12[11] = 1;
+    let marioVal_R12[12] = 1;
+    let marioVal_R12[13] = 1;
+    let marioVal_R12[14] = 0;
+    let marioVal_R12[15] = 0;
+
+    // Shift = 14
+    let marioVal_R14[0] = 0;
+    let marioVal_R14[1] = 0;
+    let marioVal_R14[2] = 0;
+    let marioVal_R14[3] = 0;
+    let marioVal_R14[4] = 0;
+    let marioVal_R14[5] = 0;
+    let marioVal_R14[6] = 0;
+    let marioVal_R14[7] = 0;
+
+    let marioVal_R14[8] = 0;
+    let marioVal_R14[9] = 0;
+    let marioVal_R14[10] = 0;
+    let marioVal_R14[11] = 0;
+    let marioVal_R14[12] = 0;
+    let marioVal_R14[13] = 0;
+    let marioVal_R14[14] = 0;
+    let marioVal_R14[15] = 0;
+
+    // Bitmap of Monster with left_Shift
+    // Shift = 0
+    let monVal_L0[0] = 0;
+    let monVal_L0[1] = 0;
+    let monVal_L0[2] = 0;
+    let monVal_L0[3] = 6240;
+    let monVal_L0[4] = 6240;
+    let monVal_L0[5] = 8184;
+    let monVal_L0[6] = 7368;
+    let monVal_L0[7] = 7368;
+
+    let monVal_L0[8] = 32760;
+    let monVal_L0[9] = 24576;
+    let monVal_L0[10] = 16380;
+    let monVal_L0[11] = 16376;
+    let monVal_L0[12] = 8176;
+    let monVal_L0[13] = 8160;
+    let monVal_L0[14] = 4128;
+    let monVal_L0[15] = 6192;
+
+    // Shift = 2
+    let monVal_L2[0] = 0;
+    let monVal_L2[1] = 0;
+    let monVal_L2[2] = 0;
+    let monVal_L2[3] = 24960;
+    let monVal_L2[4] = 24960;
+    let monVal_L2[5] = 32736;
+    let monVal_L2[6] = 29472;
+    let monVal_L2[7] = 29472;
+
+    let monVal_L2[8] = -32;
+    let monVal_L2[9] = -32767;
+    let monVal_L2[9] = monVal_L2[9] - 1;
+    let monVal_L2[10] = -16;
+    let monVal_L2[11] = -32;
+    let monVal_L2[12] = 32704;
+    let monVal_L2[13] = 32640;
+    let monVal_L2[14] = 16512;
+    let monVal_L2[15] = 24768;
+
+    // Shift = 4
+    let monVal_L4[0] = 0;
+    let monVal_L4[1] = 0;
+    let monVal_L4[2] = 0;
+    let monVal_L4[3] = -31232;
+    let monVal_L4[4] = -31232;
+    let monVal_L4[5] = -128;
+    let monVal_L4[6] = -13184;
+    let monVal_L4[7] = -13184;
+
+    let monVal_L4[8] = -128;
+    let monVal_L4[9] = 0;
+    let monVal_L4[10] = -64;
+    let monVal_L4[11] = -128;
+    let monVal_L4[12] = -256;
+    let monVal_L4[13] = -512;
+    let monVal_L4[14] = 512;
+    let monVal_L4[15] = -32000;
+
+    // Shift = 6
+    let monVal_L6[0] = 0;
+    let monVal_L6[1] = 0;
+    let monVal_L6[2] = 0;
+    let monVal_L6[3] = 6144;
+    let monVal_L6[4] = 6144;
+    let monVal_L6[5] = -512;
+    let monVal_L6[6] = 12800;
+    let monVal_L6[7] = 12800;
+
+    let monVal_L6[8] = -512;
+    let monVal_L6[9] = 0;
+    let monVal_L6[10] = -256;
+    let monVal_L6[11] = -512;
+    let monVal_L6[12] = -1024;
+    let monVal_L6[13] = -2048;
+    let monVal_L6[14] = 2048;
+    let monVal_L6[15] = 3072;
+
+    // Shift = 8
+    let monVal_L8[0] = 0;
+    let monVal_L8[1] = 0;
+    let monVal_L8[2] = 0;
+    let monVal_L8[3] = 24576;
+    let monVal_L8[4] = 24576;
+    let monVal_L8[5] = -2048;
+    let monVal_L8[6] = -14336;
+    let monVal_L8[7] = -14336;
+
+    let monVal_L8[8] = -2048;
+    let monVal_L8[9] = 0;
+    let monVal_L8[10] = -1024;
+    let monVal_L8[11] = -2048;
+    let monVal_L8[12] = -4096;
+    let monVal_L8[13] = -8192;
+    let monVal_L8[14] = 8192;
+    let monVal_L8[15] = 12288;
+
+    // Shift = 10
+    let monVal_L10[0] = 0;
+    let monVal_L10[1] = 0;
+    let monVal_L10[2] = 0;
+    let monVal_L10[3] = -32767;
+    let monVal_L10[3] = monVal_L10[3] - 1;
+    let monVal_L10[4] = -32767;
+    let monVal_L10[4] = monVal_L10[4] - 1;
+    let monVal_L10[5] = -8192;
+    let monVal_L10[6] = 8192;
+    let monVal_L10[7] = 8192;
+
+    let monVal_L10[8] = -8192;
+    let monVal_L10[9] = 0;
+    let monVal_L10[10] = -4096;
+    let monVal_L10[11] = -8192;
+    let monVal_L10[12] = -16384;
+    let monVal_L10[13] = -32767;
+    let monVal_L10[13] = monVal_L10[13] - 1;
+    let monVal_L10[14] = -32767;
+    let monVal_L10[14] = monVal_L10[14] - 1;
+    let monVal_L10[15] = -16384;
+
+    // Shift = 12
+    let monVal_L12[0] = 0;
+    let monVal_L12[1] = 0;
+    let monVal_L12[2] = 0;
+    let monVal_L12[3] = 0;
+    let monVal_L12[4] = 0;
+    let monVal_L12[5] = -32767;
+    let monVal_L12[5] = monVal_L12[5] - 1;
+    let monVal_L12[6] = -32767;
+    let monVal_L12[6] = monVal_L12[6] - 1;
+    let monVal_L12[7] = -32767;
+    let monVal_L12[7] = monVal_L12[7] - 1;
+
+    let monVal_L12[8] = -32767;
+    let monVal_L12[8] = monVal_L12[8] - 1;
+    let monVal_L12[9] = 0;
+    let monVal_L12[10] = -16384;
+    let monVal_L12[11] = -32767;
+    let monVal_L12[11] = monVal_L12[11] - 1;
+    let monVal_L12[12] = 0;
+    let monVal_L12[13] = 0;
+    let monVal_L12[14] = 0;
+    let monVal_L12[15] = 0;
+
+    // Shift = 14
+    let monVal_L14[0] = 0;
+    let monVal_L14[1] = 0;
+    let monVal_L14[2] = 0;
+    let monVal_L14[3] = 0;
+    let monVal_L14[4] = 0;
+    let monVal_L14[5] = 0;
+    let monVal_L14[6] = 0;
+    let monVal_L14[7] = 0;
+
+    let monVal_L14[8] = 0;
+    let monVal_L14[9] = 0;
+    let monVal_L14[10] = 0;
+    let monVal_L14[11] = 0;
+    let monVal_L14[12] = 0;
+    let monVal_L14[13] = 0;
+    let monVal_L14[14] = 0;
+    let monVal_L14[15] = 0;
+
+    // Bitmap of Monster with right_Shift
+    // Shift = 0
+    let monVal_R0[0] = 0;
+    let monVal_R0[1] = 0;
+    let monVal_R0[2] = 0;
+    let monVal_R0[3] = 6240;
+    let monVal_R0[4] = 6240;
+    let monVal_R0[5] = 8184;
+    let monVal_R0[6] = 7368;
+    let monVal_R0[7] = 7368;
+
+    let monVal_R0[8] = 32760;
+    let monVal_R0[9] = 24576;
+    let monVal_R0[10] = 16380;
+    let monVal_R0[11] = 16376;
+    let monVal_R0[12] = 8176;
+    let monVal_R0[13] = 8160;
+    let monVal_R0[14] = 4128;
+    let monVal_R0[15] = 6192;
+
+    // Shift = 2
+    let monVal_R2[0] = 0;
+    let monVal_R2[1] = 0;
+    let monVal_R2[2] = 0;
+    let monVal_R2[3] = 1560;
+    let monVal_R2[4] = 1560;
+    let monVal_R2[5] = 2046;
+    let monVal_R2[6] = 1842;
+    let monVal_R2[7] = 1842;
+
+    let monVal_R2[8] = 8190;
+    let monVal_R2[9] = 6144;
+    let monVal_R2[10] = 4095;
+    let monVal_R2[11] = 4094;
+    let monVal_R2[12] = 2044;
+    let monVal_R2[13] = 2040;
+    let monVal_R2[14] = 1032;
+    let monVal_R2[15] = 1548;
+
+    // Shift = 4
+    let monVal_R4[0] = 0;
+    let monVal_R4[1] = 0;
+    let monVal_R4[2] = 0;
+    let monVal_R4[3] = 390;
+    let monVal_R4[4] = 390;
+    let monVal_R4[5] = 511;
+    let monVal_R4[6] = 460;
+    let monVal_R4[7] = 460;
+
+    let monVal_R4[8] = 2047;
+    let monVal_R4[9] = 1536;
+    let monVal_R4[10] = 1023;
+    let monVal_R4[11] = 1023;
+    let monVal_R4[12] = 511;
+    let monVal_R4[13] = 510;
+    let monVal_R4[14] = 258;
+    let monVal_R4[15] = 387;
+
+    // Shift = 6
+    let monVal_R6[0] = 0;
+    let monVal_R6[1] = 0;
+    let monVal_R6[2] = 0;
+    let monVal_R6[3] = 97;
+    let monVal_R6[4] = 97;
+    let monVal_R6[5] = 127;
+    let monVal_R6[6] = 115;
+    let monVal_R6[7] = 115;
+
+    let monVal_R6[8] = 511;
+    let monVal_R6[9] = 384;
+    let monVal_R6[10] = 255;
+    let monVal_R6[11] = 255;
+    let monVal_R6[12] = 127;
+    let monVal_R6[13] = 127;
+    let monVal_R6[14] = 64;
+    let monVal_R6[15] = 96;
+
+    // Shift = 8
+    let monVal_R8[0] = 0;
+    let monVal_R8[1] = 0;
+    let monVal_R8[2] = 0;
+    let monVal_R8[3] = 24;
+    let monVal_R8[4] = 24;
+    let monVal_R8[5] = 31;
+    let monVal_R8[6] = 28;
+    let monVal_R8[7] = 28;
+
+    let monVal_R8[8] = 127;
+    let monVal_R8[9] = 96;
+    let monVal_R8[10] = 63;
+    let monVal_R8[11] = 63;
+    let monVal_R8[12] = 31;
+    let monVal_R8[13] = 31;
+    let monVal_R8[14] = 16;
+    let monVal_R8[15] = 24;
+
+    // Shift = 10
+    let monVal_R10[0] = 0;
+    let monVal_R10[1] = 0;
+    let monVal_R10[2] = 0;
+    let monVal_R10[3] = 6;
+    let monVal_R10[4] = 6;
+    let monVal_R10[5] = 7;
+    let monVal_R10[6] = 7;
+    let monVal_R10[7] = 7;
+
+    let monVal_R10[8] = 31;
+    let monVal_R10[9] = 24;
+    let monVal_R10[10] = 15;
+    let monVal_R10[11] = 15;
+    let monVal_R10[12] = 7;
+    let monVal_R10[13] = 7;
+    let monVal_R10[14] = 4;
+    let monVal_R10[15] = 6;
+
+    // Shift = 12
+    let monVal_R12[0] = 0;
+    let monVal_R12[1] = 0;
+    let monVal_R12[2] = 0;
+    let monVal_R12[3] = 1;
+    let monVal_R12[4] = 1;
+    let monVal_R12[5] = 1;
+    let monVal_R12[6] = 1;
+    let monVal_R12[7] = 1;
+
+    let monVal_R12[8] = 7;
+    let monVal_R12[9] = 6;
+    let monVal_R12[10] = 3;
+    let monVal_R12[11] = 3;
+    let monVal_R12[12] = 1;
+    let monVal_R12[13] = 1;
+    let monVal_R12[14] = 1;
+    let monVal_R12[15] = 1;
+
+    // Shift = 14
+    let monVal_R14[0] = 0;
+    let monVal_R14[1] = 0;
+    let monVal_R14[2] = 0;
+    let monVal_R14[3] = 0;
+    let monVal_R14[4] = 0;
+    let monVal_R14[5] = 0;
+    let monVal_R14[6] = 0;
+    let monVal_R14[7] = 0;
+
+    let monVal_R14[8] = 1;
+    let monVal_R14[9] = 1;
+    let monVal_R14[10] = 0;
+    let monVal_R14[11] = 0;
+    let monVal_R14[12] = 0;
+    let monVal_R14[13] = 0;
+    let monVal_R14[14] = 0;
+    let monVal_R14[15] = 0;
+
+    return;
+  }
+
+  function void printMarioL()
+  {
+    var int memAddress, startAddress, idx;
+
+    let memAddress = 16384+512;
+    let startAddress = memAddress;
+
+    // Shift = 0
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L0[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 2
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L2[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 4
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L4[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 6
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L6[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 8
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L8[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 10
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L10[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 12
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L12[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 14
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_L14[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    return;
+  }
+
+  function void printMarioR()
+  {
+
+    var int memAddress, startAddress, idx;
+    let memAddress = 16384+1024;
+    let startAddress = memAddress;
+
+    // Shift = 0
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R0[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 2
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R2[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 4
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R4[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 6
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R6[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 8
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R8[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 10
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R10[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 12
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R12[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    // Shift = 14
+    let memAddress = startAddress;
+    let idx = 0;
+    while(idx < 16)
+    {
+      do Memory.poke(memAddress, marioVal_R14[idx]);
+      let memAddress = memAddress + 32;
+      let idx = idx+1;
+    }
+    let startAddress = startAddress+1;
+
+    return;
+  }
+
+  function void printL(int shift)
+  {
+    var int i;
+    let i = 0;
+    while (i < 16)
+    {
+      do Output.moveCursor(i+1, 0);
+  		do Output.printInt(MATH.l_Shift(monVal_L0[i], shift));
+      let i = i+1;
+    }
+    return;
+  }
+
+  function void printR(int shift)
+  {
+    var int i;
+    let i = 0;
+    while (i < 16)
+    {
+      do Output.moveCursor(i+1, 0);
+  		do Output.printInt(MATH.r_Shift(monVal_R0[i], shift));
+      let i = i+1;
+    }
     return;
   }
 
@@ -52,13 +915,13 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    // Points to the left square
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
 
-    // Just For Debug, shows shift's value
     /*
     do Output.moveCursor(1, 0);
     do Output.printString("Shift = ");
@@ -71,22 +934,37 @@ class Sprite
     {
       // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Right shift in the Bitmap == Left Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(marioVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L14[idx]; }
+
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
-    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Add the Bitmap of Mario onto the right square
     while ( (shift < 16) & (idx < 16))
     {
       // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Left shift in the Bitmap == Right Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(marioVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R14[idx]; }
+
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
@@ -98,33 +976,56 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    // Points to the left square
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
 
     // Remove the Bitmap of Mario from the left square
     while(idx < 16)
     {
       // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Right shift in the Bitmap == Left Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(marioVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L14[idx]; }
+
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
-    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Remove the Bitmap of Mario from the right square
     while ( (shift < 16) & (idx < 16))
     {
       // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Left shift in the Bitmap == Right Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(marioVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R14[idx]; }
+
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
@@ -136,33 +1037,55 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    // Points to the left square
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
 
     // Add the Bitmap of Monster onto the left square
     while(idx < 16)
     {
       // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Right shift in the Bitmap == Left Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) + MATH.l_Shift(monVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L14[idx]; }
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
-    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
 
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Add the Bitmap of Monster onto the right square
     while ( (shift < 16) & (idx < 16))
     {
       // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Left shift in the Bitmap == Right Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) + MATH.r_Shift(monVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R14[idx]; }
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
@@ -174,33 +1097,54 @@ class Sprite
   {
     var int val, memAddress, idx, location, shift;
 
-    // Points to the left square
+    do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15)
     let location = ((x/16) + (y*32));
     let memAddress = 16384+location;
     let idx = 0;
     let shift = MATH.mod(x,16);
+
+    /*
+    do Output.moveCursor(1, 0);
+    do Output.printString("Shift = ");
+    do Output.printInt(shift/10);
+    do Output.printInt(shift - ((shift/10)*10) );
+    */
 
     // Remove the Bitmap of Monster from the left square
     while(idx < 16)
     {
       // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Right shift in the Bitmap == Left Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) - MATH.l_Shift(monVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L14[idx]; }
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
 
-    // Points to the right square
     let memAddress = 16384+location+1;
     let idx = 0;
     let shift = 16-shift;
-
+    /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Remove the Bitmap of Monster from the right square
     while ( (shift < 16) & (idx < 16))
     {
       // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
       // Left shift in the Bitmap == Right Shift in the val
-      let val = Memory.peek(memAddress+(idx*32)) - MATH.r_Shift(monVal[idx], shift);
+      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R0[idx]; }
+      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R2[idx]; }
+      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R4[idx]; }
+      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R6[idx]; }
+      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R8[idx]; }
+      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R10[idx]; }
+      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R12[idx]; }
+      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R14[idx]; }
       do Memory.poke(memAddress+(idx*32), val);
       let idx = idx+1;
     }
