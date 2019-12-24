@@ -4,7 +4,7 @@ call Memory.alloc 1
 pop pointer 0
 push constant 6
 pop this 5
-push constant 134
+push constant 135
 pop this 6
 push constant 0
 pop this 7
@@ -38,13 +38,11 @@ call Map.drawGround 1
 pop temp 0
 push pointer 0
 return
-function Map.drawGround 2
+function Map.drawGround 4
 push argument 0
 pop pointer 0
 push constant 0
-not
-call Screen.setColor 1
-pop temp 0
+pop local 3
 push constant 0
 pop local 0
 push this 10
@@ -72,15 +70,70 @@ not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push pointer 0
-push local 0
-push this 7
-add
+label WHILE_EXP1
+push local 3
+push constant 2
+lt
+not
+if-goto WHILE_END1
 push constant 224
-push constant 32
-push constant 32
-call Map.drawBlock 5
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push constant 16
+call Math.divide 2
+add
+push local 3
+add
+pop local 2
+push this 4
+push local 2
+call Draw.land 2
 pop temp 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+pop local 3
+label WHILE_EXP2
+push local 3
+push constant 2
+lt
+not
+if-goto WHILE_END2
+push constant 224
+push constant 16
+call Math.divide 2
+push constant 1
+add
+push constant 512
+call Math.multiply 2
+push local 0
+push constant 16
+call Math.divide 2
+push local 3
+add
+add
+pop local 2
+push this 4
+push local 2
+call Draw.land 2
+pop temp 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP2
+label WHILE_END2
+push constant 0
+pop local 3
+push constant 0
+pop local 2
 goto IF_END0
 label IF_FALSE0
 push local 1
@@ -454,29 +507,6 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Map.drawBlock 0
-push argument 0
-pop pointer 0
-push argument 1
-push this 7
-sub
-push argument 2
-push argument 1
-push argument 3
-push constant 1
-sub
-add
-push this 7
-sub
-push argument 2
-push argument 4
-push constant 1
-sub
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-return
 function Map.transition 0
 push argument 0
 pop pointer 0
@@ -487,7 +517,7 @@ push pointer 0
 call Map.eraseGround 1
 pop temp 0
 push this 7
-push constant 32
+push argument 1
 add
 pop this 7
 push pointer 0
@@ -505,26 +535,6 @@ function Map.refresh 0
 push argument 0
 pop pointer 0
 label WHILE_EXP0
-push this 8
-push this 9
-lt
-push this 8
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-lt
-and
-not
-if-goto WHILE_END0
-push this 8
-push constant 1
-add
-pop this 8
-goto WHILE_EXP0
-label WHILE_END0
-label WHILE_EXP1
 push this 9
 push this 6
 lt
@@ -539,19 +549,19 @@ add
 lt
 and
 not
-if-goto WHILE_END1
+if-goto WHILE_END0
 push this 9
 push constant 1
 add
 pop this 9
-goto WHILE_EXP1
-label WHILE_END1
-label WHILE_EXP2
-push this 10
-push this 11
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push this 8
+push this 9
 lt
-push this 10
-push this 2
+push this 8
+push this 0
 add
 pop pointer 1
 push that 0
@@ -559,14 +569,14 @@ push this 7
 lt
 and
 not
-if-goto WHILE_END2
-push this 10
+if-goto WHILE_END1
+push this 8
 push constant 1
 add
-pop this 10
-goto WHILE_EXP2
-label WHILE_END2
-label WHILE_EXP3
+pop this 8
+goto WHILE_EXP1
+label WHILE_END1
+label WHILE_EXP2
 push this 11
 push this 5
 lt
@@ -581,11 +591,31 @@ add
 lt
 and
 not
-if-goto WHILE_END3
+if-goto WHILE_END2
 push this 11
 push constant 1
 add
 pop this 11
+goto WHILE_EXP2
+label WHILE_END2
+label WHILE_EXP3
+push this 10
+push this 11
+lt
+push this 10
+push this 2
+add
+pop pointer 1
+push that 0
+push this 7
+lt
+and
+not
+if-goto WHILE_END3
+push this 10
+push constant 1
+add
+pop this 10
 goto WHILE_EXP3
 label WHILE_END3
 push constant 0

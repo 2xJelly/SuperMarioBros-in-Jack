@@ -3,6 +3,8 @@ class Block
     field Array type_block;
     field Array posX,posY,gap;
     field Array MonX,MonY;
+    field Array Mon_type;
+    field Array Direction;
 
     // 0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight
     constructor Block new()
@@ -10,13 +12,15 @@ class Block
         var int numBlock;
         var int numGap;
         var int numMon;
-        let numBlock = 134;
+        let numBlock = 135;
         let numGap = 6;
-        let numMon = 1;
+        let numMon = 7;
         let posX = Array.new(numBlock);
         let posY = Array.new(numBlock);
         let MonX = Array.new(numMon);
         let MonY = Array.new(numMon);
+        let Direction = Array.new(numMon);
+        let Mon_type = Array.new(numMon);
         let gap = Array.new(numGap);
         let type_block = Array.new(numBlock);
 
@@ -29,10 +33,54 @@ class Block
 
         let MonX[0] = 352;
         let MonY[0] = 160;
-        //let MonX[1] = 448;
-        //let MonY[1] = 208;
-        //let MonX[2] = 464;
-        //let MonY[2] = 208;
+        let Mon_type[0] = 0;
+        let Direction[0] = 2;
+
+        let MonX[1] = 432;
+        let MonY[1] = 208;
+        let Mon_type[1] = 0;
+        let Direction[1] = 2;
+        
+        let MonX[2] = 496;
+        let MonY[2] = 208;
+        let Mon_type[2] = 0;
+        let Direction[2] = 2;
+
+        let MonX[3] = 576;
+        let MonY[3] = 208;
+        let Mon_type[3] = 0;
+        let Direction[3] = 2;
+        
+        let MonX[4] = 592;
+        let MonY[4] = 208;
+        let Mon_type[4] = 0;
+        let Direction[4] = 2;
+
+        let MonX[5] = 720;
+        let MonY[5] = 144;
+        let Mon_type[5] = 1;
+        let Direction[5] = 0;
+
+        let MonX[6] = 736;
+        let MonY[6] = 144;
+        let Mon_type[6] = 2;
+        let Direction[6] = 0;
+
+        // let MonX[3] = 432;
+        // let MonY[3] = 208;
+        // let Direction[3] = 2;
+
+        // let MonX[3] = 432;
+        // let MonY[3] = 208;
+        // let Direction[3] = 2;
+
+        // let MonX[3] = 432;
+        // let MonY[3] = 208;
+        // let Direction[3] = 2;
+
+        // let MonX[3] = 432;
+        // let MonY[3] = 208;
+        // let Direction[3] = 2;
 
         let posX[0] = 240;
         let posY[0] = 160;
@@ -127,28 +175,28 @@ class Block
         let type_block[22] = 2;
 
         let posX[23] = 528;
-        let posY[23] = 160;
+        let posY[23] = 176;
         let type_block[23] = 4;
 
         let posX[24] = 528;
-        let posY[24] = 176;
+        let posY[24] = 192;
         let type_block[24] = 4;
 
         let posX[25] = 528;
-        let posY[25] = 192;
+        let posY[25] = 208;
         let type_block[25] = 4;
 
-        let posX[26] = 528;
-        let posY[26] = 208;
-        let type_block[26] = 4;
+        let posX[26] = 592;
+        let posY[26] = 96;
+        let type_block[26] = 0;
 
-        let posX[27] = 544;
-        let posY[27] = 192;
-        let type_block[27] = 4;
+        let posX[27] = 640;
+        let posY[27] = 96;
+        let type_block[27] = 0;
 
-        let posX[28] = 544;
-        let posY[28] = 208;
-        let type_block[28] = 4;
+        let posX[28] = 656;
+        let posY[28] = 96;
+        let type_block[28] = 0;
 
         let posX[29] = 720;
         let posY[29] = 208;
@@ -570,6 +618,10 @@ class Block
         let posY[133] = 160;
         let type_block[133] = 0;
 
+        let posX[134] = 6464;
+        let posY[134] = 160;
+        let type_block[134] = 0;
+
         return this;
     }
 
@@ -611,4 +663,13 @@ class Block
         return MonY;
     }
 
+    method Array getDirection()
+    {
+        return Direction;
+    }
+
+    method Array getMonType()
+    {
+        return Mon_type;
+    }
 }

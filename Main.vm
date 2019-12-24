@@ -1,5 +1,5 @@
 function Main.main 1
-push constant 200
+push constant 500
 call SuperMarioGame.new 1
 pop local 0
 push local 0

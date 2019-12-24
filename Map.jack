@@ -15,7 +15,7 @@ class Map
   constructor Map new()
   {
     let numGap = 6;
-    let numBlock = 134;
+    let numBlock = 135;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -43,14 +43,34 @@ class Map
 	{
     var int drawIdx;
     var int gapIdx;
+    var int location;
+    var int i;
 
-		do Screen.setColor(true);
+		let i = 0;
     let drawIdx = 0;
     let gapIdx = gapLeft;
     while(drawIdx < 512)
     {
       /* If there is no gap here, draw a rectangle platform */
-      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) ) { do drawBlock(drawIdx + screenPos, 224, 32, 32); }
+      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) ) 
+      {
+        //do drawBlock(drawIdx + screenPos, 224, 32, 32);
+        while(i < 2){
+        let location = (224/16*512) + ((drawIdx)/16) + i;
+        do draw.land(location);
+        let i = i + 1;
+        }
+        let i = 0;
+        while(i < 2){
+        let location = ((224/16 + 1)*512) + ((drawIdx)/16 + i);
+        do draw.land(location);
+        let i = i + 1;
+        }
+
+        let i = 0;
+        let location = 0;
+        
+      }
       else { let gapIdx = gapIdx + 1; }
 
       let drawIdx = drawIdx + 32;
@@ -165,21 +185,22 @@ class Map
 
   /* Draw a block */
   /* Assume that we have already setColor as color needed */
-  method void drawBlock(int curX, int curY, int sizeX, int sizeY)
-  {
-    // do Screen.setColor(true);
-		do Screen.drawRectangle(curX - screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
-		return;
-  }
+  // method void drawGround(int curX, int curY, int sizeX, int sizeY)
+  // {
+  //   // do Screen.setColor(true);
+	// 	do draw.brick(curX - screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
+	// 	return;
+  // }
 
-  /* Move the map to the right by 32 pixels */
-	method void transition()
+
+  /* Move the map to the right by move pixels */
+	method void transition(int move)
 	{
 
     do erase();
     do eraseGround();
 
-    let screenPos = screenPos + 32;
+    let screenPos = screenPos + move;
     do refresh();
 
     do draw();
@@ -191,20 +212,20 @@ class Map
   method void refresh()
   {
     /* For Block */
+    /* If the next item is in the screen, added it to the drawing List */
+    while ( (idxRight < numBlock) & (posX[idxRight] < (screenPos + 512) ) )
+    { let idxRight = idxRight + 1; }
+    
     /* If item in pos[idxLeftO] is no longer in the screen, discard pos[idxLeft] */
     while ( (idxLeft < idxRight) & (posX[idxLeft] < screenPos) )
     { let idxLeft = idxLeft + 1; }
 
-    /* If the next item is in the screen, added it to the drawing List */
-    while ( (idxRight < numBlock) & (posX[idxRight] < (screenPos + 512) ) )
-    { let idxRight = idxRight + 1; }
+     while ( (gapRight < numGap) & (gap[gapRight] < (screenPos + 512) ) )
+    { let gapRight = gapRight + 1; }
 
     /* For Gap */
     while ( (gapLeft < gapRight) & (gap[gapLeft] < screenPos) )
     { let gapLeft = gapLeft + 1; }
-
-    while ( (gapRight < numGap) & (gap[gapRight] < (screenPos + 512) ) )
-    { let gapRight = gapRight + 1; }
 
     return;
   }
@@ -484,5 +505,6 @@ class Map
 
     return contact;
   }
+
 
 }

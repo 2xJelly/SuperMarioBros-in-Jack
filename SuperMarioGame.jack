@@ -8,40 +8,89 @@ class SuperMarioGame
 	field int fps;
 
 	field char key;
-	field boolean exit;
+	field boolean win, exit;
 	field int coin, score, time;
 	field int framePassed;
 	field int frameMon;
 	field int effect;
-
+	field int MonLeft;
+	field int MonRight;
 	// Just for Debug, variables for debug
 	field int debug1, debug2, debug3;
 
 	constructor SuperMarioGame new(int gameSpeed)
 	{
+		// Set fps first, cuz menu() needs it
+		let fps = gameSpeed;
+		// fps -> frame per second
+
+		// Do the starting menu
+		do menu();
+
 		do Screen.clearScreen();
 		do MATH.init();
 		do Sprite.init();
 
+		let win = false;
 		let mario = Mario.new(0, 208);
 		let map = Map.new();
 		let monster = Monster.new();
 		let screenPos = 0;
-		let fps = gameSpeed;
-		// fps -> frame per second
 
 		return this;
 	}
 
+	method void menu()
+	{
+		let exit = false;
+
+		// Show the text
+		do Output.moveCursor(15, 20);
+		do Output.printString("Press any key to Start");
+
+		// Starting Menu
+		while (~exit)
+		{
+			// Read an input from the user
+			let key = Keyboard.keyPressed();
+
+			// Now we have an input from the user
+			if( ~(key=0) ) // Any key
+			{
+				let exit = true;
+				let effect = 6;
+				while(effect > -1)
+				{
+					// Erase the text
+					do Sys.wait(10000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do Screen.setColor(false);
+					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+
+					// Show the text
+					do Sys.wait(10000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do Output.moveCursor(15, 20);
+					do Output.printString("Press any key to Start");
+
+					let effect = effect -1;
+				}
+			}
+		}
+
+		return;
+	}
+
 	method void run()
 	{
+		var int idx;
 		let key = 0;
 		let exit = false;
 		let coin = 0;
 		let score = 0;
 		let time = 999;
 		let framePassed = fps;
-		let frameMon =fps/50;
+		let frameMon = fps/300;
 
 		do Output.moveCursor(0, 0);
 		do Output.printString("Coin: ");
@@ -75,7 +124,7 @@ class SuperMarioGame
 		}
 		*/
 
-		/* While Reading in the users command, react to it according to our rules */
+		// While Reading in the users command, react to it according to our rules
 		while(~exit)
 		{
 			// Just For Debug, output the current coordinate of Mario
@@ -87,7 +136,7 @@ class SuperMarioGame
 			do Output.printInt(mario.getPosY());
 			do Output.printString(")");
 			*/
-
+			let idx = monster.getMonLeft();
 			// Read an input from the user
 			let key = Keyboard.keyPressed();
 
@@ -95,6 +144,16 @@ class SuperMarioGame
 			if(key = 81) { let exit = true; } // q key
 			if(key = 130) { let direction = 1; } // Left arrow
 			if(key = 132) { let direction = 2; } // right arrow
+			/***if(key = 133)
+			{
+
+				if(((mario.getPosX()+screenPos) > 1168) & ((mario.getPosX()+screenPos) < 1184) & (mario.getPosY() = 144))
+				{
+					let screenPos = 6400;
+					do map.MapChange();
+					do monster.screenPosChange();
+				}
+			}***/
 			if((key = 32) & marioOnGround() ) // Spacebar, and Mario is on the ground
 			{ do mario.jump(); }
 
@@ -118,7 +177,11 @@ class SuperMarioGame
 			}
 
 			// Do Transition of map if needed
-			if (mario.getPosX() > 383) { do transition(); }
+			if (mario.getPosX() > 383) { do transition(32); }
+
+			// Do teleport if Mario is at the pipe, and push 'down' key
+			if ((key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144))
+			{ do transition(6400 - (mario.getPosX()+screenPos) ); }
 
 			// Wait for 1 frame to pass
 			do Sys.wait(1000/fps);
@@ -139,27 +202,37 @@ class SuperMarioGame
 			if(~(frameMon > 0))
 			{
 				do Monmove();
-				let frameMon = fps/50;
+				let frameMon = fps/300;
 			}
 
+			while(idx < monster.getMonRight()){
 			// If mario touch monster upward
-			if(((mario.getPosX() - monster.getMonX()) < 17) & ((mario.getPosX() - monster.getMonX()) > -17) & ((monster.getMonY() - mario.getPosY()) = 16))
+			if(((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 17) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -17) & ((monster.getMonY(idx) - mario.getPosY()) = 16))
 			{
-				let effect = 3;
-				do mario.jump();
-				while(effect > -1)
+				if(monster.getMontype(idx) = 0)
 				{
-					do Sys.wait(10000/fps);
-					do monster.eraseMonster();
-					do Sys.wait(10000/fps);
-					do monster.drawMonster();
-					let effect = effect -1;
+					do mario.jump();
+					do monster.kill(idx);
 				}
-				do monster.kill();
+
+				else{
+						let effect = 3;
+						do mario.jump();
+					while(effect > -1)
+					{
+						do Sys.wait(10000/fps);
+						do mario.erase();
+						do Sys.wait(10000/fps);
+						do mario.draw();
+						let effect = effect -1;
+					}
+					do mario.erase();
+					let exit = true;
+				}
 			}
 
 			// If mario touch monster left or right or downward
-			if(((mario.getPosX() - monster.getMonX()) < 17) & ((mario.getPosX() - monster.getMonX()) > -17) & ((mario.getPosY() - monster.getMonY()) < 16) & ((mario.getPosY() - monster.getMonY()) > -1 ))
+			if(((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 17) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -17) & ((mario.getPosY() - monster.getMonY(idx)) < 16) & ((mario.getPosY() - monster.getMonY(idx)) > -1 ))
 	  		{
 				let effect = 3;
 				do mario.jump();
@@ -174,7 +247,32 @@ class SuperMarioGame
 				do mario.erase();
 				let exit = true;
 			}
+			let idx = idx + 1;
 		}
+
+			// If Mario haven't die,
+			// and Mario reach this position, you WIN ~~
+			if ( (~(exit)) & (10000 < (screenPos + mario.getPosX()) ) )
+			{
+				let win = true;
+				let exit = true;
+			}
+		}
+
+		// The game ends, clear the screen
+		do Screen.clearScreen();
+
+		do Output.moveCursor(15, 25);
+		// WIN
+		if (win) { do Output.printString("You Rock~~~"); }
+		// LOSE
+		else { do Output.printString("You Suck!!!"); }
+
+		// Just For Debug, Remove the text
+		/*
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+		*/
 
 		return;
 	}
@@ -218,36 +316,51 @@ class SuperMarioGame
   }
 
   method void Monmove()
-  {
-	  if(map.touchLeft(monster.getMonX(), monster.getMonY()) = true)
-	  { do monster.changeRight(); }
-	  if(map.touchRight(monster.getMonX(), monster.getMonY()) = true)
-	  { do monster.changeLeft(); }
-	  if(monster.getMonX()-screenPos > 495){do monster.changeLeft();}
-	  if((map.touchBelow(monster.getMonX() ,monster.getMonY()) = false) & (map.touchGround(monster.getMonX() ,monster.getMonY()) = false)){do monster.movedown();}
+  {	
+	  var int idx;
+	  let idx = monster.getMonLeft();
+	  while(idx < monster.getMonRight()){
+	  if(~((monster.getMontype(idx) = 1) | (monster.getMontype(idx) = 2))){
+	  
+	  if(map.touchLeft(monster.getMonX(idx), monster.getMonY(idx)) = true)
+	  { do monster.changeRight(idx); }
+	  if(map.touchRight(monster.getMonX(idx), monster.getMonY(idx)) = true)
+	  { do monster.changeLeft(idx); }
+	  if(monster.getMonX(idx)-screenPos > 490){do monster.changeLeft(idx);}
+	  if((map.touchBelow(monster.getMonX(idx) ,monster.getMonY(idx)) = false) & (map.touchGround(monster.getMonX(idx) ,monster.getMonY(idx)) = false)){do monster.movedown(idx);}
 	  else
-	  { do monster.run(); }
+	  {
+		  do monster.eraseMonster();
+		  do monster.update(idx);   
+		  do monster.run();
+		}
+	  }
+	  let idx = idx + 1;
+	  }
 	  return;
   }
 
-	// Move the map to the right by 32 pixels
-	method void transition()
+	// Move the map to the right by move pixels
+	method void transition(int move)
 	{
 		do mario.erase();
 		do monster.eraseMonster();
 		do map.erase();
-    do map.eraseGround();
+    	do map.eraseGround();
 
-		let screenPos = screenPos + 32;
-		do mario.transition();
-		do monster.transition();
-		do map.transition();
+		let screenPos = screenPos + move;
+		// If this is a normal moveScreen
+		if (move = 32) { do mario.transition(-move); }
+		// If this is a teleport moveScreen
+		else { do mario.transition(move); }
+		do monster.transition(move);
+		do map.transition(move);
 
 		do mario.draw();
 		do monster.drawMonster();
 		do map.draw();
     do map.drawGround();
-		
+
 		return;
 	}
 

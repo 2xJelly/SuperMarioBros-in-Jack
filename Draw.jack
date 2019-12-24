@@ -1,5 +1,28 @@
 class Draw
 {
+
+	method void character(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 224);
+	do Memory.poke(memAddress+32, 792);
+	do Memory.poke(memAddress+64, 1028);
+	do Memory.poke(memAddress+96, 1284);
+	do Memory.poke(memAddress+128, 2050);
+	do Memory.poke(memAddress+160, 2050);
+	do Memory.poke(memAddress+192, 1988);
+	do Memory.poke(memAddress+224, 1028);
+	do Memory.poke(memAddress+256, 792);
+	do Memory.poke(memAddress+288, 3302);
+	do Memory.poke(memAddress+320, 5125);
+	do Memory.poke(memAddress+352, 5125);
+	do Memory.poke(memAddress+384, 6141);
+	do Memory.poke(memAddress+416, 5125);
+	do Memory.poke(memAddress+448, 1028);
+	do Memory.poke(memAddress+480, 3084);
+	return;
+}
+
     method void brick(int location) {
 	    var int memAddress;
         let memAddress = 16384+location;
@@ -111,6 +134,28 @@ class Draw
 	do Memory.poke(memAddress+480, 0);
 	return;
 	}
+
+	method void land(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -33);
+	do Memory.poke(memAddress+32, -65);
+	do Memory.poke(memAddress+64, -129);
+	do Memory.poke(memAddress+96, -257);
+	do Memory.poke(memAddress+128, -513);
+	do Memory.poke(memAddress+160, -1025);
+	do Memory.poke(memAddress+192, 2047);
+	do Memory.poke(memAddress+224, -2049);
+	do Memory.poke(memAddress+256, -2049);
+	do Memory.poke(memAddress+288, -2049);
+	do Memory.poke(memAddress+320, -2050);
+	do Memory.poke(memAddress+352, -1027);
+	do Memory.poke(memAddress+384, -4613);
+	do Memory.poke(memAddress+416, -8457);
+	do Memory.poke(memAddress+448, -16529);
+	do Memory.poke(memAddress+480, -97);
+	return;
+}
 
 	method void pipetopleft(int location) {
 	var int memAddress;

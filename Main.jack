@@ -3,7 +3,7 @@ class Main
 	function void main()
 	{
 		var SuperMarioGame game;
-		let game = SuperMarioGame.new(200);
+		let game = SuperMarioGame.new(500);
 		/* Give game the fps needed */
 		do game.run();
 		// do game.dispose();
