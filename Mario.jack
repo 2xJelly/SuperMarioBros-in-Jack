@@ -2,9 +2,8 @@ class Mario
 {
   field Pos pos;
   field int jumpDuration;
-  //field Draw draw;
 
-  /* Build a new Mario!!! */
+  // Build a new Mario!!!
   constructor Mario new(int x, int y)
   {
     let pos = Pos.new(x, y);
@@ -14,15 +13,15 @@ class Mario
     return this;
   }
 
-  /* Return position x */
+  // Return position x
   method int getPosX()
   { return pos.getX(); }
 
-  /* Return position y */
+  // Return position y
   method int getPosY()
   { return pos.getY(); }
 
-  /* Draw Mario */
+  // Draw Mario
   method void draw()
   {
     do Sprite.drawMario(getPosX(), getPosY());
@@ -89,7 +88,6 @@ class Mario
       do pos.updateY(pos.getY() - 4);
       do draw();
     }
-
     return;
   }
 
@@ -103,7 +101,6 @@ class Mario
       do pos.updateY(pos.getY() + 4);
       do draw();
     }
-
     return;
   }
 
@@ -117,7 +114,6 @@ class Mario
       do pos.updateX(pos.getX() - 2);
       do draw();
     }
-
     return;
   }
 
@@ -131,8 +127,6 @@ class Mario
       do pos.updateX(pos.getX() + 2);
       do draw();
     }
-
     return;
   }
-
 }

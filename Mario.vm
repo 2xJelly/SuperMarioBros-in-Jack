@@ -90,7 +90,7 @@ return
 function Mario.jump 0
 push argument 0
 pop pointer 0
-push constant 20
+push constant 40
 pop this 1
 push constant 0
 return
