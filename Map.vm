@@ -1505,6 +1505,9 @@ and
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
+push constant 100
+call SuperMarioGame.addPoints 1
+pop temp 0
 push local 3
 push this 1
 add

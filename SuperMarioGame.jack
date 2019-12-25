@@ -9,7 +9,7 @@ class SuperMarioGame
 
 	field char key; // Input key from player
 	field boolean win, exit;
-	field int coin, score, time;
+	static int coin, score, time, mul;
 	field int framePassed; // No. frame passed
 	field int frameMon; // No. frame passes for the monster
 	field int effect; // Duration of effects
@@ -39,6 +39,7 @@ class SuperMarioGame
 		let monster = Monster.new();
 		let screenPos = 0;
 		let ulti = 0;
+		let mul = 1;
 
 		return this;
 	}
@@ -168,6 +169,9 @@ class SuperMarioGame
 			// Now move Mario if Mario is not touching any block
 			do move();
 
+			// If touch Ground, restore multiple
+			if (marioOnGround()) { do restoreMul(); }
+
 			// Check if Mario touches any power-upwards
 			// Ultimate Star
 			// (Minor Bug) : Touching the corner of a Monster counts as touching it
@@ -266,7 +270,10 @@ class SuperMarioGame
 						if ( (-17 < (x-xx)) & ((x-xx) < 17) & (-17 < (y-yy)) & ((y-yy) < 17) )
 						{
 							// If Mario has ulti, kill them
-							if (ulti > 0) { do monster.kill(idx); }
+							if (ulti > 0)
+							{
+								do monster.kill(idx);
+							}
 							else { do marioDeath(); } // Else, Mario is death
 						}
 					}
@@ -281,7 +288,7 @@ class SuperMarioGame
 
 			// If Mario haven't die,
 			// and Mario reach this interval, you WIN ~~
-			if ( (~(exit)) & (6100 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 6200) )
+			if ( (~(exit)) & (6464 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 6564) )
 			{
 				let win = true;
 				let exit = true;
@@ -303,6 +310,27 @@ class SuperMarioGame
 		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
 		*/
 
+		return;
+	}
+
+	method void restoreMul()
+	{
+		let mul = 1;
+		return;
+	}
+
+	function void addMul()
+	{
+		let mul = mul+mul;
+		return;
+	}
+
+	function void addPoints(int points)
+	{
+		let score = score + (points*mul);
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
 		return;
 	}
 

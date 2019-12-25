@@ -526,6 +526,7 @@ class Map
     else{
       if(touch & (block.getType(touchBlock) = 2) )
       {
+        do SuperMarioGame.addPoints(100);
         let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
         do erase();
         do block.changeType(touchBlock, 5);

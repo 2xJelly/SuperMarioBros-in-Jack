@@ -295,6 +295,8 @@ class Monster
   /*kill the monster*/
   method void kill(int i)
   {
+    do SuperMarioGame.addPoints(100);
+    do SuperMarioGame.addMul();
     do eraseidxMonster(i);
     while(~(i = monLeft) )
     {
