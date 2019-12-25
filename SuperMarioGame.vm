@@ -192,7 +192,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function SuperMarioGame.run 2
+function SuperMarioGame.run 3
 push argument 0
 pop pointer 0
 push constant 0
@@ -211,6 +211,8 @@ push this 5
 push constant 30
 call Math.divide 2
 pop this 13
+push constant 0
+pop local 2
 push constant 0
 push constant 0
 call Output.moveCursor 2
@@ -508,6 +510,10 @@ push this 2
 push local 0
 call Monster.getMontype 2
 pop local 1
+push constant 0
+pop local 2
+push local 2
+not
 push this 0
 call Mario.getPosX 1
 push this 2
@@ -516,8 +522,9 @@ call Monster.getMonX 2
 push this 4
 sub
 sub
-push constant 17
+push constant 16
 lt
+and
 push this 0
 call Mario.getPosX 1
 push this 2
@@ -526,7 +533,7 @@ call Monster.getMonX 2
 push this 4
 sub
 sub
-push constant 17
+push constant 16
 neg
 gt
 and
@@ -542,7 +549,10 @@ and
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
+push local 2
+not
 push local 1
+and
 push constant 0
 eq
 if-goto IF_TRUE10
@@ -555,8 +565,14 @@ push this 2
 push local 0
 call Monster.kill 2
 pop temp 0
+push constant 0
+not
+pop local 2
 label IF_FALSE10
+push local 2
+not
 push local 1
+and
 push constant 3
 eq
 if-goto IF_TRUE11
@@ -569,8 +585,14 @@ push this 2
 push local 0
 call Monster.kill 2
 pop temp 0
+push constant 0
+not
+pop local 2
 label IF_FALSE11
+push local 2
+not
 push local 1
+and
 push constant 4
 eq
 if-goto IF_TRUE12
@@ -583,6 +605,9 @@ push this 2
 push local 0
 call Monster.kill 2
 pop temp 0
+push constant 0
+not
+pop local 2
 label IF_FALSE12
 push local 1
 push constant 1
@@ -679,6 +704,8 @@ not
 pop this 8
 label IF_FALSE14
 label IF_FALSE9
+push local 2
+not
 push this 0
 call Mario.getPosX 1
 push this 2
@@ -687,8 +714,9 @@ call Monster.getMonX 2
 push this 4
 sub
 sub
-push constant 17
+push constant 16
 lt
+and
 push this 0
 call Mario.getPosX 1
 push this 2
@@ -697,7 +725,7 @@ call Monster.getMonX 2
 push this 4
 sub
 sub
-push constant 17
+push constant 16
 neg
 gt
 and
@@ -764,7 +792,10 @@ push constant 0
 not
 pop this 8
 label IF_FALSE15
+push local 2
+not
 push constant 239
+and
 push this 2
 push local 0
 call Monster.getMonY 2

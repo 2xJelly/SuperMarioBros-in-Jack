@@ -299,7 +299,8 @@ class Monster
   method void kill(int i)
   {
     do eraseidxMonster(i);
-    while(~(i = monLeft) ){
+    while(~(i = monLeft) )
+    {
       let MonX[i] = MonX[i-1];
       let MonY[i] = MonY[i-1];
       let Montype[i] = Montype[i-1];

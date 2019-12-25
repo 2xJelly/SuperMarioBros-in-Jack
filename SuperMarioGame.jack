@@ -85,6 +85,7 @@ class SuperMarioGame
 	{
 		var int idx;
 		var int switch;
+		var boolean monGG;
 		let key = 0;
 		let exit = false;
 		let coin = 0;
@@ -92,6 +93,7 @@ class SuperMarioGame
 		let time = 999;
 		let framePassed = fps;
 		let frameMon = fps/30;
+		let monGG = false;
 
 		do Output.moveCursor(0, 0);
 		do Output.printString("Coin: ");
@@ -210,28 +212,31 @@ class SuperMarioGame
 			/* one for one monster for update kill or die*/
 			while(idx < monster.getMonRight())
 			{
-
 				let switch = monster.getMontype(idx);
+				let monGG = false;
 
 				// If mario touch monster upward
-				if(((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 17) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -17) & ((monster.getMonY(idx) - mario.getPosY()) = 16))
+				if((~monGG) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 16) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -16) & ((monster.getMonY(idx) - mario.getPosY()) = 16))
 				{
-					if(switch = 0)	/*touch on moving monster&kill it*/
+					if((~monGG) & switch = 0)	/*touch on moving monster&kill it*/
 					{
 						do mario.jump();
 						do monster.kill(idx);
+						let monGG = true;
 					}
 
-					if(switch = 3)	/*touch on moving upward moving monster&kill it*/
+					if((~monGG) & switch = 3)	/*touch on moving upward moving monster&kill it*/
 					{
 						do mario.jump();
 						do monster.kill(idx);
+						let monGG = true;
 					}
 
-					if(switch = 4)	/*touch on moving downward monster&kill it*/
+					if((~monGG) & switch = 4)	/*touch on moving downward monster&kill it*/
 					{
 						do mario.jump();
 						do monster.kill(idx);
+						let monGG = true;
 					}
 
 					if(switch = 1)	/*touch flower monster will die*/
@@ -268,7 +273,7 @@ class SuperMarioGame
 				}
 
 				// If mario touch monster left or right or downward,mario will die
-				if(((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 17) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -17) & ((mario.getPosY() - monster.getMonY(idx)) < 16) & ((mario.getPosY() - monster.getMonY(idx)) > -1 ))
+				if((~monGG) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) < 16) & ((mario.getPosX() - (monster.getMonX(idx)-screenPos)) > -16) & ((mario.getPosY() - monster.getMonY(idx)) < 16) & ((mario.getPosY() - monster.getMonY(idx)) > -1 ))
 				{
 					let effect = 3;
 					do mario.jump();
@@ -285,7 +290,7 @@ class SuperMarioGame
 				}
 
 				/*if monster drop into the gap,kill the monster*/
-				if (239 < monster.getMonY(idx) )
+				if ((~monGG) & 239 < monster.getMonY(idx) )
 				{
 					do monster.kill(idx);
 				}
