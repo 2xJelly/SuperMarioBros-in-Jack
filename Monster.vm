@@ -1,25 +1,29 @@
 function Monster.new 0
-push constant 9
+push constant 11
 call Memory.alloc 1
 pop pointer 0
-push constant 1
-pop this 4
-push constant 2
+push constant 30
+pop this 7
+push constant 0
 pop this 8
 push constant 0
-pop this 5
+pop this 9
 push constant 0
-pop this 6
-push constant 0
-pop this 7
+pop this 10
 call Block.new 0
-pop this 2
-push this 2
+pop this 4
+push this 4
 call Block.getMonX 1
 pop this 0
-push this 2
+push this 4
 call Block.getMonY 1
 pop this 1
+push this 4
+call Block.getDirection 1
+pop this 2
+push this 4
+call Block.getMonType 1
+pop this 3
 push pointer 0
 call Monster.refresh 1
 pop temp 0
@@ -28,10 +32,10 @@ call Monster.drawMonster 1
 pop temp 0
 push pointer 0
 return
-function Monster.drawMonster 1
+function Monster.drawMonster 3
 push argument 0
 pop pointer 0
-push this 6
+push this 9
 pop local 0
 push constant 0
 not
@@ -39,10 +43,88 @@ call Screen.setColor 1
 pop temp 0
 label WHILE_EXP0
 push local 0
-push this 7
+push this 10
 lt
 not
 if-goto WHILE_END0
+push local 0
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 2
+push this 5
+push local 2
+call Draw.flowerleft 2
+pop temp 0
+push constant 0
+pop local 2
+label IF_FALSE0
+push local 1
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 2
+push this 5
+push local 2
+call Draw.flowerright 2
+pop temp 0
+push constant 0
+pop local 2
+label IF_FALSE1
+push local 1
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push pointer 0
 push local 0
 push this 0
@@ -58,6 +140,51 @@ push constant 16
 push constant 16
 call Monster.drawBlock 5
 pop temp 0
+label IF_FALSE2
+push local 1
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.drawBlock 5
+pop temp 0
+label IF_FALSE3
+push local 1
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.drawBlock 5
+pop temp 0
+label IF_FALSE4
 push local 0
 push constant 1
 add
@@ -66,20 +193,32 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Monster.eraseMonster 1
+function Monster.eraseMonster 3
 push argument 0
 pop pointer 0
-push this 6
+push this 9
 pop local 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
 label WHILE_EXP0
 push local 0
-push this 7
+push this 10
 lt
 not
 if-goto WHILE_END0
+push local 0
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 2
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push pointer 0
 push local 0
 push this 0
@@ -95,6 +234,113 @@ push constant 16
 push constant 16
 call Monster.eraseBlock 5
 pop temp 0
+label IF_FALSE0
+push local 2
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.eraseBlock 5
+pop temp 0
+label IF_FALSE1
+push local 2
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.eraseBlock 5
+pop temp 0
+label IF_FALSE2
+push local 2
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 5
+push local 1
+call Draw.eraseblock 2
+pop temp 0
+label IF_FALSE3
+push local 2
+push constant 2
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 5
+push local 1
+call Draw.eraseblock 2
+pop temp 0
+label IF_FALSE4
 push local 0
 push constant 1
 add
@@ -103,11 +349,300 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
+function Monster.drawidxMonster 2
+push argument 0
+pop pointer 0
+push argument 1
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push local 0
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 5
+push local 1
+call Draw.flowerleft 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE0
+push local 0
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 5
+push local 1
+call Draw.flowerright 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE1
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.drawBlock 5
+pop temp 0
+label IF_FALSE2
+push local 0
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.drawBlock 5
+pop temp 0
+label IF_FALSE3
+push local 0
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.drawBlock 5
+pop temp 0
+label IF_FALSE4
+push constant 0
+return
+function Monster.eraseidxMonster 2
+push argument 0
+pop pointer 0
+push argument 1
+push this 3
+add
+pop pointer 1
+push that 0
+pop local 1
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.eraseBlock 5
+pop temp 0
+label IF_FALSE0
+push local 1
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.eraseBlock 5
+pop temp 0
+label IF_FALSE1
+push local 1
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+push constant 16
+call Monster.eraseBlock 5
+pop temp 0
+label IF_FALSE2
+push local 1
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 0
+push this 5
+push local 0
+call Draw.eraseblock 2
+pop temp 0
+label IF_FALSE3
+push local 1
+push constant 2
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push this 8
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 0
+push this 5
+push local 0
+call Draw.eraseblock 2
+pop temp 0
+label IF_FALSE4
+push constant 0
+return
 function Monster.drawBlock 0
 push argument 0
 pop pointer 0
 push argument 1
-push this 5
+push this 8
 sub
 push argument 2
 call Sprite.drawMon 2
@@ -118,22 +653,40 @@ function Monster.eraseBlock 0
 push argument 0
 pop pointer 0
 push argument 1
-push this 5
+push this 8
 sub
 push argument 2
-call Sprite.eraseMon 2
+push argument 1
+push argument 3
+push constant 1
+sub
+add
+push this 8
+sub
+push argument 2
+push argument 4
+push constant 1
+sub
+add
+call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
 function Monster.transition 0
 push argument 0
 pop pointer 0
-push this 5
+push pointer 0
+call Monster.eraseMonster 1
+pop temp 0
+push this 8
 push argument 1
 add
-pop this 5
+pop this 8
 push pointer 0
 call Monster.refresh 1
+pop temp 0
+push pointer 0
+call Monster.drawMonster 1
 pop temp 0
 push constant 0
 return
@@ -141,128 +694,153 @@ function Monster.refresh 0
 push argument 0
 pop pointer 0
 label WHILE_EXP0
+push this 10
 push this 7
-push this 4
 lt
-push this 7
+push this 10
 push this 0
 add
 pop pointer 1
 push that 0
-push this 5
+push this 8
 push constant 512
 add
 lt
 and
 not
 if-goto WHILE_END0
-push this 7
+push this 10
 push constant 1
 add
-pop this 7
+pop this 10
 goto WHILE_EXP0
 label WHILE_END0
 label WHILE_EXP1
-push this 6
-push this 7
+push this 9
+push this 10
 lt
-push this 6
-push this 0
-add
-pop pointer 1
-push that 0
-push this 5
-lt
-and
-not
-if-goto WHILE_END1
-push this 6
-push constant 1
-add
-pop this 6
-goto WHILE_EXP1
-label WHILE_END1
-push constant 0
-return
-function Monster.run 1
-push argument 0
-pop pointer 0
-push this 6
-pop local 0
-push pointer 0
-call Monster.eraseMonster 1
-pop temp 0
-label WHILE_EXP0
-push local 0
-push this 7
-lt
-not
-if-goto WHILE_END0
-push local 0
-push this 0
-add
-push local 0
+push this 9
 push this 0
 add
 pop pointer 1
 push that 0
 push this 8
+lt
+and
+not
+if-goto WHILE_END1
+push this 9
+push constant 1
+add
+pop this 9
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Monster.update 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+add
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+push argument 1
+push this 2
+add
+pop pointer 1
+push that 0
 sub
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 0
-push constant 1
-add
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
 push pointer 0
 call Monster.refresh 1
-pop temp 0
-push pointer 0
-call Monster.drawMonster 1
 pop temp 0
 push constant 0
 return
 function Monster.changeRight 0
 push argument 0
 pop pointer 0
+push argument 1
+push this 2
+add
 push constant 2
 neg
-pop this 8
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 0
 return
 function Monster.changeLeft 0
 push argument 0
 pop pointer 0
+push argument 1
+push this 2
+add
 push constant 2
-pop this 8
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 0
 return
 function Monster.movedown 0
 push argument 0
 pop pointer 0
 push pointer 0
-call Monster.eraseMonster 1
+push argument 1
+call Monster.eraseidxMonster 2
 pop temp 0
-push this 6
+push argument 1
 push this 1
 add
-push this 6
+push argument 1
 push this 1
 add
 pop pointer 1
 push that 0
-push constant 2
+push constant 4
 add
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
 push pointer 0
-call Monster.drawMonster 1
+push argument 1
+call Monster.drawidxMonster 2
+pop temp 0
+push constant 0
+return
+function Monster.moveup 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+call Monster.eraseidxMonster 2
+pop temp 0
+push argument 1
+push this 1
+add
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 4
+sub
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push pointer 0
+push argument 1
+call Monster.drawidxMonster 2
 pop temp 0
 push constant 0
 return
@@ -270,18 +848,88 @@ function Monster.kill 0
 push argument 0
 pop pointer 0
 push pointer 0
-call Monster.eraseMonster 1
+push argument 1
+call Monster.eraseidxMonster 2
 pop temp 0
-push this 6
+label WHILE_EXP0
+push argument 1
+push this 9
+eq
+not
+not
+if-goto WHILE_END0
+push argument 1
+push this 0
+add
+push argument 1
+push constant 1
+sub
+push this 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push this 1
+add
+push argument 1
+push constant 1
+sub
+push this 1
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push this 3
+add
+push argument 1
+push constant 1
+sub
+push this 3
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push this 2
+add
+push argument 1
+push constant 1
+sub
+push this 2
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push constant 1
+sub
+pop argument 1
+goto WHILE_EXP0
+label WHILE_END0
+push this 9
 push constant 1
 add
-pop this 6
+pop this 9
 push constant 0
 return
 function Monster.getMonX 0
 push argument 0
 pop pointer 0
-push this 6
+push argument 1
 push this 0
 add
 pop pointer 1
@@ -290,9 +938,54 @@ return
 function Monster.getMonY 0
 push argument 0
 pop pointer 0
-push this 6
+push argument 1
 push this 1
 add
 pop pointer 1
 push that 0
+return
+function Monster.getMonLeft 0
+push argument 0
+pop pointer 0
+push this 9
+return
+function Monster.getMonRight 0
+push argument 0
+pop pointer 0
+push this 10
+return
+function Monster.getMontype 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 3
+add
+pop pointer 1
+push that 0
+return
+function Monster.changeup 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 3
+add
+push constant 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function Monster.changedown 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 3
+add
+push constant 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
 return

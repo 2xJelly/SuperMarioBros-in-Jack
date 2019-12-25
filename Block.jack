@@ -3,20 +3,26 @@ class Block
     field Array type_block;
     field Array posX,posY,gap;
     field Array MonX,MonY;
+    field Array Mon_type;
+    field Array Direction;
 
-    // 0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight
+    //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight
+
+    //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster
     constructor Block new()
     {
         var int numBlock;
         var int numGap;
         var int numMon;
-        let numBlock = 134;
+        let numBlock = 135;
         let numGap = 6;
-        let numMon = 1;
+        let numMon = 30;
         let posX = Array.new(numBlock);
         let posY = Array.new(numBlock);
         let MonX = Array.new(numMon);
         let MonY = Array.new(numMon);
+        let Direction = Array.new(numMon);
+        let Mon_type = Array.new(numMon);
         let gap = Array.new(numGap);
         let type_block = Array.new(numBlock);
 
@@ -29,10 +35,155 @@ class Block
 
         let MonX[0] = 352;
         let MonY[0] = 160;
-        //let MonX[1] = 448;
-        //let MonY[1] = 208;
-        //let MonX[2] = 464;
-        //let MonY[2] = 208;
+        let Mon_type[0] = 0;
+        let Direction[0] = 2;
+
+        let MonX[1] = 432;
+        let MonY[1] = 208;
+        let Mon_type[1] = 0;
+        let Direction[1] = 2;
+
+        let MonX[2] = 496;
+        let MonY[2] = 208;
+        let Mon_type[2] = 0;
+        let Direction[2] = 2;
+
+        let MonX[3] = 576;
+        let MonY[3] = 208;
+        let Mon_type[3] = 0;
+        let Direction[3] = 2;
+
+        let MonX[4] = 592;
+        let MonY[4] = 208;
+        let Mon_type[4] = 0;
+        let Direction[4] = 2;
+
+        let MonX[5] = 720;
+        let MonY[5] = 144;
+        let Mon_type[5] = 1;
+        let Direction[5] = 0;
+
+        let MonX[6] = 736;
+        let MonY[6] = 144;
+        let Mon_type[6] = 2;
+        let Direction[6] = 0;
+
+        let MonX[7] = 832;
+        let MonY[7] = 208;
+        let Mon_type[7] = 0;
+        let Direction[7] = 2;
+
+        let MonX[8] = 912;
+        let MonY[8] = 208;
+        let Mon_type[8] = 0;
+        let Direction[8] = 2;
+
+        let MonX[9] = 928;
+        let MonY[9] = 208;
+        let Mon_type[9] = 0;
+        let Direction[9] = 2;
+
+        let MonX[10] = 1008;
+        let MonY[10] = 208;
+        let Mon_type[10] = 0;
+        let Direction[10] = 2;
+
+        let MonX[11] = 1024;
+        let MonY[11] = 208;
+        let Mon_type[11] = 0;
+        let Direction[11] = 2;
+
+        let MonX[12] = 1040;
+        let MonY[12] = 208;
+        let Mon_type[12] = 0;
+        let Direction[12] = 2;
+
+        let MonX[13] = 1312;
+        let MonY[13] = 208;
+        let Mon_type[13] = 0;
+        let Direction[13] = 2;
+
+        let MonX[14] = 1328;
+        let MonY[14] = 208;
+        let Mon_type[14] = 0;
+        let Direction[14] = 2;
+
+        let MonX[15] = 1344;
+        let MonY[15] = 208;
+        let Mon_type[15] = 0;
+        let Direction[15] = 2;
+
+        let MonX[16] = 1760;
+        let MonY[16] = 208;
+        let Mon_type[16] = 3;
+        let Direction[16] = 2;
+
+        let MonX[17] = 1792;
+        let MonY[17] = 176;
+        let Mon_type[17] = 1;
+        let Direction[17] = 2;
+
+        let MonX[18] = 1808;
+        let MonY[18] = 176;
+        let Mon_type[18] = 2;
+        let Direction[18] = 2;
+
+        let MonX[19] = 1840;
+        let MonY[19] = 208;
+        let Mon_type[19] = 0;
+        let Direction[19] = 2;
+
+        let MonX[20] = 1968;
+        let MonY[20] = 176;
+        let Mon_type[20] = 1;
+        let Direction[20] = 2;
+
+        let MonX[21] = 1984;
+        let MonY[21] = 176;
+        let Mon_type[21] = 2;
+        let Direction[21] = 2;
+
+        let MonX[22] = 2032;
+        let MonY[22] = 128;
+        let Mon_type[22] = 1;
+        let Direction[22] = 2;
+
+        let MonX[23] = 2048;
+        let MonY[23] = 128;
+        let Mon_type[23] = 2;
+        let Direction[23] = 2;
+
+        let MonX[24] = 2336;
+        let MonY[24] = 208;
+        let Mon_type[24] = 0;
+        let Direction[24] = 2;
+
+        let MonX[25] = 2480;
+        let MonY[25] = 208;
+        let Mon_type[25] = 3;
+        let Direction[25] = 2;
+
+        let MonX[26] = 2496;
+        let MonY[26] = 208;
+        let Mon_type[26] = 3;
+        let Direction[26] = 2;
+
+        let MonX[27] = 2512;
+        let MonY[27] = 160;
+        let Mon_type[27] = 0;
+        let Direction[27] = 2;
+
+        let MonX[28] = 2768;
+        let MonY[28] = 160;
+        let Mon_type[28] = 1;
+        let Direction[28] = 2;
+
+        let MonX[29] = 2784;
+        let MonY[29] = 160;
+        let Mon_type[29] = 2;
+        let Direction[29] = 2;
+
+
 
         let posX[0] = 240;
         let posY[0] = 160;
@@ -127,28 +278,28 @@ class Block
         let type_block[22] = 2;
 
         let posX[23] = 528;
-        let posY[23] = 160;
+        let posY[23] = 176;
         let type_block[23] = 4;
 
         let posX[24] = 528;
-        let posY[24] = 176;
+        let posY[24] = 192;
         let type_block[24] = 4;
 
         let posX[25] = 528;
-        let posY[25] = 192;
+        let posY[25] = 208;
         let type_block[25] = 4;
 
-        let posX[26] = 528;
-        let posY[26] = 208;
-        let type_block[26] = 4;
+        let posX[26] = 592;
+        let posY[26] = 96;
+        let type_block[26] = 0;
 
-        let posX[27] = 544;
-        let posY[27] = 192;
-        let type_block[27] = 4;
+        let posX[27] = 640;
+        let posY[27] = 96;
+        let type_block[27] = 0;
 
-        let posX[28] = 544;
-        let posY[28] = 208;
-        let type_block[28] = 4;
+        let posX[28] = 656;
+        let posY[28] = 96;
+        let type_block[28] = 0;
 
         let posX[29] = 720;
         let posY[29] = 208;
@@ -334,41 +485,41 @@ class Block
         let posY[74] = 96;
         let type_block[74] = 0;
 
-        let posX[75] = 1488;
-        let posY[75] = 96;
-        let type_block[75] = 0;
+        let posX[75] = 1616;
+        let posY[75] = 160;
+        let type_block[75] = 6;
 
         let posX[76] = 1616;
-        let posY[76] = 160;
-        let type_block[76] = 6;
+        let posY[76] = 176;
+        let type_block[76] = 3;
 
         let posX[77] = 1616;
-        let posY[77] = 176;
+        let posY[77] = 192;
         let type_block[77] = 3;
 
         let posX[78] = 1616;
-        let posY[78] = 192;
+        let posY[78] = 208;
         let type_block[78] = 3;
 
-        let posX[79] = 1616;
-        let posY[79] = 208;
-        let type_block[79] = 3;
+        let posX[79] = 1632;
+        let posY[79] = 160;
+        let type_block[79] = 7;
 
         let posX[80] = 1632;
-        let posY[80] = 160;
-        let type_block[80] = 7;
+        let posY[80] = 176;
+        let type_block[80] = 8;
 
         let posX[81] = 1632;
-        let posY[81] = 176;
+        let posY[81] = 192;
         let type_block[81] = 8;
 
         let posX[82] = 1632;
-        let posY[82] = 192;
+        let posY[82] = 208;
         let type_block[82] = 8;
 
-        let posX[83] = 1632;
-        let posY[83] = 208;
-        let type_block[83] = 8;
+        let posX[83] = 1696;
+        let posY[83] = 160;
+        let type_block[83] = 2;
 
         let posX[84] = 1792;
         let posY[84] = 192;
@@ -570,6 +721,10 @@ class Block
         let posY[133] = 160;
         let type_block[133] = 0;
 
+        let posX[134] = 6464;
+        let posY[134] = 160;
+        let type_block[134] = 0;
+
         return this;
     }
 
@@ -586,29 +741,45 @@ class Block
       return;
     }
 
+    /*get X- position of block*/
     method Array getPosX()
     {
         return posX;
     }
 
+    /* get Y-position of block*/
     method Array getPosY()
     {
         return posY;
     }
 
+    /*get position of gap*/
     method Array getGap()
     {
         return gap;
     }
 
+    /*get X-position of monster*/
     method Array getMonX()
     {
         return MonX;
     }
 
+    /*get Y-position of monster*/
     method Array getMonY()
     {
         return MonY;
     }
 
+    /*get direction of monster*/
+    method Array getDirection()
+    {
+        return Direction;
+    }
+
+    /*get type of monster*/
+    method Array getMonType()
+    {
+        return Mon_type;
+    }
 }
