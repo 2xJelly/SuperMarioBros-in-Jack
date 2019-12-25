@@ -37,6 +37,9 @@ push pointer 0
 call Map.drawGround 1
 pop temp 0
 push pointer 0
+call Map.drawCloud 1
+pop temp 0
+push pointer 0
 return
 function Map.drawGround 4
 push argument 0
@@ -160,6 +163,176 @@ push constant 224
 push constant 511
 push constant 255
 call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Map.drawCloud 2
+push argument 0
+pop pointer 0
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 0
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 1
+push this 4
+push constant 512
+push local 0
+add
+call Draw.cloudleftup 2
+pop temp 0
+push this 4
+push constant 512
+push local 1
+add
+call Draw.cloudrightup 2
+pop temp 0
+push this 4
+push constant 1024
+push local 0
+add
+call Draw.cloudleftdown 2
+pop temp 0
+push this 4
+push constant 1024
+push local 1
+add
+call Draw.cloudrightdown 2
+pop temp 0
+push this 4
+push constant 522
+push local 0
+add
+call Draw.cloudleftup 2
+pop temp 0
+push this 4
+push constant 522
+push local 1
+add
+call Draw.cloudrightup 2
+pop temp 0
+push this 4
+push constant 1034
+push local 0
+add
+call Draw.cloudleftdown 2
+pop temp 0
+push this 4
+push constant 1034
+push local 1
+add
+call Draw.cloudrightdown 2
+pop temp 0
+push constant 0
+return
+function Map.eraseCloud 2
+push argument 0
+pop pointer 0
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 0
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 1
+push this 4
+push constant 512
+push local 0
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 512
+push local 1
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 1024
+push local 0
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 1024
+push local 1
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 522
+push local 0
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 522
+push local 1
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 1034
+push local 0
+add
+call Draw.eraseblock 2
+pop temp 0
+push this 4
+push constant 1034
+push local 1
+add
+call Draw.eraseblock 2
 pop temp 0
 push constant 0
 return
@@ -516,6 +689,9 @@ pop temp 0
 push pointer 0
 call Map.eraseGround 1
 pop temp 0
+push pointer 0
+call Map.eraseCloud 1
+pop temp 0
 push this 7
 push argument 1
 add
@@ -528,6 +704,9 @@ call Map.draw 1
 pop temp 0
 push pointer 0
 call Map.drawGround 1
+pop temp 0
+push pointer 0
+call Map.drawCloud 1
 pop temp 0
 push constant 0
 return

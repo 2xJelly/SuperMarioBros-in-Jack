@@ -28,23 +28,11 @@ return
 function Mario.draw 0
 push argument 0
 pop pointer 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-call Pos.getX 1
-push this 0
-call Pos.getY 1
-push this 0
-call Pos.getX 1
-push constant 15
-add
-push this 0
-call Pos.getY 1
-push constant 15
-add
-call Screen.drawRectangle 4
+push pointer 0
+call Mario.getPosX 1
+push pointer 0
+call Mario.getPosY 1
+call Sprite.drawMario 2
 pop temp 0
 push constant 0
 return

@@ -34,6 +34,8 @@ class Map
     do draw();
     /* Draw the platform */
     do drawGround();
+    /*Draw the cloud*/
+    do drawCloud();
 
     return this;
   }
@@ -86,6 +88,45 @@ class Map
 		do Screen.drawRectangle(0, 224, 511, 255);
 		return;
 	}
+
+  /*Draw the Cloud*/
+  method void drawCloud()
+  {
+    var int location;
+    var int location1;
+    /*X-position mod 31*/
+    let location = ((screenPos+80)/16) - ((((screenPos+80)/16)/31)*31);     
+    let location1 = ((screenPos+96)/16) - ((((screenPos+96)/16)/31)*31);
+    do draw.cloudleftup(512 + location);
+    do draw.cloudrightup(512 + location1);
+    do draw.cloudleftdown(1024 + location);
+    do draw.cloudrightdown(1024 + location1);
+
+    do draw.cloudleftup(522 + location);
+    do draw.cloudrightup(522 + location1);
+    do draw.cloudleftdown(1034 + location);
+    do draw.cloudrightdown(1034 + location1);
+    return;
+  }
+
+  /*erase the cloud*/
+  method void eraseCloud()
+  {
+    var int location;
+    var int location1;
+    let location = (screenPos+80)/16 - ((((screenPos+80)/16)/31)*31);
+    let location1 = (screenPos+96)/16 - ((((screenPos+96)/16)/31)*31);
+    do draw.eraseblock(512 + location);
+    do draw.eraseblock(512 + location1);
+    do draw.eraseblock(1024 + location);
+    do draw.eraseblock(1024 + location1);
+
+    do draw.eraseblock(522 + location);
+    do draw.eraseblock(522 + location1);
+    do draw.eraseblock(1034 + location);
+    do draw.eraseblock(1034 + location1);
+    return;
+  }
 
   /* Draw the map */
   method void draw()
@@ -199,12 +240,14 @@ class Map
 
     do erase();
     do eraseGround();
+    do eraseCloud();
 
     let screenPos = screenPos + move;
     do refresh();
 
     do draw();
     do drawGround();
+    do drawCloud();
     return;
 	}
 

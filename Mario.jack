@@ -25,9 +25,9 @@ class Mario
   /* Draw Mario */
   method void draw()
   {
-    //do Sprite.drawMario(getPosX(), getPosY());
-    do Screen.setColor(true);
-     do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    do Sprite.drawMario(getPosX(), getPosY());
+    //do Screen.setColor(true);
+    //do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
   }
 

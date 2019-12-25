@@ -13,24 +13,30 @@ class Monster
 
   constructor Monster new()
   {
-    let numMonster = 7;
+    let numMonster = 30;
     let screenPos = 0;
     let monLeft = 0;
     let monRight = 0;
 
     let block = Block.new();
+    /*Set X-position of monster*/
     let MonX = block.getMonX();
+    /*Set Y-position of monste*/
     let MonY = block.getMonY();
+    /*Set diretion of monster*/
     let direction = block.getDirection();
+    /*Type of monster --- 0 - move left or right monster; 1 - flower left monster ; 2 - flower right mosnter ; 3 - flying upwarf monster ; 4 - flying downward monster;*/
     let Montype = block.getMonType();
 
     do refresh();
 
+    /*Draw the monster*/
     do drawMonster();
 
     return this;
   }
 
+/*Draw monster picture*/
   method void drawMonster()
   {
       var int i;
@@ -57,34 +63,157 @@ class Monster
             let location = 0;
           }
 
-        else{do drawBlock(MonX[i],MonY[i],16,16);}
+        if(switch = 0)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 3)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 4)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+
         let i = i + 1;
       }
       return;
   }
 
+  /*erase monster picture*/
   method void eraseMonster()
   {
       var int i;
+      var int location;
+      var int switch;
       let i = monLeft;
 
       do Screen.setColor(false);
 
       while(i < monRight)
       {
-        do eraseBlock(MonX[i],MonY[i],16,16);
+        let switch = Montype[i];
+        if(switch = 0)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 3)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 4)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 1)
+        {
+          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
+        }
+
+        if(switch = 2)
+        {
+          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
+        }
+
         let i = i + 1;
       }
       return;
   }
 
+  /*Draw i th monster on screen*/
+  method void drawidxMonster(int i)
+  {     
+        var int switch;
+        var int location;
+        let switch = Montype[i];
+
+        do Screen.setColor(true);
+        if(switch = 1)
+          {
+            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            do draw.flowerleft(location);
+            let location = 0;
+          }
+        
+        if(switch = 2)
+          {
+            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            do draw.flowerright(location);
+            let location = 0;
+          }
+
+        if(switch = 0)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 3)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 4)
+        {
+          do drawBlock(MonX[i],MonY[i],16,16);
+        }
+  
+      return;
+  }
+
+  /*erase i th monster on screen*/
+  method void eraseidxMonster(int i)
+  {
+        var int location;
+        var int switch;
+        let switch = Montype[i];
+        do Screen.setColor(false);
+        if(switch = 0)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 3)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 4)
+        {
+          do eraseBlock(MonX[i],MonY[i],16,16);
+        }
+
+        if(switch = 1)
+        {
+          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
+        }
+
+        if(switch = 2)
+        {
+          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
+        }
+
+      return;
+  }
+
+  /*Draw function*/
   method void drawBlock(int curX, int curY, int sizeX, int sizeY)
   {
-    //do Sprite.drawMon(curX-screenPos, curY);
-		do Screen.drawRectangle(curX-screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
+    do Sprite.drawMon(curX-screenPos, curY);
+		//do Screen.drawRectangle(curX-screenPos, curY, curX + (sizeX-1) - screenPos, curY + (sizeY-1) );
 		return;
   }
 
+  /*erase function*/
   method void eraseBlock(int curX, int curY, int sizeX, int sizeY)
   {
     //do Sprite.drawMon(curX-screenPos, curY);
@@ -92,6 +221,7 @@ class Monster
 		return;
   }
 
+  /*do transition*/
 	method void transition(int move)
 	{
         do eraseMonster();
@@ -123,73 +253,104 @@ class Monster
     return;
   }
 
+  /*do monster move by two pixel about its direction*/
   method void update(int i)
   {
     let MonX[i] = MonX[i]-direction[i];
+    do refresh();
     return;
   }
 
-  method void run()
-  {
-      do refresh();
-      do drawMonster();
-      return;
-  }
-
+  /*change the direction of monster to right*/
   method void changeRight(int i)
   {
       let direction[i] = -2;
       return;
   }
 
+  /*change the direction of monster to left*/
   method void changeLeft(int i)
   {
       let direction[i] = 2;
       return;
   }
 
+  /*let the monster move down*/
   method void movedown(int i)
   {
-    do eraseMonster();
-    let MonY[i] = MonY[i] + 2;
-    do drawMonster();
+    do eraseidxMonster(i);
+    let MonY[i] = MonY[i] + 4;
+    do drawidxMonster(i);
 
     return;
   }
 
+  /*let the monster move up*/
+  method void moveup(int i)
+  {
+    do eraseidxMonster(i);
+    let MonY[i] = MonY[i] - 4;
+    do drawidxMonster(i);
+
+    return;
+  }
+
+  /*kill the monster*/
   method void kill(int i)
   {
-    do eraseMonster();
-    if(~(i = monLeft)){
-      let MonX[i] = MonX[monLeft];
-      let MonY[i] = MonY[monLeft];
+    do eraseidxMonster(i);
+    while(~(i = monLeft) ){
+      let MonX[i] = MonX[i-1];
+      let MonY[i] = MonY[i-1];
+      let Montype[i] = Montype[i-1];
+      let direction[i] = direction[i-1];
+      let i = i - 1;
       }
     let monLeft = monLeft + 1;
     return;
   }
 
+  /*get the X_postion of i th monster*/
   method int getMonX(int i)
   {
       return MonX[i];
   }
 
+  /*get the Y_position of ith monster*/
   method int getMonY(int i)
   {
       return MonY[i];
   }
 
+  /*get the pointer to the i th monster of left side*/ 
   method int getMonLeft()
   {
       return monLeft;
   }
 
+  /*get the pointer to the i th monster of right side*/
   method int getMonRight()
   {
      return monRight;
   }
 
+  /*get the type of i th monster*/
   method int getMontype(int i)
   {
     return Montype[i];
+  }
+
+  /*change the direction of i th monster to upward*/
+  method void changeup(int i)
+  {
+    let Montype[i] = 3;
+    return;
+  }
+
+  /*change the direction of i th monster to downward*/
+  method void changedown(int i)
+  {
+    let Montype[i] = 4;
+    return;
   }
 }
