@@ -11,9 +11,15 @@ class Map
   /* Left and right idx of items in the array */
   /* that need to be shown in current Screen position */
   field int gapLeft, gapRight;
+  field int starPosX, starPosY;
+  field boolean able_Star;
 
   constructor Map new()
   {
+    let able_Star = true;
+    let starPosX = 240;
+    let starPosY = 160;
+
     let numGap = 6;
     let numBlock = 135;
     let screenPos = 0;
@@ -39,6 +45,25 @@ class Map
 
     return this;
   }
+
+  // Use the star
+  method void useStar()
+  {
+    let able_Star = false;
+    return;
+  }
+
+  // Check if star is able to use
+  method boolean ableStar()
+  { return able_Star; }
+
+  // Return position x of star
+  method int getStarX()
+  { return starPosX; }
+
+  // Return position y of star
+  method int getStarY()
+  { return starPosY; }
 
   /* Draw the ground/platform */
 	method void drawGround()

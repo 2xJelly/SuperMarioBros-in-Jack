@@ -1,7 +1,14 @@
 function Map.new 0
-push constant 12
+push constant 15
 call Memory.alloc 1
 pop pointer 0
+push constant 0
+not
+pop this 14
+push constant 240
+pop this 12
+push constant 160
+pop this 13
 push constant 6
 pop this 5
 push constant 135
@@ -40,6 +47,28 @@ push pointer 0
 call Map.drawCloud 1
 pop temp 0
 push pointer 0
+return
+function Map.useStar 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 14
+push constant 0
+return
+function Map.ableStar 0
+push argument 0
+pop pointer 0
+push this 14
+return
+function Map.getStarX 0
+push argument 0
+pop pointer 0
+push this 12
+return
+function Map.getStarY 0
+push argument 0
+pop pointer 0
+push this 13
 return
 function Map.drawGround 4
 push argument 0

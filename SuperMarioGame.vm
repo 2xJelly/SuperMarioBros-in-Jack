@@ -26,7 +26,6 @@ pop this 2
 push constant 0
 pop this 4
 push constant 0
-not
 pop this 17
 push pointer 0
 return
@@ -195,7 +194,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function SuperMarioGame.run 2
+function SuperMarioGame.run 3
 push argument 0
 pop pointer 0
 push constant 0
@@ -285,6 +284,26 @@ pop temp 0
 push this 11
 call Output.printInt 1
 pop temp 0
+push constant 0
+push constant 13
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 85
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
 label WHILE_EXP0
 push this 8
 not
@@ -339,13 +358,88 @@ label IF_FALSE3
 push pointer 0
 call SuperMarioGame.move 1
 pop temp 0
+push this 1
+call Map.ableStar 1
+push constant 17
+neg
+push this 0
+call Mario.getPosX 1
+push this 1
+call Map.getStarX 1
+sub
+lt
+and
+push this 0
+call Mario.getPosX 1
+push this 1
+call Map.getStarX 1
+sub
+push constant 17
+lt
+and
+push constant 17
+neg
+push this 0
+call Mario.getPosY 1
+push this 1
+call Map.getStarY 1
+sub
+lt
+and
+push this 0
+call Mario.getPosY 1
+push this 1
+call Map.getStarY 1
+sub
+push constant 17
+lt
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 17
+push constant 1000
+add
+pop this 17
+push this 1
+call Map.useStar 1
+pop temp 0
+label IF_FALSE4
+push this 17
+push constant 0
+gt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 17
+push constant 1
+sub
+pop this 17
+label IF_FALSE5
+push this 17
+push constant 0
+lt
+not
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 0
+push constant 19
+call Output.moveCursor 2
+pop temp 0
+push this 17
+push constant 100
+call Math.divide 2
+call Output.printInt 1
+pop temp 0
+label IF_FALSE6
 push constant 239
 push this 0
 call Mario.getPosY 1
 lt
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
 push constant 3
 pop this 14
 push this 0
@@ -386,19 +480,23 @@ pop temp 0
 push constant 0
 not
 pop this 8
-label IF_FALSE4
+label IF_FALSE7
+push this 4
+push constant 100
+lt
 push this 0
 call Mario.getPosX 1
 push constant 383
 gt
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
+and
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push pointer 0
 push constant 32
 call SuperMarioGame.transition 2
 pop temp 0
-label IF_FALSE5
+label IF_FALSE8
 push this 6
 push constant 133
 eq
@@ -422,9 +520,9 @@ call Mario.getPosY 1
 push constant 144
 eq
 and
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
 push pointer 0
 push constant 6400
 push this 0
@@ -434,7 +532,7 @@ add
 sub
 call SuperMarioGame.transition 2
 pop temp 0
-label IF_FALSE6
+label IF_FALSE9
 push constant 1000
 push this 5
 call Math.divide 2
@@ -452,9 +550,9 @@ push this 12
 push constant 0
 gt
 not
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push this 11
 push constant 1
 sub
@@ -484,14 +582,14 @@ pop temp 0
 push this 11
 call Output.printInt 1
 pop temp 0
-label IF_FALSE7
+label IF_FALSE10
 push this 13
 push constant 0
 gt
 not
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push pointer 0
 call SuperMarioGame.Monmove 1
 pop temp 0
@@ -499,7 +597,7 @@ push this 5
 push constant 30
 call Math.divide 2
 pop this 13
-label IF_FALSE8
+label IF_FALSE11
 label WHILE_EXP2
 push local 0
 push this 2
@@ -534,94 +632,10 @@ push local 1
 push constant 2
 eq
 or
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
-push constant 16
-neg
-push this 18
-push this 19
-sub
-lt
-push this 18
-push this 19
-sub
-push constant 16
-lt
-and
-push constant 17
-neg
-push this 20
-push this 21
-sub
-lt
-and
-push this 20
-push this 21
-sub
-push constant 17
-lt
-and
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
-push pointer 0
-call SuperMarioGame.marioDeath 1
-pop temp 0
-label IF_FALSE10
-label IF_FALSE9
-push local 1
-push constant 0
-eq
-push local 1
-push constant 3
-eq
-or
-push local 1
-push constant 4
-eq
-or
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
-push constant 16
-neg
-push this 18
-push this 19
-sub
-lt
-push this 18
-push this 19
-sub
-push constant 16
-lt
-and
-push constant 17
-neg
-push this 20
-push this 21
-sub
-lt
-and
-push this 20
-push this 21
-sub
-push constant 0
-lt
-and
 if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
-push this 0
-call Mario.jump 1
-pop temp 0
-push this 2
-push local 0
-call Monster.kill 2
-pop temp 0
-goto IF_END12
-label IF_FALSE12
-push constant 17
+push constant 16
 neg
 push this 18
 push this 19
@@ -630,7 +644,7 @@ lt
 push this 18
 push this 19
 sub
-push constant 17
+push constant 16
 lt
 and
 push constant 17
@@ -649,10 +663,53 @@ and
 if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
-push this 17
+push pointer 0
+call SuperMarioGame.marioDeath 1
+pop temp 0
+label IF_FALSE13
+label IF_FALSE12
+push local 1
+push constant 0
+eq
+push local 1
+push constant 3
+eq
+or
+push local 1
+push constant 4
+eq
+or
 if-goto IF_TRUE14
 goto IF_FALSE14
 label IF_TRUE14
+push constant 16
+neg
+push this 18
+push this 19
+sub
+lt
+push this 18
+push this 19
+sub
+push constant 16
+lt
+and
+push constant 17
+neg
+push this 20
+push this 21
+sub
+lt
+and
+push this 20
+push this 21
+sub
+push constant 0
+lt
+and
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
 push this 0
 call Mario.jump 1
 pop temp 0
@@ -660,26 +717,66 @@ push this 2
 push local 0
 call Monster.kill 2
 pop temp 0
-goto IF_END14
-label IF_FALSE14
-push pointer 0
-call SuperMarioGame.marioDeath 1
-pop temp 0
-label IF_END14
-label IF_FALSE13
-label IF_END12
-label IF_FALSE11
-push constant 239
-push this 21
+goto IF_END15
+label IF_FALSE15
+push constant 17
+neg
+push this 18
+push this 19
+sub
 lt
-if-goto IF_TRUE15
-goto IF_FALSE15
-label IF_TRUE15
+push this 18
+push this 19
+sub
+push constant 17
+lt
+and
+push constant 17
+neg
+push this 20
+push this 21
+sub
+lt
+and
+push this 20
+push this 21
+sub
+push constant 17
+lt
+and
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push this 17
+push constant 0
+gt
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
 push this 2
 push local 0
 call Monster.kill 2
 pop temp 0
-label IF_FALSE15
+goto IF_END17
+label IF_FALSE17
+push pointer 0
+call SuperMarioGame.marioDeath 1
+pop temp 0
+label IF_END17
+label IF_FALSE16
+label IF_END15
+label IF_FALSE14
+push constant 239
+push this 21
+lt
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push this 2
+push local 0
+call Monster.kill 2
+pop temp 0
+label IF_FALSE18
 push local 0
 push constant 1
 add
@@ -702,16 +799,16 @@ add
 push constant 7200
 lt
 and
-if-goto IF_TRUE16
-goto IF_FALSE16
-label IF_TRUE16
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
 push constant 0
 not
 pop this 7
 push constant 0
 not
 pop this 8
-label IF_FALSE16
+label IF_FALSE19
 goto WHILE_EXP0
 label WHILE_END0
 call Screen.clearScreen 0
@@ -721,9 +818,9 @@ push constant 25
 call Output.moveCursor 2
 pop temp 0
 push this 7
-if-goto IF_TRUE17
-goto IF_FALSE17
-label IF_TRUE17
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
 push constant 11
 call String.new 1
 push constant 89
@@ -750,8 +847,8 @@ push constant 126
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-goto IF_END17
-label IF_FALSE17
+goto IF_END20
+label IF_FALSE20
 push constant 11
 call String.new 1
 push constant 89
@@ -778,7 +875,7 @@ push constant 33
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-label IF_END17
+label IF_END20
 push constant 0
 return
 function SuperMarioGame.marioDeath 0

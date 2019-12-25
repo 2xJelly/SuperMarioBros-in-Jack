@@ -6,9 +6,24 @@ class Block
     field Array Mon_type;
     field Array Direction;
 
-    //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight
+    // Block-Type
+    // 0 - brick
+    // 1 - empty
+    // 2 - question
+    // 3 - pipeleft
+    // 4 - wall
+    // 5 - square
+    // 6 - pipetopleft
+    // 7 - pipetopright
+    // 8 - piperight
+    // 9 - ultimate Star
 
-    //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster
+    // Montype
+    // 0 - moving monster
+    // 1 - flowermonsterleft
+    // 2 - flowermonsterright
+    // 3 - upward monster
+    // 4 - downward monster
     constructor Block new()
     {
         var int numBlock;
