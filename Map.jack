@@ -262,7 +262,6 @@ class Map
   /* Move the map to the right by move pixels */
 	method void transition(int move)
 	{
-
     do erase();
     do eraseGround();
     do eraseCloud();
@@ -299,7 +298,7 @@ class Map
   }
 
   /* Check if Mario is stepping on the platform */
-  method boolean touchGround(int X, int Y)
+  method boolean touchGround(int X, int Y, int h)
   {
     var boolean onG;
     var int l, r, gapIdx;
@@ -307,12 +306,12 @@ class Map
     let gapIdx = gapLeft;
 
     /* If Mario is not at 208, it is not on the platform */
-    if (~(Y = 208)) { let onG = false; }
+    if (~(Y = (224-h))) { let onG = false; }
 
     /* Check gap no.1 first */
     let l = gap[gapIdx];
     let r = gap[gapIdx] + 32;
-    if ((gapIdx < gapRight) & (l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
+    if ((gapIdx < gapRight) & (l < (X-1)) & ((X+15) < r) & ((224-h) = Y)) { let onG = false; }
     let gapIdx = gapIdx + 1;
 
     while(gapIdx < gapRight)
@@ -324,7 +323,7 @@ class Map
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
       }
-      if ((l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
+      if ((l < (X-1)) & ((X+15) < r) & ((224-h) = Y)) { let onG = false; }
       let gapIdx = gapIdx + 1;
     }
 
@@ -332,7 +331,7 @@ class Map
   }
 
   /* Check if Mario is touching the left side of the gaps */
-  method boolean touchLeftSides(int X, int Y)
+  method boolean touchLeftSides(int X, int Y, int h)
   {
     var boolean contact;
     var int l, r, gapIdx;
@@ -343,7 +342,7 @@ class Map
     let l = gap[gapIdx];
     let r = gap[gapIdx] + 32;
     /* Check if the first gap's left side touches Mario */
-    if ((gapIdx < gapRight) & (l = X) & (208 < Y)) { let contact = true; }
+    if ((gapIdx < gapRight) & (l = X) & ((224-h) < Y)) { let contact = true; }
     let gapIdx = gapIdx + 1;
 
     while(gapIdx < gapRight)
@@ -355,7 +354,7 @@ class Map
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
         /* Check if the new gap's left side touches Mario */
-        if ((l = X) & (208 < Y)) { let contact = true; }
+        if ((l = X) & ((224-h) < Y)) { let contact = true; }
       }
       let gapIdx = gapIdx + 1;
     }
@@ -364,7 +363,7 @@ class Map
   }
 
   /* Check if Mario is touching the right side of the gaps */
-  method boolean touchRightSides(int X, int Y)
+  method boolean touchRightSides(int X, int Y, int h)
   {
     var boolean contact;
     var int l, r, gapIdx;
@@ -383,7 +382,7 @@ class Map
       else /* Else this is a new gap */
       {
         /* Check if the old gap's right side touches Mario */
-        if ((r = (X+16)) & (208 < Y)) { let contact = true; }
+        if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
       }
@@ -394,14 +393,49 @@ class Map
     if (gapLeft < gapRight)
     {
       /* Check if the last gap's right side touches Mario */
-      if ((r = (X+16)) & (208 < Y)) { let contact = true; }
+      if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
     }
 
     return contact;
   }
 
+  /* Check if Mario is touching any Block */
+  method void touch(int X, int Y, int h)
+  {
+    var boolean contact, corner;
+    var int i;
+    var int diffX, diffY;
+
+    let i = idxLeft;
+    let contact = false;
+    let corner = false;
+
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = X - posX[i];
+      let diffY = Y - posY[i];
+      if (diffY < 0) { let diffY = -diffY; }
+      if (diffX < 0) { let diffX = -diffX; }
+
+      /* If there are just connected at the corner, it does not count as touching */
+      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
+
+      /* If they are close enough, they are touching */
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & (diffX < 17) )
+      {
+        // Put your code here, dumbass~ 
+      }
+
+      let i = i + 1;
+      let corner = false;
+    }
+
+    return;
+  }
+
   /* Check if Mario is touching any Block from left */
-  method boolean touchLeft(int X, int Y)
+  method boolean touchLeft(int X, int Y, int h)
   {
     var boolean contact, corner;
     var int i;
@@ -419,10 +453,10 @@ class Map
       if (diffY < 0) { let diffY = -diffY; }
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
 
       let i = i + 1;
@@ -433,7 +467,7 @@ class Map
   }
 
   /* Check if Mario is touching any Block from right */
-  method boolean touchRight(int X, int Y)
+  method boolean touchRight(int X, int Y, int h)
   {
     var boolean contact, corner;
     var int i;
@@ -451,10 +485,10 @@ class Map
       if (diffY < 0) { let diffY = -diffY; }
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
 
       let i = i + 1;
@@ -465,7 +499,7 @@ class Map
   }
 
   /* Check if Mario is touching any Block from above */
-  method boolean touchAbove(int X, int Y)
+  method boolean touchAbove(int X, int Y, int h)
   {
     var boolean corner, touch;
     var int i, touchBlock, area;
@@ -490,7 +524,7 @@ class Map
 
       /* If this block is not empty, both block and Mario are close enough,
       this block has more contact area with Mario then the previous one, then they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) & ((16-diffX) > area) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (16+1))) & ((16-diffX) > area) )
       {
         let touch = true;
         let touchBlock = i;
@@ -544,7 +578,7 @@ class Map
   }
 
   /* Check if Mario is touching any Block from below */
-  method boolean touchBelow(int X, int Y)
+  method boolean touchBelow(int X, int Y, int h)
   {
     var boolean contact, corner;
     var int i;
@@ -562,10 +596,10 @@ class Map
       let diffY = posY[i] - Y;
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
       { let contact = true; }
 
       let i = i + 1;

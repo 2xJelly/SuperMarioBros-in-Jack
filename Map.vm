@@ -837,7 +837,9 @@ pop local 0
 push this 10
 pop local 3
 push argument 2
-push constant 208
+push constant 224
+push argument 3
+sub
 eq
 not
 if-goto IF_TRUE0
@@ -875,7 +877,9 @@ add
 push local 2
 lt
 and
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 eq
 and
@@ -937,7 +941,9 @@ add
 push local 2
 lt
 and
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 eq
 and
@@ -983,7 +989,9 @@ push local 1
 push argument 1
 eq
 and
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 lt
 and
@@ -1037,7 +1045,9 @@ pop local 2
 push local 1
 push argument 1
 eq
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 lt
 and
@@ -1109,7 +1119,9 @@ push argument 1
 push constant 16
 add
 eq
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 lt
 and
@@ -1152,7 +1164,9 @@ push argument 1
 push constant 16
 add
 eq
-push constant 208
+push constant 224
+push argument 3
+sub
 push argument 2
 lt
 and
@@ -1165,6 +1179,102 @@ pop local 0
 label IF_FALSE3
 label IF_FALSE2
 push local 0
+return
+function Map.touch 5
+push argument 0
+pop pointer 0
+push this 8
+pop local 2
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 2
+push this 9
+lt
+not
+if-goto WHILE_END0
+push argument 1
+push local 2
+push this 0
+add
+pop pointer 1
+push that 0
+sub
+pop local 3
+push argument 2
+push local 2
+push this 1
+add
+pop pointer 1
+push that 0
+sub
+pop local 4
+push local 4
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 4
+neg
+pop local 4
+label IF_FALSE0
+push local 3
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 3
+neg
+pop local 3
+label IF_FALSE1
+push local 3
+push constant 16
+eq
+push local 4
+push argument 3
+eq
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+pop local 1
+label IF_FALSE2
+push this 3
+push local 2
+call Block.getType 2
+push constant 1
+eq
+not
+push local 1
+not
+push local 4
+push argument 3
+lt
+and
+and
+push local 3
+push constant 17
+lt
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+label IF_FALSE3
+push local 2
+push constant 1
+add
+pop local 2
+push constant 0
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
 return
 function Map.touchLeft 5
 push argument 0
@@ -1211,7 +1321,7 @@ push local 3
 push constant 16
 eq
 push local 4
-push constant 16
+push argument 3
 eq
 and
 if-goto IF_TRUE1
@@ -1230,7 +1340,7 @@ not
 push local 1
 not
 push local 4
-push constant 16
+push argument 3
 lt
 and
 and
@@ -1308,7 +1418,7 @@ push local 3
 push constant 16
 eq
 push local 4
-push constant 16
+push argument 3
 eq
 and
 if-goto IF_TRUE1
@@ -1327,7 +1437,7 @@ not
 push local 1
 not
 push local 4
-push constant 16
+push argument 3
 lt
 and
 and
@@ -1441,7 +1551,9 @@ push local 6
 lt
 or
 push local 6
-push constant 17
+push constant 16
+push constant 1
+add
 lt
 and
 and
@@ -1613,7 +1725,7 @@ push local 3
 push constant 16
 eq
 push local 4
-push constant 16
+push argument 3
 eq
 and
 if-goto IF_TRUE1
@@ -1644,7 +1756,9 @@ push local 4
 lt
 or
 push local 4
-push constant 17
+push argument 3
+push constant 1
+add
 lt
 and
 and

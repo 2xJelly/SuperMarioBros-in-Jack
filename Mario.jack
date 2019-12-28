@@ -2,15 +2,41 @@ class Mario
 {
   field Pos pos;
   field int jumpDuration;
+  static boolean big;
 
   // Build a new Mario!!!
   constructor Mario new(int x, int y)
   {
     let pos = Pos.new(x, y);
     let jumpDuration = 0;
+    let big = false;
     do draw();
 
     return this;
+  }
+
+  // Check Whether Mario has tranform or not
+  function boolean checkBig()
+  { return big; }
+
+  method void turnBig()
+  {
+    do erase();
+
+    let big = true;
+    do pos.updateY(pos.getY() - 16);
+    do draw();
+    return;
+  }
+
+  method void turnSmall()
+  {
+    do erase();
+
+    let big = false;
+    do pos.updateY(pos.getY() + 16);
+    do draw();
+    return;
   }
 
   // Return position x
@@ -24,7 +50,9 @@ class Mario
   // Draw Mario
   method void draw()
   {
-    do Sprite.drawMario(getPosX(), getPosY());
+    var int memAddress;
+    if (~big) { do Sprite.drawMario(getPosX(), getPosY()); }
+    else { do Sprite.drawBigMario(getPosX(), getPosY()); }
     // do Screen.setColor(true);
     // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
@@ -33,7 +61,8 @@ class Mario
   /* Erase Mario */
   method void erase()
   {
-    do Sprite.eraseMario(getPosX(), getPosY());
+    if (~big) { do Sprite.eraseMario(getPosX(), getPosY()); }
+    else { do Sprite.eraseBigMario(getPosX(), getPosY()); }
     // do Screen.setColor(false);
     // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
@@ -95,11 +124,22 @@ class Mario
   method void moveDown()
   {
     /* Beware not to go out of bounds */
-    if(pos.getY() < 237)
+    if (big)
     {
-      do erase();
-      do pos.updateY(pos.getY() + 4);
-      do draw();
+      if(pos.getY() < 226)
+      {
+        do erase();
+        do pos.updateY(pos.getY() + 4);
+        do draw();
+      }
+    }else
+    {
+      if(pos.getY() < 237)
+      {
+        do erase();
+        do pos.updateY(pos.getY() + 4);
+        do draw();
+      }
     }
     return;
   }

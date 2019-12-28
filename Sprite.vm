@@ -95,6 +95,594 @@ pop static 29
 push constant 16
 call Array.new 1
 pop static 31
+push constant 32
+call Array.new 1
+pop static 32
+push constant 32
+call Array.new 1
+pop static 34
+push constant 32
+call Array.new 1
+pop static 36
+push constant 32
+call Array.new 1
+pop static 38
+push constant 32
+call Array.new 1
+pop static 40
+push constant 32
+call Array.new 1
+pop static 42
+push constant 32
+call Array.new 1
+pop static 44
+push constant 32
+call Array.new 1
+pop static 46
+push constant 32
+call Array.new 1
+pop static 33
+push constant 32
+call Array.new 1
+pop static 35
+push constant 32
+call Array.new 1
+pop static 37
+push constant 32
+call Array.new 1
+pop static 39
+push constant 32
+call Array.new 1
+pop static 41
+push constant 32
+call Array.new 1
+pop static 43
+push constant 32
+call Array.new 1
+pop static 45
+push constant 32
+call Array.new 1
+pop static 47
+push constant 0
+push static 32
+add
+push constant 2016
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push static 32
+add
+push constant 14364
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 32
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 32
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push static 32
+add
+push constant 19458
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push static 32
+add
+push constant 29695
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push static 32
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push static 32
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push static 32
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push static 32
+add
+push constant 32642
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push static 32
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push static 32
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push static 32
+add
+push constant 14364
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push static 32
+add
+push constant 26598
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 16
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 17
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 18
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 19
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 20
+push static 32
+add
+push constant 16387
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 21
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 22
+push static 32
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 23
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 24
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 25
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 26
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 27
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 28
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 29
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 30
+push static 32
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 31
+push static 32
+add
+push constant 8164
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+push static 33
+add
+push constant 2016
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push static 33
+add
+push constant 14364
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 33
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 33
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push static 33
+add
+push constant 19458
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push static 33
+add
+push constant 29695
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push static 33
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push static 33
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push static 33
+add
+push constant 32767
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push static 33
+add
+push constant 32642
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push static 33
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push static 33
+add
+push constant 16386
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push static 33
+add
+push constant 14364
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push static 33
+add
+push constant 26598
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 14
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 15
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 16
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 17
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 18
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 19
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 20
+push static 33
+add
+push constant 16387
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 21
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 22
+push static 33
+add
+push constant 24571
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 23
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 24
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 25
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 26
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 27
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 28
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 29
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 30
+push static 33
+add
+push constant 8196
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 31
+push static 33
+add
+push constant 8164
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 0
 push static 0
 add
@@ -5030,7 +5618,7 @@ push constant 0
 call Output.moveCursor 2
 pop temp 0
 push local 0
-push static 1
+push static 32
 add
 pop pointer 1
 push that 0
@@ -5044,6 +5632,37 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP1
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END1
+push local 0
+push constant 1
+add
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+push local 0
+push constant 16
+add
+push static 32
+add
+pop pointer 1
+push that 0
+push argument 0
+call MATH.l_Shift 2
+call Output.printInt 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP1
+label WHILE_END1
 push constant 0
 return
 function Sprite.printR 1
@@ -5062,7 +5681,7 @@ push constant 0
 call Output.moveCursor 2
 pop temp 0
 push local 0
-push static 17
+push static 33
 add
 pop pointer 1
 push that 0
@@ -5076,6 +5695,37 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP1
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END1
+push local 0
+push constant 1
+add
+push constant 15
+call Output.moveCursor 2
+pop temp 0
+push local 0
+push constant 16
+add
+push static 33
+add
+pop pointer 1
+push that 0
+push argument 0
+call MATH.r_Shift 2
+call Output.printInt 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP1
+label WHILE_END1
 push constant 0
 return
 function Sprite.drawMario 5
@@ -7892,6 +8542,1423 @@ add
 call Memory.peek 1
 push local 2
 push static 31
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP15
+label WHILE_END15
+label IF_FALSE15
+push constant 0
+return
+function Sprite.drawBigMario 5
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+push local 4
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label WHILE_EXP0
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 32
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+label IF_FALSE0
+push local 4
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+label WHILE_EXP1
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 34
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+label IF_FALSE1
+push local 4
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+label WHILE_EXP2
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END2
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 36
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP2
+label WHILE_END2
+label IF_FALSE2
+push local 4
+push constant 6
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+label WHILE_EXP3
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END3
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 38
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP3
+label WHILE_END3
+label IF_FALSE3
+push local 4
+push constant 8
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+label WHILE_EXP4
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END4
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 40
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP4
+label WHILE_END4
+label IF_FALSE4
+push local 4
+push constant 10
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+label WHILE_EXP5
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END5
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 42
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP5
+label WHILE_END5
+label IF_FALSE5
+push local 4
+push constant 12
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+label WHILE_EXP6
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END6
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 44
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP6
+label WHILE_END6
+label IF_FALSE6
+push local 4
+push constant 14
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+label WHILE_EXP7
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END7
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 46
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP7
+label WHILE_END7
+label IF_FALSE7
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+push local 4
+push constant 0
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+label WHILE_EXP8
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END8
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 33
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP8
+label WHILE_END8
+label IF_FALSE8
+push local 4
+push constant 2
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+label WHILE_EXP9
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END9
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 35
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP9
+label WHILE_END9
+label IF_FALSE9
+push local 4
+push constant 4
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+label WHILE_EXP10
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END10
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 37
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP10
+label WHILE_END10
+label IF_FALSE10
+push local 4
+push constant 6
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+label WHILE_EXP11
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END11
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 39
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP11
+label WHILE_END11
+label IF_FALSE11
+push local 4
+push constant 8
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+label WHILE_EXP12
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END12
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 41
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP12
+label WHILE_END12
+label IF_FALSE12
+push local 4
+push constant 10
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+label WHILE_EXP13
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END13
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 43
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP13
+label WHILE_END13
+label IF_FALSE13
+push local 4
+push constant 12
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+label WHILE_EXP14
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END14
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 45
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP14
+label WHILE_END14
+label IF_FALSE14
+push local 4
+push constant 14
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+label WHILE_EXP15
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END15
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 47
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP15
+label WHILE_END15
+label IF_FALSE15
+push constant 0
+return
+function Sprite.eraseBigMario 5
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 16
+call Math.divide 2
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+pop local 3
+push constant 16384
+push local 3
+add
+pop local 1
+push constant 0
+pop local 2
+push argument 0
+push constant 16
+call MATH.mod 2
+pop local 4
+push local 4
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label WHILE_EXP0
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 32
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+label IF_FALSE0
+push local 4
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+label WHILE_EXP1
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END1
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 34
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+label IF_FALSE1
+push local 4
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+label WHILE_EXP2
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END2
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 36
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP2
+label WHILE_END2
+label IF_FALSE2
+push local 4
+push constant 6
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+label WHILE_EXP3
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END3
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 38
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP3
+label WHILE_END3
+label IF_FALSE3
+push local 4
+push constant 8
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+label WHILE_EXP4
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END4
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 40
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP4
+label WHILE_END4
+label IF_FALSE4
+push local 4
+push constant 10
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+label WHILE_EXP5
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END5
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 42
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP5
+label WHILE_END5
+label IF_FALSE5
+push local 4
+push constant 12
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+label WHILE_EXP6
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END6
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 44
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP6
+label WHILE_END6
+label IF_FALSE6
+push local 4
+push constant 14
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+label WHILE_EXP7
+push local 2
+push constant 32
+lt
+not
+if-goto WHILE_END7
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 46
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP7
+label WHILE_END7
+label IF_FALSE7
+push constant 16384
+push local 3
+add
+push constant 1
+add
+pop local 1
+push constant 0
+pop local 2
+push constant 16
+push local 4
+sub
+pop local 4
+push local 4
+push constant 0
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+label WHILE_EXP8
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END8
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 33
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP8
+label WHILE_END8
+label IF_FALSE8
+push local 4
+push constant 2
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+label WHILE_EXP9
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END9
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 35
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP9
+label WHILE_END9
+label IF_FALSE9
+push local 4
+push constant 4
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+label WHILE_EXP10
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END10
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 37
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP10
+label WHILE_END10
+label IF_FALSE10
+push local 4
+push constant 6
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+label WHILE_EXP11
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END11
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 39
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP11
+label WHILE_END11
+label IF_FALSE11
+push local 4
+push constant 8
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+label WHILE_EXP12
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END12
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 41
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP12
+label WHILE_END12
+label IF_FALSE12
+push local 4
+push constant 10
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+label WHILE_EXP13
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END13
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 43
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP13
+label WHILE_END13
+label IF_FALSE13
+push local 4
+push constant 12
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+label WHILE_EXP14
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END14
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 45
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+push local 0
+call Memory.poke 2
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP14
+label WHILE_END14
+label IF_FALSE14
+push local 4
+push constant 14
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+label WHILE_EXP15
+push local 4
+push constant 16
+lt
+push local 2
+push constant 32
+lt
+and
+not
+if-goto WHILE_END15
+push local 1
+push local 2
+push constant 32
+call Math.multiply 2
+add
+call Memory.peek 1
+push local 2
+push static 47
 add
 pop pointer 1
 push that 0
