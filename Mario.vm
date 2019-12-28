@@ -1,5 +1,5 @@
 function Mario.new 0
-push constant 2
+push constant 1
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -7,57 +7,11 @@ push argument 1
 call Pos.new 2
 pop this 0
 push constant 0
-pop this 1
-push constant 0
 pop static 0
 push pointer 0
 call Mario.draw 1
 pop temp 0
 push pointer 0
-return
-function Mario.checkBig 0
-push static 0
-return
-function Mario.turnBig 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Mario.erase 1
-pop temp 0
-push constant 0
-not
-pop static 0
-push this 0
-push this 0
-call Pos.getY 1
-push constant 16
-sub
-call Pos.updateY 2
-pop temp 0
-push pointer 0
-call Mario.draw 1
-pop temp 0
-push constant 0
-return
-function Mario.turnSmall 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Mario.erase 1
-pop temp 0
-push constant 0
-pop static 0
-push this 0
-push this 0
-call Pos.getY 1
-push constant 16
-add
-call Pos.updateY 2
-pop temp 0
-push pointer 0
-call Mario.draw 1
-pop temp 0
-push constant 0
 return
 function Mario.getPosX 0
 push argument 0
@@ -71,54 +25,26 @@ pop pointer 0
 push this 0
 call Pos.getY 1
 return
-function Mario.draw 1
+function Mario.draw 0
 push argument 0
 pop pointer 0
-push static 0
-not
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
 push pointer 0
 call Mario.getPosX 1
 push pointer 0
 call Mario.getPosY 1
 call Sprite.drawMario 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
-push pointer 0
-call Mario.getPosX 1
-push pointer 0
-call Mario.getPosY 1
-call Sprite.drawBigMario 2
-pop temp 0
-label IF_END0
 push constant 0
 return
 function Mario.erase 0
 push argument 0
 pop pointer 0
-push static 0
-not
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
 push pointer 0
 call Mario.getPosX 1
 push pointer 0
 call Mario.getPosY 1
 call Sprite.eraseMario 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
-push pointer 0
-call Mario.getPosX 1
-push pointer 0
-call Mario.getPosY 1
-call Sprite.eraseBigMario 2
-pop temp 0
-label IF_END0
 push constant 0
 return
 function Mario.transition 0
@@ -137,7 +63,7 @@ function Mario.isJump 1
 push argument 0
 pop pointer 0
 push constant 0
-push this 1
+push static 0
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -155,24 +81,24 @@ return
 function Mario.jumpLess 0
 push argument 0
 pop pointer 0
-push this 1
+push static 0
 push constant 1
 sub
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.jump 0
 push argument 0
 pop pointer 0
 push constant 20
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.stopJump 0
 push argument 0
 pop pointer 0
 push constant 0
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.moveUp 0
@@ -204,40 +130,13 @@ return
 function Mario.moveDown 0
 push argument 0
 pop pointer 0
-push static 0
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 0
-call Pos.getY 1
-push constant 226
-lt
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push pointer 0
-call Mario.erase 1
-pop temp 0
-push this 0
-push this 0
-call Pos.getY 1
-push constant 4
-add
-call Pos.updateY 2
-pop temp 0
-push pointer 0
-call Mario.draw 1
-pop temp 0
-label IF_FALSE1
-goto IF_END0
-label IF_FALSE0
 push this 0
 call Pos.getY 1
 push constant 237
 lt
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push pointer 0
 call Mario.erase 1
 pop temp 0
@@ -251,8 +150,7 @@ pop temp 0
 push pointer 0
 call Mario.draw 1
 pop temp 0
-label IF_FALSE2
-label IF_END0
+label IF_FALSE0
 push constant 0
 return
 function Mario.moveLeft 0
@@ -305,5 +203,10 @@ push pointer 0
 call Mario.draw 1
 pop temp 0
 label IF_FALSE0
+push constant 0
+return
+function Mario.superjump 0
+push constant 40
+pop static 0
 push constant 0
 return

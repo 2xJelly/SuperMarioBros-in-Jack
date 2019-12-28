@@ -11,17 +11,14 @@ class Map
   /* Left and right idx of items in the array */
   /* that need to be shown in current Screen position */
   field int gapLeft, gapRight;
+  field int cloudloc,cloudloc1;
   field int starPosX, starPosY;
   field boolean able_Star;
 
   constructor Map new()
   {
-    let able_Star = true;
-    let starPosX = 240;
-    let starPosY = 160;
-
     let numGap = 6;
-    let numBlock = 135;
+    let numBlock = 275;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -33,7 +30,11 @@ class Map
     let gap = block.getGap();
     let posX = block.getPosX();
     let posY = block.getPosY();
-
+    let able_Star = true;
+    let starPosX = 240;
+    let starPosY = 160;
+    let cloudloc = 7;
+    let cloudloc1 = 8;
     /* Refresh item in the screen */
     do refresh();
     /* Draw the current map */
@@ -45,25 +46,6 @@ class Map
 
     return this;
   }
-
-  // Use the star
-  method void useStar()
-  {
-    let able_Star = false;
-    return;
-  }
-
-  // Check if star is able to use
-  method boolean ableStar()
-  { return able_Star; }
-
-  // Return position x of star
-  method int getStarX()
-  { return starPosX; }
-
-  // Return position y of star
-  method int getStarY()
-  { return starPosY; }
 
   /* Draw the ground/platform */
 	method void drawGround()
@@ -79,7 +61,7 @@ class Map
     while(drawIdx < 512)
     {
       /* If there is no gap here, draw a rectangle platform */
-      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) )
+      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) ) 
       {
         //do drawBlock(drawIdx + screenPos, 224, 32, 32);
         while(i < 2){
@@ -96,7 +78,7 @@ class Map
 
         let i = 0;
         let location = 0;
-
+        
       }
       else { let gapIdx = gapIdx + 1; }
 
@@ -117,39 +99,36 @@ class Map
   /*Draw the Cloud*/
   method void drawCloud()
   {
-    var int location;
-    var int location1;
-    /*X-position mod 31*/
-    let location = ((screenPos+80)/16) - ((((screenPos+80)/16)/31)*31);
-    let location1 = ((screenPos+96)/16) - ((((screenPos+96)/16)/31)*31);
-    do draw.cloudleftup(512 + location);
-    do draw.cloudrightup(512 + location1);
-    do draw.cloudleftdown(1024 + location);
-    do draw.cloudrightdown(1024 + location1);
+    let cloudloc = cloudloc - 2;
+    let cloudloc1 = cloudloc1 - 2;
+    if(cloudloc < 0){let cloudloc = 32+cloudloc;}
+    if(cloudloc1 < 0){let cloudloc1 = 32+cloudloc1;}
 
-    do draw.cloudleftup(522 + location);
-    do draw.cloudrightup(522 + location1);
-    do draw.cloudleftdown(1034 + location);
-    do draw.cloudrightdown(1034 + location1);
+
+    do draw.cloudleftup(512 + cloudloc);
+    do draw.cloudrightup(512 + cloudloc1);
+    do draw.cloudleftdown(1024 + cloudloc);
+    do draw.cloudrightdown(1024 + cloudloc1);
+
+    do draw.cloudleftup(748 + cloudloc);
+    do draw.cloudrightup(748 + cloudloc1);
+    do draw.cloudleftdown(1260 + cloudloc);
+    do draw.cloudrightdown(1260 + cloudloc1);
     return;
   }
 
   /*erase the cloud*/
   method void eraseCloud()
   {
-    var int location;
-    var int location1;
-    let location = (screenPos+80)/16 - ((((screenPos+80)/16)/31)*31);
-    let location1 = (screenPos+96)/16 - ((((screenPos+96)/16)/31)*31);
-    do draw.eraseblock(512 + location);
-    do draw.eraseblock(512 + location1);
-    do draw.eraseblock(1024 + location);
-    do draw.eraseblock(1024 + location1);
+    do draw.eraseblock(512 + cloudloc);
+    do draw.eraseblock(512 + cloudloc1);
+    do draw.eraseblock(1024 + cloudloc);
+    do draw.eraseblock(1024 + cloudloc1);
 
-    do draw.eraseblock(522 + location);
-    do draw.eraseblock(522 + location1);
-    do draw.eraseblock(1034 + location);
-    do draw.eraseblock(1034 + location1);
+    do draw.eraseblock(748 + cloudloc);
+    do draw.eraseblock(748 + cloudloc1);
+    do draw.eraseblock(1260 + cloudloc);
+    do draw.eraseblock(1260 + cloudloc1);
     return;
   }
 
@@ -167,8 +146,8 @@ class Map
     while(i < idxRight)
     {
       /* Draw all the blocks */
-      if (~(block.getType(i) = 1))
-      {
+      if (~(block.getType(i) = 1)) 
+      { 
         let switch = block.getType(i);
         if(switch = 0)
         {
@@ -223,6 +202,62 @@ class Map
           do draw.piperight(location);
           let location = 0;
         }
+
+        if(switch = 9)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipelefttop(location);
+          let location = 0;
+        }
+
+        if(switch = 10)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeleftbot(location);
+          let location = 0;
+        }
+
+        if(switch = 11)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.piperighttop(location);
+          let location = 0;
+        }
+
+        if(switch = 12)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.piperightbot(location);
+          let location = 0;
+        }
+
+        if(switch = 13)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.coin(location);
+          let location = 0;
+        }
+
+        if(switch = 14)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.jumper(location);
+          let location = 0;
+        }
+
+        if(switch = 15)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeconnecttop(location);
+          let location = 0;
+        }
+
+        if(switch = 16)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeconnectbot(location);
+          let location = 0;
+        }
       }
       let i = i + 1;
     }
@@ -248,6 +283,15 @@ class Map
     }
     return;
   }
+  
+  /*erase i th block on the screen*/
+  method void eraseidxblock(int i)
+  {
+    var int location;
+    let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+    do draw.eraseblock(location);
+    return;
+  }
 
   /* Draw a block */
   /* Assume that we have already setColor as color needed */
@@ -262,6 +306,7 @@ class Map
   /* Move the map to the right by move pixels */
 	method void transition(int move)
 	{
+
     do erase();
     do eraseGround();
     do eraseCloud();
@@ -282,7 +327,7 @@ class Map
     /* If the next item is in the screen, added it to the drawing List */
     while ( (idxRight < numBlock) & (posX[idxRight] < (screenPos + 512) ) )
     { let idxRight = idxRight + 1; }
-
+    
     /* If item in pos[idxLeftO] is no longer in the screen, discard pos[idxLeft] */
     while ( (idxLeft < idxRight) & (posX[idxLeft] < screenPos) )
     { let idxLeft = idxLeft + 1; }
@@ -297,8 +342,27 @@ class Map
     return;
   }
 
+  // Use the star
+  method void useStar()
+  {
+    let able_Star = false;
+    return;
+  }
+
+  // Check if star is able to use
+  method boolean ableStar()
+  { return able_Star; }
+
+  // Return position x of star
+  method int getStarX()
+  { return starPosX; }
+
+  // Return position y of star
+  method int getStarY()
+  { return starPosY; }
+
   /* Check if Mario is stepping on the platform */
-  method boolean touchGround(int X, int Y, int h)
+  method boolean touchGround(int X, int Y)
   {
     var boolean onG;
     var int l, r, gapIdx;
@@ -306,12 +370,12 @@ class Map
     let gapIdx = gapLeft;
 
     /* If Mario is not at 208, it is not on the platform */
-    if (~(Y = (224-h))) { let onG = false; }
+    if (~(Y = 208)) { let onG = false; }
 
     /* Check gap no.1 first */
     let l = gap[gapIdx];
     let r = gap[gapIdx] + 32;
-    if ((gapIdx < gapRight) & (l < (X-1)) & ((X+15) < r) & ((224-h) = Y)) { let onG = false; }
+    if ((gapIdx < gapRight) & (l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
     let gapIdx = gapIdx + 1;
 
     while(gapIdx < gapRight)
@@ -323,7 +387,7 @@ class Map
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
       }
-      if ((l < (X-1)) & ((X+15) < r) & ((224-h) = Y)) { let onG = false; }
+      if ((l < (X-1)) & ((X+15) < r) & (208 = Y)) { let onG = false; }
       let gapIdx = gapIdx + 1;
     }
 
@@ -331,7 +395,7 @@ class Map
   }
 
   /* Check if Mario is touching the left side of the gaps */
-  method boolean touchLeftSides(int X, int Y, int h)
+  method boolean touchLeftSides(int X, int Y)
   {
     var boolean contact;
     var int l, r, gapIdx;
@@ -342,7 +406,7 @@ class Map
     let l = gap[gapIdx];
     let r = gap[gapIdx] + 32;
     /* Check if the first gap's left side touches Mario */
-    if ((gapIdx < gapRight) & (l = X) & ((224-h) < Y)) { let contact = true; }
+    if ((gapIdx < gapRight) & (l = X) & (208 < Y)) { let contact = true; }
     let gapIdx = gapIdx + 1;
 
     while(gapIdx < gapRight)
@@ -354,7 +418,7 @@ class Map
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
         /* Check if the new gap's left side touches Mario */
-        if ((l = X) & ((224-h) < Y)) { let contact = true; }
+        if ((l = X) & (208 < Y)) { let contact = true; }
       }
       let gapIdx = gapIdx + 1;
     }
@@ -363,7 +427,7 @@ class Map
   }
 
   /* Check if Mario is touching the right side of the gaps */
-  method boolean touchRightSides(int X, int Y, int h)
+  method boolean touchRightSides(int X, int Y)
   {
     var boolean contact;
     var int l, r, gapIdx;
@@ -382,7 +446,7 @@ class Map
       else /* Else this is a new gap */
       {
         /* Check if the old gap's right side touches Mario */
-        if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
+        if ((r = (X+16)) & (208 < Y)) { let contact = true; }
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
       }
@@ -393,49 +457,14 @@ class Map
     if (gapLeft < gapRight)
     {
       /* Check if the last gap's right side touches Mario */
-      if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
+      if ((r = (X+16)) & (208 < Y)) { let contact = true; }
     }
 
     return contact;
   }
 
-  /* Check if Mario is touching any Block */
-  method void touch(int X, int Y, int h)
-  {
-    var boolean contact, corner;
-    var int i;
-    var int diffX, diffY;
-
-    let i = idxLeft;
-    let contact = false;
-    let corner = false;
-
-    while(i < idxRight)
-    {
-      /* Calculate absolute difference in X and Y */
-      let diffX = X - posX[i];
-      let diffY = Y - posY[i];
-      if (diffY < 0) { let diffY = -diffY; }
-      if (diffX < 0) { let diffX = -diffX; }
-
-      /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
-
-      /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & (diffX < 17) )
-      {
-        // Put your code here, dumbass~ 
-      }
-
-      let i = i + 1;
-      let corner = false;
-    }
-
-    return;
-  }
-
   /* Check if Mario is touching any Block from left */
-  method boolean touchLeft(int X, int Y, int h)
+  method boolean touchLeft(int X, int Y)
   {
     var boolean contact, corner;
     var int i;
@@ -453,10 +482,10 @@ class Map
       if (diffY < 0) { let diffY = -diffY; }
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
 
       let i = i + 1;
@@ -467,7 +496,7 @@ class Map
   }
 
   /* Check if Mario is touching any Block from right */
-  method boolean touchRight(int X, int Y, int h)
+  method boolean touchRight(int X, int Y)
   {
     var boolean contact, corner;
     var int i;
@@ -485,10 +514,10 @@ class Map
       if (diffY < 0) { let diffY = -diffY; }
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < 16)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
 
       let i = i + 1;
@@ -499,7 +528,7 @@ class Map
   }
 
   /* Check if Mario is touching any Block from above */
-  method boolean touchAbove(int X, int Y, int h)
+  method boolean touchAbove(int X, int Y)
   {
     var boolean corner, touch;
     var int i, touchBlock, area;
@@ -524,7 +553,7 @@ class Map
 
       /* If this block is not empty, both block and Mario are close enough,
       this block has more contact area with Mario then the previous one, then they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (16+1))) & ((16-diffX) > area) )
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) & ((16-diffX) > area) )
       {
         let touch = true;
         let touchBlock = i;
@@ -558,18 +587,22 @@ class Map
     }
 
     else{
+      
       if(touch & (block.getType(touchBlock) = 2) )
       {
         do SuperMarioGame.addPoints(100);
         let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
-        do erase();
+        do eraseidxblock(touchBlock);
         do block.changeType(touchBlock, 5);
-        do draw();
+        do draw.square(location - 256);
         do draw.coin(location);
+        do Sys.wait(100);
         do draw.eraseblock(location);
+        do draw.eraseblock(location - 256);
         let location = location -512;
         do draw.coin(location);
         do Sys.wait(100);
+        do draw();
         do draw.eraseblock(location);
       }
     }
@@ -578,11 +611,12 @@ class Map
   }
 
   /* Check if Mario is touching any Block from below */
-  method boolean touchBelow(int X, int Y, int h)
+  method boolean touchBelow(int X, int Y)
   {
     var boolean contact, corner;
     var int i;
     var int diffX, diffY;
+    var int touchtype;
 
     let i = idxLeft;
     let contact = false;
@@ -596,16 +630,23 @@ class Map
       let diffY = posY[i] - Y;
 
       /* If there are just connected at the corner, it does not count as touching */
-      if( (diffX = 16) & (diffY = h) ) { let corner = true; }
+      if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
-      { let contact = true; }
+      if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) )
+      { 
+        let contact = true;
+        let touchtype = block.getType(i); 
+      }
 
       let i = i + 1;
       let corner = false;
     }
-
+    
+    if(contact & (touchtype = 14))
+    { 
+      do Mario.superjump();
+    }
     return contact;
   }
 

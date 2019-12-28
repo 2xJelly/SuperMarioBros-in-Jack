@@ -1,79 +1,51 @@
 class Mario
 {
   field Pos pos;
-  field int jumpDuration;
-  static boolean big;
+  static int jumpDuration;
+  //field Draw draw;
 
-  // Build a new Mario!!!
+  /* Build a new Mario!!! */
   constructor Mario new(int x, int y)
   {
     let pos = Pos.new(x, y);
     let jumpDuration = 0;
-    let big = false;
     do draw();
 
     return this;
   }
 
-  // Check Whether Mario has tranform or not
-  function boolean checkBig()
-  { return big; }
-
-  method void turnBig()
-  {
-    do erase();
-
-    let big = true;
-    do pos.updateY(pos.getY() - 16);
-    do draw();
-    return;
-  }
-
-  method void turnSmall()
-  {
-    do erase();
-
-    let big = false;
-    do pos.updateY(pos.getY() + 16);
-    do draw();
-    return;
-  }
-
-  // Return position x
+  /* Return position x */
   method int getPosX()
   { return pos.getX(); }
 
-  // Return position y
+  /* Return position y */
   method int getPosY()
   { return pos.getY(); }
 
-  // Draw Mario
+  /* Draw Mario */
   method void draw()
   {
-    var int memAddress;
-    if (~big) { do Sprite.drawMario(getPosX(), getPosY()); }
-    else { do Sprite.drawBigMario(getPosX(), getPosY()); }
-    // do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    do Sprite.drawMario(getPosX(), getPosY());
+    //do Screen.setColor(true);
+    //do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
   }
 
   /* Erase Mario */
   method void erase()
   {
-    if (~big) { do Sprite.eraseMario(getPosX(), getPosY()); }
-    else { do Sprite.eraseBigMario(getPosX(), getPosY()); }
-    // do Screen.setColor(false);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    do Sprite.eraseMario(getPosX(), getPosY());
+    //do Screen.setColor(false);
+    //do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
   }
 
   /* Move the Mario to the right by move pixels */
   method void transition(int move)
   {
-    // do erase();
+    //do erase();
     do pos.updateX(pos.getX() + move);
-    // do draw();
+    //do draw();
     return;
   }
 
@@ -117,6 +89,7 @@ class Mario
       do pos.updateY(pos.getY() - 4);
       do draw();
     }
+
     return;
   }
 
@@ -124,23 +97,13 @@ class Mario
   method void moveDown()
   {
     /* Beware not to go out of bounds */
-    if (big)
+    if(pos.getY() < 237)
     {
-      if(pos.getY() < 226)
-      {
-        do erase();
-        do pos.updateY(pos.getY() + 4);
-        do draw();
-      }
-    }else
-    {
-      if(pos.getY() < 237)
-      {
-        do erase();
-        do pos.updateY(pos.getY() + 4);
-        do draw();
-      }
+      do erase();
+      do pos.updateY(pos.getY() + 4);
+      do draw();
     }
+
     return;
   }
 
@@ -154,6 +117,7 @@ class Mario
       do pos.updateX(pos.getX() - 2);
       do draw();
     }
+
     return;
   }
 
@@ -167,6 +131,15 @@ class Mario
       do pos.updateX(pos.getX() + 2);
       do draw();
     }
+
     return;
   }
+
+  function void superjump()
+  {
+    let jumpDuration = 40;
+    return;
+  }
+
+
 }
