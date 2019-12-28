@@ -1,5 +1,5 @@
 function Mario.new 0
-push constant 2
+push constant 1
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -7,7 +7,7 @@ push argument 1
 call Pos.new 2
 pop this 0
 push constant 0
-pop this 1
+pop static 0
 push pointer 0
 call Mario.draw 1
 pop temp 0
@@ -80,7 +80,7 @@ function Mario.isJump 1
 push argument 0
 pop pointer 0
 push constant 0
-push this 1
+push static 0
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -98,24 +98,24 @@ return
 function Mario.jumpLess 0
 push argument 0
 pop pointer 0
-push this 1
+push static 0
 push constant 1
 sub
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.jump 0
 push argument 0
 pop pointer 0
 push constant 20
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.stopJump 0
 push argument 0
 pop pointer 0
 push constant 0
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.moveUp 0
@@ -220,5 +220,10 @@ push pointer 0
 call Mario.draw 1
 pop temp 0
 label IF_FALSE0
+push constant 0
+return
+function Mario.superjump 0
+push constant 40
+pop static 0
 push constant 0
 return

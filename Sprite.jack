@@ -930,21 +930,79 @@ class Sprite
     */
 
     // Add the Bitmap of Mario onto the left square
-    while(idx < 16)
+    // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Right shift in the Bitmap == Left Shift in the val
+    if (shift = 0)
     {
-      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Right shift in the Bitmap == Left Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_L14[idx]; }
-
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_L14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     let memAddress = 16384+location+1;
@@ -952,21 +1010,79 @@ class Sprite
     let shift = 16-shift;
     /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Add the Bitmap of Mario onto the right square
-    while ( (shift < 16) & (idx < 16))
+    // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Left shift in the Bitmap == Right Shift in the val
+    if (shift = 0)
     {
-      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Left shift in the Bitmap == Right Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + marioVal_R14[idx]; }
-
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + marioVal_R14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     return;
@@ -991,21 +1107,79 @@ class Sprite
     */
 
     // Remove the Bitmap of Mario from the left square
-    while(idx < 16)
+    // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Right shift in the Bitmap == Left Shift in the val
+    if (shift = 0)
     {
-      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Right shift in the Bitmap == Left Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_L14[idx]; }
-
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_L14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     let memAddress = 16384+location+1;
@@ -1013,21 +1187,79 @@ class Sprite
     let shift = 16-shift;
     /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Remove the Bitmap of Mario from the right square
-    while ( (shift < 16) & (idx < 16))
+    // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Left shift in the Bitmap == Right Shift in the val
+    if (shift = 0)
     {
-      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Left shift in the Bitmap == Right Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - marioVal_R14[idx]; }
-
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - marioVal_R14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     return;
@@ -1052,20 +1284,79 @@ class Sprite
     */
 
     // Add the Bitmap of Monster onto the left square
-    while(idx < 16)
+    // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Right shift in the Bitmap == Left Shift in the val
+    if (shift = 0)
     {
-      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Right shift in the Bitmap == Left Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + monVal_L14[idx]; }
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_L14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     let memAddress = 16384+location+1;
@@ -1074,20 +1365,79 @@ class Sprite
 
     /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Add the Bitmap of Monster onto the right square
-    while ( (shift < 16) & (idx < 16))
+    // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Left shift in the Bitmap == Right Shift in the val
+    if (shift = 0)
     {
-      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Left shift in the Bitmap == Right Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) + monVal_R14[idx]; }
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) + monVal_R14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     return;
@@ -1112,20 +1462,79 @@ class Sprite
     */
 
     // Remove the Bitmap of Monster from the left square
-    while(idx < 16)
+    // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Right shift in the Bitmap == Left Shift in the val
+    if (shift = 0)
     {
-      // Left shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Right shift in the Bitmap == Left Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - monVal_L14[idx]; }
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while(idx < 16)
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_L14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     let memAddress = 16384+location+1;
@@ -1133,20 +1542,79 @@ class Sprite
     let shift = 16-shift;
     /* There may contain a bug in the code below, where memAddress is out of bounds, where it is not able to poke */
     // Remove the Bitmap of Monster from the right square
-    while ( (shift < 16) & (idx < 16))
+    // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
+    // Left shift in the Bitmap == Right Shift in the val
+    if (shift = 0)
     {
-      // Right shift cuz the 0-th bit is the leftmost pixel in the Bitmap
-      // Left shift in the Bitmap == Right Shift in the val
-      if (shift = 0) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R0[idx]; }
-      if (shift = 2) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R2[idx]; }
-      if (shift = 4) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R4[idx]; }
-      if (shift = 6) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R6[idx]; }
-      if (shift = 8) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R8[idx]; }
-      if (shift = 10) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R10[idx]; }
-      if (shift = 12) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R12[idx]; }
-      if (shift = 14) { let val = Memory.peek(memAddress+(idx*32)) - monVal_R14[idx]; }
-      do Memory.poke(memAddress+(idx*32), val);
-      let idx = idx+1;
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R0[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 2)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R2[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 4)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R4[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 6)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R6[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 8)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R8[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 10)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R10[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 12)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R12[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
+    }
+    if (shift = 14)
+    {
+      while ( (shift < 16) & (idx < 16) )
+      {
+        let val = Memory.peek(memAddress+(idx*32)) - monVal_R14[idx];
+        do Memory.poke(memAddress+(idx*32), val);
+        let idx = idx+1;
+      }
     }
 
     return;

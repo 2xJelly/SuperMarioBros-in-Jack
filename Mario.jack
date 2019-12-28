@@ -1,7 +1,7 @@
 class Mario
 {
   field Pos pos;
-  field int jumpDuration;
+  static int jumpDuration;
   //field Draw draw;
 
   /* Build a new Mario!!! */
@@ -132,6 +132,12 @@ class Mario
       do draw();
     }
 
+    return;
+  }
+
+  function void superjump()
+  {
+    let jumpDuration = 40;
     return;
   }
 

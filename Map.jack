@@ -11,11 +11,12 @@ class Map
   /* Left and right idx of items in the array */
   /* that need to be shown in current Screen position */
   field int gapLeft, gapRight;
+  field int cloudloc,cloudloc1;
 
   constructor Map new()
   {
     let numGap = 6;
-    let numBlock = 135;
+    let numBlock = 156;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -27,7 +28,8 @@ class Map
     let gap = block.getGap();
     let posX = block.getPosX();
     let posY = block.getPosY();
-
+    let cloudloc = 7;
+    let cloudloc1 = 8;
     /* Refresh item in the screen */
     do refresh();
     /* Draw the current map */
@@ -92,39 +94,36 @@ class Map
   /*Draw the Cloud*/
   method void drawCloud()
   {
-    var int location;
-    var int location1;
-    /*X-position mod 31*/
-    let location = ((screenPos+80)/16) - ((((screenPos+80)/16)/31)*31);     
-    let location1 = ((screenPos+96)/16) - ((((screenPos+96)/16)/31)*31);
-    do draw.cloudleftup(512 + location);
-    do draw.cloudrightup(512 + location1);
-    do draw.cloudleftdown(1024 + location);
-    do draw.cloudrightdown(1024 + location1);
+    let cloudloc = cloudloc - 2;
+    let cloudloc1 = cloudloc1 - 2;
+    if(cloudloc < 0){let cloudloc = 32+cloudloc;}
+    if(cloudloc1 < 0){let cloudloc1 = 32+cloudloc1;}
 
-    do draw.cloudleftup(522 + location);
-    do draw.cloudrightup(522 + location1);
-    do draw.cloudleftdown(1034 + location);
-    do draw.cloudrightdown(1034 + location1);
+
+    do draw.cloudleftup(512 + cloudloc);
+    do draw.cloudrightup(512 + cloudloc1);
+    do draw.cloudleftdown(1024 + cloudloc);
+    do draw.cloudrightdown(1024 + cloudloc1);
+
+    do draw.cloudleftup(748 + cloudloc);
+    do draw.cloudrightup(748 + cloudloc1);
+    do draw.cloudleftdown(1260 + cloudloc);
+    do draw.cloudrightdown(1260 + cloudloc1);
     return;
   }
 
   /*erase the cloud*/
   method void eraseCloud()
   {
-    var int location;
-    var int location1;
-    let location = (screenPos+80)/16 - ((((screenPos+80)/16)/31)*31);
-    let location1 = (screenPos+96)/16 - ((((screenPos+96)/16)/31)*31);
-    do draw.eraseblock(512 + location);
-    do draw.eraseblock(512 + location1);
-    do draw.eraseblock(1024 + location);
-    do draw.eraseblock(1024 + location1);
+    do draw.eraseblock(512 + cloudloc);
+    do draw.eraseblock(512 + cloudloc1);
+    do draw.eraseblock(1024 + cloudloc);
+    do draw.eraseblock(1024 + cloudloc1);
 
-    do draw.eraseblock(522 + location);
-    do draw.eraseblock(522 + location1);
-    do draw.eraseblock(1034 + location);
-    do draw.eraseblock(1034 + location1);
+    do draw.eraseblock(748 + cloudloc);
+    do draw.eraseblock(748 + cloudloc1);
+    do draw.eraseblock(1260 + cloudloc);
+    do draw.eraseblock(1260 + cloudloc1);
     return;
   }
 
@@ -198,6 +197,13 @@ class Map
           do draw.piperight(location);
           let location = 0;
         }
+
+        if(switch = 9)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.jumper(location);
+          let location = 0;
+        }
       }
       let i = i + 1;
     }
@@ -221,6 +227,15 @@ class Map
       do draw.eraseblock(location);
       let i = i + 1;
     }
+    return;
+  }
+  
+  /*erase i th block on the screen*/
+  method void eraseidxblock(int i)
+  {
+    var int location;
+    let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+    do draw.eraseblock(location);
     return;
   }
 
@@ -502,14 +517,17 @@ class Map
       if(touch & (block.getType(touchBlock) = 2) )
       {
         let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
-        do erase();
+        do eraseidxblock(touchBlock);
         do block.changeType(touchBlock, 5);
-        do draw();
+        do draw.square(location - 256);
         do draw.coin(location);
+        do Sys.wait(100);
         do draw.eraseblock(location);
+        do draw.eraseblock(location - 256);
         let location = location -512;
         do draw.coin(location);
         do Sys.wait(100);
+        do draw();
         do draw.eraseblock(location);
       }
     }
@@ -523,6 +541,7 @@ class Map
     var boolean contact, corner;
     var int i;
     var int diffX, diffY;
+    var int touchtype;
 
     let i = idxLeft;
     let contact = false;
@@ -540,12 +559,19 @@ class Map
 
       /* If they are close enough, they are touching */
       if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < 17)) )
-      { let contact = true; }
+      { 
+        let contact = true;
+        let touchtype = block.getType(i); 
+      }
 
       let i = i + 1;
       let corner = false;
     }
-
+    
+    if(contact & (touchtype = 9))
+    { 
+      do Mario.superjump();
+    }
     return contact;
   }
 
