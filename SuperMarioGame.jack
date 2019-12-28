@@ -4,18 +4,17 @@ class SuperMarioGame
 	field Map map;
 	field Monster monster;
 	field int direction; // 0 = At rest, 1 = Left, 2 = Right
-	field int screenPos;
-	field int fps;
+	field int screenPos; // Relative x-coordinate of the left side of the screen
+	field int fps; // frame per second
 
-	field char key;
+	field char key; // Input key from player
 	field boolean win, exit;
-	field int coin, score, time;
-	field int framePassed;
-	field int frameMon;
-	field int effect;
-	field int MonLeft;
-	field int MonRight;
-	field boolean ulti;
+	static int coin, score, time, mul;
+	field int framePassed; // No. frame passed
+	field int frameMon; // No. frame passes for the monster
+	field int effect; // Duration of effects
+	field int MonLeft, MonRight; // (Left/Right) idx of monster array
+	field int ulti; // Duration of Mario's ultimate
 	field int x, xx, y, yy; // For storing marioX, marioY, monX, monY
 
 	// Just for Debug, variables for debug
@@ -39,7 +38,8 @@ class SuperMarioGame
 		let map = Map.new();
 		let monster = Monster.new();
 		let screenPos = 0;
-		let ulti = true;
+		let ulti = 0;
+		let mul = 1;
 
 		return this;
 	}
@@ -89,6 +89,7 @@ class SuperMarioGame
 	{
 		var int idx;
 		var int switch;
+		var int t;
 		let key = 0;
 		let exit = false;
 		let coin = 0;
@@ -108,6 +109,9 @@ class SuperMarioGame
 		do Output.moveCursor(0, 53);
 		do Output.printString("TIME: ");
 		do Output.printInt(time);
+
+		do Output.moveCursor(0, 13);
+		do Output.printString("Ulti: ");
 
 		// Just For Debug, try printBin and printBinRev
 		/*
@@ -164,6 +168,27 @@ class SuperMarioGame
 
 			// Now move Mario if Mario is not touching any block
 			do move();
+
+			// If touch Ground, restore multiple
+			if (marioOnGround()) { do restoreMul(); }
+
+			// Check if Mario touches any power-upwards
+			// Ultimate Star
+			// (Minor Bug) : Touching the corner of a Monster counts as touching it
+			if ( map.ableStar() & (-17 < (mario.getPosX()-map.getStarX())) & ((mario.getPosX()-map.getStarX()) < 17) & (-17 < (mario.getPosY()-map.getStarY())) & ((mario.getPosY()-map.getStarY()) < 17) )
+			{
+				let ulti = ulti + 1000;
+				do map.useStar();
+			}
+			if (ulti > 0) { let ulti = ulti - 1; }
+
+			if (~(ulti < 0))
+			{
+				do Output.moveCursor(0, 19);
+				do Output.printInt(ulti/100);
+			}
+
+
 			// If Mario reach the bottom, game over!!!
 			if (239 < mario.getPosY() )
 			{
@@ -182,11 +207,12 @@ class SuperMarioGame
 			}
 
 			// Do Transition of map if needed
-			if (mario.getPosX() > 383) { do transition(32); }
+			// Modify the code below with the real end position
+			if ( (screenPos < 6000) & (mario.getPosX() > 383)) { do transition(32); }
 
 			// Do teleport if Mario is at the pipe, and push 'down' key
 			if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
-			{ do transition(2848 - (mario.getPosX()+screenPos) ); }
+			{ do transition(6400 - (mario.getPosX()+screenPos) ); }
 
 
 			// Wait for 1 frame to pass
@@ -244,11 +270,11 @@ class SuperMarioGame
 						if ( (-17 < (x-xx)) & ((x-xx) < 17) & (-17 < (y-yy)) & ((y-yy) < 17) )
 						{
 							// If Mario has ulti, kill them
-							if (ulti)
+							if (ulti > 0)
 							{
-								do mario.jump();
 								do monster.kill(idx);
-							}else { do marioDeath(); } // Else, Mario is death
+							}
+							else { do marioDeath(); } // Else, Mario is death
 						}
 					}
 				}
@@ -262,7 +288,7 @@ class SuperMarioGame
 
 			// If Mario haven't die,
 			// and Mario reach this interval, you WIN ~~
-			if ( (~(exit)) & (7000 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 7200) )
+			if ( (~(exit)) & (6464 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 6564) )
 			{
 				let win = true;
 				let exit = true;
@@ -284,6 +310,27 @@ class SuperMarioGame
 		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
 		*/
 
+		return;
+	}
+
+	method void restoreMul()
+	{
+		let mul = 1;
+		return;
+	}
+
+	function void addMul()
+	{
+		let mul = mul+mul;
+		return;
+	}
+
+	function void addPoints(int points)
+	{
+		let score = score + (points*mul);
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
 		return;
 	}
 
@@ -395,7 +442,7 @@ class SuperMarioGame
 	  	// Let flying monster move down
 	  	if(switch = 3)
 	  	{
-				if(monster.getMonY(idx) < 160)
+				if(monster.getMonY(idx) < 144)
 				{ do monster.changedown(idx); }
 				else { do monster.moveup(idx); }
 	  	}

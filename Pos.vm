@@ -23,10 +23,19 @@ push argument 0
 pop pointer 0
 push argument 1
 pop this 0
-push argument 1
-push constant 512
-call MATH.mod 2
+push this 0
+push constant 0
+lt
+push constant 511
+push this 0
+lt
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
 pop this 0
+label IF_FALSE0
 push constant 0
 return
 function Pos.updateY 0

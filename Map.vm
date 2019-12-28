@@ -1,10 +1,17 @@
 function Map.new 0
-push constant 14
+push constant 15
 call Memory.alloc 1
 pop pointer 0
+push constant 0
+not
+pop this 14
+push constant 240
+pop this 12
+push constant 160
+pop this 13
 push constant 6
 pop this 5
-push constant 156
+push constant 135
 pop this 6
 push constant 0
 pop this 7
@@ -27,10 +34,6 @@ pop this 0
 push this 3
 call Block.getPosY 1
 pop this 1
-push constant 7
-pop this 12
-push constant 8
-pop this 13
 push pointer 0
 call Map.refresh 1
 pop temp 0
@@ -44,6 +47,28 @@ push pointer 0
 call Map.drawCloud 1
 pop temp 0
 push pointer 0
+return
+function Map.useStar 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 14
+push constant 0
+return
+function Map.ableStar 0
+push argument 0
+pop pointer 0
+push this 14
+return
+function Map.getStarX 0
+push argument 0
+pop pointer 0
+push this 12
+return
+function Map.getStarY 0
+push argument 0
+pop pointer 0
+push this 13
 return
 function Map.drawGround 4
 push argument 0
@@ -170,137 +195,171 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
-function Map.drawCloud 0
+function Map.drawCloud 2
 push argument 0
 pop pointer 0
-push this 12
-push constant 2
-sub
-pop this 12
-push this 13
-push constant 2
-sub
-pop this 13
-push this 12
-push constant 0
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 32
-push this 12
+push this 7
+push constant 80
 add
-pop this 12
-label IF_FALSE0
-push this 13
-push constant 0
-lt
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push constant 32
-push this 13
+push constant 16
+call Math.divide 2
+push this 7
+push constant 80
 add
-pop this 13
-label IF_FALSE1
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 0
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 1
 push this 4
 push constant 512
-push this 12
+push local 0
 add
 call Draw.cloudleftup 2
 pop temp 0
 push this 4
 push constant 512
-push this 13
+push local 1
 add
 call Draw.cloudrightup 2
 pop temp 0
 push this 4
 push constant 1024
-push this 12
+push local 0
 add
 call Draw.cloudleftdown 2
 pop temp 0
 push this 4
 push constant 1024
-push this 13
+push local 1
 add
 call Draw.cloudrightdown 2
 pop temp 0
 push this 4
-push constant 748
-push this 12
+push constant 522
+push local 0
 add
 call Draw.cloudleftup 2
 pop temp 0
 push this 4
-push constant 748
-push this 13
+push constant 522
+push local 1
 add
 call Draw.cloudrightup 2
 pop temp 0
 push this 4
-push constant 1260
-push this 12
+push constant 1034
+push local 0
 add
 call Draw.cloudleftdown 2
 pop temp 0
 push this 4
-push constant 1260
-push this 13
+push constant 1034
+push local 1
 add
 call Draw.cloudrightdown 2
 pop temp 0
 push constant 0
 return
-function Map.eraseCloud 0
+function Map.eraseCloud 2
 push argument 0
 pop pointer 0
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 80
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 0
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push this 7
+push constant 96
+add
+push constant 16
+call Math.divide 2
+push constant 31
+call Math.divide 2
+push constant 31
+call Math.multiply 2
+sub
+pop local 1
 push this 4
 push constant 512
-push this 12
+push local 0
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
 push constant 512
-push this 13
+push local 1
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
 push constant 1024
-push this 12
+push local 0
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
 push constant 1024
-push this 13
+push local 1
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
-push constant 748
-push this 12
+push constant 522
+push local 0
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
-push constant 748
-push this 13
+push constant 522
+push local 1
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
-push constant 1260
-push this 12
+push constant 1034
+push local 0
 add
 call Draw.eraseblock 2
 pop temp 0
 push this 4
-push constant 1260
-push this 13
+push constant 1034
+push local 1
 add
 call Draw.eraseblock 2
 pop temp 0
@@ -598,39 +657,6 @@ pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE8
-push local 2
-push constant 9
-eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 16
-call Math.divide 2
-push constant 512
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.jumper 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE9
 label IF_FALSE0
 push local 0
 push constant 1
@@ -681,35 +707,6 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
-push constant 0
-return
-function Map.eraseidxblock 1
-push argument 0
-pop pointer 0
-push argument 1
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 16
-call Math.divide 2
-push constant 512
-call Math.multiply 2
-push argument 1
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 0
-push this 4
-push local 0
-call Draw.eraseblock 2
-pop temp 0
 push constant 0
 return
 function Map.transition 0
@@ -1508,6 +1505,9 @@ and
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
+push constant 100
+call SuperMarioGame.addPoints 1
+pop temp 0
 push local 3
 push this 1
 add
@@ -1531,35 +1531,22 @@ call Math.divide 2
 add
 pop local 7
 push pointer 0
-push local 3
-call Map.eraseidxblock 2
+call Map.erase 1
 pop temp 0
 push this 3
 push local 3
 push constant 5
 call Block.changeType 3
 pop temp 0
-push this 4
-push local 7
-push constant 256
-sub
-call Draw.square 2
+push pointer 0
+call Map.draw 1
 pop temp 0
 push this 4
 push local 7
 call Draw.coin 2
 pop temp 0
-push constant 100
-call Sys.wait 1
-pop temp 0
 push this 4
 push local 7
-call Draw.eraseblock 2
-pop temp 0
-push this 4
-push local 7
-push constant 256
-sub
 call Draw.eraseblock 2
 pop temp 0
 push local 7
@@ -1573,9 +1560,6 @@ pop temp 0
 push constant 100
 call Sys.wait 1
 pop temp 0
-push pointer 0
-call Map.draw 1
-pop temp 0
 push this 4
 push local 7
 call Draw.eraseblock 2
@@ -1584,7 +1568,7 @@ label IF_FALSE4
 label IF_END3
 push local 1
 return
-function Map.touchBelow 6
+function Map.touchBelow 5
 push argument 0
 pop pointer 0
 push this 8
@@ -1670,10 +1654,6 @@ label IF_TRUE2
 push constant 0
 not
 pop local 0
-push this 3
-push local 2
-call Block.getType 2
-pop local 5
 label IF_FALSE2
 push local 2
 push constant 1
@@ -1683,16 +1663,5 @@ push constant 0
 pop local 1
 goto WHILE_EXP0
 label WHILE_END0
-push local 0
-push local 5
-push constant 9
-eq
-and
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-call Mario.superjump 0
-pop temp 0
-label IF_FALSE3
 push local 0
 return

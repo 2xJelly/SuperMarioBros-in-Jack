@@ -847,6 +847,11 @@ return
 function Monster.kill 0
 push argument 0
 pop pointer 0
+push constant 100
+call SuperMarioGame.addPoints 1
+pop temp 0
+call SuperMarioGame.addMul 0
+pop temp 0
 push pointer 0
 push argument 1
 call Monster.eraseidxMonster 2
