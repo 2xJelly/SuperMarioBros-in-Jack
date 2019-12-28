@@ -4,7 +4,7 @@ call Memory.alloc 1
 pop pointer 0
 push constant 6
 pop this 5
-push constant 156
+push constant 275
 pop this 6
 push constant 0
 pop this 7
@@ -633,11 +633,242 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.jumper 2
+call Draw.pipelefttop 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE9
+push local 2
+push constant 10
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.pipeleftbot 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE10
+push local 2
+push constant 11
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.piperighttop 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE11
+push local 2
+push constant 12
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.piperightbot 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE12
+push local 2
+push constant 13
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.coin 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE13
+push local 2
+push constant 14
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.jumper 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE14
+push local 2
+push constant 15
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.pipeconnecttop 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE15
+push local 2
+push constant 16
+eq
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 512
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.pipeconnectbot 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE16
 label IF_FALSE0
 push local 0
 push constant 1
@@ -1717,7 +1948,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 0
 push local 5
-push constant 9
+push constant 14
 eq
 and
 if-goto IF_TRUE3

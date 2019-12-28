@@ -211,8 +211,16 @@ class SuperMarioGame
 			if ( (screenPos < 6000) & (mario.getPosX() > 383)) { do transition(32); }
 
 			// Do teleport if Mario is at the pipe, and push 'down' key
+
+			// if ( (key = 133) & (~((mario.getPosX()+screenPos)<32)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 208) )
+			// { do transition(1152 - (mario.getPosX()+screenPos) ); }
+
 			if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
-			{ do transition(2800 - (mario.getPosX()+screenPos) ); }
+			{ do transition(3712 - (mario.getPosX()+screenPos) ); }
+
+			//touch pipe left 
+			// if ( (key = 132) & (~((mario.getPosX()+screenPos)<3872)) & ((mario.getPosX()+screenPos)< 4384) & (mario.getPosY() = 208) )
+			// { do transition(0 - (mario.getPosX()+screenPos) ); }
 
 
 			// Wait for 1 frame to pass
@@ -288,7 +296,7 @@ class SuperMarioGame
 
 			// If Mario haven't die,
 			// and Mario reach this interval, you WIN ~~
-			if ( (~(exit)) & (6464 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 6564) )
+			if ( (~(exit)) & (6664 < (screenPos + mario.getPosX()) ) & ((screenPos + mario.getPosX()) < 6764) )
 			{
 				let win = true;
 				let exit = true;
@@ -302,7 +310,7 @@ class SuperMarioGame
 		// WIN
 		if (win) { do Output.printString("You Rock~~~"); }
 		// LOSE
-		else { do Output.printString("You Suck!!!"); }
+		else { do Output.printString("Game Over!!!"); }
 
 		// Just For Debug, Remove the text
 		/*

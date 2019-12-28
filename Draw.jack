@@ -377,6 +377,95 @@ method void cloudrightdown(int location) {
 	return;
 }
 
+method void pipeleftbot(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -1);
+	do Memory.poke(memAddress+32, -1);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, 32767);
+	do Memory.poke(memAddress+480, 16383);
+	return;
+    }
+	
+	method void pipelefttop(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 16383);
+	do Memory.poke(memAddress+32, 32767);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, -1);
+	do Memory.poke(memAddress+480, -1);
+	return;
+    }
+
+	method void piperighttop(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 0);
+	do Memory.poke(memAddress+32, 0);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, -1);
+	do Memory.poke(memAddress+480, -1);
+	return;
+	
+    }
+
+	method void piperightbot(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -1);
+	do Memory.poke(memAddress+32, -1);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, 0);
+	do Memory.poke(memAddress+480, 0);
+	return;
+    }
+
 	method void eraseblock(int location) {
 	var int memAddress;
 	let memAddress = 16384+location;
@@ -399,6 +488,48 @@ method void cloudrightdown(int location) {
 	return;
 	}
 
+	method void pipeconnecttop(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -4);
+	do Memory.poke(memAddress+32, -4);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, -1);
+	do Memory.poke(memAddress+480, -1);
+	return;
+}
 
+method void pipeconnectbot(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, -1);
+	do Memory.poke(memAddress+32, -1);
+	do Memory.poke(memAddress+64, -1);
+	do Memory.poke(memAddress+96, -1);
+	do Memory.poke(memAddress+128, -1);
+	do Memory.poke(memAddress+160, -1);
+	do Memory.poke(memAddress+192, -1);
+	do Memory.poke(memAddress+224, -1);
+	do Memory.poke(memAddress+256, -1);
+	do Memory.poke(memAddress+288, -1);
+	do Memory.poke(memAddress+320, -1);
+	do Memory.poke(memAddress+352, -1);
+	do Memory.poke(memAddress+384, -1);
+	do Memory.poke(memAddress+416, -1);
+	do Memory.poke(memAddress+448, -4);
+	do Memory.poke(memAddress+480, -4);
+	return;
+}
         
 }

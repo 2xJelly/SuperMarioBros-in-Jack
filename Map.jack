@@ -18,7 +18,7 @@ class Map
   constructor Map new()
   {
     let numGap = 6;
-    let numBlock = 156;
+    let numBlock = 275;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -206,7 +206,56 @@ class Map
         if(switch = 9)
         {
           let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipelefttop(location);
+          let location = 0;
+        }
+
+        if(switch = 10)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeleftbot(location);
+          let location = 0;
+        }
+
+        if(switch = 11)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.piperighttop(location);
+          let location = 0;
+        }
+
+        if(switch = 12)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.piperightbot(location);
+          let location = 0;
+        }
+
+        if(switch = 13)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.coin(location);
+          let location = 0;
+        }
+
+        if(switch = 14)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
           do draw.jumper(location);
+          let location = 0;
+        }
+
+        if(switch = 15)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeconnecttop(location);
+          let location = 0;
+        }
+
+        if(switch = 16)
+        {
+          let location = (posY[i]/16*512) + ((posX[i]-screenPos)/16);
+          do draw.pipeconnectbot(location);
           let location = 0;
         }
       }
@@ -594,7 +643,7 @@ class Map
       let corner = false;
     }
     
-    if(contact & (touchtype = 9))
+    if(contact & (touchtype = 14))
     { 
       do Mario.superjump();
     }

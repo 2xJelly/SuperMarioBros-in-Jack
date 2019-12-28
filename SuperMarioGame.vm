@@ -535,7 +535,7 @@ if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
 push pointer 0
-push constant 2800
+push constant 3712
 push this 0
 call Mario.getPosX 1
 push this 4
@@ -796,7 +796,7 @@ goto WHILE_EXP2
 label WHILE_END2
 push this 8
 not
-push constant 6464
+push constant 6664
 push this 4
 push this 0
 call Mario.getPosX 1
@@ -807,7 +807,7 @@ push this 4
 push this 0
 call Mario.getPosX 1
 add
-push constant 6564
+push constant 6764
 lt
 and
 if-goto IF_TRUE20
@@ -860,23 +860,25 @@ call Output.printString 1
 pop temp 0
 goto IF_END21
 label IF_FALSE21
-push constant 11
+push constant 12
 call String.new 1
-push constant 89
+push constant 71
 call String.appendChar 2
-push constant 111
+push constant 97
 call String.appendChar 2
-push constant 117
+push constant 109
+call String.appendChar 2
+push constant 101
 call String.appendChar 2
 push constant 32
 call String.appendChar 2
-push constant 83
+push constant 79
 call String.appendChar 2
-push constant 117
+push constant 118
 call String.appendChar 2
-push constant 99
+push constant 101
 call String.appendChar 2
-push constant 107
+push constant 114
 call String.appendChar 2
 push constant 33
 call String.appendChar 2
