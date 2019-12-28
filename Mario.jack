@@ -1,9 +1,10 @@
 class Mario
 {
   field Pos pos;
-  field int jumpDuration;
+  static int jumpDuration;
+  //field Draw draw;
 
-  // Build a new Mario!!!
+  /* Build a new Mario!!! */
   constructor Mario new(int x, int y)
   {
     let pos = Pos.new(x, y);
@@ -13,20 +14,20 @@ class Mario
     return this;
   }
 
-  // Return position x
+  /* Return position x */
   method int getPosX()
   { return pos.getX(); }
 
-  // Return position y
+  /* Return position y */
   method int getPosY()
   { return pos.getY(); }
 
-  // Draw Mario
+  /* Draw Mario */
   method void draw()
   {
     do Sprite.drawMario(getPosX(), getPosY());
-    // do Screen.setColor(true);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    //do Screen.setColor(true);
+    //do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
   }
 
@@ -34,17 +35,17 @@ class Mario
   method void erase()
   {
     do Sprite.eraseMario(getPosX(), getPosY());
-    // do Screen.setColor(false);
-    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    //do Screen.setColor(false);
+    //do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
     return;
   }
 
   /* Move the Mario to the right by move pixels */
   method void transition(int move)
   {
-    // do erase();
+    //do erase();
     do pos.updateX(pos.getX() + move);
-    // do draw();
+    //do draw();
     return;
   }
 
@@ -88,6 +89,7 @@ class Mario
       do pos.updateY(pos.getY() - 4);
       do draw();
     }
+
     return;
   }
 
@@ -101,6 +103,7 @@ class Mario
       do pos.updateY(pos.getY() + 4);
       do draw();
     }
+
     return;
   }
 
@@ -114,6 +117,7 @@ class Mario
       do pos.updateX(pos.getX() - 2);
       do draw();
     }
+
     return;
   }
 
@@ -127,6 +131,15 @@ class Mario
       do pos.updateX(pos.getX() + 2);
       do draw();
     }
+
     return;
   }
+
+  function void superjump()
+  {
+    let jumpDuration = 40;
+    return;
+  }
+
+
 }

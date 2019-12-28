@@ -6,30 +6,15 @@ class Block
     field Array Mon_type;
     field Array Direction;
 
-    // Block-Type
-    // 0 - brick
-    // 1 - empty
-    // 2 - question
-    // 3 - pipeleft
-    // 4 - wall
-    // 5 - square
-    // 6 - pipetopleft
-    // 7 - pipetopright
-    // 8 - piperight
-    // 9 - ultimate Star
+    //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight; 9 -jumoer
 
-    // Montype
-    // 0 - moving monster
-    // 1 - flowermonsterleft
-    // 2 - flowermonsterright
-    // 3 - upward monster
-    // 4 - downward monster
+    //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster
     constructor Block new()
     {
         var int numBlock;
         var int numGap;
         var int numMon;
-        let numBlock = 135;
+        let numBlock = 156;
         let numGap = 6;
         let numMon = 30;
         let posX = Array.new(numBlock);
@@ -57,7 +42,7 @@ class Block
         let MonY[1] = 208;
         let Mon_type[1] = 0;
         let Direction[1] = 2;
-
+        
         let MonX[2] = 496;
         let MonY[2] = 208;
         let Mon_type[2] = 0;
@@ -67,7 +52,7 @@ class Block
         let MonY[3] = 208;
         let Mon_type[3] = 0;
         let Direction[3] = 2;
-
+        
         let MonX[4] = 592;
         let MonY[4] = 208;
         let Mon_type[4] = 0;
@@ -157,7 +142,7 @@ class Block
         let MonY[21] = 176;
         let Mon_type[21] = 2;
         let Direction[21] = 2;
-
+        
         let MonX[22] = 2032;
         let MonY[22] = 128;
         let Mon_type[22] = 1;
@@ -724,22 +709,108 @@ class Block
         let posY[130] = 208;
         let type_block[130] = 8;
 
-        let posX[131] = 2896;
+        let posX[131] = 2880;
         let posY[131] = 160;
         let type_block[131] = 0;
 
-        let posX[132] = 2912;
-        let posY[132] = 96;
-        let type_block[132] = 2;
+        let posX[132] = 2896;
+        let posY[132] = 160;
+        let type_block[132] = 0;
 
         let posX[133] = 2912;
-        let posY[133] = 160;
-        let type_block[133] = 0;
+        let posY[133] = 96;
+        let type_block[133] = 2;
 
-        let posX[134] = 6464;
+        let posX[134] = 2912;
         let posY[134] = 160;
         let type_block[134] = 0;
 
+        let posX[135] = 2944;
+        let posY[135] = 208;
+        let type_block[135] = 9;
+
+        let posX[136] = 2976;
+        let posY[136] = 64;
+        let type_block[136] = 4;
+
+        let posX[137] = 2976;
+        let posY[137] = 80;
+        let type_block[137] = 4; 
+
+        let posX[138] = 2976;
+        let posY[138] = 96;
+        let type_block[138] = 4;  
+        
+        let posX[139] = 2976;
+        let posY[139] = 112;
+        let type_block[139] = 4; 
+
+        let posX[140] = 2976;
+        let posY[140] = 128;
+        let type_block[140] = 4; 
+
+        let posX[141] = 2976;
+        let posY[141] = 144;
+        let type_block[141] = 4; 
+
+        let posX[142] = 2976;
+        let posY[142] = 160;
+        let type_block[142] = 4; 
+
+        let posX[143] = 2976;
+        let posY[143] = 176;
+        let type_block[143] = 4; 
+
+        let posX[144] = 2976;
+        let posY[144] = 192;
+        let type_block[144] = 4; 
+
+        let posX[145] = 2976;
+        let posY[145] = 208;
+        let type_block[145] = 4;
+
+        let posX[146] = 2992;
+        let posY[146] = 64;
+        let type_block[146] = 4;
+
+        let posX[147] = 2992;
+        let posY[147] = 80;
+        let type_block[147] = 4; 
+
+        let posX[148] = 2992;
+        let posY[148] = 96;
+        let type_block[148] = 4;  
+        
+        let posX[149] = 2992;
+        let posY[149] = 112;
+        let type_block[149] = 4; 
+
+        let posX[150] = 2992;
+        let posY[150] = 128;
+        let type_block[150] = 4; 
+
+        let posX[151] = 2992;
+        let posY[151] = 144;
+        let type_block[151] = 4; 
+
+        let posX[152] = 2992;
+        let posY[152] = 160;
+        let type_block[152] = 4; 
+
+        let posX[153] = 2992;
+        let posY[153] = 176;
+        let type_block[153] = 4; 
+
+        let posX[154] = 2992;
+        let posY[154] = 192;
+        let type_block[154] = 4; 
+
+        let posX[155] = 2992;
+        let posY[155] = 208;
+        let type_block[155] = 4; 
+
+
+        
         return this;
     }
 

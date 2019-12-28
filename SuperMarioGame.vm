@@ -535,7 +535,7 @@ if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
 push pointer 0
-push constant 6400
+push constant 2800
 push this 0
 call Mario.getPosX 1
 push this 4
@@ -1277,7 +1277,7 @@ label IF_TRUE6
 push this 2
 push local 0
 call Monster.getMonY 2
-push constant 144
+push constant 160
 lt
 if-goto IF_TRUE7
 goto IF_FALSE7
