@@ -9,7 +9,7 @@ class Block
 
     //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight; 
     //              9 - pipelefttop; 10 - pipeleftbottom; 11 - piperighttop;  12 - piperightbottom; 13 - coin; 14 - jumper;
-    //              15- pipeConnectTop; 16 - pipeConnectBottom;
+    //              15- pipeConnectTop; 16 - pipeConnectBottom;33 - pipeteleport;
 
     //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster
     //MonsterDirection 2 : moving left;   -2 : moving right;
@@ -51,13 +51,13 @@ class Block
         let gap[4] =  Mul16[138];
         let gap[5] =  Mul16[148];
 
-        let MonX[0] = Mul16[22];
-        let MonY[0] =  Mul16[10];
-        let Mon_type[0] =  Mul16[0];
-        let Direction[0] = 2;
+        let MonX[0] = Mul16[10];
+        let MonY[0] =  Mul16[13];
+        let Mon_type[0] =  3;
+        let Direction[0] = 0;
 
-        let MonX[1] = Mul16[27];
-        let MonY[1] =  Mul16[13];
+        let MonX[1] = Mul16[22];
+        let MonY[1] =  Mul16[10];
         let Mon_type[1] = 0;
         let Direction[1] = 2;
         
@@ -209,11 +209,11 @@ class Block
 
         let posX[1] =  Mul16[16];
         let posY[1] =  Mul16[10];
-        let type_block[1] = 13;
+        let type_block[1] = 2;
 
         let posX[2] =  Mul16[17];
         let posY[2] =  Mul16[10];
-        let type_block[2] = 13;
+        let type_block[2] = 0;
 
         let posX[3] =  Mul16[20];
         let posY[3] =  Mul16[13];
@@ -413,7 +413,7 @@ class Block
 
         let posX[52] =  Mul16[73];
         let posY[52] =  Mul16[10];
-        let type_block[52] = 6;
+        let type_block[52] = 33;
 
         let posX[53] =  Mul16[73];
         let posY[53] =  Mul16[11];

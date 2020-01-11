@@ -156,13 +156,6 @@ class Map
           let location = 0;
         }
 
-        if(switch = 1)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.eraseblock(location);
-          let location = 0;
-        }
-
         if(switch = 2)
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
@@ -190,7 +183,7 @@ class Map
           let location = 0;
         }
 
-        if(switch = 6)
+        if((switch = 6) | (switch = 33))
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.pipetopleft(location);
@@ -803,8 +796,9 @@ class Map
       /* If they are close enough, they are touching */
       if( (block.getType(i) = 13) & ((~corner) & (diffY < h)) & (diffX < 17) )
       {
-        do eraseidxblock(i);
         do block.changeType(i,1);
+        do erase();
+        do draw();
       }
 
       let i = i + 1;
@@ -814,5 +808,29 @@ class Map
     return;
   }
 
+  method boolean teleportloc(int X, int Y, int h)
+  {
+    var boolean touch;
+    var int diffX, diffY;
+    var int location,i;
+    let touch = false;
+    let i = idxLeft;
+    
+    while(i < idxRight)
+    {
+      /* Calculate absolute difference in X and Y */
+      let diffX = X - posX[i];
+      let diffY = posY[i] - Y;
 
+      /* If mario touch the teleport pipe and press down*/
+      if( ((block.getType(i) = 33)) & ((diffX < 27)) & ((diffX > 5)) & (diffY = h))
+      {
+        let touch = true;
+      }
+    
+      let i = i + 1;
+    }
+
+    return touch;
+    }
 }

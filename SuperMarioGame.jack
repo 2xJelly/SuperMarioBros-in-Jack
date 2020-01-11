@@ -40,7 +40,7 @@ class SuperMarioGame
 		let screenPos = 0;
 		let ulti = 0;
 		let mul = 1;
-		do mario.turnBig();
+		//do mario.turnBig();
 
 		return this;
 	}
@@ -218,8 +218,8 @@ class SuperMarioGame
 
 			// Do teleport if Mario is at the pipe, and push 'down' key
 
-			if ( (key = 133) & (~((mario.getPosX()+screenPos)<32)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 208) )
-			{ do transition(2832 - (mario.getPosX()+screenPos) ); }
+			if ( (key = 133) & (map.teleportloc((mario.getPosX() + screenPos),mario.getPosY(),height) = true) )
+			{ do transition(2800 - (mario.getPosX()+screenPos) ); }
 
 			// if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
 			// { do transition(3712 - (mario.getPosX()+screenPos) ); }
@@ -497,7 +497,7 @@ class SuperMarioGame
 	  	// Let flying monster move up
 	  	if(switch = 4)
 	  	{
-				if((map.touchAbove(monster.getMonX(idx),(monster.getMonY(idx)+4),16) = true) | (monster.getMonY(idx) > 204))
+				if((map.touchAbove(monster.getMonX(idx),(monster.getMonY(idx)+16),16) = true) | (monster.getMonY(idx) > 204))
 				{ 
 					do monster.changeup(idx); 
 					do monster.moveup(idx);	
