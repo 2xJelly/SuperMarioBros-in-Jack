@@ -1,9 +1,40 @@
 function Main.main 1
+push constant 3
+pop static 0
 push constant 200
-call SuperMarioGame.new 1
+push static 0
+call SuperMarioGame.new 2
 pop local 0
 push local 0
 call SuperMarioGame.run 1
 pop temp 0
+label WHILE_EXP0
+push local 0
+call SuperMarioGame.getwin 1
+not
+push static 0
+push constant 1
+sub
+and
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push static 0
+push constant 1
+sub
+pop static 0
+push local 0
+call SuperMarioGame.dispose 1
+pop temp 0
+push constant 200
+push static 0
+call SuperMarioGame.new 2
+pop local 0
+push local 0
+call SuperMarioGame.run 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return

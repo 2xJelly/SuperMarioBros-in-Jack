@@ -4,7 +4,7 @@ call Memory.alloc 1
 pop pointer 0
 push constant 6
 pop this 5
-push constant 291
+push constant 172
 pop this 6
 push constant 0
 pop this 7
@@ -373,6 +373,10 @@ label IF_FALSE1
 push local 2
 push constant 2
 eq
+push local 2
+push constant 34
+eq
+or
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
@@ -1335,6 +1339,37 @@ pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE32
+push local 2
+push constant 35
+eq
+if-goto IF_TRUE33
+goto IF_FALSE33
+label IF_TRUE33
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 32
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.mushroom 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE33
 label IF_FALSE0
 push local 0
 push constant 1
@@ -2279,6 +2314,9 @@ label IF_TRUE5
 push constant 100
 call SuperMarioGame.addPoints 1
 pop temp 0
+push constant 100
+call SuperMarioGame.addMoney 1
+pop temp 0
 push local 3
 push this 1
 add
@@ -2351,7 +2389,79 @@ push this 4
 push local 7
 call Draw.eraseblock 2
 pop temp 0
+goto IF_END5
 label IF_FALSE5
+push local 1
+push this 3
+push local 3
+call Block.getType 2
+push constant 34
+eq
+and
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 3
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 16
+call Math.divide 2
+push constant 1
+sub
+push constant 512
+call Math.multiply 2
+push local 3
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 7
+push pointer 0
+push local 3
+call Map.eraseidxblock 2
+pop temp 0
+push this 3
+push local 3
+push constant 5
+call Block.changeType 3
+pop temp 0
+push this 4
+push local 7
+push constant 256
+sub
+call Draw.square 2
+pop temp 0
+push constant 100
+call Sys.wait 1
+pop temp 0
+push this 4
+push local 7
+push constant 256
+sub
+call Draw.eraseblock 2
+pop temp 0
+push constant 100
+call Sys.wait 1
+pop temp 0
+push this 3
+push local 3
+push constant 1
+sub
+push constant 35
+call Block.changeType 3
+pop temp 0
+push pointer 0
+call Map.draw 1
+pop temp 0
+label IF_FALSE6
+label IF_END5
 label IF_END4
 push local 1
 return
@@ -2479,61 +2589,63 @@ pop temp 0
 label IF_FALSE4
 push local 0
 return
-function Map.touch 5
+function Map.touch 7
 push argument 0
 pop pointer 0
+push constant 0
+pop local 6
 push this 8
-pop local 2
+pop local 3
 push constant 0
 pop local 0
 push constant 0
 pop local 1
 label WHILE_EXP0
-push local 2
+push local 3
 push this 9
 lt
 not
 if-goto WHILE_END0
 push argument 1
-push local 2
+push local 3
 push this 0
 add
 pop pointer 1
 push that 0
 sub
-pop local 3
+pop local 4
 push argument 2
-push local 2
+push local 3
 push this 1
 add
 pop pointer 1
 push that 0
 sub
-pop local 4
-push local 4
+pop local 5
+push local 5
 push constant 0
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push local 4
+push local 5
 neg
-pop local 4
+pop local 5
 label IF_FALSE0
-push local 3
+push local 4
 push constant 0
 lt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 3
+push local 4
 neg
-pop local 3
+pop local 4
 label IF_FALSE1
-push local 3
+push local 4
 push constant 16
 eq
-push local 4
+push local 5
 push argument 3
 eq
 and
@@ -2545,18 +2657,20 @@ not
 pop local 1
 label IF_FALSE2
 push this 3
-push local 2
+push local 3
 call Block.getType 2
 push constant 13
 eq
 push local 1
 not
-push local 4
+push local 5
 push argument 3
+push constant 1
+add
 lt
 and
 and
-push local 3
+push local 4
 push constant 17
 lt
 and
@@ -2564,7 +2678,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push this 3
-push local 2
+push local 3
 push constant 1
 call Block.changeType 3
 pop temp 0
@@ -2575,38 +2689,104 @@ push pointer 0
 call Map.draw 1
 pop temp 0
 label IF_FALSE3
-push local 2
+push this 3
+push local 3
+call Block.getType 2
+push constant 35
+eq
+push local 1
+not
+push local 5
+push argument 3
 push constant 1
 add
-pop local 2
+lt
+and
+and
+push local 4
+push constant 17
+lt
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 3
+push local 3
+push constant 1
+call Block.changeType 3
+pop temp 0
+call SuperMarioGame.tbig 0
+pop temp 0
+push pointer 0
+call Map.erase 1
+pop temp 0
+push pointer 0
+call Map.draw 1
+pop temp 0
+label IF_FALSE4
+push this 3
+push local 3
+call Block.getType 2
+push constant 16
+gt
+push this 3
+push local 3
+call Block.getType 2
+push constant 33
+lt
+and
+push local 1
+not
+push local 5
+push argument 3
+push constant 1
+add
+lt
+and
+and
+push local 4
+push constant 17
+lt
+and
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 0
+not
+pop local 6
+label IF_FALSE5
+push local 3
+push constant 1
+add
+pop local 3
 push constant 0
 pop local 1
 goto WHILE_EXP0
 label WHILE_END0
-push constant 0
+push local 6
 return
-function Map.teleportloc 5
+function Map.teleportloc 4
 push argument 0
 pop pointer 0
 push constant 0
 pop local 0
 push this 8
-pop local 4
+pop local 3
 label WHILE_EXP0
-push local 4
+push local 3
 push this 9
 lt
 not
 if-goto WHILE_END0
 push argument 1
-push local 4
+push local 3
 push this 0
 add
 pop pointer 1
 push that 0
 sub
 pop local 1
-push local 4
+push local 3
 push this 1
 add
 pop pointer 1
@@ -2615,7 +2795,7 @@ push argument 2
 sub
 pop local 2
 push this 3
-push local 4
+push local 3
 call Block.getType 2
 push constant 33
 eq
@@ -2638,11 +2818,25 @@ push constant 0
 not
 pop local 0
 label IF_FALSE0
-push local 4
+push local 3
 push constant 1
 add
-pop local 4
+pop local 3
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
+return
+function Map.dispose 0
+push argument 0
+pop pointer 0
+push this 3
+call Block.dispose 1
+pop temp 0
+push this 4
+call Draw.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
 return

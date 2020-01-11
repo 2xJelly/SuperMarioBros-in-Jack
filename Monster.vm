@@ -1,15 +1,15 @@
 function Monster.new 0
-push constant 11
+push constant 10
 call Memory.alloc 1
 pop pointer 0
 push constant 30
+pop this 6
+push constant 0
 pop this 7
 push constant 0
 pop this 8
 push constant 0
 pop this 9
-push constant 0
-pop this 10
 call Block.new 0
 pop this 4
 push this 4
@@ -35,7 +35,7 @@ return
 function Monster.drawMonster 3
 push argument 0
 pop pointer 0
-push this 9
+push this 8
 pop local 0
 push constant 0
 not
@@ -43,7 +43,7 @@ call Screen.setColor 1
 pop temp 0
 label WHILE_EXP0
 push local 0
-push this 10
+push this 9
 lt
 not
 if-goto WHILE_END0
@@ -71,7 +71,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -102,7 +102,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -155,7 +155,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -184,7 +184,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -206,14 +206,14 @@ return
 function Monster.eraseMonster 3
 push argument 0
 pop pointer 0
-push this 9
+push this 8
 pop local 0
 push constant 0
 call Screen.setColor 1
 pop temp 0
 label WHILE_EXP0
 push local 0
-push this 10
+push this 9
 lt
 not
 if-goto WHILE_END0
@@ -263,7 +263,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -292,7 +292,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -321,7 +321,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -350,7 +350,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -400,7 +400,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -431,7 +431,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -484,7 +484,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -513,7 +513,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -578,7 +578,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -607,7 +607,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -636,7 +636,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -665,7 +665,7 @@ push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 sub
 push constant 16
 call Math.divide 2
@@ -682,7 +682,7 @@ function Monster.drawBlock 0
 push argument 0
 pop pointer 0
 push argument 1
-push this 8
+push this 7
 sub
 push argument 2
 call Sprite.drawMon 2
@@ -693,7 +693,7 @@ function Monster.eraseBlock 0
 push argument 0
 pop pointer 0
 push argument 1
-push this 8
+push this 7
 sub
 push argument 2
 push argument 1
@@ -701,7 +701,7 @@ push argument 3
 push constant 1
 sub
 add
-push this 8
+push this 7
 sub
 push argument 2
 push argument 4
@@ -718,10 +718,10 @@ pop pointer 0
 push pointer 0
 call Monster.eraseMonster 1
 pop temp 0
-push this 8
+push this 7
 push argument 1
 add
-pop this 8
+pop this 7
 push pointer 0
 call Monster.refresh 1
 pop temp 0
@@ -734,45 +734,45 @@ function Monster.refresh 0
 push argument 0
 pop pointer 0
 label WHILE_EXP0
-push this 10
-push this 7
+push this 9
+push this 6
 lt
-push this 10
+push this 9
 push this 0
 add
 pop pointer 1
 push that 0
-push this 8
+push this 7
 push constant 512
 add
 lt
 and
 not
 if-goto WHILE_END0
-push this 10
-push constant 1
-add
-pop this 10
-goto WHILE_EXP0
-label WHILE_END0
-label WHILE_EXP1
-push this 9
-push this 10
-lt
-push this 9
-push this 0
-add
-pop pointer 1
-push that 0
-push this 8
-lt
-and
-not
-if-goto WHILE_END1
 push this 9
 push constant 1
 add
 pop this 9
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push this 8
+push this 9
+lt
+push this 8
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+lt
+and
+not
+if-goto WHILE_END1
+push this 8
+push constant 1
+add
+pop this 8
 goto WHILE_EXP1
 label WHILE_END1
 push constant 0
@@ -891,9 +891,14 @@ push pointer 0
 push argument 1
 call Monster.eraseidxMonster 2
 pop temp 0
+push constant 100
+call SuperMarioGame.addPoints 1
+pop temp 0
+call SuperMarioGame.addMul 0
+pop temp 0
 label WHILE_EXP0
 push argument 1
-push this 9
+push this 8
 eq
 not
 not
@@ -960,10 +965,10 @@ sub
 pop argument 1
 goto WHILE_EXP0
 label WHILE_END0
-push this 9
+push this 8
 push constant 1
 add
-pop this 9
+pop this 8
 push constant 0
 return
 function Monster.getMonX 0
@@ -987,12 +992,12 @@ return
 function Monster.getMonLeft 0
 push argument 0
 pop pointer 0
-push this 9
+push this 8
 return
 function Monster.getMonRight 0
 push argument 0
 pop pointer 0
-push this 10
+push this 9
 return
 function Monster.getMontype 0
 push argument 0
@@ -1027,5 +1032,19 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
+push constant 0
+return
+function Monster.dispose 0
+push argument 0
+pop pointer 0
+push this 4
+call Block.dispose 1
+pop temp 0
+push this 5
+call Draw.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return

@@ -13726,3 +13726,8 @@ label WHILE_END15
 label IF_FALSE15
 push constant 0
 return
+function Sprite.dispose 0
+push argument 0
+pop pointer 0
+push constant 0
+return

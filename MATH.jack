@@ -185,4 +185,10 @@ class MATH
     {
       return x - ((x/y)*y);
     }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
 }

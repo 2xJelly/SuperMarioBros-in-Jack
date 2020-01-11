@@ -18,7 +18,7 @@ class Map
   constructor Map new()
   {
     let numGap = 6;
-    let numBlock = 291;
+    let numBlock = 172;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -156,7 +156,7 @@ class Map
           let location = 0;
         }
 
-        if(switch = 2)
+        if((switch = 2)  | (switch = 34))
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.question(location);
@@ -369,6 +369,13 @@ class Map
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.castle16(location);
+          let location = 0;
+        }
+
+        if(switch = 35)
+        {
+          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+          do draw.mushroom(location);
           let location = 0;
         }
 
@@ -711,6 +718,7 @@ class Map
       if(touch & (block.getType(touchBlock) = 2) )
       {
         do SuperMarioGame.addPoints(100);
+        do SuperMarioGame.addMoney(100);
         let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
         do eraseidxblock(touchBlock);
         do block.changeType(touchBlock, 5);
@@ -724,6 +732,22 @@ class Map
         do Sys.wait(100);
         do draw();
         do draw.eraseblock(location);
+      }
+
+      else{
+        if(touch & (block.getType(touchBlock) = 34) )
+        {
+          let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
+          do eraseidxblock(touchBlock);
+          do block.changeType(touchBlock, 5);
+          do draw.square(location - 256);
+          do Sys.wait(100);
+          do draw.eraseblock(location - 256);
+          do Sys.wait(100);
+          do block.changeType(touchBlock-1,35);
+          do draw();
+
+        }
       }
     }
 
@@ -772,11 +796,13 @@ class Map
   }
 
   /* Check if Mario is touching any Block */
-  method void touch(int X, int Y, int h)
+  method boolean touch(int X, int Y, int h)
   {
-    var boolean contact, corner;
+    var boolean contact, corner,touch;
     var int i;
     var int diffX, diffY;
+    var boolean touchblock;
+    let touchblock = false;
 
     let i = idxLeft;
     let contact = false;
@@ -794,25 +820,38 @@ class Map
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (block.getType(i) = 13) & ((~corner) & (diffY < h)) & (diffX < 17) )
+      if( (block.getType(i) = 13) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
       {
         do block.changeType(i,1);
         do erase();
         do draw();
       }
 
+      if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
+      {
+        do block.changeType(i,1);
+        do SuperMarioGame.tbig();
+        do erase();
+        do draw();
+      }
+
+      if((block.getType(i) > 16) & (block.getType(i) < 33) & ((~corner) & (diffY < (h+1))) & (diffX < 17))
+      {
+        let touchblock = true;
+      }
+
       let i = i + 1;
       let corner = false;
     }
 
-    return;
+    return touchblock;
   }
 
   method boolean teleportloc(int X, int Y, int h)
   {
     var boolean touch;
     var int diffX, diffY;
-    var int location,i;
+    var int i;
     let touch = false;
     let i = idxLeft;
     
@@ -833,4 +872,12 @@ class Map
 
     return touch;
     }
+
+    method void dispose()
+	{
+    do block.dispose();
+    do draw.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
 }

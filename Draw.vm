@@ -1,3 +1,108 @@
+function Draw.character 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 224
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 792
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1028
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1284
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 2050
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2050
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1988
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1028
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 792
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 3302
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 5125
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 5125
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 6141
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 5125
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1028
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 3084
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
 function Draw.flowerleft 1
 push argument 0
 pop pointer 0
@@ -4635,5 +4740,232 @@ add
 push constant 0
 call Memory.poke 2
 pop temp 0
+push constant 0
+return
+function Draw.life 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 14364
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 31806
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 385
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32766
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 960
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Draw.mushroom 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 1
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 2016
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 6648
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 8676
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 17394
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 17946
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1009
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 13297
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 31731
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 31207
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 12295
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 3
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 29262
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 10836
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 9252
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 5064
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Draw.dispose 0
+push argument 0
+pop pointer 0
 push constant 0
 return

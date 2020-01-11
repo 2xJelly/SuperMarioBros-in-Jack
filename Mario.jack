@@ -178,5 +178,12 @@ class Mario
     return;
   }
 
+  method void dispose()
+	{
+    do pos.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+
 
 }
