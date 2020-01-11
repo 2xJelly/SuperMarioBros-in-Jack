@@ -5,18 +5,29 @@ class Block
     field Array MonX,MonY;
     field Array Mon_type;
     field Array Direction;
+    field Array Mul16;
 
-    //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight; 9 -jumoer
+    //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight; 
+    //              9 - pipelefttop; 10 - pipeleftbottom; 11 - piperighttop;  12 - piperightbottom; 13 - coin; 14 - jumper;
+    //              15- pipeConnectTop; 16 - pipeConnectBottom;
 
     //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster
+    //MonsterDirection 2 : moving left;   -2 : moving right;
     constructor Block new()
     {
         var int numBlock;
+        var int a, b;
         var int numGap;
         var int numMon;
-        let numBlock = 156;
+        var int numMul16;
+        var int k;
+        let numBlock = 291;
         let numGap = 6;
         let numMon = 30;
+        let numMul16 = 250;
+        let a = 156;
+        let b = 230;
+        let k = 0;
         let posX = Array.new(numBlock);
         let posY = Array.new(numBlock);
         let MonX = Array.new(numMon);
@@ -25,791 +36,1340 @@ class Block
         let Mon_type = Array.new(numMon);
         let gap = Array.new(numGap);
         let type_block = Array.new(numBlock);
+        let Mul16 = Array.new(numMul16);
 
-        let gap[0] = 1440;
-        let gap[1] = 1472;
-        let gap[2] = 1664;
-        let gap[3] = 2176;
-        let gap[4] = 2208;
-        let gap[5] = 2368;
+        while(k < numMul16)
+        {
+            let Mul16[k] = k * 16;
+            let k = k + 1;
+        }
 
-        let MonX[0] = 352;
-        let MonY[0] = 160;
-        let Mon_type[0] = 0;
+        let gap[0] =  Mul16[90]; 
+        let gap[1] =  Mul16[92];
+        let gap[2] =  Mul16[104];
+        let gap[3] =  Mul16[136];
+        let gap[4] =  Mul16[138];
+        let gap[5] =  Mul16[148];
+
+        let MonX[0] = Mul16[22];
+        let MonY[0] =  Mul16[10];
+        let Mon_type[0] =  Mul16[0];
         let Direction[0] = 2;
 
-        let MonX[1] = 432;
-        let MonY[1] = 208;
+        let MonX[1] = Mul16[27];
+        let MonY[1] =  Mul16[13];
         let Mon_type[1] = 0;
         let Direction[1] = 2;
         
-        let MonX[2] = 496;
-        let MonY[2] = 208;
+        let MonX[2] = Mul16[31];
+        let MonY[2] =  Mul16[13];
         let Mon_type[2] = 0;
         let Direction[2] = 2;
 
-        let MonX[3] = 576;
-        let MonY[3] = 208;
+        let MonX[3] = Mul16[36];
+        let MonY[3] =  Mul16[13];
         let Mon_type[3] = 0;
         let Direction[3] = 2;
         
-        let MonX[4] = 592;
-        let MonY[4] = 208;
+        let MonX[4] = Mul16[37];
+        let MonY[4] =  Mul16[13];
         let Mon_type[4] = 0;
         let Direction[4] = 2;
 
-        let MonX[5] = 720;
-        let MonY[5] = 144;
+        let MonX[5] = Mul16[45];
+        let MonY[5] =  Mul16[9];
         let Mon_type[5] = 1;
         let Direction[5] = 0;
 
-        let MonX[6] = 736;
-        let MonY[6] = 144;
+        let MonX[6] = Mul16[46];
+        let MonY[6] =  Mul16[9];
         let Mon_type[6] = 2;
         let Direction[6] = 0;
 
-        let MonX[7] = 832;
-        let MonY[7] = 208;
+        let MonX[7] = Mul16[52];
+        let MonY[7] =  Mul16[13];
         let Mon_type[7] = 0;
         let Direction[7] = 2;
 
-        let MonX[8] = 912;
-        let MonY[8] = 208;
+        let MonX[8] = Mul16[57];
+        let MonY[8] =  Mul16[13];
         let Mon_type[8] = 0;
         let Direction[8] = 2;
 
-        let MonX[9] = 928;
-        let MonY[9] = 208;
+        let MonX[9] = Mul16[58];
+        let MonY[9] =  Mul16[13];
         let Mon_type[9] = 0;
         let Direction[9] = 2;
 
-        let MonX[10] = 1008;
-        let MonY[10] = 208;
+        let MonX[10] = Mul16[63];
+        let MonY[10] =  Mul16[13];
         let Mon_type[10] = 0;
         let Direction[10] = 2;
 
-        let MonX[11] = 1024;
-        let MonY[11] = 208;
+        let MonX[11] = Mul16[64];
+        let MonY[11] =  Mul16[13];
         let Mon_type[11] = 0;
         let Direction[11] = 2;
 
-        let MonX[12] = 1040;
-        let MonY[12] = 208;
+        let MonX[12] = Mul16[65];
+        let MonY[12] =  Mul16[13];
         let Mon_type[12] = 0;
         let Direction[12] = 2;
 
-        let MonX[13] = 1312;
-        let MonY[13] = 208;
+        let MonX[13] = Mul16[82];
+        let MonY[13] =  Mul16[13];
         let Mon_type[13] = 0;
         let Direction[13] = 2;
 
-        let MonX[14] = 1328;
-        let MonY[14] = 208;
+        let MonX[14] = Mul16[83];
+        let MonY[14] =  Mul16[13];
         let Mon_type[14] = 0;
         let Direction[14] = 2;
 
-        let MonX[15] = 1344;
-        let MonY[15] = 208;
+        let MonX[15] = Mul16[84];
+        let MonY[15] =  Mul16[13];
         let Mon_type[15] = 0;
         let Direction[15] = 2;
 
-        let MonX[16] = 1760;
-        let MonY[16] = 208;
+        let MonX[16] = Mul16[110];
+        let MonY[16] =  Mul16[13];
         let Mon_type[16] = 3;
         let Direction[16] = 2;
 
-        let MonX[17] = 1792;
-        let MonY[17] = 176;
+        let MonX[17] = Mul16[112];
+        let MonY[17] =  Mul16[11];
         let Mon_type[17] = 1;
         let Direction[17] = 2;
 
-        let MonX[18] = 1808;
-        let MonY[18] = 176;
+        let MonX[18] = Mul16[113];
+        let MonY[18] =  Mul16[11];
         let Mon_type[18] = 2;
         let Direction[18] = 2;
 
-        let MonX[19] = 1840;
-        let MonY[19] = 208;
+        let MonX[19] = Mul16[115];
+        let MonY[19] =  Mul16[13];
         let Mon_type[19] = 0;
         let Direction[19] = 2;
 
-        let MonX[20] = 1968;
-        let MonY[20] = 176;
+        let MonX[20] = Mul16[123];
+        let MonY[20] =  Mul16[11];
         let Mon_type[20] = 1;
         let Direction[20] = 2;
 
-        let MonX[21] = 1984;
-        let MonY[21] = 176;
+        let MonX[21] = Mul16[124];
+        let MonY[21] =  Mul16[11];
         let Mon_type[21] = 2;
         let Direction[21] = 2;
         
-        let MonX[22] = 2032;
-        let MonY[22] = 128;
+        let MonX[22] = Mul16[127];
+        let MonY[22] =  Mul16[8];
         let Mon_type[22] = 1;
         let Direction[22] = 2;
 
-        let MonX[23] = 2048;
-        let MonY[23] = 128;
+        let MonX[23] = Mul16[128];
+        let MonY[23] =  Mul16[8];
         let Mon_type[23] = 2;
         let Direction[23] = 2;
 
-        let MonX[24] = 2336;
-        let MonY[24] = 208;
+        let MonX[24] = Mul16[146];
+        let MonY[24] =  Mul16[13];
         let Mon_type[24] = 0;
         let Direction[24] = 2;
 
-        let MonX[25] = 2480;
-        let MonY[25] = 208;
+        let MonX[25] = Mul16[156];
+        let MonY[25] =  Mul16[13];
         let Mon_type[25] = 3;
         let Direction[25] = 2;
 
-        let MonX[26] = 2496;
-        let MonY[26] = 208;
+        let MonX[26] = Mul16[157];
+        let MonY[26] =  Mul16[13];
         let Mon_type[26] = 3;
         let Direction[26] = 2;
 
-        let MonX[27] = 2512;
-        let MonY[27] = 160;
+        let MonX[27] = Mul16[159];
+        let MonY[27] =  Mul16[10];
         let Mon_type[27] = 0;
         let Direction[27] = 2;
 
-        let MonX[28] = 2768;
-        let MonY[28] = 160;
+        let MonX[28] = Mul16[173];
+        let MonY[28] =  Mul16[10];
         let Mon_type[28] = 1;
         let Direction[28] = 2;
 
-        let MonX[29] = 2784;
-        let MonY[29] = 160;
+        let MonX[29] = Mul16[174];
+        let MonY[29] =  Mul16[10];
         let Mon_type[29] = 2;
         let Direction[29] = 2;
 
+        /**************************/
 
-
-        let posX[0] = 240;
-        let posY[0] = 160;
+        let posX[0] =  Mul16[15];
+        let posY[0] =  Mul16[10];
         let type_block[0] = 0;
 
-        let posX[1] = 256;
-        let posY[1] = 160;
-        let type_block[1] = 2;
+        let posX[1] =  Mul16[16];
+        let posY[1] =  Mul16[10];
+        let type_block[1] = 13;
 
-        let posX[2] = 272;
-        let posY[2] = 160;
-        let type_block[2] = 0;
+        let posX[2] =  Mul16[17];
+        let posY[2] =  Mul16[10];
+        let type_block[2] = 13;
 
-        let posX[3] = 320;
-        let posY[3] = 208;
+        let posX[3] =  Mul16[20];
+        let posY[3] =  Mul16[13];
         let type_block[3] = 4;
 
-        let posX[4] = 336;
-        let posY[4] = 192;
+        let posX[4] =  Mul16[21];
+        let posY[4] =  Mul16[12];
         let type_block[4] = 4;
 
-        let posX[5] = 336;
-        let posY[5] = 208;
+        let posX[5] =  Mul16[21];
+        let posY[5] =  Mul16[13];
         let type_block[5] = 4;
 
-        let posX[6] = 352;
-        let posY[6] = 176;
+        let posX[6] =  Mul16[22];
+        let posY[6] =  Mul16[11];
         let type_block[6] = 4;
 
-        let posX[7] = 352;
-        let posY[7] = 192;
+        let posX[7] =  Mul16[22];
+        let posY[7] =  Mul16[12];
         let type_block[7] = 4;
 
-        let posX[8] = 352;
-        let posY[8] = 208;
+        let posX[8] =  Mul16[22];
+        let posY[8] =  Mul16[13];
         let type_block[8] = 4;
 
-        let posX[9] = 368;
-        let posY[9] = 160;
+        let posX[9] =  Mul16[23];
+        let posY[9] =  Mul16[10];
         let type_block[9] = 4;
 
-        let posX[10] = 368;
-        let posY[10] = 176;
+        let posX[10] =  Mul16[23];
+        let posY[10] =  Mul16[11];
         let type_block[10] = 4;
 
-        let posX[11] = 368;
-        let posY[11] = 192;
+        let posX[11] =  Mul16[23];
+        let posY[11] =  Mul16[12];
         let type_block[11] = 4;
 
-        let posX[12] = 368;
-        let posY[12] = 208;
+        let posX[12] =  Mul16[23];
+        let posY[12] =  Mul16[13];
         let type_block[12] = 4;
 
-        let posX[13] = 384;
-        let posY[13] = 144;
+        let posX[13] =  Mul16[24];
+        let posY[13] =  Mul16[9];
         let type_block[13] = 4;
 
-        let posX[14] = 384;
-        let posY[14] = 160;
+        let posX[14] =  Mul16[24];
+        let posY[14] =  Mul16[10];
         let type_block[14] = 4;
 
-        let posX[15] = 384;
-        let posY[15] = 176;
+        let posX[15] =  Mul16[24];
+        let posY[15] =  Mul16[11];
         let type_block[15] = 4;
 
-        let posX[16] = 384;
-        let posY[16] = 192;
+        let posX[16] =  Mul16[24];
+        let posY[16] =  Mul16[12];
         let type_block[16] = 4;
 
-        let posX[17] = 384;
-        let posY[17] = 208;
+        let posX[17] =  Mul16[24];
+        let posY[17] =  Mul16[13];
         let type_block[17] = 4;
 
-        let posX[18] = 448;
-        let posY[18] = 96;
+        let posX[18] =  Mul16[28];
+        let posY[18] =  Mul16[6];
         let type_block[18] = 2;
 
-        let posX[19] = 448;
-        let posY[19] = 160;
+        let posX[19] =  Mul16[28];
+        let posY[19] =  Mul16[10];
         let type_block[19] = 2;
 
-        let posX[20] = 464;
-        let posY[20] = 96;
+        let posX[20] =  Mul16[29];
+        let posY[20] =  Mul16[6];
         let type_block[20] = 2;
 
-        let posX[21] = 480;
-        let posY[21] = 96;
+        let posX[21] =  Mul16[30];
+        let posY[21] =  Mul16[6];
         let type_block[21] = 0;
 
-        let posX[22] = 496;
-        let posY[22] = 96;
+        let posX[22] =  Mul16[31];
+        let posY[22] =  Mul16[6];
         let type_block[22] = 2;
 
-        let posX[23] = 528;
-        let posY[23] = 176;
+        let posX[23] =  Mul16[33];
+        let posY[23] =  Mul16[11];
         let type_block[23] = 4;
 
-        let posX[24] = 528;
-        let posY[24] = 192;
+        let posX[24] =  Mul16[33];
+        let posY[24] =  Mul16[12];
         let type_block[24] = 4;
 
-        let posX[25] = 528;
-        let posY[25] = 208;
+        let posX[25] =  Mul16[33];
+        let posY[25] =  Mul16[13];
         let type_block[25] = 4;
 
-        let posX[26] = 592;
-        let posY[26] = 96;
+        let posX[26] =  Mul16[37];
+        let posY[26] =  Mul16[6];
         let type_block[26] = 0;
 
-        let posX[27] = 640;
-        let posY[27] = 96;
+        let posX[27] =  Mul16[40];
+        let posY[27] =  Mul16[6];
         let type_block[27] = 0;
 
-        let posX[28] = 656;
-        let posY[28] = 96;
+        let posX[28] =  Mul16[41];
+        let posY[28] =  Mul16[6];
         let type_block[28] = 0;
 
-        let posX[29] = 720;
-        let posY[29] = 208;
+        let posX[29] =  Mul16[45];
+        let posY[29] =  Mul16[13];
         let type_block[29] = 3;
 
-        let posX[30] = 720;
-        let posY[30] = 192;
+        let posX[30] =  Mul16[45];
+        let posY[30] =  Mul16[12];
         let type_block[30] = 3;
 
-        let posX[31] = 720;
-        let posY[31] = 176;
+        let posX[31] =  Mul16[45];
+        let posY[31] =  Mul16[11];
         let type_block[31] = 3;
 
-        let posX[32] = 720;
-        let posY[32] = 160;
+        let posX[32] =  Mul16[45];
+        let posY[32] =  Mul16[10];
         let type_block[32] = 6;
 
-        let posX[33] = 736;
-        let posY[33] = 208;
+        let posX[33] =  Mul16[46];
+        let posY[33] =  Mul16[13];
         let type_block[33] = 8;
 
-        let posX[34] = 736;
-        let posY[34] = 192;
+        let posX[34] =  Mul16[46];
+        let posY[34] =  Mul16[12];
         let type_block[34] = 8;
 
-        let posX[35] = 736;
-        let posY[35] = 176;
+        let posX[35] =  Mul16[46];
+        let posY[35] =  Mul16[11];
         let type_block[35] = 8;
 
-        let posX[36] = 736;
-        let posY[36] = 160;
+        let posX[36] =  Mul16[46];
+        let posY[36] =  Mul16[10];
         let type_block[36] = 7;
 
-        let posX[37] = 832;
-        let posY[37] = 96;
+        let posX[37] =  Mul16[52];
+        let posY[37] =  Mul16[6];
         let type_block[37] = 2;
 
-        let posX[38] = 832;
-        let posY[38] = 160;
+        let posX[38] =  Mul16[52];
+        let posY[38] =  Mul16[10];
         let type_block[38] = 2;
 
-        let posX[39] = 848;
-        let posY[39] = 96;
+        let posX[39] =  Mul16[53];
+        let posY[39] =  Mul16[6];
         let type_block[39] = 2;
 
-        let posX[40] = 848;
-        let posY[40] = 160;
+        let posX[40] =  Mul16[53];
+        let posY[40] =  Mul16[10];
         let type_block[40] = 2;
 
-        let posX[41] = 864;
-        let posY[41] = 96;
+        let posX[41] =  Mul16[54];
+        let posY[41] =  Mul16[6];
         let type_block[41] = 2;
 
-        let posX[42] = 864;
-        let posY[42] = 160;
+        let posX[42] =  Mul16[54];
+        let posY[42] =  Mul16[10];
         let type_block[41] = 2;
 
-        let posX[43] = 880;
-        let posY[43] = 96;
+        let posX[43] =  Mul16[55];
+        let posY[43] =  Mul16[6];
         let type_block[43] = 2;
 
-        let posX[44] = 880;
-        let posY[44] = 160;
+        let posX[44] =  Mul16[55];
+        let posY[44] =  Mul16[10];
         let type_block[44] = 2;
 
-        let posX[45] = 896;
-        let posY[45] = 96;
+        let posX[45] =  Mul16[56];
+        let posY[45] =  Mul16[6];
         let type_block[45] = 2;
 
-        let posX[46] = 896;
-        let posY[46] = 160;
+        let posX[46] =  Mul16[56];
+        let posY[46] =  Mul16[10];
         let type_block[46] = 2;
 
-        let posX[47] = 1072;
-        let posY[47] = 160;
+        let posX[47] =  Mul16[67];
+        let posY[47] =  Mul16[10];
         let type_block[47] = 0;
 
-        let posX[48] = 1088;
-        let posY[48] = 96;
+        let posX[48] =  Mul16[68];
+        let posY[48] =  Mul16[6];
         let type_block[48] = 0;
 
-        let posX[49] = 1104;
-        let posY[49] = 96;
+        let posX[49] =  Mul16[69];
+        let posY[49] =  Mul16[6];
         let type_block[49] = 0;
 
-        let posX[50] = 1120;
-        let posY[50] = 96;
+        let posX[50] =  Mul16[70];
+        let posY[50] =  Mul16[6];
         let type_block[50] = 0;
 
-        let posX[51] = 1136;
-        let posY[51] = 96;
+        let posX[51] =  Mul16[71];
+        let posY[51] =  Mul16[6];
         let type_block[51] = 0;
 
-        let posX[52] = 1168;
-        let posY[52] = 160;
+        let posX[52] =  Mul16[73];
+        let posY[52] =  Mul16[10];
         let type_block[52] = 6;
 
-        let posX[53] = 1168;
-        let posY[53] = 176;
+        let posX[53] =  Mul16[73];
+        let posY[53] =  Mul16[11];
         let type_block[53] = 3;
 
-        let posX[54] = 1168;
-        let posY[54] = 192;
+        let posX[54] =  Mul16[73];
+        let posY[54] =  Mul16[12];
         let type_block[54] = 3;
 
-        let posX[55] = 1168;
-        let posY[55] = 208;
+        let posX[55] =  Mul16[73];
+        let posY[55] =  Mul16[13];
         let type_block[55] = 3;
 
-        let posX[56] = 1184;
-        let posY[56] = 160;
+        let posX[56] =  Mul16[74];
+        let posY[56] =  Mul16[10];
         let type_block[56] = 7;
 
-        let posX[57] = 1184;
-        let posY[57] = 176;
+        let posX[57] =  Mul16[74];
+        let posY[57] =  Mul16[11];
         let type_block[57] = 8;
 
-        let posX[58] = 1184;
-        let posY[58] = 192;
+        let posX[58] =  Mul16[74];
+        let posY[58] =  Mul16[12];
         let type_block[58] = 8;
 
-        let posX[59] = 1184;
-        let posY[59] = 208;
+        let posX[59] =  Mul16[74];
+        let posY[59] =  Mul16[13];
         let type_block[59] = 8;
 
-        let posX[60] = 1248;
-        let posY[60] = 160;
+        let posX[60] =  Mul16[78];
+        let posY[60] =  Mul16[10];
         let type_block[60] = 2;
 
-        let posX[61] = 1264;
-        let posY[61] = 160;
+        let posX[61] =  Mul16[79];
+        let posY[61] =  Mul16[10];
         let type_block[61] = 2;
 
-        let posX[62] = 1280;
-        let posY[62] = 96;
+        let posX[62] =  Mul16[80];
+        let posY[62] =  Mul16[6];
         let type_block[62] = 0;
 
-        let posX[63] = 1280;
-        let posY[63] = 160;
+        let posX[63] =  Mul16[80];
+        let posY[63] =  Mul16[10];
         let type_block[63] = 2;
 
-        let posX[64] = 1296;
-        let posY[64] = 96;
+        let posX[64] =  Mul16[81];
+        let posY[64] =  Mul16[6];
         let type_block[64] = 0;
 
-        let posX[65] = 1296;
-        let posY[65] = 160;
+        let posX[65] =  Mul16[81];
+        let posY[65] =  Mul16[10];
         let type_block[65] = 2;
 
-        let posX[66] = 1312;
-        let posY[66] = 96;
+        let posX[66] =  Mul16[82];
+        let posY[66] =  Mul16[6];
         let type_block[66] = 0;
 
-        let posX[67] = 1328;
-        let posY[67] = 96;
+        let posX[67] =  Mul16[83];
+        let posY[67] =  Mul16[6];
         let type_block[67] = 0;
 
-        let posX[68] = 1344;
-        let posY[68] = 96;
+        let posX[68] =  Mul16[84];
+        let posY[68] =  Mul16[6];
         let type_block[68] = 0;
 
-        let posX[69] = 1344;
-        let posY[69] = 160;
+        let posX[69] =  Mul16[84];
+        let posY[69] =  Mul16[10];
         let type_block[69] = 2;
 
-        let posX[70] = 1360;
-        let posY[70] = 160;
+        let posX[70] =  Mul16[85];
+        let posY[70] =  Mul16[10];
         let type_block[70] = 2;
 
-        let posX[71] = 1376;
-        let posY[71] = 160;
+        let posX[71] =  Mul16[86];
+        let posY[71] =  Mul16[10];
         let type_block[71] = 2;
 
-        let posX[72] = 1440;
-        let posY[72] = 96;
+        let posX[72] =  Mul16[90];
+        let posY[72] =  Mul16[6];
         let type_block[72] = 0;
 
-        let posX[73] = 1456;
-        let posY[73] = 96;
+        let posX[73] =  Mul16[91];
+        let posY[73] =  Mul16[6];
         let type_block[73] = 0;
 
-        let posX[74] = 1472;
-        let posY[74] = 96;
+        let posX[74] =  Mul16[92];
+        let posY[74] =  Mul16[6];
         let type_block[74] = 0;
 
-        let posX[75] = 1616;
-        let posY[75] = 160;
+        let posX[75] =  Mul16[101];
+        let posY[75] =  Mul16[10];
         let type_block[75] = 6;
 
-        let posX[76] = 1616;
-        let posY[76] = 176;
+        let posX[76] =  Mul16[101];
+        let posY[76] =  Mul16[11];
         let type_block[76] = 3;
 
-        let posX[77] = 1616;
-        let posY[77] = 192;
+        let posX[77] =  Mul16[101];
+        let posY[77] =  Mul16[12];
         let type_block[77] = 3;
 
-        let posX[78] = 1616;
-        let posY[78] = 208;
+        let posX[78] =  Mul16[101];
+        let posY[78] =  Mul16[13];
         let type_block[78] = 3;
 
-        let posX[79] = 1632;
-        let posY[79] = 160;
+        let posX[79] =  Mul16[102];
+        let posY[79] =  Mul16[10];
         let type_block[79] = 7;
 
-        let posX[80] = 1632;
-        let posY[80] = 176;
+        let posX[80] =  Mul16[102];
+        let posY[80] =  Mul16[11];
         let type_block[80] = 8;
 
-        let posX[81] = 1632;
-        let posY[81] = 192;
+        let posX[81] =  Mul16[102];
+        let posY[81] =  Mul16[12];
         let type_block[81] = 8;
 
-        let posX[82] = 1632;
-        let posY[82] = 208;
+        let posX[82] =  Mul16[102];
+        let posY[82] =  Mul16[13];
         let type_block[82] = 8;
 
-        let posX[83] = 1696;
-        let posY[83] = 160;
+        let posX[83] =  Mul16[106];
+        let posY[83] =  Mul16[10];
         let type_block[83] = 2;
 
-        let posX[84] = 1792;
-        let posY[84] = 192;
+        let posX[84] =  Mul16[112];
+        let posY[84] =  Mul16[12];
         let type_block[84] = 6;
 
-        let posX[85] = 1792;
-        let posY[85] = 208;
+        let posX[85] =  Mul16[112];
+        let posY[85] =  Mul16[13];
         let type_block[85] = 3;
 
-        let posX[86] = 1808;
-        let posY[86] = 192;
+        let posX[86] =  Mul16[113];
+        let posY[86] =  Mul16[12];
         let type_block[86] = 7;
 
-        let posX[87] = 1808;
-        let posY[87] = 208;
+        let posX[87] =  Mul16[113];
+        let posY[87] =  Mul16[13];
         let type_block[87] = 8;
 
-        let posX[88] = 1904;
-        let posY[88] = 160;
+        let posX[88] =  Mul16[119];
+        let posY[88] =  Mul16[10];
         let type_block[88] = 6;
 
-        let posX[89] = 1904;
-        let posY[89] = 176;
+        let posX[89] =  Mul16[119];
+        let posY[89] =  Mul16[11];
         let type_block[89] = 3;
 
-        let posX[90] = 1904;
-        let posY[90] = 192;
+        let posX[90] =  Mul16[119];
+        let posY[90] =  Mul16[12];
         let type_block[90] = 3;
 
-        let posX[91] = 1904;
-        let posY[91] = 208;
+        let posX[91] =  Mul16[119];
+        let posY[91] =  Mul16[13];
         let type_block[91] = 3;
 
-        let posX[92] = 1920;
-        let posY[92] = 160;
+        let posX[92] =  Mul16[120];
+        let posY[92] =  Mul16[10];
         let type_block[92] = 7;
 
-        let posX[93] = 1920;
-        let posY[93] = 176;
+        let posX[93] =  Mul16[120];
+        let posY[93] =  Mul16[11];
         let type_block[93] = 8;
 
-        let posX[94] = 1920;
-        let posY[94] = 192;
+        let posX[94] =  Mul16[120];
+        let posY[94] =  Mul16[12];
         let type_block[94] = 8;
 
-        let posX[95] = 1920;
-        let posY[95] = 208;
+        let posX[95] =  Mul16[120];
+        let posY[95] =  Mul16[13];
         let type_block[95] = 8;
 
-        let posX[96] = 1952;
-        let posY[96] = 96;
+        let posX[96] =  Mul16[122];
+        let posY[96] =  Mul16[6];
         let type_block[96] = 0;
 
-        let posX[97] = 1968;
-        let posY[97] = 96;
+        let posX[97] =  Mul16[123];
+        let posY[97] =  Mul16[6];
         let type_block[97] = 0;
 
-        let posX[98] = 1968;
-        let posY[98] = 192;
+        let posX[98] =  Mul16[123];
+        let posY[98] =  Mul16[12];
         let type_block[98] = 6;
 
-        let posX[99] = 1968;
-        let posY[99] = 208;
+        let posX[99] =  Mul16[123];
+        let posY[99] =  Mul16[13];
         let type_block[99] = 3;
 
-        let posX[100] = 1984;
-        let posY[100] = 96;
+        let posX[100] =  Mul16[124];
+        let posY[100] =  Mul16[6];
         let type_block[100] = 0;
 
-        let posX[101] = 1984;
-        let posY[101] = 192;
+        let posX[101] =  Mul16[124];
+        let posY[101] =  Mul16[12];
         let type_block[101] = 7;
 
-        let posX[102] = 1984;
-        let posY[102] = 208;
+        let posX[102] =  Mul16[124];
+        let posY[102] =  Mul16[13];
         let type_block[102] = 8;
 
-        let posX[103] = 2000;
-        let posY[103] = 96;
+        let posX[103] =  Mul16[125];
+        let posY[103] =  Mul16[6];
         let type_block[103] = 0;
 
-        let posX[104] = 2032;
-        let posY[104] = 144;
+        let posX[104] =  Mul16[127];
+        let posY[104] =  Mul16[9];
         let type_block[104] = 6;
 
-        let posX[105] = 2032;
-        let posY[105] = 160;
+        let posX[105] =  Mul16[127];
+        let posY[105] =  Mul16[10];
         let type_block[105] = 3;
 
-        let posX[106] = 2032;
-        let posY[106] = 176;
+        let posX[106] =  Mul16[127];
+        let posY[106] =  Mul16[11];
         let type_block[106] = 3;
 
-        let posX[107] = 2032;
-        let posY[107] = 192;
+        let posX[107] =  Mul16[127];
+        let posY[107] =  Mul16[12];
         let type_block[107] = 3;
 
-        let posX[108] = 2032;
-        let posY[108] = 208;
+        let posX[108] =  Mul16[127];
+        let posY[108] =  Mul16[13];
         let type_block[108] = 3;
 
-        let posX[109] = 2048;
-        let posY[109] = 144;
+        let posX[109] =  Mul16[128];
+        let posY[109] =  Mul16[9];
         let type_block[109] = 7;
 
-        let posX[110] = 2048;
-        let posY[110] = 160;
+        let posX[110] =  Mul16[128];
+        let posY[110] =  Mul16[10];
         let type_block[110] = 8;
 
-        let posX[111] = 2048;
-        let posY[111] = 176;
+        let posX[111] =  Mul16[128];
+        let posY[111] =  Mul16[11];
         let type_block[111] = 8;
 
-        let posX[112] = 2048;
-        let posY[112] = 192;
+        let posX[112] =  Mul16[128];
+        let posY[112] =  Mul16[12];
         let type_block[112] = 8;
 
-        let posX[113] = 2048;
-        let posY[113] = 208;
+        let posX[113] =  Mul16[128];
+        let posY[113] =  Mul16[13];
         let type_block[113] = 8;
+        /*******************/
 
-        let posX[114] = 2400;
-        let posY[114] = 176;
+        let posX[114] =  Mul16[150];
+        let posY[114] =  Mul16[11];
         let type_block[114] = 4;
 
-        let posX[115] = 2400;
-        let posY[115] = 192;
+        let posX[115] =  Mul16[150];
+        let posY[115] =  Mul16[12];
         let type_block[115] = 4;
 
-        let posX[116] = 2400;
-        let posY[116] = 208;
+        let posX[116] =  Mul16[150];
+        let posY[116] =  Mul16[13];
         let type_block[116] = 4;
 
-        let posX[117] = 2528;
-        let posY[117] = 160;
+        let posX[117] =  Mul16[158];
+        let posY[117] =  Mul16[10];
         let type_block[117] = 2;
 
-        let posX[118] = 2576;
-        let posY[118] = 96;
+        let posX[118] =  Mul16[161];
+        let posY[118] =  Mul16[6];
         let type_block[118] = 0;
 
-        let posX[119] = 2592;
-        let posY[119] = 96;
+        let posX[119] =  Mul16[162];
+        let posY[119] =  Mul16[6];
         let type_block[119] = 0;
 
-        let posX[120] = 2608;
-        let posY[120] = 96;
+        let posX[120] =  Mul16[163];
+        let posY[120] =  Mul16[6];
         let type_block[120] = 0;
 
-        let posX[121] = 2624;
-        let posY[121] = 96;
+        let posX[121] =  Mul16[164];
+        let posY[121] =  Mul16[6];
         let type_block[121] = 0;
 
-        let posX[122] = 2640;
-        let posY[122] = 96;
+        let posX[122] =  Mul16[165];
+        let posY[122] =  Mul16[6];
         let type_block[122] = 0;
 
-        let posX[123] = 2672;
-        let posY[123] = 160;
+        let posX[123] =  Mul16[167];
+        let posY[123] =  Mul16[10];
         let type_block[123] = 2;
 
-        let posX[124] = 2704;
-        let posY[124] = 96;
+        let posX[124] =  Mul16[169];
+        let posY[124] =  Mul16[6];
         let type_block[124] = 2;
 
-        let posX[125] = 2768;
-        let posY[125] = 176;
+        let posX[125] =  Mul16[173];
+        let posY[125] =  Mul16[11];
         let type_block[125] = 6;
 
-        let posX[126] = 2768;
-        let posY[126] = 192;
+        let posX[126] =  Mul16[173];
+        let posY[126] =  Mul16[12];
         let type_block[126] = 3;
 
-        let posX[127] = 2768;
-        let posY[127] = 208;
+        let posX[127] =  Mul16[173];
+        let posY[127] =  Mul16[13];
         let type_block[127] = 3;
 
-        let posX[128] = 2784;
-        let posY[128] = 176;
+        let posX[128] =  Mul16[174];
+        let posY[128] =  Mul16[11];
         let type_block[128] = 7;
 
-        let posX[129] = 2784;
-        let posY[129] = 192;
+        let posX[129] =  Mul16[174];
+        let posY[129] =  Mul16[12];
         let type_block[129] = 8;
 
-        let posX[130] = 2784;
-        let posY[130] = 208;
+        let posX[130] =  Mul16[174];
+        let posY[130] =  Mul16[13];
         let type_block[130] = 8;
 
-        let posX[131] = 2880;
-        let posY[131] = 160;
+        let posX[131] =  Mul16[181];
+        let posY[131] =  Mul16[10];
         let type_block[131] = 0;
 
-        let posX[132] = 2896;
-        let posY[132] = 160;
-        let type_block[132] = 0;
+        let posX[132] =  Mul16[182];
+        let posY[132] =  Mul16[6];
+        let type_block[132] = 2;
 
-        let posX[133] = 2912;
-        let posY[133] = 96;
-        let type_block[133] = 2;
+        let posX[133] =  Mul16[182];
+        let posY[133] =  Mul16[10];
+        let type_block[133] = 0;
 
-        let posX[134] = 2912;
-        let posY[134] = 160;
-        let type_block[134] = 0;
+        let posX[134] =  Mul16[184];
+        let posY[134] =  Mul16[10];
+        let type_block[134] = 1;
 
-        let posX[135] = 2944;
-        let posY[135] = 208;
-        let type_block[135] = 9;
 
-        let posX[136] = 2976;
-        let posY[136] = 64;
+        let posX[135] = Mul16[184]; //add new map
+        let posY[135] = Mul16[13];
+        let type_block[135] = 14;
+
+        let posX[136] = Mul16[186];
+        let posY[136] = Mul16[4];
         let type_block[136] = 4;
 
-        let posX[137] = 2976;
-        let posY[137] = 80;
+        let posX[137] = Mul16[186];
+        let posY[137] = Mul16[5];
         let type_block[137] = 4; 
 
-        let posX[138] = 2976;
-        let posY[138] = 96;
+        let posX[138] = Mul16[186];
+        let posY[138] = Mul16[6];
         let type_block[138] = 4;  
         
-        let posX[139] = 2976;
-        let posY[139] = 112;
+        let posX[139] = Mul16[186];
+        let posY[139] = Mul16[7];
         let type_block[139] = 4; 
 
-        let posX[140] = 2976;
-        let posY[140] = 128;
+        let posX[140] = Mul16[186];
+        let posY[140] = Mul16[8];
         let type_block[140] = 4; 
 
-        let posX[141] = 2976;
-        let posY[141] = 144;
+        let posX[141] = Mul16[186];
+        let posY[141] = Mul16[9];
         let type_block[141] = 4; 
 
-        let posX[142] = 2976;
-        let posY[142] = 160;
+        let posX[142] = Mul16[186];
+        let posY[142] = Mul16[10];
         let type_block[142] = 4; 
 
-        let posX[143] = 2976;
-        let posY[143] = 176;
+        let posX[143] = Mul16[186];
+        let posY[143] = Mul16[11];
         let type_block[143] = 4; 
 
-        let posX[144] = 2976;
-        let posY[144] = 192;
+        let posX[144] = Mul16[186];
+        let posY[144] = Mul16[12];
         let type_block[144] = 4; 
 
-        let posX[145] = 2976;
-        let posY[145] = 208;
+        let posX[145] = Mul16[186];
+        let posY[145] = Mul16[13];
         let type_block[145] = 4;
 
-        let posX[146] = 2992;
-        let posY[146] = 64;
+        let posX[146] = Mul16[187];
+        let posY[146] = Mul16[4];
         let type_block[146] = 4;
 
-        let posX[147] = 2992;
-        let posY[147] = 80;
+        let posX[147] = Mul16[187];
+        let posY[147] = Mul16[5];
         let type_block[147] = 4; 
 
-        let posX[148] = 2992;
-        let posY[148] = 96;
+        let posX[148] = Mul16[187];
+        let posY[148] = Mul16[6];
         let type_block[148] = 4;  
         
-        let posX[149] = 2992;
-        let posY[149] = 112;
+        let posX[149] = Mul16[187];
+        let posY[149] = Mul16[7];
         let type_block[149] = 4; 
 
-        let posX[150] = 2992;
-        let posY[150] = 128;
+        let posX[150] = Mul16[187];
+        let posY[150] = Mul16[8];
         let type_block[150] = 4; 
 
-        let posX[151] = 2992;
-        let posY[151] = 144;
+        let posX[151] = Mul16[187];
+        let posY[151] = Mul16[9];
         let type_block[151] = 4; 
 
-        let posX[152] = 2992;
-        let posY[152] = 160;
+        let posX[152] = Mul16[187];
+        let posY[152] = Mul16[10];
         let type_block[152] = 4; 
 
-        let posX[153] = 2992;
-        let posY[153] = 176;
+        let posX[153] = Mul16[187];
+        let posY[153] = Mul16[11];
         let type_block[153] = 4; 
 
-        let posX[154] = 2992;
-        let posY[154] = 192;
+        let posX[154] = Mul16[187];
+        let posY[154] = Mul16[12];
         let type_block[154] = 4; 
 
-        let posX[155] = 2992;
-        let posY[155] = 208;
+        let posX[155] = Mul16[187];
+        let posY[155] = Mul16[13];
         let type_block[155] = 4; 
 
+        let posX[156] = Mul16[191];
+        let posY[156] = Mul16[10];
+        let type_block[156] = 17; 
 
+        let posX[157] = Mul16[191];
+        let posY[157] = Mul16[11];
+        let type_block[157] = 21; 
+
+        let posX[158] = Mul16[191];
+        let posY[158] = Mul16[12];
+        let type_block[158] = 25; 
+
+        let posX[159] = Mul16[191];
+        let posY[159] = Mul16[13];
+        let type_block[159] = 29; 
+
+        let posX[160] = Mul16[192];
+        let posY[160] = Mul16[10];
+        let type_block[160] = 18; 
+
+        let posX[161] = Mul16[192];
+        let posY[161] = Mul16[11];
+        let type_block[161] = 22; 
+
+        let posX[162] = Mul16[192];
+        let posY[162] = Mul16[12];
+        let type_block[162] = 26; 
+
+        let posX[163] = Mul16[192];
+        let posY[163] = Mul16[13];
+        let type_block[163] = 30; 
+
+        let posX[164] = Mul16[193];
+        let posY[164] = Mul16[10];
+        let type_block[164] = 19; 
+
+        let posX[165] = Mul16[193];
+        let posY[165] = Mul16[11];
+        let type_block[165] = 23; 
+
+        let posX[166] = Mul16[193];
+        let posY[166] = Mul16[12];
+        let type_block[166] = 27; 
+
+        let posX[167] = Mul16[193];
+        let posY[167] = Mul16[13];
+        let type_block[167] = 31;
+
+        let posX[168] = Mul16[194];
+        let posY[168] = Mul16[10];
+        let type_block[168] = 20; 
+
+        let posX[169] = Mul16[194];
+        let posY[169] = Mul16[11];
+        let type_block[169] = 24; 
+
+        let posX[170] = Mul16[194];
+        let posY[170] = Mul16[12];
+        let type_block[170] = 28; 
+
+        let posX[171] = Mul16[194];
+        let posY[171] = Mul16[13];
+        let type_block[171] = 32; 
+        /*******************/
+        // let posX[0 + a] = Mul16[b + 0];
+        // let posY[0 + a] = Mul16[1];
+        // let type_block[0  + a] = 0;
+
+        // let posX[1 + a] = Mul16[b + 0];
+        // let posY[1 + a] = Mul16[2];
+        // let type_block[1  + a] = 0;
+
+        // let posX[2 + a] = Mul16[b + 0];
+        // let posY[2 + a] = Mul16[3];
+        // let type_block[2 + a] = 0;
+
+        // let posX[3 + a] = Mul16[b + 0];
+        // let posY[3 + a] = Mul16[4];
+        // let type_block[3 + a] = 0;
+
+        // let posX[4 + a] = Mul16[b + 0];
+        // let posY[4 + a] = Mul16[5];
+        // let type_block[4 + a] = 0;
+
+        // let posX[5 + a] = Mul16[b + 0];
+        // let posY[5 + a] = Mul16[6];
+        // let type_block[5 + a] = 0;
+
+        // let posX[6 + a] = Mul16[b + 0];
+        // let posY[6 + a] = Mul16[7];
+        // let type_block[6 + a] = 0;
+
+        // let posX[7 + a] = Mul16[b + 0];
+        // let posY[7 + a] = Mul16[8];
+        // let type_block[7 + a] = 0;
+
+        // let posX[8 + a] = Mul16[b + 0];
+        // let posY[8 + a] = Mul16[9];
+        // let type_block[8 + a] = 0;
+
+        // let posX[9 + a] = Mul16[b + 0];
+        // let posY[9 + a] = Mul16[10];
+        // let type_block[9 + a] = 0;
+
+        // let posX[10 + a] = Mul16[b + 0];
+        // let posY[10 + a] = Mul16[11];
+        // let type_block[10 + a] = 0;
+
+        // let posX[11 + a] = Mul16[b + 0];
+        // let posY[11 + a] = Mul16[12];
+        // let type_block[11 + a] = 0;
+
+        // let posX[12 + a] = Mul16[b + 0];
+        // let posY[12 + a] = Mul16[13];
+        // let type_block[12 + a] = 0;
+
+        // let posX[13 + a] = Mul16[b + 4];
+        // let posY[13 + a] = Mul16[1];
+        // let type_block[13 + a] = 0;
+
+        // let posX[14 + a] = Mul16[b + 4];
+        // let posY[14 + a] = Mul16[2];
+        // let type_block[14 + a] = 0;
+
+        // let posX[15 + a] = Mul16[b + 4];
+        // let posY[15 + a] = Mul16[3];
+        // let type_block[15 + a] = 0;
+
+        // let posX[16 + a] = Mul16[b + 4];
+        // let posY[16 + a] = Mul16[4];
+        // let type_block[16 + a] = 0;
+
+        // let posX[17 + a] = Mul16[b + 4]; //coin
+        // let posY[17 + a] = Mul16[9];
+        // let type_block[17 + a] = 13;
+
+        // let posX[18 + a] = Mul16[b + 4];
+        // let posY[18 + a] = Mul16[10];
+        // let type_block[18 + a] = 0;
+
+        // let posX[19 + a] = Mul16[b + 5];
+        // let posY[19 + a] = Mul16[1];
+        // let type_block[19 + a] = 0;
+
+        // let posX[20 + a] = Mul16[b + 5];
+        // let posY[20 + a] = Mul16[2];
+        // let type_block[20 + a] = 0;
+
+        // let posX[21 + a] = Mul16[b + 5];
+        // let posY[21 + a] = Mul16[3];
+        // let type_block[21 + a] = 0;
+
+        // let posX[22 + a] = Mul16[b + 5];
+        // let posY[22 + a] = Mul16[4];
+        // let type_block[22 + a] = 0;
+
+        // let posX[23 + a] = Mul16[b + 5]; //coin
+        // let posY[23 + a] = Mul16[9];
+        // let type_block[23 + a] = 13;
+
+        // let posX[24 + a] = Mul16[b + 5];
+        // let posY[24 + a] = Mul16[10];
+        // let type_block[24 + a] = 0;
+
+        // let posX[25 + a] = Mul16[b + 6];
+        // let posY[25 + a] = Mul16[1];
+        // let type_block[25 + a] = 0;
+
+        // let posX[26 + a] = Mul16[b + 6];
+        // let posY[26 + a] = Mul16[2];
+        // let type_block[26 + a] = 0;
+
+        // let posX[27 + a] = Mul16[b + 6];
+        // let posY[27 + a] = Mul16[3];
+        // let type_block[27 + a] = 0;
+
+        // let posX[28 + a] = Mul16[b + 6];
+        // let posY[28 + a] = Mul16[4];
+        // let type_block[28 + a] = 0;
+
+        // let posX[29 + a] = Mul16[b + 6]; //coin
+        // let posY[29 + a] = Mul16[9];
+        // let type_block[29 + a] = 13;
+
+        // let posX[30 + a] = Mul16[b + 6];
+        // let posY[30 + a] = Mul16[10];
+        // let type_block[30 + a] = 0;
+
+        // let posX[31 + a] = Mul16[b + 7];
+        // let posY[31 + a] = Mul16[1];
+        // let type_block[31 + a] = 0;
+
+        // let posX[32 + a] = Mul16[b + 7];
+        // let posY[32 + a] = Mul16[2];
+        // let type_block[32 + a] = 0;
+
+        // let posX[33 + a] = Mul16[b + 7];
+        // let posY[33 + a] = Mul16[3];
+        // let type_block[33 + a] = 0;
+
+        // let posX[34 + a] = Mul16[b + 7];
+        // let posY[34 + a] = Mul16[4];
+        // let type_block[34 + a] = 0;
+
+        // let posX[35 + a] = Mul16[b + 7]; //coin
+        // let posY[35 + a] = Mul16[9];
+        // let type_block[35 + a] = 13;
+
+        // let posX[36 + a] = Mul16[b + 7];
+        // let posY[36 + a] = Mul16[10];
+        // let type_block[36 + a] = 0;
+
+        // let posX[37 + a] = Mul16[b + 8];
+        // let posY[37 + a] = Mul16[1];
+        // let type_block[37 + a] = 0;
+
+        // let posX[38 + a] = Mul16[b + 8];
+        // let posY[38 + a] = Mul16[2];
+        // let type_block[38 + a] = 0;
+
+        // let posX[39 + a] = Mul16[b + 8];
+        // let posY[39 + a] = Mul16[3];
+        // let type_block[39 + a] = 0;
+
+        // let posX[40 + a] = Mul16[b + 8];
+        // let posY[40 + a] = Mul16[4];
+        // let type_block[40 + a] = 0;
+
+        // let posX[41 + a] = Mul16[b + 8]; //coin
+        // let posY[41 + a] = Mul16[9];
+        // let type_block[41 + a] = 13;
+
+        // let posX[42 + a] = Mul16[b + 8];
+        // let posY[42 + a] = Mul16[10];
+        // let type_block[42 + a] = 0;
+
+        // let posX[43 + a] = Mul16[b + 9];
+        // let posY[43 + a] = Mul16[1];
+        // let type_block[43 + a] = 0;
+
+        // let posX[44 + a] = Mul16[b + 9];
+        // let posY[44 + a] = Mul16[2];
+        // let type_block[44 + a] = 0;
+
+        // let posX[45 + a] = Mul16[b + 9];
+        // let posY[45 + a] = Mul16[3];
+        // let type_block[45 + a] = 0;
+
+        // let posX[46 + a] = Mul16[b + 9];
+        // let posY[46 + a] = Mul16[4];
+        // let type_block[46 + a] = 0;
+
+        // let posX[47 + a] = Mul16[b + 9]; //coin
+        // let posY[47 + a] = Mul16[9];
+        // let type_block[47 + a] = 13;
+
+        // let posX[48 + a] = Mul16[b + 9];
+        // let posY[48 + a] = Mul16[10];
+        // let type_block[48 + a] = 0;
+
+        // let posX[49 + a] = Mul16[b + 10];
+        // let posY[49 + a] = Mul16[1];
+        // let type_block[49 + a] = 0;
+
+        // let posX[50 + a] = Mul16[b + 10];
+        // let posY[50 + a] = Mul16[2];
+        // let type_block[50 + a] = 0;
+
+        // let posX[51 + a] = Mul16[b + 10];
+        // let posY[51 + a] = Mul16[3];
+        // let type_block[51 + a] = 0;
+
+        // let posX[52 + a] = Mul16[b + 10];
+        // let posY[52 + a] = Mul16[4];
+        // let type_block[52 + a] = 0;
+
+        // let posX[53 + a] = Mul16[b + 10]; //coin
+        // let posY[53 + a] = Mul16[9];
+        // let type_block[53 + a] = 13;
+
+        // let posX[54 + a] = Mul16[b + 10];
+        // let posY[54 + a] = Mul16[10];
+        // let type_block[54 + a] = 0;
+
+        // let posX[55 + a] = Mul16[b + 11];
+        // let posY[55 + a] = Mul16[1];
+        // let type_block[55 + a] = 0;
+
+        // let posX[56 + a] = Mul16[b + 11];
+        // let posY[56 + a] = Mul16[2];
+        // let type_block[56 + a] = 0;
+
+        // let posX[57 + a] = Mul16[b + 11];
+        // let posY[57 + a] = Mul16[3];
+        // let type_block[57 + a] = 0;
+
+        // let posX[58 + a] = Mul16[b + 11];
+        // let posY[58 + a] = Mul16[4];
+        // let type_block[58 + a] = 0;
+
+        // let posX[59 + a] = Mul16[b + 11]; //coin
+        // let posY[59 + a] = Mul16[9];
+        // let type_block[59 + a] = 13;
+
+        // let posX[60 + a] = Mul16[b + 11];
+        // let posY[60 + a] = Mul16[10];
+        // let type_block[60 + a] = 0;
+
+        // let posX[61 + a] = Mul16[b + 12];
+        // let posY[61 + a] = Mul16[1];
+        // let type_block[61 + a] = 0;
+
+        // let posX[62 + a] = Mul16[b + 12];
+        // let posY[62 + a] = Mul16[2];
+        // let type_block[62 + a] = 0;
+
+        // let posX[63 + a] = Mul16[b + 12];
+        // let posY[63 + a] = Mul16[3];
+        // let type_block[63 + a] = 0;
+
+        // let posX[64 + a] = Mul16[b + 12];
+        // let posY[64 + a] = Mul16[4];
+        // let type_block[64 + a] = 0;
+
+        // let posX[65 + a] = Mul16[b + 12]; //coin
+        // let posY[65 + a] = Mul16[9];
+        // let type_block[65 + a] = 13;
+
+        // let posX[66 + a] = Mul16[b + 12];
+        // let posY[66 + a] = Mul16[10];
+        // let type_block[66 + a] = 0;
+
+        // let posX[67 + a] = Mul16[b + 13];
+        // let posY[67 + a] = Mul16[1];
+        // let type_block[67 + a] = 0;
+
+        // let posX[68 + a] = Mul16[b + 13];
+        // let posY[68 + a] = Mul16[2];
+        // let type_block[68 + a] = 0;
+
+        // let posX[69 + a] = Mul16[b + 13];
+        // let posY[69 + a] = Mul16[3];
+        // let type_block[69 + a] = 0;
+
+        // let posX[70 + a] = Mul16[b + 13];
+        // let posY[70 + a] = Mul16[4];
+        // let type_block[70 + a] = 0;
+
+        // let posX[71 + a] = Mul16[b + 13];
+        // let posY[71 + a] = Mul16[5];
+        // let type_block[71 + a] = 0;
+
+        // let posX[72 + a] = Mul16[b + 13];
+        // let posY[72 + a] = Mul16[6];
+        // let type_block[72 + a] = 0;
+
+        // let posX[73 + a] = Mul16[b + 13];
+        // let posY[73 + a] = Mul16[7];
+        // let type_block[73 + a] = 0;
+
+        // let posX[74 + a] = Mul16[b + 13];
+        // let posY[74 + a] = Mul16[8];
+        // let type_block[74 + a] = 0;
+
+        // let posX[75 + a] = Mul16[b + 13];
+        // let posY[75 + a] = Mul16[9];
+        // let type_block[75 + a] = 0;
+
+        // let posX[76 + a] = Mul16[b + 13];
+        // let posY[76 + a] = Mul16[10];
+        // let type_block[76 + a] = 0;
+
+        // let posX[77 + a] = Mul16[b + 13];
+        // let posY[77 + a] = Mul16[11];
+        // let type_block[77 + a] = 1;
+
+        // let posX[78 + a] = Mul16[b + 13];
+        // let posY[78 + a] = Mul16[12];
+        // let type_block[78 + a] = 9;
+
+        // let posX[79 + a] = Mul16[b + 13];
+        // let posY[79 + a] = Mul16[13];
+        // let type_block[79 + a] = 10;
+
+        // let posX[80 + a] = Mul16[b + 14];
+        // let posY[80 + a] = Mul16[1];
+        // let type_block[80 + a] = 0;
+
+        // let posX[81 + a] = Mul16[b + 14];
+        // let posY[81 + a] = Mul16[2];
+        // let type_block[81 + a] = 0;
+
+        // let posX[82 + a] = Mul16[b + 14];
+        // let posY[82 + a] = Mul16[3];
+        // let type_block[82 + a] = 0;
+
+        // let posX[83 + a] = Mul16[b + 14];
+        // let posY[83 + a] = Mul16[4];
+        // let type_block[83 + a] = 0;
+
+        // let posX[84 + a] = Mul16[b + 14];
+        // let posY[84 + a] = Mul16[5];
+        // let type_block[84 + a] = 0;
+
+        // let posX[85 + a] = Mul16[b + 14];
+        // let posY[85 + a] = Mul16[6];
+        // let type_block[85 + a] = 0;
+
+        // let posX[86 + a] = Mul16[b + 14];
+        // let posY[86 + a] = Mul16[7];
+        // let type_block[86 + a] = 0;
+
+        // let posX[87 + a] = Mul16[b + 14];
+        // let posY[87 + a] = Mul16[8];
+        // let type_block[87 + a] = 0;
+
+        // let posX[88 + a] = Mul16[b + 14];
+        // let posY[88 + a] = Mul16[9];
+        // let type_block[88 + a] = 0;
+
+        // let posX[89 + a] = Mul16[b + 14];
+        // let posY[89 + a] = Mul16[10];
+        // let type_block[89 + a] = 0;
+
+        // let posX[90 + a] = Mul16[b + 14];
+        // let posY[90 + a] = Mul16[11];
+        // let type_block[90 + a] = 1;
+
+        // let posX[91 + a] = Mul16[b + 14];
+        // let posY[91 + a] = Mul16[12];
+        // let type_block[91 + a] = 11;
+
+        // let posX[92 + a] = Mul16[b + 14];
+        // let posY[92 + a] = Mul16[13];
+        // let type_block[92 + a] = 12;
+        
+        // /**********/
+        // let posX[93 + a] = Mul16[b + 15];
+        // let posY[93 + a] = Mul16[1];
+        // let type_block[93 + a] = 3;
+
+        // let posX[94 + a] = Mul16[b + 15];
+        // let posY[94 + a] = Mul16[2];
+        // let type_block[94 + a] = 3;
+
+        // let posX[95 + a] = Mul16[b + 15];
+        // let posY[95 + a] = Mul16[3];
+        // let type_block[95 + a] = 3;
+
+        // let posX[96 + a] = Mul16[b + 15];
+        // let posY[96 + a] = Mul16[4];
+        // let type_block[96 + a] = 3;
+
+        // let posX[97 + a] = Mul16[b + 15];
+        // let posY[97 + a] = Mul16[5];
+        // let type_block[97 + a] = 3;
+
+        // let posX[98 + a] = Mul16[b + 15];
+        // let posY[98 + a] = Mul16[6];
+        // let type_block[98 + a] = 3;
+
+        // let posX[99 + a] = Mul16[b + 15];
+        // let posY[99 + a] = Mul16[7];
+        // let type_block[99 + a] = 3;
+
+        // let posX[100 + a] = Mul16[b + 15];
+        // let posY[100 + a] = Mul16[8];
+        // let type_block[100 + a] = 3;
+
+        // let posX[101 + a] = Mul16[b +15];
+        // let posY[101 + a] = Mul16[9];
+        // let type_block[101 + a] = 3;
+
+        // let posX[102 + a] = Mul16[b +15];
+        // let posY[102 + a] = Mul16[10];
+        // let type_block[102 + a] = 3;
+
+        // let posX[103 + a] = Mul16[b +15];
+        // let posY[103 + a] = Mul16[11];
+        // let type_block[103 + a] = 3;
+
+        // let posX[104 + a] = Mul16[b +15];
+        // let posY[104 + a] = Mul16[12];
+        // let type_block[104  + a] = 15;
+
+        // let posX[105 + a] = Mul16[b + 15];
+        // let posY[105 + a] = Mul16[13];
+        // let type_block[105 + a] = 16;
+        // /*******************/
+        // let posX[106 + a] = Mul16[b +  16];
+        // let posY[106 + a] = Mul16[1];
+        // let type_block[106 + a] = 8;
+
+        // let posX[107 + a] = Mul16[b +  16];
+        // let posY[107 + a] = Mul16[2];
+        // let type_block[107 + a] = 8;
+
+        // let posX[108 + a] = Mul16[b +  16];
+        // let posY[108 + a] = Mul16[3];
+        // let type_block[108 + a] = 8;
+
+        // let posX[109 + a] = Mul16[b +  16];
+        // let posY[109 + a] = Mul16[4];
+        // let type_block[109 + a] = 8;
+
+        // let posX[110 + a] = Mul16[b +  16];
+        // let posY[110 + a] = Mul16[5];
+        // let type_block[110 + a] = 8;
+
+        // let posX[111 + a] = Mul16[b +  16];
+        // let posY[111 + a] = Mul16[6];
+        // let type_block[111 + a] = 8;
+
+        // let posX[112 + a] = Mul16[b +  16];
+        // let posY[112 + a] = Mul16[7];
+        // let type_block[112 + a] = 8;
+
+        // let posX[113 + a] = Mul16[b +  16];
+        // let posY[113 + a] = Mul16[8];
+        // let type_block[113 + a] = 8;
+
+        // let posX[114 + a] = Mul16[b +  16];
+        // let posY[114 + a] = Mul16[9];
+        // let type_block[114 + a] = 8;
+
+        // let posX[115 + a] = Mul16[b +  16];
+        // let posY[115 + a] = Mul16[10];
+        // let type_block[115 + a] = 8;
+
+        // let posX[116 + a] = Mul16[b +  16];
+        // let posY[116 + a] = Mul16[11];
+        // let type_block[116 + a] = 8;
+
+        // let posX[117 + a] = Mul16[b +  16];
+        // let posY[117 + a] = Mul16[12];
+        // let type_block[117 + a] = 8;
+
+        // let posX[118 + a] = Mul16[b +  16];
+        // let posY[118 + a] = Mul16[13];
+        // let type_block[118 + a] = 8;
+        /*******************/
         
         return this;
     }

@@ -51,14 +51,14 @@ class Monster
         let switch = Montype[i];
         if(switch = 1)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerleft(location);
             let location = 0;
           }
         
         if(switch = 2)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerright(location);
             let location = 0;
           }
@@ -70,12 +70,14 @@ class Monster
 
         if(switch = 3)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         if(switch = 4)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         let i = i + 1;
@@ -103,23 +105,25 @@ class Monster
 
         if(switch = 3)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
@@ -138,14 +142,14 @@ class Monster
         do Screen.setColor(true);
         if(switch = 1)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerleft(location);
             let location = 0;
           }
         
         if(switch = 2)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerright(location);
             let location = 0;
           }
@@ -157,12 +161,14 @@ class Monster
 
         if(switch = 3)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         if(switch = 4)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
   
       return;
@@ -182,23 +188,25 @@ class Monster
 
         if(switch = 3)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = ((MonY[i])*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
@@ -297,7 +305,7 @@ class Monster
 
   /*kill the monster*/
   method void kill(int i)
-  {
+  { 
     do eraseidxMonster(i);
     while(~(i = monLeft) ){
       let MonX[i] = MonX[i-1];

@@ -40,6 +40,7 @@ class SuperMarioGame
 		let screenPos = 0;
 		let ulti = 0;
 		let mul = 1;
+		do mario.turnBig();
 
 		return this;
 	}
@@ -90,6 +91,7 @@ class SuperMarioGame
 		var int idx;
 		var int switch;
 		var int t;
+		var int height;
 		let key = 0;
 		let exit = false;
 		let coin = 0;
@@ -185,6 +187,10 @@ class SuperMarioGame
 			if (~(ulti < 0))
 			{
 				do Output.moveCursor(0, 19);
+				if (ulti < 1000)
+				{
+					do Output.printInt(0);
+				}
 				do Output.printInt(ulti/100);
 			}
 
@@ -211,8 +217,12 @@ class SuperMarioGame
 			if ( (screenPos < 6000) & (mario.getPosX() > 383)) { do transition(32); }
 
 			// Do teleport if Mario is at the pipe, and push 'down' key
-			if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
-			{ do transition(2800 - (mario.getPosX()+screenPos) ); }
+
+			if ( (key = 133) & (~((mario.getPosX()+screenPos)<32)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 208) )
+			{ do transition(2832 - (mario.getPosX()+screenPos) ); }
+
+			// if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
+			// { do transition(3712 - (mario.getPosX()+screenPos) ); }
 
 
 			// Wait for 1 frame to pass
@@ -246,12 +256,14 @@ class SuperMarioGame
 				let y = mario.getPosY();
 				let xx = monster.getMonX(idx);
 				let yy = monster.getMonY(idx);
+				if(Mario.checkBig()) { let height = 32; }
+				else { let height = 16; }
 
 				// If this is a left/right flower monster
 				if ((switch = 1) | (switch = 2))
 				{
 					// If Mario touches the plant Monster, he dies
-					if ( (-16 < (x-xx)) & ((x-xx) < 16) & (-17 < (y-yy)) & ((y-yy) < 17) )
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) )
 					{ do marioDeath(); }
 				}
 
@@ -259,7 +271,7 @@ class SuperMarioGame
 				if ((switch = 0) | (switch = 3) | (switch = 4))
 				{
 					// If Mario steps on the Monster, kill them
-					if ( (-16 < (x-xx)) & ((x-xx) < 16) & (-17 < (y-yy)) & ((y-yy) < 0) )
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-((height+1))) < (y-yy)) & ((y-yy) < 0) )
 					{
 						do mario.jump();
 						do monster.kill(idx);
@@ -267,7 +279,7 @@ class SuperMarioGame
 					{
 						// Else if Mario touches the monster
 						// (Minor Bug) : Touching the corner of a Monster counts as touching it
-						if ( (-17 < (x-xx)) & ((x-xx) < 17) & (-17 < (y-yy)) & ((y-yy) < 17) )
+						if ( (-17 < (x-xx)) & ((x-xx) < 17) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) )
 						{
 							// If Mario has ulti, kill them
 							if (ulti > 0)
@@ -336,18 +348,36 @@ class SuperMarioGame
 
 	method void marioDeath()
 	{
-		let effect = 3;
-		do mario.jump();
-		while(effect > -1)
+		if (Mario.checkBig())
 		{
-			do Sys.wait(10000/fps);
+			let effect = 3;
+			while(effect > -1)
+			{
+				do Sys.wait(10000/fps);
+				do mario.erase();
+				do Sys.wait(10000/fps);
+				do mario.draw();
+				let effect = effect -1;
+			}
+			do mario.turnSmall();
+
+			let ulti = ulti + 200;
+
+		}else
+		{
+			let effect = 3;
+			do mario.jump();
+			while(effect > -1)
+			{
+				do Sys.wait(10000/fps);
+				do mario.erase();
+				do Sys.wait(10000/fps);
+				do mario.draw();
+				let effect = effect -1;
+			}
 			do mario.erase();
-			do Sys.wait(10000/fps);
-			do mario.draw();
-			let effect = effect -1;
+			let exit = true;
 		}
-		do mario.erase();
-		let exit = true;
 
 		return;
 	}
@@ -356,8 +386,15 @@ class SuperMarioGame
 	{
 		var boolean onG;
 		let onG = false;
-		if(map.touchGround(mario.getPosX()+screenPos, mario.getPosY()) ) { let onG = true; }
-		if(map.touchBelow(mario.getPosX()+screenPos, mario.getPosY()) ) { let onG = true; }
+		if (Mario.checkBig())
+		{
+			if(map.touchGround(mario.getPosX()+screenPos, mario.getPosY(), 32) ) { let onG = true; }
+			if(map.touchBelow(mario.getPosX()+screenPos, mario.getPosY(), 32) ) { let onG = true; }
+		}else
+		{
+			if(map.touchGround(mario.getPosX()+screenPos, mario.getPosY(), 16) ) { let onG = true; }
+			if(map.touchBelow(mario.getPosX()+screenPos, mario.getPosY(), 16) ) { let onG = true; }
+		}
 
 		return onG;
 	}
@@ -365,16 +402,22 @@ class SuperMarioGame
 	// Move the appropriate direction according to the key(direction)
   method void move()
   {
+	  	var int x, y, h;
 		let x = mario.getPosX() + screenPos;
 		let y = mario.getPosY();
+		if (Mario.checkBig()) { let h = 32; }
+		else { let h = 16; }
+
 
 		// If Mario is not touching left/right, let Mario move left/right
-    if ((key = 130) & (~map.touchLeftSides(x, y)) & (map.touchLeft(x, y) = false) ) { do mario.moveLeft(); }
-    if ((key = 132) & (~map.touchRightSides(x, y)) & (map.touchRight(x, y) = false) ) { do mario.moveRight(); }
+    			if ((key = 130) & (~map.touchLeftSides(x, y, h)) & (map.touchLeft(x, y, h) = false) ) { do mario.moveLeft(); }
+				if ((key = 132) & (~map.touchRightSides(x, y, h)) & (map.touchRight(x, y, h) = false) ) { do mario.moveRight(); }
 
+	//if Mario touch coin,let coin erase
+		do map.touch(x,y,16);
 		// If Mario is jumping, and there is a block above him, Mario will stop jumping
 		if ( mario.isJump() )
-		{ if (map.touchAbove(x, y)) { do mario.stopJump(); } }
+		{ if (map.touchAbove(x, y, 32)) { do mario.stopJump(); } }
 		// Why don't put the inside if into the upper if bracket?
 		// Cuz if we enter touchAbove, we must make sure mario is jumping
 		// So that the function inside touchAbove can automatically remove the touching block above
@@ -390,6 +433,7 @@ class SuperMarioGame
       do mario.jumpLess();
     }
 
+	
     return;
   }
 
@@ -409,11 +453,11 @@ class SuperMarioGame
 	  	if(switch = 0)
 			{
 	  		// If monster touch leftside of block, let the direction = right
-	  		if(map.touchLeft(xx, yy) = true)
+	  		if(map.touchLeft(xx, yy, 16) = true)
 	  		{ do monster.changeRight(idx); }
 
 	  		// If monster touch rightside of block, let the direction = left
-	  		if(map.touchRight(xx, yy) = true)
+	  		if(map.touchRight(xx, yy, 16) = true)
 	  		{ do monster.changeLeft(idx); }
 
 				// If there is a monster to the left of this current Monster, and they are touching
@@ -429,7 +473,7 @@ class SuperMarioGame
 	  		if(xx-screenPos > 490) { do monster.changeLeft(idx); }
 
 	  		// If monster not on the ground, let monster fall
-	  		if((map.touchBelow(xx,yy) = false) & (map.touchGround(xx,yy) = false))
+	  		if((map.touchBelow(xx,yy,16) = false) & (map.touchGround(xx,yy,16) = false))
 				{ do monster.movedown(idx); }
 	  		else // Else, Let monster move at it's own direction
 	  		{
@@ -443,15 +487,21 @@ class SuperMarioGame
 	  	if(switch = 3)
 	  	{
 				if(monster.getMonY(idx) < 160)
-				{ do monster.changedown(idx); }
-				else { do monster.moveup(idx); }
+				{ 
+					do monster.changedown(idx);
+					do monster.movedown(idx); 
+				}
+				else { do monster.moveup(idx);}
 	  	}
 
 	  	// Let flying monster move up
 	  	if(switch = 4)
 	  	{
-				if(monster.getMonY(idx) > 204)
-				{ do monster.changeup(idx); }
+				if((map.touchAbove(monster.getMonX(idx),(monster.getMonY(idx)+4),16) = true) | (monster.getMonY(idx) > 204))
+				{ 
+					do monster.changeup(idx); 
+					do monster.moveup(idx);	
+				}
 				else{do monster.movedown(idx);}
 	  	}
 
