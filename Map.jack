@@ -31,8 +31,8 @@ class Map
     let posX = block.getPosX();
     let posY = block.getPosY();
     let able_Star = true;
-    let starPosX = 240;
-    let starPosY = 160;
+    // let starPosX = 240;
+    // let starPosY = 160;
     let cloudloc = 7;
     let cloudloc1 = 8;
     /* Refresh item in the screen */
@@ -379,6 +379,13 @@ class Map
           let location = 0;
         }
 
+        if(switch = 37)
+        {
+          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+          do draw.star(location);
+          let location = 0;
+        }
+
       }
       let i = i + 1;
     }
@@ -607,7 +614,7 @@ class Map
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-     if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+     if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
       
       }
@@ -643,7 +650,7 @@ class Map
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-      if( (~(block.getType(i) = 1)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
+      if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
       }
       let i = i + 1;
@@ -715,7 +722,7 @@ class Map
 
     else{
       
-      if(touch & (block.getType(touchBlock) = 2) )
+      if(touch & (block.getType(touchBlock) = 2) )  /***touch coin block***/
       {
         do SuperMarioGame.addPoints(100);
         do SuperMarioGame.addMoney(100);
@@ -735,7 +742,7 @@ class Map
       }
 
       else{
-        if(touch & (block.getType(touchBlock) = 34) )
+        if(touch & (block.getType(touchBlock) = 34) )   /***touch mushroom block***/
         {
           let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
           do eraseidxblock(touchBlock);
@@ -747,6 +754,19 @@ class Map
           do block.changeType(touchBlock-1,35);
           do draw();
 
+        }
+
+        else
+        {
+          if(touch & (block.getType(touchBlock) = 36) )   /***touch star block***/
+          {
+              let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
+              do block.changeType(touchBlock, 5);
+              // do draw.eraseblock(location - 256);
+              // do Sys.wait(100);
+              do block.changeType(touchBlock-1,37);
+              do draw();
+          }
         }
       }
     }
@@ -778,7 +798,7 @@ class Map
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-     if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
+     if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
       { 
         let contact = true;
         let touchtype = block.getType(i); 
@@ -827,10 +847,21 @@ class Map
         do draw();
       }
 
-      if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
+
+      /*If touch mushroom turn big*/
+      if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
       {
         do block.changeType(i,1);
         do SuperMarioGame.tbig();
+        do erase();
+        do draw();
+      }
+
+      /*If touch star turn ulti*/
+      if( (block.getType(i) = 37) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
+      {
+        do block.changeType(i,1);
+        do SuperMarioGame.Ulti();
         do erase();
         do draw();
       }

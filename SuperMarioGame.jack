@@ -16,7 +16,7 @@ class SuperMarioGame
 	field int frameMon; // No. frame passes for the monster
 	field int effect; // Duration of effects
 	field int MonLeft, MonRight; // (Left/Right) idx of monster array
-	field int ulti; // Duration of Mario's ultimate
+ 	static int ulti; // Duration of Mario's ultimate
 	field int x, xx, y, yy; // For storing marioX, marioY, monX, monY
 	field int Life;
 
@@ -201,11 +201,11 @@ class SuperMarioGame
 			// Check if Mario touches any power-upwards
 			// Ultimate Star
 			// (Minor Bug) : Touching the corner of a Monster counts as touching it
-			if ( map.ableStar() & (-17 < (mario.getPosX()-map.getStarX())) & ((mario.getPosX()-map.getStarX()) < 17) & (-17 < (mario.getPosY()-map.getStarY())) & ((mario.getPosY()-map.getStarY()) < 17) )
-			{
-				let ulti = ulti + 1000;
-				do map.useStar();
-			}
+			// if ( map.ableStar() & (-17 < (mario.getPosX()-map.getStarX())) & ((mario.getPosX()-map.getStarX()) < 17) & (-17 < (mario.getPosY()-map.getStarY())) & ((mario.getPosY()-map.getStarY()) < 17) )
+			// {
+			// 	let ulti = ulti + 1000;
+			// 	do map.useStar();
+			// }
 			if (ulti > 0) { let ulti = ulti - 1; }
 
 			if (~(ulti < 0))
@@ -288,8 +288,33 @@ class SuperMarioGame
 				if ((switch = 1) | (switch = 2))
 				{
 					// If Mario touches the plant Monster, he dies
-					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) )
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & (~(ulti > 0)))
 					{ do marioDeath(); }
+
+				}
+
+				if (switch = 1)
+				{
+					// If Mario touches the plant Monster, he dies
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
+					{ 
+						do addPoints(200);
+						do monster.changetype(idx,5);
+						do monster.changetype(idx + 1,5);
+					}
+
+				}
+
+				if (switch = 2)
+				{
+					// If Mario touches the plant Monster, he dies
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
+					{ 
+						do addPoints(200);
+						do monster.changetype(idx - 1,5);
+						do monster.changetype(idx,5);
+					}
+
 				}
 
 				// If this is a (normal/upward/downward) monster
@@ -453,6 +478,8 @@ class SuperMarioGame
 			do mario.turnBig();
 		}
 
+
+
 		// If Mario is not touching left/right, let Mario move left/right
     			if ((key = 130) & (~map.touchLeftSides(x, y, h)) & (map.touchLeft(x, y, h) = false) ) { do mario.moveLeft(); }
 				if ((key = 132) & (~map.touchRightSides(x, y, h)) & (map.touchRight(x, y, h) = false) ) { do mario.moveRight(); }
@@ -592,10 +619,17 @@ class SuperMarioGame
 		return;
 	}
 
+	function void Ulti()
+	{
+		let ulti = ulti + 1000;
+		return;
+	}
+
 	method boolean getwin()
 	{
 		return win;
 	}
+
 
 	method void dispose()
 	{

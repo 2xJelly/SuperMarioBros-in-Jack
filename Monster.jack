@@ -79,6 +79,12 @@ class Monster
           do draw.monster(location);
         }
 
+        if(switch = 5)
+        {
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
+        }
+
         let i = i + 1;
       }
       return;
@@ -360,6 +366,14 @@ class Monster
   method void changedown(int i)
   {
     let Montype[i] = 4;
+    return;
+  }
+
+  method void changetype(int i,int j)
+  {
+    let Montype[i] = j;
+    do eraseMonster();
+    do drawMonster();
     return;
   }
 
