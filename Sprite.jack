@@ -1312,241 +1312,242 @@ class Sprite
     return;
   }
 
-  function void printMarioL()
-  {
-    var int memAddress, startAddress, idx;
+  // function void printMarioL()
+  // {
+  //   var int memAddress, startAddress, idx;
 
-    let memAddress = 16384+512;
-    let startAddress = memAddress;
+  //   let memAddress = 16384+512;
+  //   let startAddress = memAddress;
 
-    // Shift = 0
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L0[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 0
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L0[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 2
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L2[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 2
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L2[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 4
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L4[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 4
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L4[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 6
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L6[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 6
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L6[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 8
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L8[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 8
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L8[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 10
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L10[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 10
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L10[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 12
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L12[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 12
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L12[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 14
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_L14[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 14
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_L14[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    return;
-  }
+  //   return;
+  // }
 
-  function void printMarioR()
-  {
+  // function void printMarioR()
+  // {
 
-    var int memAddress, startAddress, idx;
-    let memAddress = 16384+1024;
-    let startAddress = memAddress;
+  //   var int memAddress, startAddress, idx;
+  //   let memAddress = 16384+1024;
+  //   let startAddress = memAddress;
 
-    // Shift = 0
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R0[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 0
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R0[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 2
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R2[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 2
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R2[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 4
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R4[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 4
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R4[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 6
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R6[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 6
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R6[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 8
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R8[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 8
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R8[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 10
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R10[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 10
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R10[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 12
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R12[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 12
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R12[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    // Shift = 14
-    let memAddress = startAddress;
-    let idx = 0;
-    while(idx < 16)
-    {
-      do Memory.poke(memAddress, marioVal_R14[idx]);
-      let memAddress = memAddress + 32;
-      let idx = idx+1;
-    }
-    let startAddress = startAddress+1;
+  //   // Shift = 14
+  //   let memAddress = startAddress;
+  //   let idx = 0;
+  //   while(idx < 16)
+  //   {
+  //     do Memory.poke(memAddress, marioVal_R14[idx]);
+  //     let memAddress = memAddress + 32;
+  //     let idx = idx+1;
+  //   }
+  //   let startAddress = startAddress+1;
 
-    return;
-  }
+  //   return;
+  // }
 
-  function void printL(int shift)
-  {
-    var int i;
-    let i = 0;
-    while (i < 16)
-    {
-      do Output.moveCursor(i+1, 0);
-  		do Output.printInt(MATH.l_Shift(bigVal_L0[i], shift));
-      let i = i+1;
-    }
-    let i = 0;
-    while (i < 16)
-    {
-      do Output.moveCursor(i+1, 15);
-  		do Output.printInt(MATH.l_Shift(bigVal_L0[i+16], shift));
-      let i = i+1;
-    }
-    return;
-  }
+  // function void printL(int shift)
+  // {
+  //   var int i;
+  //   let i = 0;
+  //   while (i < 16)
+  //   {
+  //     do Output.moveCursor(i+1, 0);
+  // 		do Output.printInt(MATH.l_Shift(bigVal_L0[i], shift));
+  //     let i = i+1;
+  //   }
+  //   let i = 0;
+  //   while (i < 16)
+  //   {
+  //     do Output.moveCursor(i+1, 15);
+  // 		do Output.printInt(MATH.l_Shift(bigVal_L0[i+16], shift));
+  //     let i = i+1;
+  //   }
+  //   return;
+  // }
 
-  function void printR(int shift)
-  {
-    var int i;
-    let i = 0;
-    while (i < 16)
-    {
-      do Output.moveCursor(i+1, 0);
-  		do Output.printInt(MATH.r_Shift(bigVal_R0[i], shift));
-      let i = i+1;
-    }
-    let i = 0;
-    while (i < 16)
-    {
-      do Output.moveCursor(i+1, 15);
-  		do Output.printInt(MATH.r_Shift(bigVal_R0[i+16], shift));
-      let i = i+1;
-    }
-    return;
-  }
+  // function void printR(int shift)
+  // {
+  //   var int i;
+  //   let i = 0;
+  //   while (i < 16)
+  //   {
+  //     do Output.moveCursor(i+1, 0);
+  // 		do Output.printInt(MATH.r_Shift(bigVal_R0[i], shift));
+  //     let i = i+1;
+  //   }
+  //   let i = 0;
+  //   while (i < 16)
+  //   {
+  //     do Output.moveCursor(i+1, 15);
+  // 		do Output.printInt(MATH.r_Shift(bigVal_R0[i+16], shift));
+  //     let i = i+1;
+  //   }
+  //   return;
+  // }
+
 
   function void drawMario(int x, int y)
   {

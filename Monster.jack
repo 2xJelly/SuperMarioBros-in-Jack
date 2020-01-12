@@ -12,7 +12,7 @@ class Monster
 
   constructor Monster new()
   {
-    let numMonster = 30;
+    let numMonster = 28;
     let screenPos = 0;
     let monLeft = 0;
     let monRight = 0;

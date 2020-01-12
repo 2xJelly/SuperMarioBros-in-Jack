@@ -21,7 +21,7 @@ class SuperMarioGame
 	field int Life;
 
 	// Just for Debug, variables for debug
-	field int debug1, debug2, debug3;
+	//field int debug1, debug2, debug3;
 
 	constructor SuperMarioGame new(int gameSpeed,int life)
 	{
@@ -243,7 +243,18 @@ class SuperMarioGame
 			// Do teleport if Mario is at the pipe, and push 'down' key
 
 			if ( (key = 133) & (map.teleportloc((mario.getPosX() + screenPos),mario.getPosY(),height) = true) )
-			{ do transition(3860 - (mario.getPosX()+screenPos) ); }
+			{ 
+				let effect = 5;
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do mario.erase();
+					do Sys.wait(10000/fps);
+					do mario.draw();
+					let effect = effect -1;
+				}
+				do transition(2732 - (screenPos) ); 
+			}
 
 			// if ( (key = 133) & (~((mario.getPosX()+screenPos)<1168)) & ((mario.getPosX()+screenPos)<1184) & (mario.getPosY() = 144) )
 			// { do transition(3712 - (mario.getPosX()+screenPos) ); }
@@ -298,7 +309,7 @@ class SuperMarioGame
 					// If Mario touches the plant Monster, he dies
 					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
 					{ 
-						do addPoints(200);
+						do SuperMarioGame.addPoints(200);
 						do monster.changetype(idx,5);
 						do monster.changetype(idx + 1,5);
 					}
@@ -310,7 +321,7 @@ class SuperMarioGame
 					// If Mario touches the plant Monster, he dies
 					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
 					{ 
-						do addPoints(200);
+						do SuperMarioGame.addPoints(200);
 						do monster.changetype(idx - 1,5);
 						do monster.changetype(idx,5);
 					}
@@ -359,9 +370,7 @@ class SuperMarioGame
 		// The game ends, clear the screen
 		// do Screen.clearScreen();
 
-		// do Output.moveCursor(15, 25);
-		// // WIN
-		// if (win) { do Output.printString("You Rock~~~"); }
+		
 		// // LOSE
 		// else { do Output.printString("You Suck!!!"); }
 
@@ -468,6 +477,7 @@ class SuperMarioGame
 		//if Mario touch coin,let coin erase
 		if(map.touch(x,y,h) = true)
 		{
+			do map.raiseflag();
 			let win = true;
 			let exit = true;
 		}
@@ -608,7 +618,7 @@ class SuperMarioGame
 		do mario.draw();
 		do monster.drawMonster();
 		do map.draw();
-    do map.drawGround();
+   	    do map.drawGround();
 
 		return;
 	}

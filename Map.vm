@@ -4,7 +4,7 @@ call Memory.alloc 1
 pop pointer 0
 push constant 6
 pop this 5
-push constant 172
+push constant 174
 pop this 6
 push constant 0
 pop this 7
@@ -1397,6 +1397,68 @@ pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE34
+push local 2
+push constant 38
+eq
+if-goto IF_TRUE35
+goto IF_FALSE35
+label IF_TRUE35
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 32
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.pole 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE35
+push local 2
+push constant 39
+eq
+if-goto IF_TRUE36
+goto IF_FALSE36
+label IF_TRUE36
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 32
+call Math.multiply 2
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+push this 7
+sub
+push constant 16
+call Math.divide 2
+add
+pop local 1
+push this 4
+push local 1
+call Draw.flag 2
+pop temp 0
+push constant 0
+pop local 1
+label IF_FALSE36
 label IF_FALSE0
 push local 0
 push constant 1
@@ -2897,6 +2959,66 @@ pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push local 6
+return
+function Map.raiseflag 1
+push argument 0
+pop pointer 0
+push this 8
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 9
+lt
+not
+if-goto WHILE_END0
+push this 3
+push local 0
+call Block.getType 2
+push constant 20
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 3
+push local 0
+push constant 1
+sub
+push constant 38
+call Block.changeType 3
+pop temp 0
+push pointer 0
+call Map.erase 1
+pop temp 0
+push pointer 0
+call Map.draw 1
+pop temp 0
+push constant 1000
+call Sys.wait 1
+pop temp 0
+push this 3
+push local 0
+push constant 2
+sub
+push constant 39
+call Block.changeType 3
+pop temp 0
+push pointer 0
+call Map.erase 1
+pop temp 0
+push pointer 0
+call Map.draw 1
+pop temp 0
+push constant 1000
+call Sys.wait 1
+pop temp 0
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
 return
 function Map.teleportloc 4
 push argument 0

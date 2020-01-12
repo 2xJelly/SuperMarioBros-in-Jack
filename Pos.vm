@@ -23,18 +23,18 @@ push argument 0
 pop pointer 0
 push argument 1
 pop this 0
-push this 0
-push constant 0
-lt
 push constant 511
 push this 0
 lt
-or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 32
+push constant 36
 pop this 0
+push this 1
+push constant 16
+add
+pop this 1
 label IF_FALSE0
 push constant 0
 return

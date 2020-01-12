@@ -1,5 +1,5 @@
 function SuperMarioGame.new 0
-push constant 23
+push constant 20
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -460,12 +460,40 @@ and
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
-push pointer 0
-push constant 3860
+push constant 5
+pop this 12
+label WHILE_EXP3
+push this 12
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END3
+push constant 10000
+push this 6
+call Math.divide 2
+call Sys.wait 1
+pop temp 0
 push this 0
-call Mario.getPosX 1
+call Mario.erase 1
+pop temp 0
+push constant 10000
+push this 6
+call Math.divide 2
+call Sys.wait 1
+pop temp 0
+push this 0
+call Mario.draw 1
+pop temp 0
+push this 12
+push constant 1
+sub
+pop this 12
+goto WHILE_EXP3
+label WHILE_END3
+push pointer 0
+push constant 2732
 push this 5
-add
 sub
 call SuperMarioGame.transition 2
 pop temp 0
@@ -535,13 +563,13 @@ push constant 30
 call Math.divide 2
 pop this 11
 label IF_FALSE12
-label WHILE_EXP3
+label WHILE_EXP4
 push local 0
 push this 2
 call Monster.getMonRight 1
 lt
 not
-if-goto WHILE_END3
+if-goto WHILE_END4
 push this 2
 push local 0
 call Monster.getMontype 2
@@ -667,6 +695,9 @@ and
 if-goto IF_TRUE17
 goto IF_FALSE17
 label IF_TRUE17
+push constant 200
+call SuperMarioGame.addPoints 1
+pop temp 0
 push this 2
 push local 0
 push constant 5
@@ -723,6 +754,9 @@ and
 if-goto IF_TRUE19
 goto IF_FALSE19
 label IF_TRUE19
+push constant 200
+call SuperMarioGame.addPoints 1
+pop temp 0
 push this 2
 push local 0
 push constant 1
@@ -888,8 +922,8 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE_EXP3
-label WHILE_END3
+goto WHILE_EXP4
+label WHILE_END4
 goto WHILE_EXP1
 label WHILE_END1
 push this 8
@@ -1175,6 +1209,9 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push this 1
+call Map.raiseflag 1
+pop temp 0
 push constant 0
 not
 pop this 8

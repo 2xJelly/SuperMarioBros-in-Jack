@@ -5,18 +5,72 @@ class Main
 	function void main()
 	{
 		var SuperMarioGame game;
+		var boolean exit;
+		var int key,effect;
 		let life = 3;
+		let exit = false;
+
+		// Show the text
+		do Output.moveCursor(15, 20);
+		do Output.printString("Press any key to Start");
+
+		// Starting Menu
+		while (~exit)
+		{
+			// Read an input from the user
+			let key = Keyboard.keyPressed();
+
+			// Now we have an input from the user
+			if( ~(key=0) ) // Any key
+			{
+				let exit = true;
+				let effect = 3;
+				while(effect > -1)
+				{
+					// Erase the text
+					do Sys.wait(300);
+					// do Sys.wait(10000/(fps/10));
+					do Screen.setColor(false);
+					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+
+					// Show the text
+					do Sys.wait(300);
+					// do Sys.wait(10000/(fps/10));
+					do Output.moveCursor(15, 20);
+					do Output.printString("Press any key to Start");
+
+					let effect = effect -1;
+				}
+			}
+		}
+
 		let game = SuperMarioGame.new(200,life);
 		/* Give game the fps needed */
 		do game.run();
 		// do game.dispose();
-		while(~(game.getwin()) & (life - 1) > 0)
+		while(~(game.getwin()) & (life) > 0)
 		{
 			let life = life - 1;
 			do game.dispose();
 			let game = SuperMarioGame.new(200,life);
 			do game.run();
 		}
+
+		if(game.getwin())
+		{
+			do Screen.clearScreen();
+			do Output.moveCursor(13, 25);
+			do Output.printString("You Win~~~");
+		}
+
+		else
+		{
+			do Screen.clearScreen();
+			do Output.moveCursor(13, 25);
+			do Output.printString("You Lose~~~");
+		}
+
+		
 
 		return;
 	}

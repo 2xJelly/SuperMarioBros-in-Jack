@@ -18,7 +18,7 @@ class Map
   constructor Map new()
   {
     let numGap = 6;
-    let numBlock = 172;
+    let numBlock = 174;
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -383,6 +383,20 @@ class Map
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.star(location);
+          let location = 0;
+        }
+
+        if(switch = 38)
+        {
+          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+          do draw.pole(location);
+          let location = 0;
+        }
+
+        if(switch = 39)
+        {
+          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+          do draw.flag(location);
           let location = 0;
         }
 
@@ -876,6 +890,28 @@ class Map
     }
 
     return touchblock;
+  }
+
+  method void raiseflag()
+  {
+      var int i;
+      let i = idxLeft;
+      while(i < idxRight)
+      {
+        if(block.getType(i) = 20)
+        {
+          do block.changeType(i-1,38);
+          do erase();
+          do draw();
+          do Sys.wait(1000);
+          do block.changeType(i-2,39);
+          do erase();
+          do draw();
+          do Sys.wait(1000);
+        }
+        let i = i + 1;
+      }
+      return;
   }
 
   method boolean teleportloc(int X, int Y, int h)
