@@ -5,15 +5,14 @@ class Monster
   field Array Montype;
   field Block block;
   field Draw draw;
-  field Monster monster;
   field int numMonster;
   field int screenPos;
   field int monLeft,monRight;
-
+  
 
   constructor Monster new()
   {
-    let numMonster = 30;
+    let numMonster = 11;
     let screenPos = 0;
     let monLeft = 0;
     let monRight = 0;
@@ -51,14 +50,14 @@ class Monster
         let switch = Montype[i];
         if(switch = 1)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerleft(location);
             let location = 0;
           }
-
+        
         if(switch = 2)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerright(location);
             let location = 0;
           }
@@ -70,12 +69,14 @@ class Monster
 
         if(switch = 3)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         if(switch = 4)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         let i = i + 1;
@@ -103,23 +104,25 @@ class Monster
 
         if(switch = 3)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
@@ -130,7 +133,7 @@ class Monster
 
   /*Draw i th monster on screen*/
   method void drawidxMonster(int i)
-  {
+  {     
         var int switch;
         var int location;
         let switch = Montype[i];
@@ -138,14 +141,14 @@ class Monster
         do Screen.setColor(true);
         if(switch = 1)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerleft(location);
             let location = 0;
           }
-
+        
         if(switch = 2)
           {
-            let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+            let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
             do draw.flowerright(location);
             let location = 0;
           }
@@ -157,14 +160,16 @@ class Monster
 
         if(switch = 3)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
 
         if(switch = 4)
         {
-          do drawBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.monster(location);
         }
-
+  
       return;
   }
 
@@ -182,23 +187,25 @@ class Monster
 
         if(switch = 3)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = ((MonY[i])*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
-          do eraseBlock(MonX[i],MonY[i],16,16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+          do draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
-          let location = (MonY[i]/16*512) + ((MonX[i]-screenPos)/16);
+          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.eraseblock(location);
         }
 
@@ -241,11 +248,14 @@ class Monster
   /* Add / Delete items according to the screen position */
   method void refresh()
   {
+
+    
     while((monRight < numMonster) & (MonX[monRight] < (screenPos + 512) ) )
     {let monRight = monRight + 1;}
 
     while((monLeft < monRight) & (MonX[monLeft] < screenPos))
     {let monLeft = monLeft + 1;}
+
 
     return;
   }
@@ -294,12 +304,11 @@ class Monster
 
   /*kill the monster*/
   method void kill(int i)
-  {
+  { 
+    do eraseidxMonster(i);
     do SuperMarioGame.addPoints(100);
     do SuperMarioGame.addMul();
-    do eraseidxMonster(i);
-    while(~(i = monLeft) )
-    {
+    while(~(i = monLeft) ){
       let MonX[i] = MonX[i-1];
       let MonY[i] = MonY[i-1];
       let Montype[i] = Montype[i-1];
@@ -322,7 +331,7 @@ class Monster
       return MonY[i];
   }
 
-  /*get the pointer to the i th monster of left side*/
+  /*get the pointer to the i th monster of left side*/ 
   method int getMonLeft()
   {
       return monLeft;
@@ -353,4 +362,13 @@ class Monster
     let Montype[i] = 4;
     return;
   }
+
+
+  method void dispose()
+	{
+    do block.dispose();
+    do draw.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
 }

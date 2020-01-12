@@ -23,7 +23,7 @@ class Pos
   {
     let posX = x;
     // If position of Mario jump out of the screen, let it return to 0
-    if((posX < 0) | (511 < posX)) { let posX = 0; } 
+    if((posX < 0) | (511 < posX)) { let posX = 32; } 
     return;
   }
 
@@ -33,4 +33,10 @@ class Pos
     let posY = y;
     return;
   }
+
+  method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
 }

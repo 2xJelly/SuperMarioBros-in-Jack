@@ -1,5 +1,5 @@
 function Mario.new 0
-push constant 2
+push constant 1
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -7,16 +7,16 @@ push argument 1
 call Pos.new 2
 pop this 0
 push constant 0
-pop this 1
-push constant 0
 pop static 0
+push constant 0
+pop static 1
 push pointer 0
 call Mario.draw 1
 pop temp 0
 push pointer 0
 return
 function Mario.checkBig 0
-push static 0
+push static 1
 return
 function Mario.turnBig 0
 push argument 0
@@ -26,7 +26,7 @@ call Mario.erase 1
 pop temp 0
 push constant 0
 not
-pop static 0
+pop static 1
 push this 0
 push this 0
 call Pos.getY 1
@@ -46,7 +46,7 @@ push pointer 0
 call Mario.erase 1
 pop temp 0
 push constant 0
-pop static 0
+pop static 1
 push this 0
 push this 0
 call Pos.getY 1
@@ -74,7 +74,7 @@ return
 function Mario.draw 1
 push argument 0
 pop pointer 0
-push static 0
+push static 1
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -99,7 +99,7 @@ return
 function Mario.erase 0
 push argument 0
 pop pointer 0
-push static 0
+push static 1
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -137,7 +137,7 @@ function Mario.isJump 1
 push argument 0
 pop pointer 0
 push constant 0
-push this 1
+push static 0
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -155,24 +155,24 @@ return
 function Mario.jumpLess 0
 push argument 0
 pop pointer 0
-push this 1
+push static 0
 push constant 1
 sub
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.jump 0
 push argument 0
 pop pointer 0
 push constant 20
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.stopJump 0
 push argument 0
 pop pointer 0
 push constant 0
-pop this 1
+pop static 0
 push constant 0
 return
 function Mario.moveUp 0
@@ -204,7 +204,7 @@ return
 function Mario.moveDown 0
 push argument 0
 pop pointer 0
-push static 0
+push static 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -305,5 +305,21 @@ push pointer 0
 call Mario.draw 1
 pop temp 0
 label IF_FALSE0
+push constant 0
+return
+function Mario.superjump 0
+push constant 40
+pop static 0
+push constant 0
+return
+function Mario.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Pos.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return

@@ -2612,4 +2612,10 @@ class Sprite
 
     return;
   }
+
+  method void dispose()
+	{
+		//do Memory.deAlloc(this);
+		return;
+	}
 }

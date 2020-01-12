@@ -495,3 +495,11 @@ push argument 1
 call Math.multiply 2
 sub
 return
+function MATH.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

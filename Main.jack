@@ -1,13 +1,24 @@
 class Main
 {
+	static int life;
+
 	function void main()
 	{
 		var SuperMarioGame game;
-		let game = SuperMarioGame.new(200);
+		let life = 3;
+		let game = SuperMarioGame.new(200,life);
 		/* Give game the fps needed */
 		do game.run();
 		// do game.dispose();
+		while(~(game.getwin()) & (life - 1) > 0)
+		{
+			let life = life - 1;
+			do game.dispose();
+			let game = SuperMarioGame.new(200,life);
+			do game.run();
+		}
 
 		return;
 	}
+
 }
