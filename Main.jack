@@ -1,6 +1,7 @@
 class Main
 {
 	static int life;
+	static int level;
 
 	function void main()
 	{
@@ -8,6 +9,7 @@ class Main
 		var boolean exit;
 		var int key,effect;
 		let life = 3;
+		let level = 1;
 		let exit = false;
 
 		// Show the text
@@ -31,7 +33,7 @@ class Main
 					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
 					do Screen.setColor(false);
-					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+					do Screen.clearScreen(); // Character is 11 pixels in height
 
 					// Show the text
 					do Sys.wait(50*effect);
@@ -44,19 +46,27 @@ class Main
 			}
 		}
 
-		let game = SuperMarioGame.new(200,life);
 		/* Give game the fps needed */
+		let game = SuperMarioGame.new(200,life,level);
 		do game.run();
-		// do game.dispose();
-		while(~(game.getwin()) & (life) > 0)
+
+		while ( (life > 0) & (level < 3) )
 		{
-			let life = life - 1;
+			if ( game.getwin() ) // If Mario wins, advance to the next level
+			{ let level = level + 1; }
+			else // Else, reduce no. of life by 1
+			{ let life = life - 1; }
+
 			do game.dispose();
-			let game = SuperMarioGame.new(200,life);
-			do game.run();
+			// Run the game if it hasn't ended
+			if ( (life > 0) & (level < 3) )
+			{
+				let game = SuperMarioGame.new(200,life,level);
+				do game.run();
+			}
 		}
 
-		if(game.getwin())
+		if(level > 2)
 		{
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
@@ -69,8 +79,6 @@ class Main
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Lose~~~");
 		}
-
-		
 
 		return;
 	}

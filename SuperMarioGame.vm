@@ -25,9 +25,11 @@ push constant 0
 push constant 208
 call Mario.new 2
 pop this 0
-call Map.new 0
+push argument 2
+call Map.new 1
 pop this 1
-call Monster.new 0
+push argument 2
+call Monster.new 1
 pop this 2
 push constant 0
 pop this 5

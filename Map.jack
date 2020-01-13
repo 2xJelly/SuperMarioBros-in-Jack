@@ -15,10 +15,17 @@ class Map
   field int starPosX, starPosY;
   field boolean able_Star;
 
-  constructor Map new()
+  constructor Map new(int level)
   {
-    let numGap = 6;
-    let numBlock = 174;
+    if(level = 1)
+    {
+      let numGap = 6;
+      let numBlock = 174;
+    }else
+    {
+      let numGap = 1;
+      let numBlock = 1;
+    }
     let screenPos = 0;
     let idxLeft = 0;
     let idxRight = 0;
@@ -26,7 +33,7 @@ class Map
     let gapRight = 0;
 
 
-    let block = Block.new();
+    let block = Block.new(level);
     let gap = block.getGap();
     let posX = block.getPosX();
     let posY = block.getPosY();
@@ -61,7 +68,7 @@ class Map
     while(drawIdx < 512)
     {
       /* If there is no gap here, draw a rectangle platform */
-      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) ) 
+      if ( ~( (gapIdx < gapRight) & (drawIdx+screenPos = gap[gapIdx]) ) )
       {
         //do drawBlock(drawIdx + screenPos, 224, 32, 32);
         while(i < 2){
@@ -78,7 +85,7 @@ class Map
 
         let i = 0;
         let location = 0;
-        
+
       }
       else { let gapIdx = gapIdx + 1; }
 
@@ -146,8 +153,8 @@ class Map
     while(i < idxRight)
     {
      /* Draw all the blocks */
-      if (~(block.getType(i) = 1)) 
-      { 
+      if (~(block.getType(i) = 1))
+      {
         let switch = block.getType(i);
         if(switch = 0)
         {
@@ -425,7 +432,7 @@ class Map
     }
     return;
   }
-  
+
   /*erase i th block on the screen*/
   method void eraseidxblock(int i)
   {
@@ -469,7 +476,7 @@ class Map
     /* If the next item is in the screen, added it to the drawing List */
     while ( (idxRight < numBlock) & (posX[idxRight] < (screenPos + 512) ) )
     { let idxRight = idxRight + 1; }
-    
+
     /* If item in pos[idxLeftO] is no longer in the screen, discard pos[idxLeft] */
     while ( (idxLeft < idxRight) & (posX[idxLeft] < screenPos) )
     { let idxLeft = idxLeft + 1; }
@@ -618,7 +625,7 @@ class Map
 
     while(i < idxRight)
     {
-      if(~(block.getType(i) = 13)){     
+      if(~(block.getType(i) = 13)){
        /* Calculate absolute difference in X and Y */
       let diffX = X - posX[i];
       let diffY = posY[i] - Y;
@@ -630,12 +637,12 @@ class Map
       /* If they are close enough, they are touching */
      if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffY < h)) & ( ( (0 = diffX)|(0 < diffX) ) & (diffX < 17)) )
       { let contact = true; }
-      
+
       }
       let i = i + 1;
       let corner = false;
-      
-      
+
+
     }
 
     return contact;
@@ -687,7 +694,7 @@ class Map
     let i = idxLeft;
     let touchBlock = -1;
     let area = 0;
-    
+
     while(i < idxRight)
     {
       if(~(block.getType(i) = 13)){
@@ -735,7 +742,7 @@ class Map
     }
 
     else{
-      
+
       if(touch & (block.getType(touchBlock) = 2) )  /***touch coin block***/
       {
         do SuperMarioGame.addPoints(100);
@@ -813,17 +820,17 @@ class Map
 
       /* If they are close enough, they are touching */
      if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
-      { 
+      {
         let contact = true;
-        let touchtype = block.getType(i); 
+        let touchtype = block.getType(i);
       }
       }
       let i = i + 1;
       let corner = false;
     }
-    
+
     if(contact & (touchtype = 14))
-    { 
+    {
       do Mario.superjump();
     }
     return contact;
@@ -863,7 +870,7 @@ class Map
 
 
       /*If touch mushroom turn big*/
-      if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
+      if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
       {
         do block.changeType(i,1);
         do SuperMarioGame.tbig();
@@ -872,7 +879,7 @@ class Map
       }
 
       /*If touch star turn ulti*/
-      if( (block.getType(i) = 37) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
+      if( (block.getType(i) = 37) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
       {
         do block.changeType(i,1);
         do SuperMarioGame.Ulti();
@@ -921,7 +928,7 @@ class Map
     var int i;
     let touch = false;
     let i = idxLeft;
-    
+
     while(i < idxRight)
     {
       /* Calculate absolute difference in X and Y */
@@ -933,7 +940,7 @@ class Map
       {
         let touch = true;
       }
-    
+
       let i = i + 1;
     }
 
