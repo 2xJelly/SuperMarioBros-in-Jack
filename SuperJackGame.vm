@@ -133,8 +133,6 @@ push constant 0
 pop static 1
 push constant 999
 pop static 2
-push this 19
-pop local 4
 push this 6
 push constant 10
 call Math.divide 2
@@ -143,142 +141,14 @@ push this 6
 push constant 30
 call Math.divide 2
 pop this 11
-push constant 0
-push constant 0
-call Output.moveCursor 2
-pop temp 0
-push constant 6
-call String.new 1
-push constant 67
-call String.appendChar 2
-push constant 111
-call String.appendChar 2
-push constant 105
-call String.appendChar 2
-push constant 110
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-push static 0
-call Output.printInt 1
-pop temp 0
-push constant 0
-push constant 25
-call Output.moveCursor 2
-pop temp 0
-push constant 7
-call String.new 1
-push constant 83
-call String.appendChar 2
-push constant 67
-call String.appendChar 2
-push constant 79
-call String.appendChar 2
-push constant 82
-call String.appendChar 2
-push constant 69
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-push static 1
-call Output.printInt 1
-pop temp 0
-push constant 0
-push constant 53
-call Output.moveCursor 2
-pop temp 0
-push constant 6
-call String.new 1
-push constant 84
-call String.appendChar 2
-push constant 73
-call String.appendChar 2
-push constant 77
-call String.appendChar 2
-push constant 69
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-push static 2
-call Output.printInt 1
-pop temp 0
-push constant 0
-push constant 13
-call Output.moveCursor 2
-pop temp 0
-push constant 6
-call String.new 1
-push constant 85
-call String.appendChar 2
-push constant 108
-call String.appendChar 2
-push constant 116
-call String.appendChar 2
-push constant 105
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-push constant 0
-push constant 38
-call Output.moveCursor 2
-pop temp 0
-push constant 6
-call String.new 1
-push constant 76
-call String.appendChar 2
-push constant 73
-call String.appendChar 2
-push constant 70
-call String.appendChar 2
-push constant 69
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-call Output.printString 1
+push pointer 0
+call SuperJackGame.status 1
 pop temp 0
 label WHILE_EXP0
-push local 4
-push constant 0
-gt
-not
-if-goto WHILE_END0
-push constant 21
-push local 4
-add
-pop local 5
-push this 3
-push local 5
-call Draw.life 2
-pop temp 0
-push local 4
-push constant 1
-sub
-pop local 4
-goto WHILE_EXP0
-label WHILE_END0
-label WHILE_EXP1
 push this 9
 not
 not
-if-goto WHILE_END1
+if-goto WHILE_END0
 push this 2
 call Monster.getMonLeft 1
 pop local 0
@@ -387,13 +257,13 @@ pop this 12
 push this 0
 call Jack.jump 1
 pop temp 0
-label WHILE_EXP2
+label WHILE_EXP1
 push this 12
 push constant 1
 neg
 gt
 not
-if-goto WHILE_END2
+if-goto WHILE_END1
 push constant 10000
 push this 6
 call Math.divide 2
@@ -414,8 +284,8 @@ push this 12
 push constant 1
 sub
 pop this 12
-goto WHILE_EXP2
-label WHILE_END2
+goto WHILE_EXP1
+label WHILE_END1
 push this 0
 call Jack.erase 1
 pop temp 0
@@ -469,37 +339,51 @@ and
 if-goto IF_TRUE11
 goto IF_FALSE11
 label IF_TRUE11
-push constant 5
+push constant 0
 pop this 12
-label WHILE_EXP3
-push this 12
-push constant 1
-neg
-gt
+push constant 0
 not
-if-goto WHILE_END3
-push constant 10000
+call Screen.setColor 1
+pop temp 0
+label WHILE_EXP2
+push this 12
+push constant 8
+lt
+not
+if-goto WHILE_END2
+push this 12
+push constant 32
+call Math.multiply 2
+pop local 5
+push constant 20000
 push this 6
 call Math.divide 2
 call Sys.wait 1
 pop temp 0
-push this 0
-call Jack.erase 1
-pop temp 0
-push constant 10000
-push this 6
-call Math.divide 2
-call Sys.wait 1
-pop temp 0
-push this 0
-call Jack.draw 1
+push constant 0
+push local 5
+push constant 511
+push local 5
+push constant 31
+add
+call Screen.drawRectangle 4
 pop temp 0
 push this 12
 push constant 1
-sub
+add
 pop this 12
-goto WHILE_EXP3
-label WHILE_END3
+goto WHILE_EXP2
+label WHILE_END2
+push constant 20000
+push this 6
+call Math.divide 2
+call Sys.wait 1
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push pointer 0
+call SuperJackGame.status 1
+pop temp 0
 push pointer 0
 push constant 2732
 push this 5
@@ -578,8 +462,8 @@ label IF_FALSE13
 push pointer 0
 call SuperJackGame.calc 1
 pop temp 0
-goto WHILE_EXP1
-label WHILE_END1
+goto WHILE_EXP0
+label WHILE_END0
 push this 8
 return
 function SuperJackGame.calc 3
@@ -1648,9 +1532,21 @@ return
 function SuperJackGame.transition 0
 push argument 0
 pop pointer 0
+push argument 1
+push constant 32
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push this 0
 call Jack.erase 1
 pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+call Jack.eraserectangle 1
+pop temp 0
+label IF_END0
 push this 2
 call Monster.eraseMonster 1
 pop temp 0
@@ -1667,21 +1563,21 @@ pop this 5
 push argument 1
 push constant 32
 eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push this 0
 push argument 1
 neg
 call Jack.transition 2
 pop temp 0
-goto IF_END0
-label IF_FALSE0
+goto IF_END1
+label IF_FALSE1
 push this 0
 push argument 1
 call Jack.transition 2
 pop temp 0
-label IF_END0
+label IF_END1
 push this 2
 push argument 1
 call Monster.transition 2
@@ -1721,6 +1617,144 @@ function SuperJackGame.getwin 0
 push argument 0
 pop pointer 0
 push this 8
+return
+function SuperJackGame.status 2
+push argument 0
+pop pointer 0
+push this 19
+pop local 0
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 67
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push static 0
+call Output.printInt 1
+pop temp 0
+push constant 0
+push constant 25
+call Output.moveCursor 2
+pop temp 0
+push constant 7
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push static 1
+call Output.printInt 1
+pop temp 0
+push constant 0
+push constant 53
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push static 2
+call Output.printInt 1
+pop temp 0
+push constant 0
+push constant 13
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 85
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+push constant 38
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 76
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 70
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push constant 21
+push local 0
+add
+pop local 1
+push this 3
+push local 1
+call Draw.life 2
+pop temp 0
+push local 0
+push constant 1
+sub
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
 return
 function SuperJackGame.dispose 0
 push argument 0

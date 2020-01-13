@@ -102,41 +102,17 @@ class SuperJackGame
 		var int switch;
 		var int t;
 		var int height;
-		var int i;
 		var int location;
+		var int rec;
 		let key = 0;
 		let exit = false;
 		let coin = 0;
 		let score = 0;
 		let time = 999;
-		let i = Life;
 		let framePassed = fps/10;
 		let frameMon = fps/30;
 
-		do Output.moveCursor(0, 0);
-		do Output.printString("Coin: ");
-		do Output.printInt(coin);
-
-		do Output.moveCursor(0, 25);
-		do Output.printString("SCORE: ");
-		do Output.printInt(score);
-
-		do Output.moveCursor(0, 53);
-		do Output.printString("TIME: ");
-		do Output.printInt(time);
-
-		do Output.moveCursor(0, 13);
-		do Output.printString("Ulti: ");
-
-		do Output.moveCursor(0,38);
-		do Output.printString("LIFE: ");
-		
-		while(i > 0)
-		{
-			let location = 21 + i;
-			do draw.life(location);
-			let i = i - 1;
-		}
+		do status();
 		
 
 		// Just For Debug, try printBin and printBinRev
@@ -247,16 +223,21 @@ class SuperJackGame
 			if ( (key = 133) & (map.teleportloc(jack.getPosX()+screenPos,jack.getPosY(),height) = true) )
 			{ 
 				// let exit = true;
-				let effect = 5;
-				while(effect > -1)
+				let effect = 0;
+				do Screen.setColor(true);
+				while(effect < 8)
 				{
-					do Sys.wait(10000/fps);
-					do jack.erase();
-					do Sys.wait(10000/fps);
-					do jack.draw();
-					let effect = effect -1;
+					let rec = effect*32;
+					do Sys.wait(20000/fps);
+					do Screen.drawRectangle(0,rec,511,rec + 31);
+					let effect = effect + 1;
 				}
+				do Sys.wait(20000/fps);
+				do Screen.clearScreen();
+				do status();
 				do transition(2732 - (screenPos) ); 
+				
+
 			}
 
 			// if ( (key = 133) & (~((jack.getPosX()+screenPos)<1168)) & ((jack.getPosX()+screenPos)<1184) & (jack.getPosY() = 144) )
@@ -630,10 +611,11 @@ class SuperJackGame
 	// Move the map to the right by move pixels
 	method void transition(int move)
 	{
-		do jack.erase();
+		if(move = 32){do jack.erase();}		//if normal movescreen		debug of leaving shadow
+		else{do jack.eraserectangle();}		//if teleport movescreen
 		do monster.eraseMonster();
 		do map.erase();
-    do map.eraseGround();
+    	do map.eraseGround();
 
 		let screenPos = screenPos + move;
 
@@ -665,6 +647,39 @@ class SuperJackGame
 	method boolean getwin()
 	{
 		return win;
+	}
+
+	method void status()
+	{
+		var int i;
+		var int location;
+		let i = Life;
+		
+		do Output.moveCursor(0, 0);
+		do Output.printString("Coin: ");
+		do Output.printInt(coin);
+
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
+
+		do Output.moveCursor(0, 53);
+		do Output.printString("TIME: ");
+		do Output.printInt(time);
+
+		do Output.moveCursor(0, 13);
+		do Output.printString("Ulti: ");
+
+		do Output.moveCursor(0,38);
+		do Output.printString("LIFE: ");
+
+		while(i > 0)
+		{
+			let location = 21 + i;
+			do draw.life(location);
+			let i = i - 1;
+		}
+		return;
 	}
 
 
