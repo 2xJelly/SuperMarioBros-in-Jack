@@ -503,7 +503,7 @@ class Map
   method int getStarY()
   { return starPosY; }
 
-  /* Check if Mario is stepping on the platform */
+  /* Check if Jack is stepping on the platform */
   method boolean touchGround(int X, int Y, int h)
   {
     var boolean onG;
@@ -511,7 +511,7 @@ class Map
     let onG = true;
     let gapIdx = gapLeft;
 
-    /* If Mario is not at 208, it is not on the platform */
+    /* If Jack is not at 208, it is not on the platform */
    if (~(Y = (224-h))) { let onG = false; }
 
     /* Check gap no.1 first */
@@ -536,7 +536,7 @@ class Map
     return onG;
   }
 
-  /* Check if Mario is touching the left side of the gaps */
+  /* Check if Jack is touching the left side of the gaps */
   method boolean touchLeftSides(int X, int Y, int h)
   {
     var boolean contact;
@@ -547,7 +547,7 @@ class Map
     /* Check gap no.1 first */
     let l = gap[gapIdx];
     let r = gap[gapIdx] + 32;
-    /* Check if the first gap's left side touches Mario */
+    /* Check if the first gap's left side touches Jack */
     if ((gapIdx < gapRight) & (l = X) & ((224-h) < Y)) { let contact = true; }
     let gapIdx = gapIdx + 1;
 
@@ -559,7 +559,7 @@ class Map
       {
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
-        /* Check if the new gap's left side touches Mario */
+        /* Check if the new gap's left side touches Jack */
         if ((l = X) & ((224-h) < Y)) { let contact = true; }
       }
       let gapIdx = gapIdx + 1;
@@ -568,7 +568,7 @@ class Map
     return contact;
   }
 
-  /* Check if Mario is touching the right side of the gaps */
+  /* Check if Jack is touching the right side of the gaps */
    method boolean touchRightSides(int X, int Y, int h)
   {
     var boolean contact;
@@ -587,7 +587,7 @@ class Map
       { let r = r + 32; }
       else /* Else this is a new gap */
       {
-        /* Check if the old gap's right side touches Mario */
+        /* Check if the old gap's right side touches Jack */
         if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
         let l = gap[gapIdx];
         let r = gap[gapIdx] + 32;
@@ -598,14 +598,14 @@ class Map
     /* If there is at least 1 gap */
     if (gapLeft < gapRight)
     {
-      /* Check if the last gap's right side touches Mario */
+      /* Check if the last gap's right side touches Jack */
       if ((r = (X+16)) & ((224-h) < Y)) { let contact = true; }
     }
 
     return contact;
   }
 
-  /* Check if Mario is touching any Block from left */
+  /* Check if Jack is touching any Block from left */
   method boolean touchLeft(int X, int Y, int h)
   {
     var boolean contact, corner;
@@ -641,7 +641,7 @@ class Map
     return contact;
   }
 
-  /* Check if Mario is touching any Block from right */
+  /* Check if Jack is touching any Block from right */
  method boolean touchRight(int X, int Y, int h)
   {
     var boolean contact, corner;
@@ -674,7 +674,7 @@ class Map
     return contact;
   }
 
-  /* Check if Mario is touching any Block from above */
+  /* Check if Jack is touching any Block from above */
   method boolean touchAbove(int X, int Y, int h)
   {
     var boolean corner, touch;
@@ -699,8 +699,8 @@ class Map
       /* If there are just connected at the corner, it does not count as touching */
       if( (diffX = 16) & (diffY = 16) ) { let corner = true; }
 
-      /* If this block is not empty, both block and Mario are close enough,
-      this block has more contact area with Mario then the previous one, then they are touching */
+      /* If this block is not empty, both block and Jack are close enough,
+      this block has more contact area with Jack then the previous one, then they are touching */
       if( (~(block.getType(i) = 1)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (16+1))) & ((16-diffX) > area) )
       {
         let touch = true;
@@ -726,7 +726,7 @@ class Map
     }
     */
 
-    /* If this is a normal block, Mario will crush it into nothing */
+    /* If this is a normal block, Jack will crush it into nothing */
     if ( touch & (block.getType(touchBlock) = 0) )
     {
       do block.changeType(touchBlock, 1);
@@ -738,8 +738,8 @@ class Map
       
       if(touch & (block.getType(touchBlock) = 2) )  /***touch coin block***/
       {
-        do SuperMarioGame.addPoints(100);
-        do SuperMarioGame.addMoney(100);
+        do SuperJackGame.addPoints(100);
+        do SuperJackGame.addMoney(100);
         let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
         do eraseidxblock(touchBlock);
         do block.changeType(touchBlock, 5);
@@ -788,7 +788,7 @@ class Map
     return touch;
   }
 
-  /* Check if Mario is touching any Block from below */
+  /* Check if Jack is touching any Block from below */
   method boolean touchBelow(int X, int Y, int h)
   {
     var boolean contact, corner;
@@ -824,12 +824,12 @@ class Map
     
     if(contact & (touchtype = 14))
     { 
-      do Mario.superjump();
+      do Jack.superjump();
     }
     return contact;
   }
 
-  /* Check if Mario is touching any Block */
+  /* Check if Jack is touching any Block */
   method boolean touch(int X, int Y, int h)
   {
     var boolean contact, corner,touch;
@@ -866,7 +866,7 @@ class Map
       if( (block.getType(i) = 35) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
       {
         do block.changeType(i,1);
-        do SuperMarioGame.tbig();
+        do SuperJackGame.tbig();
         do erase();
         do draw();
       }
@@ -875,7 +875,7 @@ class Map
       if( (block.getType(i) = 37) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )  
       {
         do block.changeType(i,1);
-        do SuperMarioGame.Ulti();
+        do SuperJackGame.Ulti();
         do erase();
         do draw();
       }
@@ -928,7 +928,7 @@ class Map
       let diffX = X - posX[i];
       let diffY = posY[i] - Y;
 
-      /* If mario touch the teleport pipe and press down*/
+      /* If Jack touch the teleport pipe and press down*/
       if( ((block.getType(i) = 33)) & ((diffX < 27)) & ((diffX > 5)) & (diffY = h))
       {
         let touch = true;

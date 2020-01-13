@@ -1,0 +1,65 @@
+function Menu.new 2
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push constant 0
+push constant 0
+push constant 511
+push constant 255
+call Screen.drawRectangle 4
+pop temp 0
+push constant 515
+pop local 1
+push local 0
+push local 1
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 511
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 1025
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 1538
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 2049
+add
+call Draw.coin 2
+pop temp 0
+push local 0
+push local 1
+push constant 2048
+add
+call Draw.coin 2
+pop temp 0
+push constant 519
+pop local 1
+push constant 0
+return

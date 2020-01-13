@@ -1,0 +1,653 @@
+class SuperJackGame
+{
+	field Jack jack;
+	field Map map;
+	field Monster monster;
+	field Draw draw;
+	field int direction; // 0 = At rest, 1 = Left, 2 = Right
+	field int screenPos; // Relative x-coordinate of the left side of the screen
+	field int fps; // frame per second
+
+	field char key; // Input key from player
+	field boolean win, exit;
+	static int coin, score, time, mul;
+	static boolean turnbig;
+	field int framePassed; // No. frame passed
+	field int frameMon; // No. frame passes for the monster
+	field int effect; // Duration of effects
+	field int MonLeft, MonRight; // (Left/Right) idx of monster array
+ 	static int ulti; // Duration of jack's ultimate
+	field int x, xx, y, yy; // For storing JackX, JackY, monX, monY
+	field int Life;
+
+	// Just for Debug, variables for debug
+	//field int debug1, debug2, debug3;
+
+	constructor SuperJackGame new(int gameSpeed,int life)
+	{
+		// Set fps first, cuz menu() needs it
+		let fps = gameSpeed;
+		// fps -> frame per second
+		let Life = life;
+		let turnbig = false;
+		do Screen.clearScreen();
+		// Do the starting menu
+		do menu();
+		do Screen.clearScreen();
+		
+		do MATH.init();
+		do Sprite.init();
+
+		let win = false;
+		let jack = Jack.new(0, 208);
+		let map = Map.new();
+		let monster = Monster.new();
+		let screenPos = 0;
+		let ulti = 0;
+		let mul = 1;
+		//do jack.turnBig();
+
+		return this;
+	}
+
+	method void menu()
+	{
+		var int location;
+		let exit = false;
+		let location = 4109;
+		// Show the text
+		do draw.character(location);
+		do Output.moveCursor(12, 28);
+		do Output.printString(" X ");
+		do Output.printInt(Life);
+
+		// Starting Menu
+		// while (~exit)
+		// {
+		// 	// Read an input from the user
+		// 	let key = Keyboard.keyPressed();
+
+		// 	// Now we have an input from the user
+		// 	if( ~(key=0) ) // Any key
+		// 	{
+		// 		let exit = true;
+				let effect = 6;
+				while(effect > -1)
+				{
+					// Erase the text
+					do Sys.wait(10000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do Screen.setColor(false);
+					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+
+					// Show the text
+					do Sys.wait(30000/fps);
+					// do Sys.wait(10000/(fps/10));
+					do draw.character(location);
+					do Output.moveCursor(12, 28);
+					do Output.printString(" X ");
+					do Output.printInt(Life);
+
+					let effect = effect -1;
+				}
+			//}
+		//}
+
+		return;
+	}
+
+	method boolean run()
+	{
+		var int idx;
+		var int switch;
+		var int t;
+		var int height;
+		var int i;
+		var int location;
+		let key = 0;
+		let exit = false;
+		let coin = 0;
+		let score = 0;
+		let time = 999;
+		let i = Life;
+		let framePassed = fps/10;
+		let frameMon = fps/30;
+
+		do Output.moveCursor(0, 0);
+		do Output.printString("Coin: ");
+		do Output.printInt(coin);
+
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
+
+		do Output.moveCursor(0, 53);
+		do Output.printString("TIME: ");
+		do Output.printInt(time);
+
+		do Output.moveCursor(0, 13);
+		do Output.printString("Ulti: ");
+
+		do Output.moveCursor(0,38);
+		do Output.printString("LIFE: ");
+		
+		while(i > 0)
+		{
+			let location = 21 + i;
+			do draw.life(location);
+			let i = i - 1;
+		}
+		
+
+		// Just For Debug, try printBin and printBinRev
+		/*
+		let debug1 = -32767;
+		let debug1 = debug1-1;
+		do MATH.printBin(debug1, 1);
+		do MATH.printBinRev(debug1, 2);
+		*/
+
+		// Just For Debug, try l_Shift and r_Shift
+		/*
+		let debug1 = 0;
+		while(debug1 < 16)
+		{
+			// let debug2 = MATH.l_Shift(-1, debug1);
+			let debug2 = MATH.r_Shift(-1, debug1);
+			do MATH.printBin(debug2, debug1+1);
+			let debug1 = debug1+1;
+		}
+		*/
+
+		// While Reading in the users command, react to it according to our rules
+		while(~exit)
+		{
+			// Just For Debug, output the current coordinate of jack
+			/*
+			do Output.moveCursor(1, 0);
+			do Output.printString("Pos: (");
+			do Output.printInt(jack.getPosX());
+			do Output.printString(", ");
+			do Output.printInt(jack.getPosY());
+			do Output.printString(")");
+			*/
+			let idx = monster.getMonLeft();
+			// Read an input from the user
+			let key = Keyboard.keyPressed();
+
+			// Now we have an input from the user
+			if(key = 81) { let exit = true; } // q key
+			if(key = 130) { let direction = 1; } // Left arrow
+			if(key = 132) { let direction = 2; } // right arrow
+			/***if(key = 133)
+			{
+
+				if(((jack.getPosX()+screenPos) > 1168) & ((jack.getPosX()+screenPos) < 1184) & (jack.getPosY() = 144))
+				{
+					let screenPos = 6400;
+					do map.MapChange();
+					do monster.screenPosChange();
+				}
+			}***/
+			if((key = 32) & JackOnGround() ) // Spacebar, and jack is on the ground
+			{ do jack.jump(); }
+
+			// Now move jack if jack is not touching any block
+			do move();
+
+			// If touch Ground, restore multiple
+			if (JackOnGround()) { do restoreMul(); }
+
+			// Check if jack touches any power-upwards
+			// Ultimate Star
+			// (Minor Bug) : Touching the corner of a Monster counts as touching it
+			// if ( map.ableStar() & (-17 < (jack.getPosX()-map.getStarX())) & ((jack.getPosX()-map.getStarX()) < 17) & (-17 < (jack.getPosY()-map.getStarY())) & ((jack.getPosY()-map.getStarY()) < 17) )
+			// {
+			// 	let ulti = ulti + 1000;
+			// 	do map.useStar();
+			// }
+			if (ulti > 0) { let ulti = ulti - 1; }
+
+			if (~(ulti < 0))
+			{
+				do Output.moveCursor(0, 19);
+				if (ulti < 1000)
+				{
+					do Output.printInt(0);
+				}
+				do Output.printInt(ulti/100);
+			}
+
+
+			// If jack reach the bottom, game over!!!
+			if (239 < jack.getPosY() )
+			{
+				let effect = 3;
+				do jack.jump();
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do jack.erase();
+					do Sys.wait(10000/fps);
+					do jack.draw();
+					let effect = effect -1;
+				}
+				do jack.erase();
+				let exit = true;
+			}
+
+			// Do Transition of map if needed
+			// Modify the code below with the real end position
+			if ( (screenPos < 6000) & (jack.getPosX() > 383)) { do transition(32); }
+
+			// Do teleport if jack is at the pipe, and push 'down' key
+
+			if ( (key = 133) & (map.teleportloc((jack.getPosX() + screenPos),jack.getPosY(),height) = true) )
+			{ 
+				let effect = 5;
+				while(effect > -1)
+				{
+					do Sys.wait(10000/fps);
+					do jack.erase();
+					do Sys.wait(10000/fps);
+					do jack.draw();
+					let effect = effect -1;
+				}
+				do transition(2732 - (screenPos) ); 
+			}
+
+			// if ( (key = 133) & (~((jack.getPosX()+screenPos)<1168)) & ((jack.getPosX()+screenPos)<1184) & (jack.getPosY() = 144) )
+			// { do transition(3712 - (jack.getPosX()+screenPos) ); }
+
+
+			// Wait for 1 frame to pass
+			do Sys.wait(1000/fps);
+
+			let framePassed = framePassed - 1;
+			let frameMon = frameMon - 1;
+			// If framePassed <= 0, 1 second has passes
+			if(~(framePassed > 0) )
+			{
+				let time = time - 1;
+				let framePassed = fps;
+				// Also, print the time since it has changed
+				do Output.moveCursor(0, 53);
+				do Output.printString("TIME: ");
+				do Output.printInt(time);
+			}
+
+			// Monster move 2 pixel per 0.02 second
+			if(~(frameMon > 0))
+			{
+				do Monmove();
+				let frameMon = fps/30;
+			}
+
+
+			/* one for one monster for update kill or die*/
+			while(idx < monster.getMonRight())
+			{
+				let switch = monster.getMontype(idx);
+				let x = jack.getPosX() + screenPos;
+				let y = jack.getPosY();
+				let xx = monster.getMonX(idx);
+				let yy = monster.getMonY(idx);
+				if(Jack.checkBig()) { let height = 32; }
+				else { let height = 16; }
+
+				// If this is a left/right flower monster
+				if ((switch = 1) | (switch = 2))
+				{
+					// If jack touches the plant Monster, he dies
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & (~(ulti > 0)))
+					{ do JackDeath(); }
+
+				}
+
+				if (switch = 1)
+				{
+					// If jack touches the plant Monster, he dies
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
+					{ 
+						do SuperJackGame.addPoints(200);
+						do monster.changetype(idx,5);
+						do monster.changetype(idx + 1,5);
+					}
+
+				}
+
+				if (switch = 2)
+				{
+					// If jack touches the plant Monster, he dies
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
+					{ 
+						do SuperJackGame.addPoints(200);
+						do monster.changetype(idx - 1,5);
+						do monster.changetype(idx,5);
+					}
+
+				}
+
+				// If this is a (normal/upward/downward) monster
+				if ((switch = 0) | (switch = 3) | (switch = 4))
+				{
+					// If jack steps on the Monster, kill them
+					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-((height+1)+2)) < (y-yy)) & ((y-yy) < 0) )
+					{
+						do jack.jump();
+						do monster.kill(idx);
+					}else
+					{
+						// Else if jack touches the monster
+						// (Minor Bug) : Touching the corner of a Monster counts as touching it
+						if ( (-17 < (x-xx)) & ((x-xx) < 17) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) )
+						{
+							if(~( ((x-xx = 16) | (x-xx = -16)) & ((y-yy = height) | (y-yy = -height)) ))
+							{
+								// If jack has ulti, kill them
+								if (ulti > 0)
+								{
+									do monster.kill(idx);
+								}
+								else { do JackDeath(); } // Else, jack is death
+							}
+						}
+					}
+				}
+
+				/*if monster drop into the gap,kill the monster*/
+				if (239 < yy)
+				{ do monster.kill(idx); }
+
+				let idx = idx + 1;
+			}
+
+			// If jack haven't die,
+			// and jack reach this interval, you WIN ~~
+			
+		}
+
+		// The game ends, clear the screen
+		// do Screen.clearScreen();
+
+		
+		// // LOSE
+		// else { do Output.printString("You Suck!!!"); }
+
+		// Just For Debug, Remove the text
+		/*
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+		*/
+
+		return win;
+	}
+
+	method void restoreMul()
+	{
+		let mul = 1;
+		return;
+	}
+
+	function void addMul()
+	{
+		let mul = mul+mul;
+		return;
+	}
+
+	function void addPoints(int points)
+	{
+		let score = score + (points*mul);
+		do Output.moveCursor(0, 25);
+		do Output.printString("SCORE: ");
+		do Output.printInt(score);
+		return;
+	}
+
+	function void addMoney(int money)
+	{
+		let coin = coin + (money*mul);
+		do Output.moveCursor(0, 0);
+		do Output.printString("Coin: ");
+		do Output.printInt(coin);
+		return;
+	}
+
+	method void JackDeath()
+	{
+		if (Jack.checkBig())
+		{
+			let effect = 3;
+			while(effect > -1)
+			{
+				do Sys.wait(10000/fps);
+				do jack.erase();
+				do Sys.wait(10000/fps);
+				do jack.draw();
+				let effect = effect -1;
+			}
+			do jack.turnSmall();
+
+			let ulti = ulti + 200;
+
+		}else
+		{
+			let effect = 3;
+			do jack.jump();
+			while(effect > -1)
+			{
+				do Sys.wait(10000/fps);
+				do jack.erase();
+				do Sys.wait(10000/fps);
+				do jack.draw();
+				let effect = effect -1;
+			}
+			do jack.erase();
+			let exit = true;
+		}
+
+		return;
+	}
+
+	method boolean JackOnGround()
+	{
+		var boolean onG;
+		let onG = false;
+		if (Jack.checkBig())
+		{
+			if(map.touchGround(jack.getPosX()+screenPos, jack.getPosY(), 32) ) { let onG = true; }
+			if(map.touchBelow(jack.getPosX()+screenPos, jack.getPosY(), 32) ) { let onG = true; }
+		}else
+		{
+			if(map.touchGround(jack.getPosX()+screenPos, jack.getPosY(), 16) ) { let onG = true; }
+			if(map.touchBelow(jack.getPosX()+screenPos, jack.getPosY(), 16) ) { let onG = true; }
+		}
+
+		return onG;
+	}
+
+	// Move the appropriate direction according to the key(direction)
+  method void move()
+  {
+	  	var int x, y, h;
+		let x = jack.getPosX() + screenPos;
+		let y = jack.getPosY();
+		if (Jack.checkBig()) { let h = 32; }
+		else { let h = 16; }
+		//if jack touch coin,let coin erase
+		if(map.touch(x,y,h) = true)
+		{
+			do map.raiseflag();
+			let win = true;
+			let exit = true;
+		}
+
+		if(turnbig)
+		{
+			let turnbig = false;
+			do jack.turnBig();
+		}
+
+
+
+		// If jack is not touching left/right, let jack move left/right
+    			if ((key = 130) & (~map.touchLeftSides(x, y, h)) & (map.touchLeft(x, y, h) = false) ) { do jack.moveLeft(); }
+				if ((key = 132) & (~map.touchRightSides(x, y, h)) & (map.touchRight(x, y, h) = false) ) { do jack.moveRight(); }
+
+	
+		
+		// If jack is jumping, and there is a block above him, jack will stop jumping
+		if ( jack.isJump() )
+		{ if (map.touchAbove(x, y, 32)) { do jack.stopJump(); } }
+		// Why don't put the inside if into the upper if bracket?
+		// Cuz if we enter touchAbove, we must make sure jack is jumping
+		// So that the function inside touchAbove can automatically remove the touching block above
+
+    // If jack is not jumping, let jack fall
+    if ( (~jack.isJump()) & (JackOnGround() = false))
+    { do jack.moveDown(); }
+
+    // If jack is still jumping, let jack moves up
+    if (jack.isJump())
+    {
+      do jack.moveUp();
+      do jack.jumpLess();
+    }
+
+	
+    return;
+  }
+
+  method void Monmove()
+  {
+	  var int idx;
+	  var int switch;
+	  let idx = monster.getMonLeft();
+	  // look one for one monster for update monster moving
+	  while(idx < monster.getMonRight())
+		{
+	  	let switch = monster.getMontype(idx);
+			let xx = monster.getMonX(idx);
+			let yy = monster.getMonY(idx);
+
+			// If this is a normal monster
+	  	if(switch = 0)
+			{
+	  		// If monster touch leftside of block, let the direction = right
+	  		if(map.touchLeft(xx, yy, 16) = true)
+	  		{ do monster.changeRight(idx); }
+
+	  		// If monster touch rightside of block, let the direction = left
+	  		if(map.touchRight(xx, yy, 16) = true)
+	  		{ do monster.changeLeft(idx); }
+
+				// If there is a monster to the left of this current Monster, and they are touching
+	  		if( (idx > monster.getMonLeft()) & ((xx-monster.getMonX(idx-1)) < 17) & (yy = monster.getMonY(idx-1)) )
+	  		{
+					// Let the left block's direction = left
+					// Let the right block's direction = right
+		  		do monster.changeLeft(idx-1);
+		  		do monster.changeRight(idx);
+	  		}
+
+	  		// If monster touch the rightside of screen, let the direction = left
+	  		if(xx-screenPos > 490) { do monster.changeLeft(idx); }
+
+	  		// If monster not on the ground, let monster fall
+	  		if((map.touchBelow(xx,yy,16) = false) & (map.touchGround(xx,yy,16) = false))
+				{ do monster.movedown(idx); }
+	  		else // Else, Let monster move at it's own direction
+	  		{
+		  		do monster.eraseidxMonster(idx);
+		  		do monster.update(idx);
+		  		do monster.drawidxMonster(idx);
+				}
+	  	}
+
+	  	// Let flying monster move down
+	  	if(switch = 3)
+	  	{
+				if(monster.getMonY(idx) < 160)
+				{ 
+					do monster.changedown(idx);
+					do monster.movedown(idx); 
+				}
+				else { do monster.moveup(idx);}
+	  	}
+
+	  	// Let flying monster move up
+	  	if(switch = 4)
+	  	{
+				if((map.touchAbove(monster.getMonX(idx),(monster.getMonY(idx)+16),16) = true) | (monster.getMonY(idx) > 204))
+				{ 
+					do monster.changeup(idx); 
+					do monster.moveup(idx);	
+				}
+				else{do monster.movedown(idx);}
+	  	}
+
+			/*
+	   	if (idx = 2)
+	   	{
+	 			do Output.moveCursor(2, 0);
+	 			do Output.printString("PosY : ");
+	 			do Output.printInt(monster.getMonY(idx));
+	   	}
+			*/
+	  	let idx = idx + 1;
+	  }
+	  return;
+  }
+
+
+	// Move the map to the right by move pixels
+	method void transition(int move)
+	{
+		do jack.erase();
+		do monster.eraseMonster();
+		do map.erase();
+    do map.eraseGround();
+
+		let screenPos = screenPos + move;
+
+		if (move = 32) { do jack.transition(-move); } // If this is a normal moveScreen
+		else { do jack.transition(move); } // If this is a teleport moveScreen
+		do monster.transition(move);
+		do map.transition(move);
+
+		do jack.draw();
+		do monster.drawMonster();
+		do map.draw();
+   	    do map.drawGround();
+
+		return;
+	}
+
+	function void tbig()
+	{
+		let turnbig = true;
+		return;
+	}
+
+	function void Ulti()
+	{
+		let ulti = ulti + 1000;
+		return;
+	}
+
+	method boolean getwin()
+	{
+		return win;
+	}
+
+
+	method void dispose()
+	{
+		do jack.dispose();
+		do monster.dispose();
+		do map.dispose();
+		do draw.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+}

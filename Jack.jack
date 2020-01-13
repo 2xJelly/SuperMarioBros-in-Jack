@@ -1,0 +1,189 @@
+class Jack
+{
+  field Pos pos;
+  static int jumpDuration;
+  static boolean big;
+
+  // Build a new Jack!!!
+  constructor Jack new(int x, int y)
+  {
+    let pos = Pos.new(x, y);
+    let jumpDuration = 0;
+    let big = false;
+    do draw();
+
+    return this;
+  }
+
+  // Check Whether Jack has tranform or not
+  function boolean checkBig()
+  { return big; }
+
+  method void turnBig()
+  {
+    do erase();
+
+    let big = true;
+    do pos.updateY(pos.getY() - 16);
+    do draw();
+    return;
+  }
+
+  method void turnSmall()
+  {
+    do erase();
+
+    let big = false;
+    do pos.updateY(pos.getY() + 16);
+    do draw();
+    return;
+  }
+
+  // Return position x
+  method int getPosX()
+  { return pos.getX(); }
+
+  // Return position y
+  method int getPosY()
+  { return pos.getY(); }
+
+  // Draw Jack
+  method void draw()
+  {
+    var int memAddress;
+    if (~big) { do Sprite.drawJack(getPosX(), getPosY()); }
+    else { do Sprite.drawBigJack(getPosX(), getPosY()); }
+    // do Screen.setColor(true);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    return;
+  }
+
+  /* Erase Jack */
+  method void erase()
+  {
+    if (~big) { do Sprite.eraseJack(getPosX(), getPosY()); }
+    else { do Sprite.eraseBigJack(getPosX(), getPosY()); }
+    // do Screen.setColor(false);
+    // do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);
+    return;
+  }
+
+  /* Move the Jack to the right by move pixels */
+  method void transition(int move)
+  {
+    // do erase();
+    do pos.updateX(pos.getX() + move);
+    // do draw();
+    return;
+  }
+
+  /* Check if Jack is jumping */
+  method boolean isJump()
+  {
+    var boolean ans;
+    if (0 < jumpDuration) { let ans = true; }
+    else { let ans = false; }
+    return ans;
+  }
+
+  /* Decrease jump time of Jack by 1 frame */
+  method void jumpLess()
+  {
+    let jumpDuration = jumpDuration - 1;
+    return;
+  }
+
+  /* Let Jack jump */
+  method void jump()
+  {
+    let jumpDuration = 20; // Jump for 20 frames
+    return;
+  }
+
+  /* Let Jack stop jumping */
+  method void stopJump()
+  {
+    let jumpDuration = 0;
+    return;
+  }
+
+  /* Move 2 pixels upwards */
+  method void moveUp()
+  {
+    /* Beware not to go out of bounds */
+    if(3 < pos.getY())
+    {
+      do erase();
+      do pos.updateY(pos.getY() - 4);
+      do draw();
+    }
+    return;
+  }
+
+  /* Move 2 pixels downwards */
+  method void moveDown()
+  {
+    /* Beware not to go out of bounds */
+    if (big)
+    {
+      if(pos.getY() < 226)
+      {
+        do erase();
+        do pos.updateY(pos.getY() + 4);
+        do draw();
+      }
+    }else
+    {
+      if(pos.getY() < 237)
+      {
+        do erase();
+        do pos.updateY(pos.getY() + 4);
+        do draw();
+      }
+    }
+    return;
+  }
+
+  /* Move 2 pixels to the left */
+  method void moveLeft()
+  {
+    /* Beware not to go out of bounds */
+    if(1 < pos.getX())
+    {
+      do erase();
+      do pos.updateX(pos.getX() - 2);
+      do draw();
+    }
+    return;
+  }
+
+  /* Move 2 pixels to the right */
+  method void moveRight()
+  {
+    /* Beware not to go out of bounds */
+    if(pos.getX() < 495)
+    {
+      do erase();
+      do pos.updateX(pos.getX() + 2);
+      do draw();
+    }
+    return;
+  }
+
+
+
+  function void superjump()
+  {
+    let jumpDuration = 40;
+    return;
+  }
+
+  method void dispose()
+	{
+    do pos.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+
+
+}

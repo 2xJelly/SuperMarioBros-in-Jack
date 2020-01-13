@@ -1,0 +1,325 @@
+function Jack.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+push argument 1
+call Pos.new 2
+pop this 0
+push constant 0
+pop static 0
+push constant 0
+pop static 1
+push pointer 0
+call Jack.draw 1
+pop temp 0
+push pointer 0
+return
+function Jack.checkBig 0
+push static 1
+return
+function Jack.turnBig 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push constant 0
+not
+pop static 1
+push this 0
+push this 0
+call Pos.getY 1
+push constant 16
+sub
+call Pos.updateY 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+push constant 0
+return
+function Jack.turnSmall 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push constant 0
+pop static 1
+push this 0
+push this 0
+call Pos.getY 1
+push constant 16
+add
+call Pos.updateY 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+push constant 0
+return
+function Jack.getPosX 0
+push argument 0
+pop pointer 0
+push this 0
+call Pos.getX 1
+return
+function Jack.getPosY 0
+push argument 0
+pop pointer 0
+push this 0
+call Pos.getY 1
+return
+function Jack.draw 1
+push argument 0
+pop pointer 0
+push static 1
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Jack.getPosX 1
+push pointer 0
+call Jack.getPosY 1
+call Sprite.drawJack 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call Jack.getPosX 1
+push pointer 0
+call Jack.getPosY 1
+call Sprite.drawBigJack 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Jack.erase 0
+push argument 0
+pop pointer 0
+push static 1
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Jack.getPosX 1
+push pointer 0
+call Jack.getPosY 1
+call Sprite.eraseJack 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call Jack.getPosX 1
+push pointer 0
+call Jack.getPosY 1
+call Sprite.eraseBigJack 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function Jack.transition 0
+push argument 0
+pop pointer 0
+push this 0
+push this 0
+call Pos.getX 1
+push argument 1
+add
+call Pos.updateX 2
+pop temp 0
+push constant 0
+return
+function Jack.isJump 1
+push argument 0
+pop pointer 0
+push constant 0
+push static 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+pop local 0
+goto IF_END0
+label IF_FALSE0
+push constant 0
+pop local 0
+label IF_END0
+push local 0
+return
+function Jack.jumpLess 0
+push argument 0
+pop pointer 0
+push static 0
+push constant 1
+sub
+pop static 0
+push constant 0
+return
+function Jack.jump 0
+push argument 0
+pop pointer 0
+push constant 20
+pop static 0
+push constant 0
+return
+function Jack.stopJump 0
+push argument 0
+pop pointer 0
+push constant 0
+pop static 0
+push constant 0
+return
+function Jack.moveUp 0
+push argument 0
+pop pointer 0
+push constant 3
+push this 0
+call Pos.getY 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push this 0
+push this 0
+call Pos.getY 1
+push constant 4
+sub
+call Pos.updateY 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Jack.moveDown 0
+push argument 0
+pop pointer 0
+push static 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pos.getY 1
+push constant 226
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push this 0
+push this 0
+call Pos.getY 1
+push constant 4
+add
+call Pos.updateY 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+label IF_FALSE1
+goto IF_END0
+label IF_FALSE0
+push this 0
+call Pos.getY 1
+push constant 237
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push this 0
+push this 0
+call Pos.getY 1
+push constant 4
+add
+call Pos.updateY 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+label IF_FALSE2
+label IF_END0
+push constant 0
+return
+function Jack.moveLeft 0
+push argument 0
+pop pointer 0
+push constant 1
+push this 0
+call Pos.getX 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push this 0
+push this 0
+call Pos.getX 1
+push constant 2
+sub
+call Pos.updateX 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Jack.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+call Pos.getX 1
+push constant 495
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Jack.erase 1
+pop temp 0
+push this 0
+push this 0
+call Pos.getX 1
+push constant 2
+add
+call Pos.updateX 2
+pop temp 0
+push pointer 0
+call Jack.draw 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Jack.superjump 0
+push constant 40
+pop static 0
+push constant 0
+return
+function Jack.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Pos.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

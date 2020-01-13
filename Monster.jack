@@ -312,8 +312,8 @@ class Monster
   method void kill(int i)
   { 
     do eraseidxMonster(i);
-    do SuperMarioGame.addPoints(100);
-    do SuperMarioGame.addMul();
+    do SuperJackGame.addPoints(100);
+    do SuperJackGame.addMul();
     while(~(i = monLeft) ){
       let MonX[i] = MonX[i-1];
       let MonY[i] = MonY[i-1];

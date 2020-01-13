@@ -22,7 +22,7 @@ class Pos
   method void updateX(int x)
   {
     let posX = x;
-    // If position of Mario jump out of the screen, let it return to 0
+    // If position of Jack jump out of the screen, let it return to 0
     if (511 < posX) 
     { 
       let posX = 36;

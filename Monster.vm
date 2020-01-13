@@ -921,9 +921,9 @@ push argument 1
 call Monster.eraseidxMonster 2
 pop temp 0
 push constant 100
-call SuperMarioGame.addPoints 1
+call SuperJackGame.addPoints 1
 pop temp 0
-call SuperMarioGame.addMul 0
+call SuperJackGame.addMul 0
 pop temp 0
 label WHILE_EXP0
 push argument 1

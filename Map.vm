@@ -2415,10 +2415,10 @@ if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push constant 100
-call SuperMarioGame.addPoints 1
+call SuperJackGame.addPoints 1
 pop temp 0
 push constant 100
-call SuperMarioGame.addMoney 1
+call SuperJackGame.addMoney 1
 pop temp 0
 push local 3
 push this 1
@@ -2744,7 +2744,7 @@ and
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-call Mario.superjump 0
+call Jack.superjump 0
 pop temp 0
 label IF_FALSE4
 push local 0
@@ -2875,7 +2875,7 @@ push local 3
 push constant 1
 call Block.changeType 3
 pop temp 0
-call SuperMarioGame.tbig 0
+call SuperJackGame.tbig 0
 pop temp 0
 push pointer 0
 call Map.erase 1
@@ -2910,7 +2910,7 @@ push local 3
 push constant 1
 call Block.changeType 3
 pop temp 0
-call SuperMarioGame.Ulti 0
+call SuperJackGame.Ulti 0
 pop temp 0
 push pointer 0
 call Map.erase 1

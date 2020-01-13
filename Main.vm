@@ -1,9 +1,21 @@
-function Main.main 4
+function Main.main 5
 push constant 3
 pop static 0
 push constant 0
-pop local 1
-push constant 15
+pop local 2
+push local 1
+call Menu.new 1
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 0
+push constant 220
+push constant 511
+push constant 231
+call Screen.drawRectangle 4
+pop temp 0
+push constant 20
 push constant 20
 call Output.moveCursor 2
 pop temp 0
@@ -56,13 +68,13 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 label WHILE_EXP0
-push local 1
+push local 2
 not
 not
 if-goto WHILE_END0
 call Keyboard.keyPressed 0
-pop local 2
-push local 2
+pop local 3
+push local 3
 push constant 128
 eq
 if-goto IF_TRUE0
@@ -70,18 +82,18 @@ goto IF_FALSE0
 label IF_TRUE0
 push constant 0
 not
-pop local 1
+pop local 2
 push constant 6
-pop local 3
+pop local 4
 label WHILE_EXP1
-push local 3
+push local 4
 push constant 1
 neg
 gt
 not
 if-goto WHILE_END1
 push constant 50
-push local 3
+push local 4
 call Math.multiply 2
 call Sys.wait 1
 pop temp 0
@@ -89,17 +101,17 @@ push constant 0
 call Screen.setColor 1
 pop temp 0
 push constant 0
-push constant 165
+push constant 220
 push constant 511
-push constant 175
+push constant 231
 call Screen.drawRectangle 4
 pop temp 0
 push constant 50
-push local 3
+push local 4
 call Math.multiply 2
 call Sys.wait 1
 pop temp 0
-push constant 15
+push constant 20
 push constant 20
 call Output.moveCursor 2
 pop temp 0
@@ -151,10 +163,10 @@ push constant 116
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push local 3
+push local 4
 push constant 1
 sub
-pop local 3
+pop local 4
 goto WHILE_EXP1
 label WHILE_END1
 label IF_FALSE0
@@ -162,14 +174,14 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 200
 push static 0
-call SuperMarioGame.new 2
+call SuperJackGame.new 2
 pop local 0
 push local 0
-call SuperMarioGame.run 1
+call SuperJackGame.run 1
 pop temp 0
 label WHILE_EXP2
 push local 0
-call SuperMarioGame.getwin 1
+call SuperJackGame.getwin 1
 not
 push static 0
 and
@@ -182,19 +194,19 @@ push constant 1
 sub
 pop static 0
 push local 0
-call SuperMarioGame.dispose 1
+call SuperJackGame.dispose 1
 pop temp 0
 push constant 200
 push static 0
-call SuperMarioGame.new 2
+call SuperJackGame.new 2
 pop local 0
 push local 0
-call SuperMarioGame.run 1
+call SuperJackGame.run 1
 pop temp 0
 goto WHILE_EXP2
 label WHILE_END2
 push local 0
-call SuperMarioGame.getwin 1
+call SuperJackGame.getwin 1
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1

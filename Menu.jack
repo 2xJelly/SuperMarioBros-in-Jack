@@ -1,0 +1,25 @@
+class Menu
+{
+    method void new()
+    {
+        var Draw draw;
+        var int location;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(0,0,511,255);
+        let location = 515;
+        do draw.coin(location);
+        do draw.coin(location+1);
+        do draw.coin(location+511);
+        do draw.coin(location+1024);
+        do draw.coin(location+1025);
+        do draw.coin(location+1538);
+        do draw.coin(location+2049);
+        do draw.coin(location+2048);
+
+        let location = 519;
+
+    
+        
+        return;
+    }
+}

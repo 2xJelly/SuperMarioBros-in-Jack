@@ -4,14 +4,18 @@ class Main
 
 	function void main()
 	{
-		var SuperMarioGame game;
+		var SuperJackGame game;
+		var Menu menu;
 		var boolean exit;
 		var int key,effect;
 		let life = 3;
 		let exit = false;
 
 		// Show the text
-		do Output.moveCursor(17, 20);
+		do menu.new();
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 220, 511, 231);
+		do Output.moveCursor(20, 20);
 		do Output.printString("Press any key to Start");
 
 		// Starting Menu
@@ -31,20 +35,19 @@ class Main
 					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
 					do Screen.setColor(false);
-					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+					do Screen.drawRectangle(0, 220, 511, 231); // Character is 11 pixels in height
 
 					// Show the text
 					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
-					do Output.moveCursor(17, 20);
+					do Output.moveCursor(20, 20);
 					do Output.printString("Press any key to Start");
 
 					let effect = effect -1;
 				}
 			}
 		}
-
-		let game = SuperMarioGame.new(200,life);
+		let game = SuperJackGame.new(200,life);
 		/* Give game the fps needed */
 		do game.run();
 		// do game.dispose();
@@ -52,7 +55,7 @@ class Main
 		{
 			let life = life - 1;
 			do game.dispose();
-			let game = SuperMarioGame.new(200,life);
+			let game = SuperJackGame.new(200,life);
 			do game.run();
 		}
 
