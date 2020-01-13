@@ -11,7 +11,7 @@ class Main
 		let exit = false;
 
 		// Show the text
-		do Output.moveCursor(15, 20);
+		do Output.moveCursor(17, 20);
 		do Output.printString("Press any key to Start");
 
 		// Starting Menu
@@ -21,22 +21,22 @@ class Main
 			let key = Keyboard.keyPressed();
 
 			// Now we have an input from the user
-			if( ~(key=0) ) // Any key
+			if(key = 128) // Any key
 			{
 				let exit = true;
-				let effect = 3;
+				let effect = 6;
 				while(effect > -1)
 				{
 					// Erase the text
-					do Sys.wait(300);
+					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
 					do Screen.setColor(false);
 					do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
 
 					// Show the text
-					do Sys.wait(300);
+					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
-					do Output.moveCursor(15, 20);
+					do Output.moveCursor(17, 20);
 					do Output.printString("Press any key to Start");
 
 					let effect = effect -1;

@@ -63,16 +63,15 @@ if-goto WHILE_END0
 call Keyboard.keyPressed 0
 pop local 2
 push local 2
-push constant 0
+push constant 128
 eq
-not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 0
 not
 pop local 1
-push constant 3
+push constant 6
 pop local 3
 label WHILE_EXP1
 push local 3
@@ -81,7 +80,9 @@ neg
 gt
 not
 if-goto WHILE_END1
-push constant 300
+push constant 50
+push local 3
+call Math.multiply 2
 call Sys.wait 1
 pop temp 0
 push constant 0
@@ -93,7 +94,9 @@ push constant 511
 push constant 175
 call Screen.drawRectangle 4
 pop temp 0
-push constant 300
+push constant 50
+push local 3
+call Math.multiply 2
 call Sys.wait 1
 pop temp 0
 push constant 15
