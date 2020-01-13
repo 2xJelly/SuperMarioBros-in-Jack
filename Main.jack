@@ -1,6 +1,7 @@
 class Main
 {
 	static int life;
+	static int level;
 
 	function void main()
 	{
@@ -11,6 +12,7 @@ class Main
 		var int position,anime;
 		let position = 5124;
 		let anime = 10;
+		let level = 1;
 		let life = 3;
 		let turn = true;
 		let exit = false;
@@ -67,7 +69,7 @@ class Main
 				{
 					let position = position + 1;
 				}
-				
+
 				else
 				{
 					let turn = false;
@@ -85,19 +87,29 @@ class Main
 				let anime = 10;
 			}
 		}
-		let game = SuperJackGame.new(200,life);
+		let game = SuperJackGame.new(200,life,level);
 		/* Give game the fps needed */
 		do game.run();
 		// do game.dispose();
-		while(~(game.getwin()) & (life) > 0)
+		while ( (life > 0) & (level < 3) )
 		{
-			let life = life - 1;
+			if( game.getwin() )
+			{
+				let level = level + 1;
+			}else
+			{
+				let life = life - 1;
+			}
+
 			do game.dispose();
-			let game = SuperJackGame.new(200,life);
-			do game.run();
+			if ( (life > 0) & (level < 3) )
+			{
+				let game = SuperJackGame.new(200,life,level);
+				do game.run();
+			}
 		}
 
-		if(game.getwin())
+		if (2 < level)
 		{
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
@@ -110,8 +122,6 @@ class Main
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Lose~~~");
 		}
-
-		
 
 		return;
 	}

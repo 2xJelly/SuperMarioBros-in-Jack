@@ -8,16 +8,22 @@ class Monster
   field int numMonster;
   field int screenPos;
   field int monLeft,monRight;
-  
 
-  constructor Monster new()
+
+  constructor Monster new(int level)
   {
-    let numMonster = 28;
+    if (level = 1)
+    {
+      let numMonster = 28;
+    }else
+    {
+      let numMonster = 1;
+    }
     let screenPos = 0;
     let monLeft = 0;
     let monRight = 0;
 
-    let block = Block.new();
+    let block = Block.new(level);
     /*Set X-position of monster*/
     let MonX = block.getMonX();
     /*Set Y-position of monste*/
@@ -54,7 +60,7 @@ class Monster
             do draw.flowerleft(location);
             let location = 0;
           }
-        
+
         if(switch = 2)
           {
             let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
@@ -145,7 +151,7 @@ class Monster
 
   /*Draw i th monster on screen*/
   method void drawidxMonster(int i)
-  {     
+  {
         var int switch;
         var int location;
         let switch = Montype[i];
@@ -157,7 +163,7 @@ class Monster
             do draw.flowerleft(location);
             let location = 0;
           }
-        
+
         if(switch = 2)
           {
             let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
@@ -181,7 +187,7 @@ class Monster
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
           do draw.monster(location);
         }
-  
+
       return;
   }
 
@@ -261,7 +267,7 @@ class Monster
   method void refresh()
   {
 
-    
+
     while((monRight < numMonster) & (MonX[monRight] < (screenPos + 512) ) )
     {let monRight = monRight + 1;}
 
@@ -316,7 +322,7 @@ class Monster
 
   /*kill the monster*/
   method void kill(int i)
-  { 
+  {
     do eraseidxMonster(i);
     do SuperJackGame.addPoints(100);
     do SuperJackGame.addMul();
@@ -343,7 +349,7 @@ class Monster
       return MonY[i];
   }
 
-  /*get the pointer to the i th monster of left side*/ 
+  /*get the pointer to the i th monster of left side*/
   method int getMonLeft()
   {
       return monLeft;

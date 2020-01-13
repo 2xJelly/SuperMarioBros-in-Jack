@@ -2,15 +2,27 @@ function Monster.new 0
 push constant 10
 call Memory.alloc 1
 pop pointer 0
+push argument 0
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push constant 28
 pop this 6
+goto IF_END0
+label IF_FALSE0
+push constant 1
+pop this 6
+label IF_END0
 push constant 0
 pop this 7
 push constant 0
 pop this 8
 push constant 0
 pop this 9
-call Block.new 0
+push argument 0
+call Block.new 1
 pop this 4
 push this 4
 call Block.getMonX 1

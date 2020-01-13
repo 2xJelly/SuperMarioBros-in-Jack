@@ -464,7 +464,7 @@ method void cloudrightdown(int location) {
 // 	do Memory.poke(memAddress+480, 16383);
 // 	return;
 //     }
-	
+
 // 	method void pipelefttop(int location) {
 // 	var int memAddress;
 // 	let memAddress = 16384+location;
@@ -507,7 +507,7 @@ method void cloudrightdown(int location) {
 // 	do Memory.poke(memAddress+448, -1);
 // 	do Memory.poke(memAddress+480, -1);
 // 	return;
-	
+
 //     }
 
 // 	method void piperightbot(int location) {
@@ -1064,5 +1064,5 @@ method void pole(int location) {
 	{
 		return;
 	}
-        
+
 }

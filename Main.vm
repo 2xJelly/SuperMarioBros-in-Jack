@@ -3,6 +3,8 @@ push constant 5124
 pop local 6
 push constant 10
 pop local 7
+push constant 1
+pop static 1
 push constant 3
 pop static 0
 push constant 0
@@ -270,42 +272,68 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 200
 push static 0
-call SuperJackGame.new 2
+push static 1
+call SuperJackGame.new 3
 pop local 0
 push local 0
 call SuperJackGame.run 1
 pop temp 0
 label WHILE_EXP2
-push local 0
-call SuperJackGame.getwin 1
-not
 push static 0
-and
 push constant 0
 gt
+push static 1
+push constant 3
+lt
+and
 not
 if-goto WHILE_END2
-push static 0
-push constant 1
-sub
-pop static 0
-push local 0
-call SuperJackGame.dispose 1
-pop temp 0
-push constant 200
-push static 0
-call SuperJackGame.new 2
-pop local 0
-push local 0
-call SuperJackGame.run 1
-pop temp 0
-goto WHILE_EXP2
-label WHILE_END2
 push local 0
 call SuperJackGame.getwin 1
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
+push static 1
+push constant 1
+add
+pop static 1
+goto IF_END6
+label IF_FALSE6
+push static 0
+push constant 1
+sub
+pop static 0
+label IF_END6
+push local 0
+call SuperJackGame.dispose 1
+pop temp 0
+push static 0
+push constant 0
+gt
+push static 1
+push constant 3
+lt
+and
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 200
+push static 0
+push static 1
+call SuperJackGame.new 3
+pop local 0
+push local 0
+call SuperJackGame.run 1
+pop temp 0
+label IF_FALSE7
+goto WHILE_EXP2
+label WHILE_END2
+push constant 2
+push static 1
+lt
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 call Screen.clearScreen 0
 pop temp 0
 push constant 13
@@ -336,8 +364,8 @@ push constant 126
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-goto IF_END6
-label IF_FALSE6
+goto IF_END8
+label IF_FALSE8
 call Screen.clearScreen 0
 pop temp 0
 push constant 13
@@ -370,6 +398,6 @@ push constant 126
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-label IF_END6
+label IF_END8
 push constant 0
 return
