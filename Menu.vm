@@ -15,51 +15,409 @@ push constant 515
 pop local 1
 push local 0
 push local 1
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 1
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 511
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 1024
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 1025
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 1538
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 2049
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
 push local 0
 push local 1
 push constant 2048
 add
-call Draw.coin 2
+call Draw.square 2
 pop temp 0
-push constant 519
+push constant 1543
 pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1025
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 514
+add
+call Draw.square 2
+pop temp 0
+push constant 1547
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1025
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 514
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1536
+add
+call Draw.square 2
+pop temp 0
+push constant 1551
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1025
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 513
+add
+call Draw.square 2
+pop temp 0
+push constant 1555
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 513
+add
+call Draw.square 2
+pop temp 0
+push constant 3599
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 514
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1536
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1537
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1538
+add
+call Draw.square 2
+pop temp 0
+push constant 4115
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 514
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push constant 4119
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1025
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
+push constant 4123
+pop local 1
+push local 0
+push local 1
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 513
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 1026
+add
+call Draw.square 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.square 2
+pop temp 0
 push constant 0
 return

@@ -276,6 +276,8 @@ class SuperJackGame
 				do Output.printInt(time);
 			}
 
+			do calc();
+
 			// Monster move 2 pixel per 0.02 second
 			if(~(frameMon > 0))
 			{
@@ -284,7 +286,34 @@ class SuperJackGame
 			}
 
 
-			/* one for one monster for update kill or die*/
+			do calc();
+
+			// If jack haven't die,
+			// and jack reach this interval, you WIN ~~
+			
+		}
+
+		// The game ends, clear the screen
+		// do Screen.clearScreen();
+
+		
+		// // LOSE
+		// else { do Output.printString("You Suck!!!"); }
+
+		// Just For Debug, Remove the text
+		/*
+		do Screen.setColor(false);
+		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
+		*/
+
+		return win;
+	}
+
+	method void calc()
+	{
+		var int idx, switch, height;
+		let idx = monster.getMonLeft();
+		/* one for one monster for update kill or die*/
 			while(idx < monster.getMonRight())
 			{
 				let switch = monster.getMontype(idx);
@@ -361,26 +390,7 @@ class SuperJackGame
 
 				let idx = idx + 1;
 			}
-
-			// If jack haven't die,
-			// and jack reach this interval, you WIN ~~
-			
-		}
-
-		// The game ends, clear the screen
-		// do Screen.clearScreen();
-
-		
-		// // LOSE
-		// else { do Output.printString("You Suck!!!"); }
-
-		// Just For Debug, Remove the text
-		/*
-		do Screen.setColor(false);
-		do Screen.drawRectangle(0, 165, 511, 175); // Character is 11 pixels in height
-		*/
-
-		return win;
+			return;
 	}
 
 	method void restoreMul()

@@ -16,7 +16,7 @@ class Main
 		do Screen.setColor(false);
 		do Screen.drawRectangle(0, 220, 511, 231);
 		do Output.moveCursor(20, 20);
-		do Output.printString("Press any key to Start");
+		do Output.printString("Press enter key to Start");
 
 		// Starting Menu
 		while (~exit)
@@ -41,7 +41,7 @@ class Main
 					do Sys.wait(50*effect);
 					// do Sys.wait(10000/(fps/10));
 					do Output.moveCursor(20, 20);
-					do Output.printString("Press any key to Start");
+					do Output.printString("Press enter key to Start");
 
 					let effect = effect -1;
 				}

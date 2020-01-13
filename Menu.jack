@@ -6,19 +6,101 @@ class Menu
         var int location;
         do Screen.setColor(true);
         do Screen.drawRectangle(0,0,511,255);
+        
+        /**S**/
         let location = 515;
-        do draw.coin(location);
-        do draw.coin(location+1);
-        do draw.coin(location+511);
-        do draw.coin(location+1024);
-        do draw.coin(location+1025);
-        do draw.coin(location+1538);
-        do draw.coin(location+2049);
-        do draw.coin(location+2048);
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+511);
+        do draw.square(location+1024);
+        do draw.square(location+1025);
+        do draw.square(location+1538);
+        do draw.square(location+2049);
+        do draw.square(location+2048);
 
-        let location = 519;
+        /**u**/
+        let location = 1543;
+        do draw.square(location);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+1025);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+        do draw.square(location+514);
 
-    
+        /**p**/
+        let location = 1547;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+1025);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+        do draw.square(location+514);
+        do draw.square(location+1536);
+
+        /**e**/
+        let location = 1551;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+1025);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+        do draw.square(location+513);
+
+        /**r**/
+        let location = 1555;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+        do draw.square(location+513);
+
+        /**J**/
+        let location = 3599;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+2);
+        do draw.square(location+514);
+        do draw.square(location+1024);
+        do draw.square(location+1026);
+        do draw.square(location+1536);
+        do draw.square(location+1537);
+        do draw.square(location+1538);
+
+        /**a**/
+        let location = 4115;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+1024);
+        do draw.square(location+514);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+        do draw.square(location+512);
+
+        /**c**/
+        let location = 4119;
+        do draw.square(location);
+        do draw.square(location+1);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+1025);
+        do draw.square(location+1026);
+        do draw.square(location+2);
+
+        /**k**/
+        let location = 4123;
+        do draw.square(location);
+        do draw.square(location+512);
+        do draw.square(location+1024);
+        do draw.square(location+513);
+        do draw.square(location+1026);
+        do draw.square(location+2);
         
         return;
     }
