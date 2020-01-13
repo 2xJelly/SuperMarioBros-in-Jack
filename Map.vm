@@ -2,9 +2,9 @@ function Map.new 0
 push constant 17
 call Memory.alloc 1
 pop pointer 0
-push constant 6
+push constant 15
 pop this 5
-push constant 174
+push constant 140
 pop this 6
 push constant 0
 pop this 7
@@ -30,6 +30,10 @@ pop this 1
 push constant 0
 not
 pop this 16
+push constant 240
+pop this 14
+push constant 160
+pop this 15
 push constant 7
 pop this 12
 push constant 8
@@ -2200,11 +2204,10 @@ push local 3
 push constant 1
 call Block.changeType 3
 pop temp 0
-push pointer 0
-call Map.erase 1
-pop temp 0
-push pointer 0
-call Map.draw 1
+push this 3
+push local 3
+push this 7
+call Block.drawNull 3
 pop temp 0
 goto IF_END4
 label IF_FALSE4

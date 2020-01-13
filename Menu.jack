@@ -125,9 +125,9 @@ class Menu
         do draw.brick(location+4);
         do draw.brick(location+5);
         do draw.brick(location+6);
-        
 
-        
+
+
         return;
     }
 
@@ -147,5 +147,5 @@ class Menu
     {
         do Draw.eraseblock(i);
         return;
-    } 
+    }
 }

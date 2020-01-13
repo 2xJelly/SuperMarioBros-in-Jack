@@ -34,7 +34,7 @@ class SuperJackGame
 		// Do the starting menu
 		do menu();
 		do Screen.clearScreen();
-		
+
 		do MATH.init();
 		do Sprite.init();
 
@@ -130,14 +130,14 @@ class SuperJackGame
 
 		do Output.moveCursor(0,38);
 		do Output.printString("LIFE: ");
-		
+
 		while(i > 0)
 		{
 			let location = 21 + i;
 			do draw.life(location);
 			let i = i - 1;
 		}
-		
+
 
 		// Just For Debug, try printBin and printBinRev
 		/*
@@ -245,7 +245,7 @@ class SuperJackGame
 			if (Jack.checkBig()) { let height = 32; }
 			else { let height = 16; }
 			if ( (key = 133) & (map.teleportloc(jack.getPosX()+screenPos,jack.getPosY(),height) = true) )
-			{ 
+			{
 				// let exit = true;
 				let effect = 5;
 				while(effect > -1)
@@ -256,7 +256,7 @@ class SuperJackGame
 					do jack.draw();
 					let effect = effect -1;
 				}
-				do transition(2732 - (screenPos) ); 
+				do transition(2732 - (screenPos) );
 			}
 
 			// if ( (key = 133) & (~((jack.getPosX()+screenPos)<1168)) & ((jack.getPosX()+screenPos)<1184) & (jack.getPosY() = 144) )
@@ -293,13 +293,13 @@ class SuperJackGame
 
 			// If jack haven't die,
 			// and jack reach this interval, you WIN ~~
-			
+
 		}
 
 		// The game ends, clear the screen
 		// do Screen.clearScreen();
 
-		
+
 		// // LOSE
 		// else { do Output.printString("You Suck!!!"); }
 
@@ -340,7 +340,7 @@ class SuperJackGame
 				{
 					// If jack touches the plant Monster, he dies
 					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
-					{ 
+					{
 						do SuperJackGame.addPoints(200);
 						do monster.changetype(idx,5);
 						do monster.changetype(idx + 1,5);
@@ -354,7 +354,7 @@ class SuperJackGame
 				{
 					// If jack touches the plant Monster, he dies
 					if ( (-16 < (x-xx)) & ((x-xx) < 16) & ((-(height+1)) < (y-yy)) & ((y-yy) < (height+1)) & ((ulti > 0)))
-					{ 
+					{
 						do SuperJackGame.addPoints(200);
 						do monster.changetype(idx - 1,5);
 						do monster.changetype(idx,5);
@@ -521,8 +521,8 @@ class SuperJackGame
     			if ((key = 130) & (~map.touchLeftSides(x, y, h)) & (map.touchLeft(x, y, h) = false) ) { do jack.moveLeft(); }
 				if ((key = 132) & (~map.touchRightSides(x, y, h)) & (map.touchRight(x, y, h) = false) ) { do jack.moveRight(); }
 
-	
-		
+
+
 		// If jack is jumping, and there is a block above him, jack will stop jumping
 		if ( jack.isJump() )
 		{ if (map.touchAbove(x, y, 32)) { do jack.stopJump(); } }
@@ -541,7 +541,7 @@ class SuperJackGame
       do jack.jumpLess();
     }
 
-	
+
     return;
   }
 
@@ -595,9 +595,9 @@ class SuperJackGame
 	  	if(switch = 3)
 	  	{
 				if(monster.getMonY(idx) < 160)
-				{ 
+				{
 					do monster.changedown(idx);
-					do monster.movedown(idx); 
+					do monster.movedown(idx);
 				}
 				else { do monster.moveup(idx);}
 	  	}
@@ -606,9 +606,9 @@ class SuperJackGame
 	  	if(switch = 4)
 	  	{
 				if((map.touchAbove(monster.getMonX(idx),(monster.getMonY(idx)+16),16) = true) | (monster.getMonY(idx) > 204))
-				{ 
-					do monster.changeup(idx); 
-					do monster.moveup(idx);	
+				{
+					do monster.changeup(idx);
+					do monster.moveup(idx);
 				}
 				else{do monster.movedown(idx);}
 	  	}

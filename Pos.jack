@@ -23,12 +23,12 @@ class Pos
   {
     let posX = x;
     // If position of Jack jump out of the screen, let it return to 0
-    if (511 < posX) 
-    { 
+    if (511 < posX)
+    {
       let posX = 36;
       //let posX = posX+3;
-      let posY = posY + 16; 
-    } 
+      let posY = posY + 16;
+    }
     return;
   }
 

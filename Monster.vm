@@ -2,7 +2,7 @@ function Monster.new 0
 push constant 10
 call Memory.alloc 1
 pop pointer 0
-push constant 28
+push constant 11
 pop this 6
 push constant 0
 pop this 7

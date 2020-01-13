@@ -67,7 +67,7 @@ class Main
 				{
 					let position = position + 1;
 				}
-				
+
 				else
 				{
 					let turn = false;
@@ -111,7 +111,7 @@ class Main
 			do Output.printString("You Lose~~~");
 		}
 
-		
+
 
 		return;
 	}
