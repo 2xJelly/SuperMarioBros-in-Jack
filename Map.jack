@@ -120,15 +120,15 @@ class Map
   /*erase the cloud*/
   method void eraseCloud()
   {
-    do draw.eraseblock(512 + cloudloc);
-    do draw.eraseblock(512 + cloudloc1);
-    do draw.eraseblock(1024 + cloudloc);
-    do draw.eraseblock(1024 + cloudloc1);
+    do Draw.eraseblock(512 + cloudloc);
+    do Draw.eraseblock(512 + cloudloc1);
+    do Draw.eraseblock(1024 + cloudloc);
+    do Draw.eraseblock(1024 + cloudloc1);
 
-    do draw.eraseblock(748 + cloudloc);
-    do draw.eraseblock(748 + cloudloc1);
-    do draw.eraseblock(1260 + cloudloc);
-    do draw.eraseblock(1260 + cloudloc1);
+    do Draw.eraseblock(748 + cloudloc);
+    do Draw.eraseblock(748 + cloudloc1);
+    do Draw.eraseblock(1260 + cloudloc);
+    do Draw.eraseblock(1260 + cloudloc1);
     return;
   }
 
@@ -204,33 +204,33 @@ class Map
           let location = 0;
         }
 
-        if(switch = 9)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.pipelefttop(location);
-          let location = 0;
-        }
+        // if(switch = 9)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.pipelefttop(location);
+        //   let location = 0;
+        // }
 
-        if(switch = 10)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.pipeleftbot(location);
-          let location = 0;
-        }
+        // if(switch = 10)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.pipeleftbot(location);
+        //   let location = 0;
+        // }
 
-        if(switch = 11)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.piperighttop(location);
-          let location = 0;
-        }
+        // if(switch = 11)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.piperighttop(location);
+        //   let location = 0;
+        // }
 
-        if(switch = 12)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.piperightbot(location);
-          let location = 0;
-        }
+        // if(switch = 12)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.piperightbot(location);
+        //   let location = 0;
+        // }
 
         if(switch = 13)
         {
@@ -246,19 +246,19 @@ class Map
           let location = 0;
         }
 
-        if(switch = 15)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.pipeconnecttop(location);
-          let location = 0;
-        }
+        // if(switch = 15)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.pipeconnecttop(location);
+        //   let location = 0;
+        // }
 
-        if(switch = 16)
-        {
-          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-          do draw.pipeconnectbot(location);
-          let location = 0;
-        }
+        // if(switch = 16)
+        // {
+        //   let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+        //   do draw.pipeconnectbot(location);
+        //   let location = 0;
+        // }
 
         if(switch = 17)
         {
@@ -420,7 +420,7 @@ class Map
     {
       /* Erase all the blocks */
       let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-      do draw.eraseblock(location);
+      do Draw.eraseblock(location);
       let i = i + 1;
     }
     return;
@@ -431,7 +431,7 @@ class Map
   {
     var int location;
     let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
-    do draw.eraseblock(location);
+    do Draw.eraseblock(location);
     return;
   }
 
@@ -746,13 +746,13 @@ class Map
         do draw.square(location - 256);
         do draw.coin(location);
         do Sys.wait(100);
-        do draw.eraseblock(location);
-        do draw.eraseblock(location - 256);
+        do Draw.eraseblock(location);
+        do Draw.eraseblock(location - 256);
         let location = location -512;
         do draw.coin(location);
         do Sys.wait(100);
         do draw();
-        do draw.eraseblock(location);
+        do Draw.eraseblock(location);
       }
 
       else{
@@ -763,7 +763,7 @@ class Map
           do block.changeType(touchBlock, 5);
           do draw.square(location - 256);
           do Sys.wait(100);
-          do draw.eraseblock(location - 256);
+          do Draw.eraseblock(location - 256);
           do Sys.wait(100);
           do block.changeType(touchBlock-1,35);
           do draw();
@@ -776,7 +776,7 @@ class Map
           {
               let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
               do block.changeType(touchBlock, 5);
-              // do draw.eraseblock(location - 256);
+              // do Draw.eraseblock(location - 256);
               // do Sys.wait(100);
               do block.changeType(touchBlock-1,37);
               do draw();
@@ -929,7 +929,7 @@ class Map
       let diffY = posY[i] - Y;
 
       /* If Jack touch the teleport pipe and press down*/
-      if( ((block.getType(i) = 33)) & ((diffX < 27)) & ((diffX > 5)) & (diffY = h))
+      if( ((block.getType(i) = 33)) & (diffX < 27) & (diffX > 5) & (diffY = h))
       {
         let touch = true;
       }
@@ -938,7 +938,7 @@ class Map
     }
 
     return touch;
-    }
+  }
 
     method void dispose()
 	{

@@ -121,6 +121,50 @@ pop temp 0
 label IF_END0
 push constant 0
 return
+function Jack.eraserectangle 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push static 1
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Pos.getX 1
+push this 0
+call Pos.getY 1
+push this 0
+call Pos.getX 1
+push constant 15
+add
+push this 0
+call Pos.getY 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+call Pos.getX 1
+push this 0
+call Pos.getY 1
+push this 0
+call Pos.getX 1
+push constant 15
+add
+push this 0
+call Pos.getY 1
+push constant 31
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_END0
+push constant 0
+return
 function Jack.transition 0
 push argument 0
 pop pointer 0

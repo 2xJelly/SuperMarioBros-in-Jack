@@ -79,11 +79,11 @@ class Monster
           do draw.monster(location);
         }
 
-        if(switch = 5)
-        {
-          let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
-        }
+        // if(switch = 5)
+        // {
+        //   let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+        //   do Draw.eraseblock(location);
+        // }
 
         let i = i + 1;
       }
@@ -111,26 +111,32 @@ class Monster
         if(switch = 3)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
+
+        // if(switch = 5)
+        // {
+        //   let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
+        //   do Draw.eraseblock(location);
+        // }
 
         let i = i + 1;
       }
@@ -194,25 +200,25 @@ class Monster
         if(switch = 3)
         {
           let location = ((MonY[i])*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 4)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 1)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
         if(switch = 2)
         {
           let location = (MonY[i]*32) + ((MonX[i]-screenPos)/16);
-          do draw.eraseblock(location);
+          do Draw.eraseblock(location);
         }
 
       return;

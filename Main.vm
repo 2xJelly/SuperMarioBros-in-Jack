@@ -1,6 +1,13 @@
-function Main.main 5
+function Main.main 8
+push constant 5124
+pop local 6
+push constant 10
+pop local 7
 push constant 3
 pop static 0
+push constant 0
+not
+pop local 3
 push constant 0
 pop local 2
 push local 1
@@ -77,8 +84,8 @@ not
 not
 if-goto WHILE_END0
 call Keyboard.keyPressed 0
-pop local 3
-push local 3
+pop local 4
+push local 4
 push constant 128
 eq
 if-goto IF_TRUE0
@@ -87,17 +94,21 @@ label IF_TRUE0
 push constant 0
 not
 pop local 2
+push local 1
+push local 6
+call Menu.anime 2
+pop temp 0
 push constant 6
-pop local 4
+pop local 5
 label WHILE_EXP1
-push local 4
+push local 5
 push constant 1
 neg
 gt
 not
 if-goto WHILE_END1
 push constant 50
-push local 4
+push local 5
 call Math.multiply 2
 call Sys.wait 1
 pop temp 0
@@ -111,7 +122,7 @@ push constant 231
 call Screen.drawRectangle 4
 pop temp 0
 push constant 50
-push local 4
+push local 5
 call Math.multiply 2
 call Sys.wait 1
 pop temp 0
@@ -171,13 +182,90 @@ push constant 116
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push local 4
+push local 5
 push constant 1
 sub
-pop local 4
+pop local 5
 goto WHILE_EXP1
 label WHILE_END1
+goto IF_END0
 label IF_FALSE0
+push local 7
+push constant 1
+sub
+pop local 7
+label IF_END0
+push local 7
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+push local 6
+call Menu.anime 2
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push local 1
+push local 6
+call Menu.anime2 2
+pop temp 0
+label IF_END2
+push constant 200
+call Sys.wait 1
+pop temp 0
+push local 1
+push local 6
+call Menu.erase 2
+pop temp 0
+push local 6
+push constant 5128
+lt
+push local 3
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 6
+push constant 1
+add
+pop local 6
+goto IF_END3
+label IF_FALSE3
+push constant 0
+pop local 3
+label IF_END3
+push local 3
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 6
+push constant 1
+sub
+pop local 6
+label IF_FALSE4
+push local 6
+push constant 5125
+lt
+push local 3
+not
+and
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 0
+not
+pop local 3
+label IF_FALSE5
+push constant 10
+pop local 7
+label IF_FALSE1
 goto WHILE_EXP0
 label WHILE_END0
 push constant 200
@@ -215,9 +303,9 @@ goto WHILE_EXP2
 label WHILE_END2
 push local 0
 call SuperJackGame.getwin 1
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 call Screen.clearScreen 0
 pop temp 0
 push constant 13
@@ -248,8 +336,8 @@ push constant 126
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-goto IF_END1
-label IF_FALSE1
+goto IF_END6
+label IF_FALSE6
 call Screen.clearScreen 0
 pop temp 0
 push constant 13
@@ -282,6 +370,6 @@ push constant 126
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-label IF_END1
+label IF_END6
 push constant 0
 return

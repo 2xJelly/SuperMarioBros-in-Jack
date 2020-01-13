@@ -44,9 +44,8 @@ push constant 0
 pop this 9
 push constant 4109
 pop local 0
-push this 3
 push local 0
-call Draw.character 2
+call Draw.character 1
 pop temp 0
 push constant 12
 push constant 28
@@ -93,9 +92,8 @@ push this 6
 call Math.divide 2
 call Sys.wait 1
 pop temp 0
-push this 3
 push local 0
-call Draw.character 2
+call Draw.character 1
 pop temp 0
 push constant 12
 push constant 28
@@ -441,6 +439,17 @@ push constant 32
 call SuperJackGame.transition 2
 pop temp 0
 label IF_FALSE9
+call Jack.checkBig 0
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push constant 32
+pop local 3
+goto IF_END10
+label IF_FALSE10
+push constant 16
+pop local 3
+label IF_END10
 push this 7
 push constant 133
 eq
@@ -457,9 +466,9 @@ push constant 0
 not
 eq
 and
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push constant 5
 pop this 12
 label WHILE_EXP3
@@ -497,7 +506,7 @@ push this 5
 sub
 call SuperJackGame.transition 2
 pop temp 0
-label IF_FALSE10
+label IF_FALSE11
 push constant 1000
 push this 6
 call Math.divide 2
@@ -515,9 +524,9 @@ push this 10
 push constant 0
 gt
 not
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
 push static 2
 push constant 1
 sub
@@ -547,7 +556,7 @@ pop temp 0
 push static 2
 call Output.printInt 1
 pop temp 0
-label IF_FALSE11
+label IF_FALSE12
 push pointer 0
 call SuperJackGame.calc 1
 pop temp 0
@@ -555,9 +564,9 @@ push this 11
 push constant 0
 gt
 not
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push pointer 0
 call SuperJackGame.Monmove 1
 pop temp 0
@@ -565,7 +574,7 @@ push this 6
 push constant 30
 call Math.divide 2
 pop this 11
-label IF_FALSE12
+label IF_FALSE13
 push pointer 0
 call SuperJackGame.calc 1
 pop temp 0
@@ -726,6 +735,23 @@ add
 push constant 5
 call Monster.changetype 3
 pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 16
+push this 5
+sub
+push this 18
+push this 16
+push constant 31
+add
+push this 5
+sub
+push this 18
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
 label IF_FALSE4
 label IF_FALSE3
 push local 1
@@ -784,6 +810,25 @@ push this 2
 push local 0
 push constant 5
 call Monster.changetype 3
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 16
+push constant 15
+sub
+push this 5
+sub
+push this 18
+push this 16
+push constant 15
+add
+push this 5
+sub
+push this 18
+push constant 15
+add
+call Screen.drawRectangle 4
 pop temp 0
 label IF_FALSE6
 label IF_FALSE5
@@ -1071,9 +1116,6 @@ goto IF_END0
 label IF_FALSE0
 push constant 3
 pop this 12
-push this 0
-call Jack.jump 1
-pop temp 0
 label WHILE_EXP1
 push this 12
 push constant 1
@@ -1087,7 +1129,7 @@ call Math.divide 2
 call Sys.wait 1
 pop temp 0
 push this 0
-call Jack.erase 1
+call Jack.eraserectangle 1
 pop temp 0
 push constant 10000
 push this 6
@@ -1104,7 +1146,10 @@ pop this 12
 goto WHILE_EXP1
 label WHILE_END1
 push this 0
-call Jack.erase 1
+call Jack.jump 1
+pop temp 0
+push this 0
+call Jack.eraserectangle 1
 pop temp 0
 push constant 0
 not
@@ -1190,9 +1235,11 @@ label IF_FALSE4
 label IF_END0
 push local 0
 return
-function SuperJackGame.move 3
+function SuperJackGame.move 4
 push argument 0
 pop pointer 0
+push constant 2
+pop local 3
 push this 0
 call Jack.getPosX 1
 push this 5
@@ -1239,6 +1286,31 @@ goto IF_FALSE2
 label IF_TRUE2
 push constant 0
 pop static 4
+label WHILE_EXP0
+push local 3
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END0
+push this 0
+call Jack.turnBig 1
+pop temp 0
+push constant 200
+call Sys.wait 1
+pop temp 0
+push this 0
+call Jack.turnSmall 1
+pop temp 0
+push constant 200
+call Sys.wait 1
+pop temp 0
+push local 3
+push constant 1
+sub
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
 push this 0
 call Jack.turnBig 1
 pop temp 0

@@ -56,7 +56,7 @@ class SuperJackGame
 		let exit = false;
 		let location = 4109;
 		// Show the text
-		do draw.character(location);
+		do Draw.character(location);
 		do Output.moveCursor(12, 28);
 		do Output.printString(" X ");
 		do Output.printInt(Life);
@@ -83,7 +83,7 @@ class SuperJackGame
 					// Show the text
 					do Sys.wait(30000/fps);
 					// do Sys.wait(10000/(fps/10));
-					do draw.character(location);
+					do Draw.character(location);
 					do Output.moveCursor(12, 28);
 					do Output.printString(" X ");
 					do Output.printInt(Life);
@@ -242,8 +242,11 @@ class SuperJackGame
 
 			// Do teleport if jack is at the pipe, and push 'down' key
 
-			if ( (key = 133) & (map.teleportloc((jack.getPosX() + screenPos),jack.getPosY(),height) = true) )
+			if (Jack.checkBig()) { let height = 32; }
+			else { let height = 16; }
+			if ( (key = 133) & (map.teleportloc(jack.getPosX()+screenPos,jack.getPosY(),height) = true) )
 			{ 
+				// let exit = true;
 				let effect = 5;
 				while(effect > -1)
 				{
@@ -341,6 +344,8 @@ class SuperJackGame
 						do SuperJackGame.addPoints(200);
 						do monster.changetype(idx,5);
 						do monster.changetype(idx + 1,5);
+						do Screen.setColor(false);
+						do Screen.drawRectangle(xx-screenPos,yy,xx+31-screenPos,yy+15);
 					}
 
 				}
@@ -353,6 +358,8 @@ class SuperJackGame
 						do SuperJackGame.addPoints(200);
 						do monster.changetype(idx - 1,5);
 						do monster.changetype(idx,5);
+						do Screen.setColor(false);
+						do Screen.drawRectangle(xx-15-screenPos,yy,xx+15-screenPos,yy+15);
 					}
 
 				}
@@ -443,16 +450,16 @@ class SuperJackGame
 		}else
 		{
 			let effect = 3;
-			do jack.jump();
 			while(effect > -1)
 			{
 				do Sys.wait(10000/fps);
-				do jack.erase();
+				do jack.eraserectangle();
 				do Sys.wait(10000/fps);
 				do jack.draw();
 				let effect = effect -1;
 			}
-			do jack.erase();
+			do jack.jump();
+			do jack.eraserectangle();
 			let exit = true;
 		}
 
@@ -480,6 +487,8 @@ class SuperJackGame
   method void move()
   {
 	  	var int x, y, h;
+		var int effect;
+		let effect = 2;
 		let x = jack.getPosX() + screenPos;
 		let y = jack.getPosY();
 		if (Jack.checkBig()) { let h = 32; }
@@ -495,6 +504,14 @@ class SuperJackGame
 		if(turnbig)
 		{
 			let turnbig = false;
+			while(effect > -1)
+			{
+				do jack.turnBig();
+				do Sys.wait(200);
+				do jack.turnSmall();
+				do Sys.wait(200);
+				let effect = effect -1;
+			}
 			do jack.turnBig();
 		}
 

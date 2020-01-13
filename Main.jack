@@ -6,9 +6,13 @@ class Main
 	{
 		var SuperJackGame game;
 		var Menu menu;
-		var boolean exit;
+		var boolean exit,turn;
 		var int key,effect;
+		var int position,anime;
+		let position = 5124;
+		let anime = 10;
 		let life = 3;
+		let turn = true;
 		let exit = false;
 
 		// Show the text
@@ -28,6 +32,7 @@ class Main
 			if(key = 128) // Any key
 			{
 				let exit = true;
+				do menu.anime(position);
 				let effect = 6;
 				while(effect > -1)
 				{
@@ -45,6 +50,39 @@ class Main
 
 					let effect = effect -1;
 				}
+			}
+
+			else
+			{
+				let anime = anime - 1;
+			}
+
+			if(anime < 0)
+			{
+				if(turn){do menu.anime(position);}
+				else{do menu.anime2(position);}
+				do Sys.wait(200);
+				do menu.erase(position);
+				if((position < 5128) & (turn))
+				{
+					let position = position + 1;
+				}
+				
+				else
+				{
+					let turn = false;
+				}
+
+				if(~turn)
+				{
+					let position = position - 1;
+				}
+
+				if((position < 5125) & (~turn))
+				{
+					let turn = true;
+				}
+				let anime = 10;
 			}
 		}
 		let game = SuperJackGame.new(200,life);

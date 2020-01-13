@@ -11,6 +11,15 @@ push constant 511
 push constant 255
 call Screen.drawRectangle 4
 pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 48
+push constant 128
+push constant 159
+push constant 191
+call Screen.drawRectangle 4
+pop temp 0
 push constant 515
 pop local 1
 push local 0
@@ -418,6 +427,142 @@ push local 1
 push constant 2
 add
 call Draw.square 2
+pop temp 0
+push constant 4099
+pop local 1
+push local 0
+push local 1
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 3
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 4
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 5
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 6
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 512
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 1024
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 518
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 1030
+add
+call Draw.brick 2
+pop temp 0
+push constant 5635
+pop local 1
+push local 0
+push local 1
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 1
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 2
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 3
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 4
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 5
+add
+call Draw.brick 2
+pop temp 0
+push local 0
+push local 1
+push constant 6
+add
+call Draw.brick 2
+pop temp 0
+push constant 0
+return
+function Menu.anime 0
+push argument 0
+pop pointer 0
+push argument 1
+call Draw.character 1
+pop temp 0
+push constant 0
+return
+function Menu.anime2 0
+push argument 0
+pop pointer 0
+push argument 1
+call Draw.character2 1
+pop temp 0
+push constant 0
+return
+function Menu.erase 0
+push argument 0
+pop pointer 0
+push argument 1
+call Draw.eraseblock 1
 pop temp 0
 push constant 0
 return

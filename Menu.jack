@@ -6,7 +6,8 @@ class Menu
         var int location;
         do Screen.setColor(true);
         do Screen.drawRectangle(0,0,511,255);
-        
+        do Screen.setColor(false);
+        do Screen.drawRectangle(48,128,159,191);
         /**S**/
         let location = 515;
         do draw.square(location);
@@ -101,7 +102,50 @@ class Menu
         do draw.square(location+513);
         do draw.square(location+1026);
         do draw.square(location+2);
+
+        /**ground**/
+        let location = 4099;
+        do draw.brick(location);
+        do draw.brick(location+1);
+        do draw.brick(location+2);
+        do draw.brick(location+3);
+        do draw.brick(location+4);
+        do draw.brick(location+5);
+        do draw.brick(location+6);
+        do draw.brick(location);
+        do draw.brick(location+512);
+        do draw.brick(location+1024);
+        do draw.brick(location+518);
+        do draw.brick(location+1030);
+        let location = 5635;
+        do draw.brick(location);
+        do draw.brick(location+1);
+        do draw.brick(location+2);
+        do draw.brick(location+3);
+        do draw.brick(location+4);
+        do draw.brick(location+5);
+        do draw.brick(location+6);
+        
+
         
         return;
     }
+
+    method void anime(int i)
+    {
+        do Draw.character(i);
+        return;
+    }
+
+    method void anime2(int i)
+    {
+        do Draw.character2(i);
+        return;
+    }
+
+    method void erase(int i)
+    {
+        do Draw.eraseblock(i);
+        return;
+    } 
 }

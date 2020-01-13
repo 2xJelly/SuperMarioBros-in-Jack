@@ -68,6 +68,16 @@ class Jack
     return;
   }
 
+  method void eraserectangle()
+  {
+    // if (~big) { do Sprite.eraseJack(getPosX(), getPosY()); }
+    // else { do Sprite.eraseBigJack(getPosX(), getPosY()); }
+    do Screen.setColor(false);
+    if(~big){do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 15);}
+    else{do Screen.drawRectangle(pos.getX(), pos.getY(), pos.getX() + 15, pos.getY() + 31);}
+    return;
+  }
+
   /* Move the Jack to the right by move pixels */
   method void transition(int move)
   {

@@ -257,53 +257,45 @@ return
 function Map.eraseCloud 0
 push argument 0
 pop pointer 0
-push this 4
 push constant 512
 push this 12
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 512
 push this 13
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 1024
 push this 12
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 1024
 push this 13
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 748
 push this 12
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 748
 push this 13
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 1260
 push this 12
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push constant 1260
 push this 13
 add
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 push constant 0
 return
@@ -592,7 +584,7 @@ push constant 0
 pop local 1
 label IF_FALSE8
 push local 2
-push constant 9
+push constant 13
 eq
 if-goto IF_TRUE9
 goto IF_FALSE9
@@ -617,13 +609,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.pipelefttop 2
+call Draw.coin 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE9
 push local 2
-push constant 10
+push constant 14
 eq
 if-goto IF_TRUE10
 goto IF_FALSE10
@@ -648,13 +640,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.pipeleftbot 2
+call Draw.jumper 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE10
 push local 2
-push constant 11
+push constant 17
 eq
 if-goto IF_TRUE11
 goto IF_FALSE11
@@ -679,13 +671,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.piperighttop 2
+call Draw.castle1 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE11
 push local 2
-push constant 12
+push constant 18
 eq
 if-goto IF_TRUE12
 goto IF_FALSE12
@@ -710,13 +702,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.piperightbot 2
+call Draw.castle2 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE12
 push local 2
-push constant 13
+push constant 19
 eq
 if-goto IF_TRUE13
 goto IF_FALSE13
@@ -741,13 +733,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.coin 2
+call Draw.castle3 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE13
 push local 2
-push constant 14
+push constant 20
 eq
 if-goto IF_TRUE14
 goto IF_FALSE14
@@ -772,13 +764,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.jumper 2
+call Draw.castle4 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE14
 push local 2
-push constant 15
+push constant 21
 eq
 if-goto IF_TRUE15
 goto IF_FALSE15
@@ -803,13 +795,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.pipeconnecttop 2
+call Draw.castle5 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE15
 push local 2
-push constant 16
+push constant 22
 eq
 if-goto IF_TRUE16
 goto IF_FALSE16
@@ -834,13 +826,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.pipeconnectbot 2
+call Draw.castle6 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE16
 push local 2
-push constant 17
+push constant 23
 eq
 if-goto IF_TRUE17
 goto IF_FALSE17
@@ -865,13 +857,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle1 2
+call Draw.castle7 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE17
 push local 2
-push constant 18
+push constant 24
 eq
 if-goto IF_TRUE18
 goto IF_FALSE18
@@ -896,13 +888,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle2 2
+call Draw.castle8 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE18
 push local 2
-push constant 19
+push constant 25
 eq
 if-goto IF_TRUE19
 goto IF_FALSE19
@@ -927,13 +919,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle3 2
+call Draw.castle9 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE19
 push local 2
-push constant 20
+push constant 26
 eq
 if-goto IF_TRUE20
 goto IF_FALSE20
@@ -958,13 +950,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle4 2
+call Draw.castle10 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE20
 push local 2
-push constant 21
+push constant 27
 eq
 if-goto IF_TRUE21
 goto IF_FALSE21
@@ -989,13 +981,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle5 2
+call Draw.castle11 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE21
 push local 2
-push constant 22
+push constant 28
 eq
 if-goto IF_TRUE22
 goto IF_FALSE22
@@ -1020,13 +1012,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle6 2
+call Draw.castle12 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE22
 push local 2
-push constant 23
+push constant 29
 eq
 if-goto IF_TRUE23
 goto IF_FALSE23
@@ -1051,13 +1043,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle7 2
+call Draw.castle13 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE23
 push local 2
-push constant 24
+push constant 30
 eq
 if-goto IF_TRUE24
 goto IF_FALSE24
@@ -1082,13 +1074,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle8 2
+call Draw.castle14 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE24
 push local 2
-push constant 25
+push constant 31
 eq
 if-goto IF_TRUE25
 goto IF_FALSE25
@@ -1113,13 +1105,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle9 2
+call Draw.castle15 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE25
 push local 2
-push constant 26
+push constant 32
 eq
 if-goto IF_TRUE26
 goto IF_FALSE26
@@ -1144,13 +1136,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle10 2
+call Draw.castle16 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE26
 push local 2
-push constant 27
+push constant 35
 eq
 if-goto IF_TRUE27
 goto IF_FALSE27
@@ -1175,13 +1167,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle11 2
+call Draw.mushroom 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE27
 push local 2
-push constant 28
+push constant 37
 eq
 if-goto IF_TRUE28
 goto IF_FALSE28
@@ -1206,13 +1198,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle12 2
+call Draw.star 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE28
 push local 2
-push constant 29
+push constant 38
 eq
 if-goto IF_TRUE29
 goto IF_FALSE29
@@ -1237,13 +1229,13 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle13 2
+call Draw.pole 2
 pop temp 0
 push constant 0
 pop local 1
 label IF_FALSE29
 push local 2
-push constant 30
+push constant 39
 eq
 if-goto IF_TRUE30
 goto IF_FALSE30
@@ -1268,197 +1260,11 @@ add
 pop local 1
 push this 4
 push local 1
-call Draw.castle14 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE30
-push local 2
-push constant 31
-eq
-if-goto IF_TRUE31
-goto IF_FALSE31
-label IF_TRUE31
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.castle15 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE31
-push local 2
-push constant 32
-eq
-if-goto IF_TRUE32
-goto IF_FALSE32
-label IF_TRUE32
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.castle16 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE32
-push local 2
-push constant 35
-eq
-if-goto IF_TRUE33
-goto IF_FALSE33
-label IF_TRUE33
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.mushroom 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE33
-push local 2
-push constant 37
-eq
-if-goto IF_TRUE34
-goto IF_FALSE34
-label IF_TRUE34
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.star 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE34
-push local 2
-push constant 38
-eq
-if-goto IF_TRUE35
-goto IF_FALSE35
-label IF_TRUE35
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
-call Draw.pole 2
-pop temp 0
-push constant 0
-pop local 1
-label IF_FALSE35
-push local 2
-push constant 39
-eq
-if-goto IF_TRUE36
-goto IF_FALSE36
-label IF_TRUE36
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 32
-call Math.multiply 2
-push local 0
-push this 0
-add
-pop pointer 1
-push that 0
-push this 7
-sub
-push constant 16
-call Math.divide 2
-add
-pop local 1
-push this 4
-push local 1
 call Draw.flag 2
 pop temp 0
 push constant 0
 pop local 1
-label IF_FALSE36
+label IF_FALSE30
 label IF_FALSE0
 push local 0
 push constant 1
@@ -1497,9 +1303,8 @@ push constant 16
 call Math.divide 2
 add
 pop local 1
-push this 4
 push local 1
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 push local 0
 push constant 1
@@ -1530,9 +1335,8 @@ push constant 16
 call Math.divide 2
 add
 pop local 0
-push this 4
 push local 0
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 push constant 0
 return
@@ -2464,15 +2268,13 @@ pop temp 0
 push constant 100
 call Sys.wait 1
 pop temp 0
-push this 4
 push local 7
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
-push this 4
 push local 7
 push constant 256
 sub
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 push local 7
 push constant 512
@@ -2488,9 +2290,8 @@ pop temp 0
 push pointer 0
 call Map.draw 1
 pop temp 0
-push this 4
 push local 7
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 goto IF_END5
 label IF_FALSE5
@@ -2544,11 +2345,10 @@ pop temp 0
 push constant 100
 call Sys.wait 1
 pop temp 0
-push this 4
 push local 7
 push constant 256
 sub
-call Draw.eraseblock 2
+call Draw.eraseblock 1
 pop temp 0
 push constant 100
 call Sys.wait 1
