@@ -9,15 +9,17 @@ class Main
 		var boolean exit,turn,play;
 		var int key,effect;
 		var int position,anime;
+		let play = true;
+		
+
+		while(play){
+	
 		let position = 5124;
 		let anime = 10;
 		let life = 3;
 		let turn = true;
 		let exit = false;
-		let play = true;
-
-
-		//while(play){
+		
 		// Show the text
 		do menu.new();
 		do Screen.setColor(false);
@@ -100,15 +102,17 @@ class Main
 			do game.run();
 		}
 
+		// let key = 0;
 		if(game.getwin())
 		{
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Win~~~");
+			do Sys.wait(1000);
 			do game.dispose();
 			// let key = Keyboard.keyPressed();
-			// do Output.moveCursor(15, 25);
-			// do Output.printString("Press any key~~");
+			// // do Output.moveCursor(15, 25);
+			// // do Output.printString("Press any key~~");
 			// if(~(key = 0))
 			// {
 			// 	do game.dispose();
@@ -120,16 +124,18 @@ class Main
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Lose~~~");
-			//do game.dispose();
-			// let key = Keyboard.keyPressed();
-			// // do Output.moveCursor(15, 25);
-			// // do Output.printString("Press any key~~");
+			do Sys.wait(1000);
+			do game.dispose();
+			let play = false;
+			//let key = Keyboard.keyPressed();
+			// do Output.moveCursor(15, 25);
+			// do Output.printString("Press any key~~");
 			// if(~(key = 0))
 			// {
 			// 	do game.dispose();
 			// }
 		}
-		//}
+		}
 
 		
 

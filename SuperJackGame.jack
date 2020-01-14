@@ -236,7 +236,7 @@ class SuperJackGame
 				do Sys.wait(20000/fps);
 				do Screen.clearScreen();
 				do status();
-				do transition(2732 - (screenPos) ); 
+				do transition(2736 - (screenPos) ); 
 				
 
 			}

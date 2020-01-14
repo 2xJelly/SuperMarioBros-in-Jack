@@ -937,6 +937,7 @@ class Map
         do block.changeType(i,1);
         do Screen.setColor(false);
 				do Screen.drawRectangle(posX[i]-screenPos,posY[i],posX[i]-screenPos + 15,posY[i]+15);
+        //do draw();
       }
 
 

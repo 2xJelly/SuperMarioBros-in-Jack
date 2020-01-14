@@ -381,7 +381,7 @@ push pointer 0
 call SuperJackGame.status 1
 pop temp 0
 push pointer 0
-push constant 2732
+push constant 2736
 push this 5
 sub
 call SuperJackGame.transition 2

@@ -6,7 +6,7 @@ push constant 174
 pop local 0
 push constant 6
 pop local 3
-push constant 28
+push constant 27
 pop local 4
 push constant 250
 pop local 5
@@ -1210,46 +1210,6 @@ pop pointer 1
 push temp 0
 pop that 0
 push constant 26
-push this 7
-add
-push constant 2
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 27
-push this 4
-add
-push constant 159
-push this 8
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 27
-push this 5
-add
-push constant 10
-push this 8
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 27
-push this 6
-add
-push constant 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 27
 push this 7
 add
 push constant 2

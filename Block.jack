@@ -24,7 +24,7 @@ class Block
         var int k;
         let numBlock = 174;
         let numGap = 6;
-        let numMon = 28;
+        let numMon = 27;
         let numMul16 = 250;
         let a = 156;
         let b = 230;
@@ -187,10 +187,10 @@ class Block
         let Mon_type[26] = 3;
         let Direction[26] = 2;
 
-        let MonX[27] = Mul16[159];
-        let MonY[27] =  Mul16[10];
-        let Mon_type[27] = 0;
-        let Direction[27] = 2;
+        // let MonX[27] = Mul16[159];
+        // let MonY[27] =  Mul16[10];
+        // let Mon_type[27] = 0;
+        // let Direction[27] = 2;
 
         // let MonX[28] = Mul16[173];
         // let MonY[28] =  Mul16[10];
