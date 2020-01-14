@@ -14,6 +14,7 @@ class Map
   field int cloudloc,cloudloc1;
   field int starPosX, starPosY;
   field boolean able_Star;
+  static int spec;
 
   constructor Map new()
   {
@@ -30,6 +31,7 @@ class Map
     let gap = block.getGap();
     let posX = block.getPosX();
     let posY = block.getPosY();
+    let spec = 5;
     let able_Star = true;
     // let starPosX = 240;
     // let starPosY = 160;
@@ -149,7 +151,7 @@ class Map
       if (~(block.getType(i) = 1)) 
       { 
         let switch = block.getType(i);
-        if(switch = 0)
+        if((switch = 0) | (switch = 40))
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.brick(location);
@@ -397,6 +399,13 @@ class Map
         {
           let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
           do draw.flag(location);
+          let location = 0;
+        }
+
+        if(switch = 41)
+        {
+          let location = (posY[i]*32) + ((posX[i]-screenPos)/16);
+          do draw.bell(location);
           let location = 0;
         }
 
@@ -681,12 +690,13 @@ class Map
     var int i, touchBlock, area;
     var int diffX, diffY;
     var int location;
-
+    
     let corner = false;
     let touch = false;
     let i = idxLeft;
     let touchBlock = -1;
     let area = 0;
+    
     
     while(i < idxRight)
     {
@@ -755,6 +765,7 @@ class Map
         do Draw.eraseblock(location);
       }
 
+
       else{
         if(touch & (block.getType(touchBlock) = 34) )   /***touch mushroom block***/
         {
@@ -781,6 +792,50 @@ class Map
               do block.changeType(touchBlock-1,37);
               do draw();
           }
+
+          else
+          {
+              if((touch) & (block.getType(touchBlock) = 40) ) /***touch bonus coin block***/
+                {
+                  if(spec > 0)
+                  {
+                      do SuperJackGame.addPoints(100);
+                      do SuperJackGame.addMoney(100);
+                      let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
+                      do eraseidxblock(touchBlock);
+                      do draw.brick(location - 256);
+                      do draw.coin(location);
+                      do Sys.wait(100);
+                      do Draw.eraseblock(location);
+                      do Draw.eraseblock(location - 256);
+                      let location = location -512;
+                      do draw.coin(location);
+                      do Sys.wait(100);
+                      do draw();
+                      do Draw.eraseblock(location);
+                      let spec = spec - 1;
+                  }
+
+                  else
+                  {
+                      do SuperJackGame.addPoints(100);
+                      do SuperJackGame.addMoney(100);
+                      let location = (((posY[touchBlock]/16)-1)*512) + ((posX[touchBlock]-screenPos)/16);
+                      do eraseidxblock(touchBlock);
+                      do block.changeType(touchBlock, 5);
+                      do draw.square(location - 256);
+                      do draw.coin(location);
+                      do Sys.wait(100);
+                      do Draw.eraseblock(location);
+                      do Draw.eraseblock(location - 256);
+                      let location = location -512;
+                      do draw.coin(location);
+                      do Sys.wait(100);
+                      do draw();
+                      do Draw.eraseblock(location);
+                  }
+                }
+          }
         }
       }
     }
@@ -792,16 +847,18 @@ class Map
   method boolean touchBelow(int X, int Y, int h)
   {
     var boolean contact, corner;
-    var int i;
+    var int i,k;
     var int diffX, diffY;
     var int touchtype;
 
     let i = idxLeft;
+    let k = idxLeft;
     let contact = false;
     let corner = false;
 
     while(i < idxRight)
     {
+      let touchtype = block.getType(i);
       if(~(block.getType(i) = 13)){
       /* Calculate absolute difference in X and Y */
       let diffX = posX[i] - X;
@@ -812,20 +869,39 @@ class Map
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
       /* If they are close enough, they are touching */
-     if( (~(block.getType(i) = 1)) & (~(block.getType(i) = 36)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
+     if( (~(touchtype = 1)) & (~(touchtype = 36)) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))) )
       { 
         let contact = true;
-        let touchtype = block.getType(i); 
+        // let touchtype = block.getType(i); 
       }
+
+      if((touchtype = 14) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))))
+      { 
+        do Jack.superjump();
+      }
+
+      if((touchtype = 41) & ((~corner) & (diffX < 16)) & ( ( (0 = diffY)|(0 < diffY) ) & (diffY < (h+1))))
+      {
+        do block.changeType(i,1);
+        while(k < idxRight)
+        {
+          if(block.getType(k) = 0)
+          {
+            do block.changeType(k,13);    /**change to coin block**/
+          }
+          let k = k + 1;
+        }
+        do erase();
+        do draw();
+      }
+      
       }
       let i = i + 1;
       let corner = false;
     }
     
-    if(contact & (touchtype = 14))
-    { 
-      do Jack.superjump();
-    }
+    
+    
     return contact;
   }
 
@@ -853,12 +929,14 @@ class Map
       /* If there are just connected at the corner, it does not count as touching */
       if( (diffX = 16) & (diffY = h) ) { let corner = true; }
 
-      /* If they are close enough, they are touching */
+      /* If touch coin */
       if( (block.getType(i) = 13) & ((~corner) & (diffY < (h+1))) & (diffX < 17) )
       {
+        do SuperJackGame.addPoints(100);
+        do SuperJackGame.addMoney(100);
         do block.changeType(i,1);
-        do erase();
-        do draw();
+        do Screen.setColor(false);
+				do Screen.drawRectangle(posX[i]-screenPos,posY[i],posX[i]-screenPos + 15,posY[i]+15);
       }
 
 

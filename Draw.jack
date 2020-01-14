@@ -1060,6 +1060,28 @@ method void pole(int location) {
 	return;
 }
 
+method void bell(int location) {
+	var int memAddress;
+	let memAddress = 16384+location;
+	do Memory.poke(memAddress+0, 4080);
+	do Memory.poke(memAddress+32, 4104);
+	do Memory.poke(memAddress+64, 12276);
+	do Memory.poke(memAddress+96, 24570);
+	do Memory.poke(memAddress+128, -18403);
+	do Memory.poke(memAddress+160, -17411);
+	do Memory.poke(memAddress+192, -17411);
+	do Memory.poke(memAddress+224, -17411);
+	do Memory.poke(memAddress+256, -17411);
+	do Memory.poke(memAddress+288, -17443);
+	do Memory.poke(memAddress+320, -17443);
+	do Memory.poke(memAddress+352, -17347);
+	do Memory.poke(memAddress+384, -8197);
+	do Memory.poke(memAddress+416, -4105);
+	do Memory.poke(memAddress+448, 28686);
+	do Memory.poke(memAddress+480, 16380);
+	return;
+}
+
 	method void dispose()
 	{
 		return;

@@ -7,6 +7,7 @@ class SuperJackGame
 	field int direction; // 0 = At rest, 1 = Left, 2 = Right
 	field int screenPos; // Relative x-coordinate of the left side of the screen
 	field int fps; // frame per second
+	field int time;
 
 	field char key; // Input key from player
 	field boolean win, exit;
@@ -29,6 +30,7 @@ class SuperJackGame
 		let fps = gameSpeed;
 		// fps -> frame per second
 		let Life = life;
+		let time = 99;
 		let turnbig = false;
 		do Screen.clearScreen();
 		// Do the starting menu
@@ -108,9 +110,8 @@ class SuperJackGame
 		let exit = false;
 		let coin = 0;
 		let score = 0;
-		let time = 999;
-		let framePassed = fps/10;
-		let frameMon = fps/30;
+		let framePassed = 180;
+		let frameMon = 5;
 
 		do status();
 		
@@ -245,7 +246,7 @@ class SuperJackGame
 
 
 			// Wait for 1 frame to pass
-			do Sys.wait(1000/fps);
+			do Sys.wait(500/fps);
 
 			let framePassed = framePassed - 1;
 			let frameMon = frameMon - 1;
@@ -253,11 +254,25 @@ class SuperJackGame
 			if(~(framePassed > 0) )
 			{
 				let time = time - 1;
-				let framePassed = fps;
+				let framePassed = 180;
 				// Also, print the time since it has changed
 				do Output.moveCursor(0, 53);
 				do Output.printString("TIME: ");
-				do Output.printInt(time);
+				//do Output.printInt(time);
+				
+				// if (time > 99)
+				// {
+				// 	do Output.printInt(time/100);
+				// }else { do Output.printInt(0); }
+
+				if (time > 9)
+				{
+					do Output.printInt(time/10);
+				}else { do Output.printInt(0); }
+
+				do Output.printInt(time - ((time /10)*10));
+
+				
 			}
 
 			do calc();
@@ -266,7 +281,7 @@ class SuperJackGame
 			if(~(frameMon > 0))
 			{
 				do Monmove();
-				let frameMon = fps/30;
+				let frameMon = 5;
 			}
 
 
@@ -377,6 +392,17 @@ class SuperJackGame
 				{ do monster.kill(idx); }
 
 				let idx = idx + 1;
+
+			}
+
+			if(time < 1)
+			{
+				let exit = true;
+				do Screen.clearScreen();
+				do Output.moveCursor(12, 28);
+				do Output.printString(" Time Up ");
+				do Sys.wait(20000/fps);
+				
 			}
 			return;
 	}

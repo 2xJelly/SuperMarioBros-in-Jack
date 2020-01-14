@@ -9,7 +9,8 @@ class Block
 
     //Block-Type    0 - brick;1 - empty;2 - question;3 - pipeleft;4 - wall;5 - square;6 -pipetopleft;7-pipetopright;8-piperight; 
     //              9 - pipelefttop; 10 - pipeleftbottom; 11 - piperighttop;  12 - piperightbottom; 13 - coin; 14 - jumper;
-    //              15- pipeConnectTop; 16 - pipeConnectBottom;33 - pipeteleport;34 - mushroomblock;35 - mushroom;36 - starblock;37 - star;
+    //              15- pipeConnectTop; 16 - pipeConnectBottom;33 - pipeteleport;34 - mushroomblock;35 - mushroom;36 - starblock;37 - star;38- pole;39 - flag
+    //              40 - bonus block;41 - bell
 
     //Montype       0 - moving monster ;   1 - flowermonsterleft    ;   2 - flowermonsterright  ;   3 - upward monster  ;   4-downward monster      ;   5-empty     ; 
     //MonsterDirection 2 : moving left;   -2 : moving right;
@@ -674,7 +675,7 @@ class Block
 
         let posX[117] =  Mul16[158];
         let posY[117] =  Mul16[10];
-        let type_block[117] = 2;
+        let type_block[117] = 40;
 
         let posX[118] =  Mul16[161];
         let posY[118] =  Mul16[6];
@@ -696,37 +697,37 @@ class Block
         let posY[122] =  Mul16[6];
         let type_block[122] = 0;
 
-        let posX[123] =  Mul16[167];
-        let posY[123] =  Mul16[10];
-        let type_block[123] = 2;
+        let posX[123] =  Mul16[169];
+        let posY[123] =  Mul16[6];
+        let type_block[123] = 0;
 
-        let posX[124] =  Mul16[169];
-        let posY[124] =  Mul16[6];
-        let type_block[124] = 2;
+        let posX[124] =  Mul16[173];
+        let posY[124] =  Mul16[11];
+        let type_block[124] = 6;
 
         let posX[125] =  Mul16[173];
-        let posY[125] =  Mul16[11];
-        let type_block[125] = 6;
+        let posY[125] =  Mul16[12];
+        let type_block[125] = 3;
 
         let posX[126] =  Mul16[173];
-        let posY[126] =  Mul16[12];
+        let posY[126] =  Mul16[13];
         let type_block[126] = 3;
 
-        let posX[127] =  Mul16[173];
-        let posY[127] =  Mul16[13];
-        let type_block[127] = 3;
+        let posX[127] =  Mul16[174];
+        let posY[127] =  Mul16[11];
+        let type_block[127] = 7;
 
         let posX[128] =  Mul16[174];
-        let posY[128] =  Mul16[11];
-        let type_block[128] = 7;
+        let posY[128] =  Mul16[12];
+        let type_block[128] = 8;
 
         let posX[129] =  Mul16[174];
-        let posY[129] =  Mul16[12];
+        let posY[129] =  Mul16[13];
         let type_block[129] = 8;
 
-        let posX[130] =  Mul16[174];
+        let posX[130] =  Mul16[176];
         let posY[130] =  Mul16[13];
-        let type_block[130] = 8;
+        let type_block[130] = 41;
 
         let posX[131] =  Mul16[181];
         let posY[131] =  Mul16[10];

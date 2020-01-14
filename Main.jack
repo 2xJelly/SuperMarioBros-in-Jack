@@ -6,7 +6,7 @@ class Main
 	{
 		var SuperJackGame game;
 		var Menu menu;
-		var boolean exit,turn;
+		var boolean exit,turn,play;
 		var int key,effect;
 		var int position,anime;
 		let position = 5124;
@@ -14,7 +14,10 @@ class Main
 		let life = 3;
 		let turn = true;
 		let exit = false;
+		let play = true;
 
+
+		//while(play){
 		// Show the text
 		do menu.new();
 		do Screen.setColor(false);
@@ -102,6 +105,14 @@ class Main
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Win~~~");
+			do game.dispose();
+			// let key = Keyboard.keyPressed();
+			// do Output.moveCursor(15, 25);
+			// do Output.printString("Press any key~~");
+			// if(~(key = 0))
+			// {
+			// 	do game.dispose();
+			// }
 		}
 
 		else
@@ -109,7 +120,16 @@ class Main
 			do Screen.clearScreen();
 			do Output.moveCursor(13, 25);
 			do Output.printString("You Lose~~~");
+			//do game.dispose();
+			// let key = Keyboard.keyPressed();
+			// // do Output.moveCursor(15, 25);
+			// // do Output.printString("Press any key~~");
+			// if(~(key = 0))
+			// {
+			// 	do game.dispose();
+			// }
 		}
+		//}
 
 		
 
